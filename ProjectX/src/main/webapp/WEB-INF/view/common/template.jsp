@@ -41,6 +41,7 @@ $.validator.addMethod('regx', function(value, element, regexpr){
 <div style="height: 30px;"></div>
 <div class="container-fluid">
 	<div class="myContainer">
+	
 		<tiles:insertAttribute name="menu" />
 		<tiles:insertAttribute name="body" />
 	</div>
