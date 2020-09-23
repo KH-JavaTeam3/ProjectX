@@ -18,9 +18,11 @@
 </head>
 <body>
 <input id="test_btn2" type="button" value="확인">
-<div>메뉴</div>
-<div>메뉴</div>
-<div>메뉴</div>
-<div>메뉴</div>
+<div class="row text-center">
+	<div><a href="cover.do">cover template</a></div>
+	<div><a href="carousel.do">carousel template</a></div>
+	<div><a href="dashBoard.do">dashBoard template</a></div>
+	<div><a href="startBootstrap.do">dashBoard startBootstrap</a></div>
+</div>
 </body>
 </html>

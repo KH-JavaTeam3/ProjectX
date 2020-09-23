@@ -12,7 +12,6 @@
 	<definition name="recruit/*" extends="baseLayout">
 		<put-attribute name="body" value="/WEB-INF/view/recruit/{1}.jsp" />
 	</definition>
-	
 </tiles-definitions>
 
 

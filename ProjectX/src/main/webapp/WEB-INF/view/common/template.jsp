@@ -44,7 +44,7 @@ label.error {
 </head>
 <body>
 	<div class="container-fluid">
-		<div class="row" style="background-color: red;">
+		<div class="row">
 			<tiles:insertAttribute name="menu" />
 		</div>
 		<div class="myContainer">
@@ -52,7 +52,7 @@ label.error {
 				<tiles:insertAttribute name="body" />
 			</div>
 		</div>
-		<div class="row" style="background-color: green;">
+		<div class="row">
 			<tiles:insertAttribute name="foot" />
 		</div>
 	</div>

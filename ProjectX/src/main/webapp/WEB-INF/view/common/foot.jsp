@@ -5,13 +5,9 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<!-- <link rel="stylesheet" type="text/css" href="resources/css/foot.css?ver=2" /> -->
 </head>
 <body>
-<div>풋</div>
-<div>풋</div>
-<div>풋</div>
-<div>풋</div>
-<div>풋</div>
-<div>풋</div>
+
 </body>
 </html>

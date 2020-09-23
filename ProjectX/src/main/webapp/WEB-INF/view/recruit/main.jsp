@@ -13,7 +13,6 @@
 	href="resources/css/main.css?ver=2" />
 </head>
 <body>
-
 <!-- 	캐러셀 시작 -->
 	<div id="carousel-example-generic" class="carousel slide"
 		data-ride="carousel">
@@ -54,10 +53,10 @@
 		</a>
 	</div>
 <!-- 캐러셀 끝 -->
-	<div class="row">
+
+<div class="row">
 		<h1>이하 내용</h1>
 	</div>
-
 
 
 	<script src="resources/js/main.js?ver=3"></script>

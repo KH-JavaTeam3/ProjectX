@@ -8,11 +8,8 @@
 <script type="text/javascript">
 	location.href = 'recruit.do';
 </script>
-<script type="text/javascript">
-</script>
 </head>
 <body>
-시작 페이지..2222. index.jsp
 </body>
 </html>
 
