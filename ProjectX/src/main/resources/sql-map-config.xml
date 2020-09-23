@@ -4,7 +4,7 @@
 
 <configuration>
 	<mappers>
-		<mapper resource="/mappings/sample-mapper.xml"/>
+		<mapper resource="/mappings/recruit-mapper.xml"/>
 	</mappers>
 </configuration>
 

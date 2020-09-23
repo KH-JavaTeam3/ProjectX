@@ -5,7 +5,6 @@ $(document).ready(function(){
 	//$(document).on('click', '선택자', function() {
 
 	//});
-	alert("제이쿼리");
 });
 
 /* 함수선언 영역*/

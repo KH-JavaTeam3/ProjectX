@@ -6,10 +6,11 @@
 		<put-attribute name="title" value="Project"/>
 		<put-attribute name="menu" value="/WEB-INF/view/common/menu.jsp"/>
 		<put-attribute name="body" value=""/>
+		<put-attribute name="foot" value="/WEB-INF/view/common/foot.jsp"/>
 	</definition>
 	
-	<definition name="sample/*" extends="baseLayout">
-		<put-attribute name="body" value="/WEB-INF/view/sample/{1}.jsp" />
+	<definition name="recruit/*" extends="baseLayout">
+		<put-attribute name="body" value="/WEB-INF/view/recruit/{1}.jsp" />
 	</definition>
 	
 </tiles-definitions>

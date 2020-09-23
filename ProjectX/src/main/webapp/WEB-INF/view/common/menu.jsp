@@ -18,6 +18,9 @@
 </head>
 <body>
 <input id="test_btn2" type="button" value="확인">
-
+<div>메뉴</div>
+<div>메뉴</div>
+<div>메뉴</div>
+<div>메뉴</div>
 </body>
 </html>
