@@ -18,7 +18,7 @@
 <body>
 	<div class="row">
 		<div class="col-md-offset-3">
-		<span>17:07 내용 수정</span>
+		<span>17:07 내용 수정123</span>
 		</div>
 
 	</div>
