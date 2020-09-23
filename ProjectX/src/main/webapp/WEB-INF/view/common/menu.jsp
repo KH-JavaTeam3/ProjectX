@@ -5,8 +5,18 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<style type="text/css">
+	#test_btn2{ 
+	border: 1px solid skyblue; background-color: rgba(0,0,0,0); color: skyblue; padding: 5px; 
+	border-top-right-radius: 5px; border-bottom-right-radius: 5px; margin-left:-3px;
+	border-top-left-radius: 5px; border-bottom-left-radius: 5px; margin-right:-4px;
+	}
+	#test_btn2:hover{ 
+	color:white; background-color: skyblue; 
+	}
+</style>
 </head>
 <body>
-메뉴화면1
+<input id="test_btn2" type="button" value="확인">
 </body>
 </html>
