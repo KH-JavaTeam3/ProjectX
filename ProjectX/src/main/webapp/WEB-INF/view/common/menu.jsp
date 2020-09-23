@@ -7,6 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-메뉴화면
+메뉴화면1
 </body>
 </html>
