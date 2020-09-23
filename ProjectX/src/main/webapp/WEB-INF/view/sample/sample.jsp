@@ -18,7 +18,11 @@
 <body>
 	<div class="row">
 		<div class="col-md-offset-3">
+
 		<span>17:07 내용 수정123</span>
+
+		<span>16:47 내용 수정 주누주누</span>
+
 		</div>
 
 	</div>
