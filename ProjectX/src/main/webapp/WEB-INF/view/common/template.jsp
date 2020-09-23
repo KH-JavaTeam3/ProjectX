@@ -48,7 +48,7 @@ label.error {
 			<tiles:insertAttribute name="menu" />
 		</div>
 		<div class="myContainer">
-			<div class="row" style="background-color: blue;">
+			<div class="row">
 				<tiles:insertAttribute name="body" />
 			</div>
 		</div>
