@@ -12,7 +12,7 @@
 </script>
 </head>
 <body>
-시작 페이지... index.jsp
+시작 페이지..2222. index.jsp
 </body>
 </html>
 
