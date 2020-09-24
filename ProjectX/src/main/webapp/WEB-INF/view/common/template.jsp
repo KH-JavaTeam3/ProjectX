@@ -44,17 +44,15 @@ label.error {
 </head>
 <body>
 	<div class="container-fluid">
-		<div class="row">
+		<header>
 			<tiles:insertAttribute name="menu" />
-		</div>
+		</header>
 		<div class="myContainer">
-			<div class="row">
-				<tiles:insertAttribute name="body" />
-			</div>
+			<tiles:insertAttribute name="body" />
 		</div>
-		<div class="row">
+		<footer>
 			<tiles:insertAttribute name="foot" />
-		</div>
+		</footer>
 	</div>
 </body>
 </html>

@@ -8,6 +8,8 @@
 <!-- <link rel="stylesheet" type="text/css" href="resources/css/foot.css?ver=2" /> -->
 </head>
 <body>
-풋
+<div class="row text-center" style="border: 1px solid blue">
+	<h1>풋 페이지페이지페이지페이지페이지페이지페이지페이지페이지페이지페이지페이지페이지페이지페이지페이지페이지페이지</h1>
+</div>
 </body>
 </html>

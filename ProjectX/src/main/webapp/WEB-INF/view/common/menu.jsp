@@ -17,8 +17,8 @@
 </style>
 </head>
 <body>
-<input id="test_btn2" type="button" value="확인">
-<div class="row text-center">
+<!-- <input id="test_btn2" type="button" value="확인"> -->
+<div class="row text-center" style="border: 1px solid green">
 	<div><a href="cover.do">cover template</a></div>
 	<div><a href="carousel.do">carousel template</a></div>
 	<div><a href="dashBoard.do">dashBoard template</a></div>
