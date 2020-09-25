@@ -10,30 +10,57 @@ public class RecruitController {
 	@Resource(name = "recruitService")
 	RecruitService recruitService;
 	
+	
+	//메인화면
 	@RequestMapping(value = "/recruit.do")
 	public String recruitMain() {
 		return "recruit/main";
 	}
 	
-	@RequestMapping(value = "/cover.do")
-	public String cover() {
-		return "template/cover";
+	//개인 로그인 화면
+	@RequestMapping(value = "/memberLogin.do")
+	public String memberLogin() {
+		return "memberLogin";
 	}
 	
-	@RequestMapping(value = "/carousel.do")
-	public String carousel() {
-		return "template/carousel";
+	//기업 로그인 화면
+	@RequestMapping(value = "/companyLogin.do")
+	public String companyLogin() {
+		return "companyLogin";
 	}
 	
-	@RequestMapping(value = "/dashBoard.do")
-	public String dashBoard() {
-		return "template/dashBoard";
-	}
 	
-	@RequestMapping(value = "/startBootstrap.do")
-	public String startBootstrap() {
-		return "template/startBootstrap";
-	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+//	@RequestMapping(value = "/cover.do")
+//	public String cover() {
+//		return "template/cover";
+//	}
+//	
+//	@RequestMapping(value = "/carousel.do")
+//	public String carousel() {
+//		return "template/carousel";
+//	}
+//	
+//	@RequestMapping(value = "/dashBoard.do")
+//	public String dashBoard() {
+//		return "template/dashBoard";
+//	}
+//	
+//	@RequestMapping(value = "/startBootstrap.do")
+//	public String startBootstrap() {
+//		return "template/startBootstrap";
+//	}
 	
 }
 

@@ -94,11 +94,11 @@
 		</div>
 		<div class="col-md-4">
 			<div id="loginBtnDiv" class="row">
-				<a href="#" class="loginBtn">개인 로그인</a> <a href="#" class="loginBtn">기업
+				<a href="memberLogin.do" class="loginBtn">개인 로그인</a> <a href="companyLogin.do" class="loginBtn">기업
 					로그인</a>
 			</div>
 			<div id="loginSubdiv" class="row">
-				<a class="findMember">로그인/비번찾기</a> <a href="#" class="join">회원가입</a>
+				<a class="findMember">로그인/비번찾기</a> <a href="" class="join">회원가입</a>
 			</div>
 		</div>
 
