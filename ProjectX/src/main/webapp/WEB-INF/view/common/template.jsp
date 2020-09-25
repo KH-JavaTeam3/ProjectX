@@ -49,7 +49,7 @@ label.error {
 </script>
 </head>
 <body>
-	<div class="container-fluid">
+	<div class="container-fluid" style="padding-left: 0px; padding-right: 0px;">
 		<header>
 			<tiles:insertAttribute name="menu" />
 		</header>
