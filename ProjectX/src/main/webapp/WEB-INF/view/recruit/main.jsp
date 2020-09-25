@@ -9,7 +9,7 @@
 <title>Insert title here</title>
 
 <!-- sample.css 파일 사용을 위한 태그 -->
-<link rel="stylesheet" type="text/css" href="resources/css/main.css?ver=4" />
+<link rel="stylesheet" type="text/css" href="resources/css/main.css?ver=9" />
 	
 </head>
 <body>
@@ -86,13 +86,12 @@
 			</table>
 		</div>
 		<div class="col-md-4">
-			<div class="space" style="height: 300px;"></div>
-			<div id="loginBtnDiv" class="col-md-offset-5">
+			<div id="loginBtnDiv" class="row">
 				<a href="#" class="loginBtn">개인 로그인</a>
 				<a href="#" class="loginBtn">기업 로그인</a>
 			</div>
-			<div id="loginSubdiv">
-				<a href="#" class="findMember">아이디/비번찾기</a>
+			<div id="loginSubdiv" class="row">
+				<a class="findMember">로그인/비번찾기</a>
 				<a href="#" class="join">회원가입</a>
 			</div>
 		</div>

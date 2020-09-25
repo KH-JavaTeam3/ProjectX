@@ -14,23 +14,26 @@ a.loginBtn {
 	border:0; 
 	background-color:#4876ef;
 }
-
-a#loginBtn:hover, a#loginBtn:focus {
+#loginBtnDiv{
+	margin-top: 300px;
+}
+#loginSubdiv{
+	margin-top: 50px;
+}
+a.loginBtn:hover, a.loginBtn:focus {
 	text-decoration:none;
 }
 
 .findMember, .join {
-	position:absolute;
 	color:#949494;
 	font-size:12px;
-	letter-spacing:-1px;
-	line-height:16px
 }
 
 
 .findMember:hover, .join:hover {
 	text-decoration: underline
 }
-.findMember {
-	bottom:15px;left:24px
+
+#loginSubdiv > ul > li{
+	display: inline-block;
 }
