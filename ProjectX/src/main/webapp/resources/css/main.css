@@ -14,12 +14,7 @@ a.loginBtn {
 	border:0; 
 	background-color:#4876ef;
 }
-#loginBtnDiv{
-	margin-top: 300px;
-}
-#loginSubdiv{
-	margin-top: 50px;
-}
+
 a.loginBtn:hover, a.loginBtn:focus {
 	text-decoration:none;
 }

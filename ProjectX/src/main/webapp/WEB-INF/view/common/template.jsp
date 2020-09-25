@@ -7,7 +7,7 @@
 <meta charset="UTF-8">
 <title><tiles:insertAttribute name="title" /></title>
 <link rel="stylesheet" type="text/css"
-	href="resources/css/reset.css?ver=1" />
+	href="resources/css/reset.css?ver=2" />
 <!-- 합쳐지고 최소화된 최신 CSS -->
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
