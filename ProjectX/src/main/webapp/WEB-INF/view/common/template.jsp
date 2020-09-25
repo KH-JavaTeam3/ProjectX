@@ -30,6 +30,7 @@ label.error {
 }
 
 .myContainer {
+	margin-top: 30px;
 	margin-right: auto;
 	margin-left: auto;
 	width: 80%;

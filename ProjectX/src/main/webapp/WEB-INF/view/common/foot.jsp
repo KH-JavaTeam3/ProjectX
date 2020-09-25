@@ -9,7 +9,7 @@
 </head>
 <body>
 <div class="row text-center" style="border: 1px solid blue">
-	<h1>풋 페이지페이지페이지페이지페이지페이지페이지페이지페이지페이지페이지페이지페이지페이지페이지페이지페이지페이지</h1>
+	<h1>풋 페이지</h1>
 </div>
 </body>
 </html>
