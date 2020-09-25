@@ -1,2 +1,36 @@
 @charset "UTF-8";
 
+
+a.loginBtn {
+	display:inline-block; 
+	width:30%; 
+	height:46px; 
+	margin:0; 
+	padding:0;
+	color:#fff; 
+	font-weight:700; 
+	text-align:center; 
+	line-height:46px; 
+	border:0; 
+	background-color:#4876ef;
+}
+
+a#loginBtn:hover, a#loginBtn:focus {
+	text-decoration:none;
+}
+
+.findMember, .join {
+	position:absolute;
+	color:#949494;
+	font-size:12px;
+	letter-spacing:-1px;
+	line-height:16px
+}
+
+
+.findMember:hover, .join:hover {
+	text-decoration: underline
+}
+.findMember {
+	bottom:15px;left:24px
+}

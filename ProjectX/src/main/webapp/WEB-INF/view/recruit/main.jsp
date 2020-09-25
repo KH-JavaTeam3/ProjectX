@@ -9,8 +9,8 @@
 <title>Insert title here</title>
 
 <!-- sample.css 파일 사용을 위한 태그 -->
-<link rel="stylesheet" type="text/css"
-	href="resources/css/main.css?ver=2" />
+<link rel="stylesheet" type="text/css" href="resources/css/main.css?ver=4" />
+	
 </head>
 <body>
 
@@ -85,7 +85,17 @@
 				</tr>
 			</table>
 		</div>
-		<div class="col-md-4">로그인 화면</div>
+		<div class="col-md-4">
+			<div class="space" style="height: 300px;"></div>
+			<div id="loginBtnDiv" class="col-md-offset-5">
+				<a href="#" class="loginBtn">개인 로그인</a>
+				<a href="#" class="loginBtn">기업 로그인</a>
+			</div>
+			<div id="loginSubdiv">
+				<a href="#" class="findMember">아이디/비번찾기</a>
+				<a href="#" class="join">회원가입</a>
+			</div>
+		</div>
 	</div>
 	
 </div>
