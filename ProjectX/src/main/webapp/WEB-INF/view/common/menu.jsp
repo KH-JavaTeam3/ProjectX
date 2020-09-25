@@ -29,6 +29,7 @@
   <a href="carousel.do">carousel template</a>
   <a href="dashBoard.do">dashBoard template</a>
   <a href="startBootstrap.do">dashBoard startBootstrap</a>
+  <button type="button" class="btn btn-outline-success">Success</button>
    
 </div>
 
