@@ -14,7 +14,7 @@ public class RecruitController {
 	//메인화면
 	@RequestMapping(value = "/recruit.do")
 	public String recruitMain() {
-		return "recruit/main";
+		return "tiles/main";
 	}
 	
 	//개인 로그인 화면
@@ -44,22 +44,22 @@ public class RecruitController {
 	
 //	@RequestMapping(value = "/cover.do")
 //	public String cover() {
-//		return "template/cover";
+//		return "sample/cover";
 //	}
 //	
 //	@RequestMapping(value = "/carousel.do")
 //	public String carousel() {
-//		return "template/carousel";
+//		return "sample/carousel";
 //	}
 //	
 //	@RequestMapping(value = "/dashBoard.do")
 //	public String dashBoard() {
-//		return "template/dashBoard";
+//		return "sample/dashBoard";
 //	}
 //	
 //	@RequestMapping(value = "/startBootstrap.do")
 //	public String startBootstrap() {
-//		return "template/startBootstrap";
+//		return "sample/startBootstrap";
 //	}
 	
 }

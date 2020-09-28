@@ -9,8 +9,8 @@
 		<put-attribute name="foot" value="/WEB-INF/view/common/foot.jsp"/>
 	</definition>
 	
-	<definition name="recruit/*" extends="baseLayout">
-		<put-attribute name="body" value="/WEB-INF/view/recruit/{1}.jsp" />
+	<definition name="tiles/*" extends="baseLayout">
+		<put-attribute name="body" value="/WEB-INF/view/tiles/{1}.jsp" />
 	</definition>
 </tiles-definitions>
 
