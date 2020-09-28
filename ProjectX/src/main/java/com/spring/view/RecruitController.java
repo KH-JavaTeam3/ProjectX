@@ -17,6 +17,11 @@ public class RecruitController {
 		return "tiles/main";
 	}
 	
+	//회원가입 화면
+	@RequestMapping(value = "/join.do")
+	public String join() {
+		return "join";
+	}
 	//개인 로그인 화면
 	@RequestMapping(value = "/memberLogin.do")
 	public String memberLogin() {
