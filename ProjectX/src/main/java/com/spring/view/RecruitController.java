@@ -20,7 +20,12 @@ public class RecruitController {
 	//회원가입 화면
 	@RequestMapping(value = "/join.do")
 	public String join() {
-		return "join";
+		return "join/join";
+	}
+	//회원가입 화면2
+	@RequestMapping(value = "/join2.do")
+	public String join2() {
+		return "join/join2";
 	}
 	//개인 로그인 화면
 	@RequestMapping(value = "/memberLogin.do")
