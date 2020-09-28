@@ -99,21 +99,6 @@
 			<div id="loginSubdiv" class="row">
 				<a class="findMember">로그인/비번찾기</a> <a href="join.do" class="join">회원가입</a>
 			</div>
-			<div class="row">
-				<button  style="background: #454d55; color: #ffffff;">버튼색 확인</button>
-			</div>
-			<div class="row">
-				<button  style="background: #7abaff; color: #ffffff;">버튼색 확인</button>
-			</div>
-			<div class="row">
-				<button  style="background: #86cfda; color: #ffffff;">버튼색 확인</button>
-			</div>
-			<div class="row">
-				<button  style="background: #a6dcef; color: #ffffff;">버튼색 확인</button>
-			</div>
-			<div class="row">
-				<button  style="background: #81f5ff; color: #ffffff;">버튼색 확인</button>
-			</div>
 		</div>
 
 		<div class="space" style="height: 150px;"></div>
