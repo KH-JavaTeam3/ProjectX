@@ -2,62 +2,49 @@
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
+
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style type="text/css">
-	#test_btn2{ 
-	border: 1px solid skyblue; background-color: rgba(0,0,0,0); color: skyblue; padding: 5px; 
-	border-top-right-radius: 5px; border-bottom-right-radius: 5px; margin-left:-3px;
-	border-top-left-radius: 5px; border-bottom-left-radius: 5px; margin-right:-4px;
-	}
-	#test_btn2:hover{ 
-	color:white; background-color: skyblue; 
-	}
+input[id="menuicon"] {display:none;}
+input[id="menuicon"] +label {display:block;margin: 30px;width: 40px;height: 35px; position: relative;cursor: pointer;}
+input[id="menuicon"] +label span {display:block;position:absolute;width:100%;height: 5px; border-radius: 30px;background: #000;transition:all . 35s;}
+input[id="menuicon"] +label span:nth-child(1) {top:0;}
+input[id="menuicon"] +label span:nth-child(2) {top:50%; transform:translateY(-50%); width: 30px;}
+input[id="menuicon"] +label span:nth-child(3) {bottom:0;}
+ 
+input[id="menuicon"]:checked + label {z-index: 20;}
+input[id="menuicon"]:checked + label span {background: #fff;}
+input[id="menuicon"]:checked + label span:nth-child(1) {top: 50%;transform:translateY(-50%) rotate(45deg);}
+input[id="menuicon"]:checked + label span:nth-child(2) {opacity:0;}
+input[id="menuicon"]:checked + label span:nth-child(3) {bottom: 50%;transform:translateY(50%) rotate(-45deg);} 
+
+div[class="sidebar"]{width: 100%;height: 500px;background: #222;position:fixed; top: -500px;left:-0px; ;transition:all.35s;}
+input[id="menuicon"]:checked + label + div {top:0;}
 
 
 </style>
 </head>
 <body>
-<!-- <input id="test_btn2" type="button" value="확인"> -->
-<!--   <a href="cover.do">cover template</a> -->
-<!--   <a href="carousel.do">carousel template</a> -->
-<!--   <a href="dashBoard.do">dashBoard template</a> -->
-<!--   <a href="startBootstrap.do">dashBoard startBootstrap</a> -->
-   <nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="#">Navbar</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
+	<input type="checkbox" id="menuicon">
 
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Link</a>
-      </li>
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Dropdown
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="#">Action</a>
-          <a class="dropdown-item" href="#">Another action</a>
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#">Something else here</a>
-        </div>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-      </li>
-    </ul>
-    <form class="form-inline my-2 my-lg-0">
-      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-    </form>
-  </div>
-</nav>
+	<label for="menuicon" >	
+		<span></span>
+		<span></span>
+		<span></span>	
+	</label>
+
+
+
+
+
+	<div class="sidebar">
+	</div>
+	
+	
+	
+	
+	
 </body>
 </html>
