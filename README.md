@@ -7,6 +7,12 @@
 사용할 CSS 프레임 워크 : 부트스트랩 4.5 (영어)
 https://getbootstrap.com/
 
+템플릿 참고 사이트 : https://colorlib.com/wp/templates/
+
+템플릿 참고 사이트2 : https://startbootstrap.com/themes/
+
+파스텔톤 사이트 : https://colorhunt.co/palettes/pastel
+
 
 페이지 이동 설계시 
 1. 타일즈를 쓸 경우 : tiles폴더에 jsp를 생성하고 컨트롤러의 return을 tiles/jsp명 으로 지정 (return "tiles/main";)
