@@ -20,7 +20,7 @@ input[id="menuicon"]:checked + label span:nth-child(1) {top: 50%;transform:trans
 input[id="menuicon"]:checked + label span:nth-child(2) {opacity:0;}
 input[id="menuicon"]:checked + label span:nth-child(3) {bottom: 50%;transform:translateY(50%) rotate(-45deg);} 
 
-div[class="sidebar"]{width: 100%;height: 500px;background: #222;position:fixed; top: -500px;left:-0px; ;transition:all.35s;}
+div[class="sidebar"]{width: 100%;height: 500px;background: #222;position:fixed; top: -500px;left:-0px; ;transition:all.35s;z-index: 19;opacity: 0.5;}
 input[id="menuicon"]:checked + label + div {top:0;}
 
 
