@@ -23,11 +23,21 @@
 	src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
 	integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
 	crossorigin="anonymous"></script>
+	<!-- 유효성 검사 자바스크립트 -->
+<script src="resources/js/jquery.validate.js"></script>
+
+
+
 <style type="text/css">
 input[type="number"]::-webkit-outer-spin-button,
 input[type="number"]::-webkit-inner-spin-button {
     -webkit-appearance: none;
     margin: 0;
+}
+label.error {
+	color: red;
+	font-size: 12px;
+	display: block;
 }
 </style>
 </head>
@@ -45,6 +55,10 @@ input[type="number"]::-webkit-inner-spin-button {
 			<div class="form-group">
 				<label for="inputPassword">비밀번호</label> <input type="password"
 					class="form-control" id=inputPassword>
+			</div>
+			<div class="form-group">
+				<label for="inputPasswordHint">비밀번호 힌트</label> <input type="text"
+					class="form-control" id=inputPasswordHint>
 			</div>
 			<div class="form-group">
 				<label for="inputName">이름</label> <input type="text"
