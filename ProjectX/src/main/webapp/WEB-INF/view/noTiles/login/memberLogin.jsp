@@ -7,5 +7,9 @@
 <title>Insert title here</title>
 </head>
 <body style="background: #f4f5f7;">
+<form action="">
+
+
+</form>
 </body>
 </html>

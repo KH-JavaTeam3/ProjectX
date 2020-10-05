@@ -44,8 +44,8 @@ label.error {
 <body style="background: #f4f5f7;">
 
 <div class="mx-auto" style="width: 30%;">
-	<a href="join.do">개인 회원가입</a>
-	<a href="join2.do">기업 회원가입</a>
+	<a href="memberJoin.do">개인 회원가입</a>
+	<a href="companyJoin.do">기업 회원가입</a>
 	<h1>개인 회원가입</h1>
 	<form>
 		<div class="form-group">

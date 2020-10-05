@@ -18,25 +18,25 @@ public class RecruitController {
 	}
 	
 	//회원가입 화면
-	@RequestMapping(value = "/join.do")
+	@RequestMapping(value = "/memberJoin.do")
 	public String join() {
-		return "join/join";
+		return "join/memberJoin";
 	}
 	//회원가입 화면2
-	@RequestMapping(value = "/join2.do")
+	@RequestMapping(value = "/companyJoin.do")
 	public String join2() {
-		return "join/join2";
+		return "join/companyJoin";
 	}
 	//개인 로그인 화면
 	@RequestMapping(value = "/memberLogin.do")
 	public String memberLogin() {
-		return "memberLogin";
+		return "login/memberLogin";
 	}
 	
 	//기업 로그인 화면
 	@RequestMapping(value = "/companyLogin.do")
 	public String companyLogin() {
-		return "companyLogin";
+		return "login/companyLogin";
 	}
 	
 	

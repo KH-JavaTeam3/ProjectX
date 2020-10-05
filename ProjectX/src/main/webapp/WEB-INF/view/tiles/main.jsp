@@ -129,10 +129,9 @@
 					로그인</a>
 			</div>
 			<div id="loginSubdiv" class="row">
-				<a class="findMember">로그인/비번찾기</a> <a href="join.do" class="join">회원가입</a>
+				<a class="findMember">로그인/비번찾기</a> <a href="memberJoin.do" class="join">회원가입</a>
 			</div>
 		</div>
-
 		<div class="space" style="height: 150px;"></div>
 	</div>
 	<div class="row">
