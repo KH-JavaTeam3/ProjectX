@@ -26,12 +26,13 @@
 					<li data-target="#carouselExampleCaptions" data-slide-to="1"></li>
 					<li data-target="#carouselExampleCaptions" data-slide-to="2"></li>
 				</ol>
+				[현재 모집중인 회사 중 인기 TOP3]
 				<div class="carousel-inner">
 					<div class="carousel-item active">
 						<img src="assets/img/portfolio/thumbnails/1.jpg" class="d-block w-100" alt="...">
 						<div class="carousel-caption d-none d-md-block">
 							<h5>슬라이드 메뉴 1</h5>
-							<p>슬라이드 메뉴 1 에 대한설명</p>
+							<p>~2020.10.02</p>
 						</div>
 					</div>
 					<div class="carousel-item">
