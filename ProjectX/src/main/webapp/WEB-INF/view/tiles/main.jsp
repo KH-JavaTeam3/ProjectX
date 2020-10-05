@@ -18,6 +18,7 @@
 
 
 		<div class="col-md-4">
+		<!-- 케러셀 -->
 			<div id="carouselExampleCaptions" class="carousel slide"
 				data-ride="carousel">
 				<ol class="carousel-indicators">
@@ -62,35 +63,65 @@
 			</div>
 		</div>
 		<div class="col-md-4">
-			<table class="table table-hover">
-				<thead>
+			<div class="col-md-4">
+				<div style="font-weight: bold; font-size: 20px;" >[검색순위]</div>
+			</div>
+			<hr>
+			<div class="col-md-8 searchLink">
+				<table class="table">
+				<colgroup>
+					<col width="25%">
+					<col width="*">
+					<col width="35%">
 					<tr>
-						<th scope="col">#</th>
-						<th scope="col">First</th>
-						<th scope="col">Last</th>
-						<th scope="col">Handle</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr>
-						<th scope="row">1</th>
-						<td>좋아요를 가장 많이 받은 회사목록</td>
-						<td>Otto</td>
-						<td>@mdo</td>
-					</tr>
-					<tr>
-						<th scope="row">2</th>
-						<td>Jacob</td>
-						<td>Thornton</td>
-						<td>@fat</td>
+						<td>순위</td>
+						<td>회사명</td>
+						<td>조회수</td>
 					</tr>
 					<tr>
-						<th scope="row">3</th>
-						<td colspan="2">Larry the Bird</td>
-						<td>@twitter</td>
+						<td>1</td>
+						<td>카카오</td>
+						<td>123</td>
 					</tr>
-				</tbody>
-			</table>
+					<tr>
+						<td>2</td>
+						<td>삼성</td>
+						<td>456</td>
+					</tr>
+					<tr>
+						<td>3</td>
+						<td>롯데</td>
+						<td>789</td>
+					</tr>
+					<tr>
+						<td>4</td>
+						<td>엘지</td>
+						<td>1234</td>
+					</tr>
+				</table>
+<!-- 				<ol> -->
+<!-- 					<li> -->
+<!-- 						<em style="font-weight: bold;">1</em> -->
+<!-- 						<span style="width: 50px;">회사1</span> -->
+<!-- 					</li> -->
+<!-- 					<li> -->
+<!-- 						<em style="font-weight: bold;">2</em> -->
+<!-- 						<span>회사2</span> -->
+<!-- 					</li> -->
+<!-- 					<li> -->
+<!-- 						<em style="font-weight: bold;">3</em> -->
+<!-- 						<span>회사3</span> -->
+<!-- 					</li> -->
+<!-- 					<li> -->
+<!-- 						<em style="font-weight: bold;">4</em> -->
+<!-- 						<span>회사4</span> -->
+<!-- 					</li> -->
+<!-- 					<li> -->
+<!-- 						<em style="font-weight: bold;">5</em> -->
+<!-- 						<span>회사5</span> -->
+<!-- 					</li> -->
+<!-- 				</ol> -->
+			</div>
 		</div>
 		<div class="col-md-4">
 			<div id="loginBtnDiv" class="row">
@@ -103,11 +134,20 @@
 		</div>
 
 		<div class="space" style="height: 150px;"></div>
-
-
-
-
-
+	</div>
+	<div class="row">
+		<div>
+			<table class="table table-hover" style="width: 500px;">
+				<tr>
+					<td>회사리스트</td>
+					<td>dddd</td>
+				</tr>
+				<tr>
+					<td>dddd</td>
+					<td>dddd</td>
+				</tr>
+			</table>
+		</div>
 	</div>
 	<script src="resources/js/main.js?ver=3"></script>
 

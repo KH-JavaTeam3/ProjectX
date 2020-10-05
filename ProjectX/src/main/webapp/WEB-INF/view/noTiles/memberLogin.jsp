@@ -7,6 +7,5 @@
 <title>Insert title here</title>
 </head>
 <body style="background: #f4f5f7;">
-	개인 로그인 화면
 </body>
 </html>
