@@ -24,7 +24,7 @@
 	integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
 	crossorigin="anonymous"></script>
 	<!-- 유효성 검사 자바스크립트 -->
-<script src="resources/js/jquery.validate.js"></script>
+<!-- <script src="resources/js/jquery.validate.js"></script> -->
 
 
 
@@ -47,26 +47,34 @@ label.error {
 	<a href="memberJoin.do">개인 회원가입</a>
 	<a href="companyJoin.do">기업 회원가입</a>
 	<h1>개인 회원가입</h1>
-	<form>
+	<form action="initMemberJoin.do" method="post">
 		<div class="form-group">
-				<label for="inputEmail">이메일(아이디)</label> <input type="email"
-					class="form-control" id="inputEmail">
+				<label for="memEmail">이메일(아이디)</label> <input type="email"
+					class="form-control" id="memEmail" name="memEmail">
 			</div>
 			<div class="form-group">
-				<label for="inputPassword">비밀번호</label> <input type="password"
-					class="form-control" id=inputPassword>
+				<label for="memPass">비밀번호</label> <input type="password"
+					class="form-control" id="memPass" name="memPass">
 			</div>
 			<div class="form-group">
-				<label for="inputPasswordHint">비밀번호 힌트</label> <input type="text"
-					class="form-control" id=inputPasswordHint>
+				<label for="memPassChk">비밀번호 확인</label> <input type="password"
+					class="form-control" id="memPassChk">
 			</div>
 			<div class="form-group">
-				<label for="inputName">이름</label> <input type="text"
-					class="form-control" id="inputName">
+				<label for="memName">이름</label> <input type="text"
+					class="form-control" id="memName" name="memName">
 			</div>
 			<div class="form-group">
-				<label for="inputAddr">연락처</label> <input type="number"
-					class="form-control" id="inputAddr">
+				<label for="memAge">나이</label> <input type="number"
+					class="form-control" id="memAge" name="memAge">
+			</div>
+			<div class="form-group">
+				<label for="memTel1">연락처</label> <input type="number"
+					class="form-control" id="memTel1" name="memTel1">
+			</div>
+			<div class="form-group">
+				<label for="memAddr">주소</label> <input type="text"
+					class="form-control" id="memAddr" name="memAddr">
 			</div>
 		
 		

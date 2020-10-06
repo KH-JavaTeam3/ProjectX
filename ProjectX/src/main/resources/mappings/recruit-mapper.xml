@@ -4,9 +4,47 @@
 
 <!-- 맵퍼파일 생성 후 반드시 sql-map-config.xml 파일에 mapper 등록해줘야 함 -->
 <mapper namespace="recruitMapper">
-	<resultMap type="com.spring.biz.vo.RecruitVO" id="recruit">
+	<resultMap type="com.spring.biz.vo.MemInfoVO" id="memInfo">
+	<result column="MEM_EMAIL"           property="memEmail"/> 
+	<result column="MEM_PASS"      	      property="memPass"/> 
+	<result column="MEM_NAME"        	  property="memName"/> 
+	<result column="MEM_AGE"         	  	property="memAge"/> 
+	<result column="MEM_GENDER"        		 property="memGender"/> 
+	<result column="MEM_BIRTH"        	 	 property="memBirth"/> 
+	<result column="MEM_TEL1"           	property="memTel1"/> 
+	<result column="MEM_TEL2"           	property="memTel2"/> 
+	<result column="MEM_ADDR"           	property="memAddr"/> 
+	<result column="MEM_MERRY"          	property="memMerry"/> 
+	<result column="MEM_YN"           		property="delYn"/> 
+	<result column="MEM_JOIN_DATE"       	 property="memJoinDate"/> 
 	</resultMap>
 	
+	<insert id="insertMemInfo">
+		INSERT INTO MEM_INFO (MEM_EMAIL
+					, MEM_PASS
+					, MEM_NAME
+					, MEM_AGE
+					, MEM_TEL1
+					, MEM_ADDR
+					) VALUES (
+					#{memEmail}
+					, #{memPass}
+					, #{memName}
+					, #{memAge}
+					, #{memTel1}
+					, #{memAddr}
+					)
+	</insert>
+
+
+
+
+
+
+
+
+
+
 </mapper>
 
 

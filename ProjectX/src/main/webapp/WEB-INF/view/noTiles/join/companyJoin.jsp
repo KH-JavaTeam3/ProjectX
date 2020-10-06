@@ -41,7 +41,7 @@ label.error {
 <body style="background: #f4f5f7;">
 
 	<div class="mx-auto" style="width: 30%;">
-		<a href="join.do">개인 회원가입</a> <a href="join2.do">기업 회원가입</a>
+		<a href="memberJoin.do">개인 회원가입</a> <a href="companyJoin.do">기업 회원가입</a>
 		<h1>기업 회원가입</h1>
 		<form action="join2Act.do" method="post" id="join2Form">
 			<div class="form-group">
@@ -84,6 +84,6 @@ label.error {
 		return regexpr.test(value);
 	});
 </script>
-<script src="resources/js/join2.js?ver=5"></script>
+<!-- <script src="resources/js/join2.js?ver=5"></script> -->
 </body>
 </html>

@@ -1,9 +1,12 @@
 package com.spring.view;
 
 import javax.annotation.Resource;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+
 import com.spring.biz.RecruitService;
+import com.spring.biz.vo.MemInfoVO;
 
 @Controller
 public class RecruitController {
@@ -12,21 +15,36 @@ public class RecruitController {
 	
 	
 	//메인화면
-	@RequestMapping(value = "/recruit.do")
-	public String recruitMain() {
+	@RequestMapping(value = "/main.do")
+	public String Main() {
 		return "tiles/main";
 	}
 	
-	//회원가입 화면
+	//개인 회원가입 화면
 	@RequestMapping(value = "/memberJoin.do")
 	public String join() {
 		return "join/memberJoin";
 	}
-	//회원가입 화면2
+	//기업 회원가입 화면
 	@RequestMapping(value = "/companyJoin.do")
 	public String join2() {
 		return "join/companyJoin";
 	}
+	//개인 회원가입
+	@RequestMapping(value = "/initMemberJoin.do")
+	public String initMemberJoin(MemInfoVO memInfoVO) {
+		recruitService.insertMemInfo(memInfoVO);
+		
+		
+		
+		
+		return "redirect:main.do";
+	}
+	
+	
+	
+	
+	
 	//개인 로그인 화면
 	@RequestMapping(value = "/memberLogin.do")
 	public String memberLogin() {

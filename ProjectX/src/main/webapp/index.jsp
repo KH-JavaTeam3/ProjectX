@@ -6,7 +6,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script type="text/javascript">
-	location.href = 'recruit.do';
+	location.href = 'main.do';
 </script>
 </head>
 <body>
