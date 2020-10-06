@@ -94,7 +94,7 @@
 				<a href="companyLogin.do" class="loginBtn">기업	로그인</a>
 			</div>
 			<div id="loginSubdiv" class="" align="center">
-				<a class="findMember">로그인/비번찾기</a> <a href="join.do" class="join">회원가입</a>
+				<a class="findMember">로그인/비번찾기</a> <a href="memberJoin.do" class="join">회원가입</a>
 			</div>
 		</div>
 
