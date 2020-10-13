@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 맵퍼파일 생성 후 반드시 sql-map-config.xml 파일에 mapper 등록해줘야 함 -->
+<mapper namespace="memberMapper">
+
+	<resultMap type="com.spring.biz.vo.MemInfoVO" id="memInfo">
+		<result column="MEM_EMAIL"           property="memEmail"/> 
+		<result column="MEM_PASS"      	      property="memPass"/> 
+		<result column="MEM_NAME"        	  property="memName"/> 
+		<result column="MEM_AGE"         	  property="memAge"/> 
+		<result column="MEM_GENDER"			  property="memGender"/> 
+		<result column="MEM_BIRTH_YEAR"		  property="memBirthYear"/>
+		<result column="MEM_BIRTH_MONTH"  	  property="memBirthMonth"/>
+		<result column="MEM_BIRTH_DAY"  	  property="memBirthDay"/>
+		<result column="MEM_TEL1"     	  	  property="memTel1"/> 
+		<result column="MEM_TEL2"          	  property="memTel2"/> 
+		<result column="MEM_ADDR"          	  property="memAddr"/> 
+		<result column="DEL_YN"           	  property="delYn"/> 
+		<result column="MEM_JOIN_DATE"    	  property="memJoinDate"/> 
+		<result column="IS_ADMIN"			  property="isAdmin"/> 
+		<result column="MEM_IMAGE"        	  property="memImage"/> 
+	</resultMap>
+
+	
+	
+	<resultMap type="com.spring.biz.vo.CompanyInfoVO" id="companyInfo">
+	<result column="COM_NUM"           		property="comNum"/> 
+	<result column="COM_PASS"      	     	property="comPass"/> 
+	<result column="COM_EMAIL"        		property="comEmail"/> 
+	<result column="COM_NAME"         	  	property="comName"/> 
+	<result column="COM_CEO"        		property="comCeo"/> 
+	<result column="COM_LOC"        	 	property="comLoc"/> 
+	<result column="COM_TYPE"           	property="comType"/> 
+	<result column="COM_TEL"           		property="comTel"/> 
+	<result column="COM_JOIN_DATE"         property="comJoinDate"/> 
+	<result column="COM_AVG_SCORE"         property="comAvgScore"/> 
+	<result column="COM_GIVE_PERSON"       property="comGivePerson"/> 
+	<result column="COM_SCORE"           	property="comScore"/> 
+	</resultMap>
+	
+	<resultMap type="com.spring.biz.vo.AdminNoticeVO" id="adminNotice">
+		<result column="BOARD_NUMBER"            property="boardNumber"/> 
+		<result column="BOARD_TITLE"      	      property="boardTitle"/> 
+		<result column="BOARD_CONTENT"        	  property="boardContent"/> 
+		<result column="TODAY_DATE"         	  property="todayDate"/> 
+	</resultMap>
+	
+
+<!-- 관리자 공지사항 입력 -->
+<!-- 	<insert id="insertNotice"> -->
+<!-- 		INSERT INTO NOTICE_TABLE( -->
+<!-- 			BOARD_NUMBER -->
+<!-- 			,BOARD_TITLE -->
+<!-- 			,BOARD_CONTENT -->
+			
+<!-- 			) VALUES ( -->
+<!-- 			 (SELECT (NVL(MAX(BOARD_NUMBER)+1, 1)) FROM NOTICE_TABLE) -->
+<!-- 			,#{boardTitle} -->
+<!-- 			,#{boardContent} -->
+			
+<!-- 			) -->
+<!-- 	</insert> -->
+	<!-- 관리자 게시글 조회 -->
+<!-- 	<select id="selectNotice" resultMap="adminNotice">  -->
+<!-- 		SELECT BOARD_NUMBER  -->
+<!-- 			,BOARD_TITLE -->
+<!-- 			,BOARD_CONTENT -->
+<!-- 			,TODAY_DATE -->
+<!-- 		FROM NOTICE_TABLE -->
+<!-- 	</select> -->
+	<!-- 관리자 게시글 상세보기 -->
+<!-- 	<select id="selectDetailNotice" resultMap="adminNotice">  -->
+<!-- 		SELECT BOARD_TITLE -->
+<!-- 			,BOARD_CONTENT -->
+<!-- 		FROM NOTICE_TABLE -->
+<!-- 		WHERE BOARD_NUMBER=#{boardNumber} -->
+<!-- 	</select> -->
+
+
+
+</mapper>

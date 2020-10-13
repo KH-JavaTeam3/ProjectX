@@ -2,23 +2,32 @@
 <!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN" "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
 
 <tiles-definitions>
-	<definition name="baseLayout" template="/WEB-INF/view/common/template.jsp">
+	<definition name="baseLayout" template="/WEB-INF/view/subTiles/template.jsp">
 		<put-attribute name="title" value="Project"/>
-		<put-attribute name="menu" value="/WEB-INF/view/common/menu.jsp"/>
+		<put-attribute name="menu" value=""/>
 		<put-attribute name="body" value=""/>
-		<put-attribute name="foot" value="/WEB-INF/view/common/foot.jsp"/>
+		<put-attribute name="foot" value="/WEB-INF/view/subTiles/foot.jsp"/>
 	</definition>
 	
-	<definition name="tiles/*" extends="baseLayout">
-		<put-attribute name="body" value="/WEB-INF/view/tiles/{1}.jsp" />
+	<definition name="tiles/common/*" extends="baseLayout">
+		<put-attribute name="body" value="/WEB-INF/view/tiles/common/{1}.jsp" />
+		<put-attribute name="menu" value="/WEB-INF/view/subTiles/menu.jsp"/>
 	</definition>
+	
+	<definition name="tiles/company/*" extends="baseLayout">
+		<put-attribute name="body" value="/WEB-INF/view/tiles/company/{1}.jsp" />
+		<put-attribute name="menu" value="/WEB-INF/view/subTiles/companymenu.jsp"/>
+	</definition>
+	
+	<definition name="tiles/member/*" extends="baseLayout">
+		<put-attribute name="body" value="/WEB-INF/view/tiles/member/{1}.jsp" />
+		<put-attribute name="menu" value="/WEB-INF/view/subTiles/menu.jsp"/>
+	</definition>
+	
+	<definition name="tiles/admin/*" extends="baseLayout">
+		<put-attribute name="body" value="/WEB-INF/view/tiles/admin/{1}.jsp" />
+		<put-attribute name="menu" value="/WEB-INF/view/subTiles/adminMenu.jsp"/>
+	</definition>
+	
+	
 </tiles-definitions>
-
-
-
-
-
-
-
-
-

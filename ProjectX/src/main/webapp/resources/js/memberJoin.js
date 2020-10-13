@@ -18,7 +18,7 @@ $(document).ready(function(){
 	//};
 	
 	initValidate = function(){
-		$("#joinForm").validate({
+		$("#loginForm").validate({
 		     //테스트를 위하여 유효성 검사가 완료되어도 submit을 처리하지 않음.
 		     debug : false,
 		     //유효성체크없이 무조건 submit. false일 경우 안함
@@ -51,11 +51,11 @@ $(document).ready(function(){
 		            // maxlength : 8,               //최대길이 지정
 		            // equalTo : "대상요소의 id 값" //특정 요소와 입력값이 같은지 여부 검사
 		    	// },
-		    	 memberId:{
+		    	 memEmail:{
 		    		 required : true,
 		    		 minlength : 2,
 					 maxlength : 10,
-					 regx:/^[a-zA-Z0-9]*$/i //영어&숫자만
+//					 regx:/^[a-zA-Z0-9]*$/i //영어&숫자만
 		    	 },
 		    	 memberPassword:{
 		    		 required : true,
@@ -98,7 +98,7 @@ $(document).ready(function(){
 		     },
 		     //검사를 충족하지 못할 경우 표시될 메시지의 나열                                                         
 		     messages : {
-		    	 memberId:{
+		    	 memEmail:{
 		    		 required: 'ID는 필수항목입니다.',
 		        	 minlength:'ID는 2자 이상 입력하세요.',
 		        	 maxlength:'ID는 10자를 초과할 수 없습니다.',

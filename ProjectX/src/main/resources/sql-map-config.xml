@@ -4,7 +4,10 @@
 
 <configuration>
 	<mappers>
-		<mapper resource="/mappings/recruit-mapper.xml"/>
+		<mapper resource="/mappings/common-mapper.xml"/>
+		<mapper resource="/mappings/admin-mapper.xml"/>
+		<mapper resource="/mappings/member-mapper.xml"/>
+		<mapper resource="/mappings/company-mapper.xml"/>
 	</mappers>
 </configuration>
 

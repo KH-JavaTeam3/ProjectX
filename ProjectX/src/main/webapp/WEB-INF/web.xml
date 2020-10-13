@@ -19,32 +19,14 @@
 		</init-param>
 	</filter>
 	
+<!-- 	Controller용 인코딩 -->
 	<filter-mapping>
 		<filter-name>characterEncoding</filter-name>
  		<url-pattern>*.do</url-pattern>
+ 		<url-pattern>*.ad</url-pattern>
+ 		<url-pattern>*.me</url-pattern>
+ 		<url-pattern>*.co</url-pattern>
 	</filter-mapping>
-	
-	<!-- DispatcherServlet 생성 -->
-	<servlet>
-		<servlet-name>action</servlet-name>
-		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>	
-		<init-param>
-			<param-name>contextConfigLocation</param-name>
-			<param-value>/WEB-INF/config/presentation-layer.xml</param-value>
-		</init-param>
-	</servlet>
-	
-	<!-- DispatcherServlet의 요청 경로 -->
-	<servlet-mapping>
-		<servlet-name>action</servlet-name>
-		<url-pattern>*.do</url-pattern>
-	</servlet-mapping>
-	
-	<!-- <mvc:resources location="/resources/css/" mapping="/css/**"/> -->
-	<context-param>
-	  	<param-name>log4jConfigLocation</param-name>
-	  	<param-value>log4j.xml</param-value>
-	</context-param>
 	
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
@@ -54,7 +36,81 @@
 	<listener>
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
     </listener>
+	
+	
+	
+	<!-- DispatcherServlet-RecruitController 생성 -->
+	<servlet>
+		<servlet-name>action1</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>	
+		<init-param>
+			<param-name>contextConfigLocation</param-name>
+			<param-value>/WEB-INF/config/presentation-layer.xml</param-value>
+		</init-param>
+	</servlet>
+	<!-- 	DispatcherServlet-RecruitController용 경로 -->
+	<servlet-mapping>
+		<servlet-name>action1</servlet-name>
+		<url-pattern>*.do</url-pattern>
+	</servlet-mapping>
+	
+	
+	
+	<!-- DispatcherServlet-AdminController 생성 -->
+	<servlet>
+		<servlet-name>action2</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>	
+		<init-param>
+			<param-name>contextConfigLocation</param-name>
+			<param-value>/WEB-INF/config/presentation-layer.xml</param-value>
+		</init-param>
+	</servlet>
+	<!-- 	DispatcherServlet-AdminController용 경로 -->
+	<servlet-mapping>
+		<servlet-name>action2</servlet-name>
+		<url-pattern>*.ad</url-pattern>
+	</servlet-mapping>
+	
+	
+	
+	<!-- DispatcherServlet-MemberController 생성 -->
+	<servlet>
+		<servlet-name>action3</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>	
+		<init-param>
+			<param-name>contextConfigLocation</param-name>
+			<param-value>/WEB-INF/config/presentation-layer.xml</param-value>
+		</init-param>
+	</servlet>
+	<!-- 	DispatcherServlet-MemberController용 경로 -->
+	<servlet-mapping>
+		<servlet-name>action3</servlet-name>
+		<url-pattern>*.me</url-pattern>
+	</servlet-mapping>
 
+	
+	
+	<!-- DispatcherServlet-CompanyController 생성 -->
+	<servlet>
+		<servlet-name>action4</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>	
+		<init-param>
+			<param-name>contextConfigLocation</param-name>
+			<param-value>/WEB-INF/config/presentation-layer.xml</param-value>
+		</init-param>
+	</servlet>
+<!-- 	DispatcherServlet-CompanyController용 경로 -->
+	<servlet-mapping>
+		<servlet-name>action4</servlet-name>
+		<url-pattern>*.co</url-pattern>
+	</servlet-mapping>
+	
+	<!-- <mvc:resources location="/resources/css/" mapping="/css/**"/> -->
+	<context-param>
+	  	<param-name>log4jConfigLocation</param-name>
+	  	<param-value>log4j.xml</param-value>
+	</context-param>
+	
 </web-app>
 
 

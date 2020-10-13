@@ -56,9 +56,9 @@ label.error {
 		<div class="myContainer">
 			<tiles:insertAttribute name="body" />
 		</div>
-		<footer>
-			<tiles:insertAttribute name="foot" />
-		</footer>
+<!-- 		<footer> -->
+<%-- 			<tiles:insertAttribute name="foot" /> --%>
+<!-- 		</footer> -->
 	</div>
 </body>
 </html>

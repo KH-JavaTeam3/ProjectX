@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 맵퍼파일 생성 후 반드시 sql-map-config.xml 파일에 mapper 등록해줘야 함 -->
+<mapper namespace="commonMapper">
+
+	<resultMap type="com.spring.biz.vo.MemInfoVO" id="memInfo">
+		<result column="MEM_EMAIL"           property="memEmail"/> 
+		<result column="MEM_PASS"      	      property="memPass"/> 
+		<result column="MEM_NAME"        	  property="memName"/> 
+		<result column="MEM_AGE"         	  property="memAge"/> 
+		<result column="MEM_GENDER"			  property="memGender"/> 
+		<result column="MEM_BIRTH_YEAR"		  property="memBirthYear"/>
+		<result column="MEM_BIRTH_MONTH"  	  property="memBirthMonth"/>
+		<result column="MEM_BIRTH_DAY"  	  property="memBirthDay"/>
+		<result column="MEM_TEL1"     	  	  property="memTel1"/> 
+		<result column="MEM_TEL2"          	  property="memTel2"/> 
+		<result column="MEM_ADDR"          	  property="memAddr"/> 
+		<result column="DEL_YN"           	  property="delYn"/> 
+		<result column="MEM_JOIN_DATE"    	  property="memJoinDate"/> 
+		<result column="IS_ADMIN"			  property="isAdmin"/> 
+		<result column="MEM_IMAGE"        	  property="memImage"/> 
+	</resultMap>
+
+	
+	
+	<resultMap type="com.spring.biz.vo.CompanyInfoVO" id="companyInfo">
+	<result column="COM_NUM"           		property="comNum"/> 
+	<result column="COM_PASS"      	     	property="comPass"/> 
+	<result column="COM_EMAIL"        		property="comEmail"/> 
+	<result column="COM_NAME"         	  	property="comName"/> 
+	<result column="COM_CEO"        		property="comCeo"/> 
+	<result column="COM_LOC"        	 	property="comLoc"/> 
+	<result column="COM_TYPE"           	property="comType"/> 
+	<result column="COM_TEL"           		property="comTel"/> 
+	<result column="COM_JOIN_DATE"         property="comJoinDate"/> 
+	<result column="COM_AVG_SCORE"         property="comAvgScore"/> 
+	<result column="COM_GIVE_PERSON"       property="comGivePerson"/> 
+	<result column="COM_SCORE"           	property="comScore"/> 
+	</resultMap>
+
+	<resultMap type="com.spring.biz.vo.RecruitListVO" id="recruitlist">
+		<result column="ANNOUNCE_NUM" property="announceNum" />
+		<result column="ANNOUNCE_TITLE" property="announceTitle" />
+		<result column="ANNOUNCE_CONTENT" property="announceContent" />
+		<result column="WRITE_DATE" property="writeDate" />
+		<result column="UPTO_HIREDATE" property="uptoHiredate" />
+		<result column="HIRE_NUM" property="hireNum" />
+		<result column="COM_NUM" property="comNum" />
+		<result column="JOBTYPE" property="jobtype" />
+		<result column="WORKTIME" property="worktime" />
+		<result column="WORK_TYPE" property="workType" />
+		<result column="ANNI_SAL" property="anniSal" />
+		<result column="QUALIFICATION" property="qualification" />
+		<result column="HIRE_CONDITION" property="hireCondition" />
+		<result column="REGIST_IMAGE" property="registImage" />
+		<result column="BENEFIT" property="benefit" />
+		<result column="CAREER" property="career" />
+		<result column="ACADEMIC_BACKGROUND" property="academicBackground" />
+		<result column="AREA" property="area" />
+		<result column="CORPORATE_NAME" property="corporateName" />
+	
+	</resultMap>
+	
+	<resultMap type="com.spring.biz.vo.AdminNoticeVO" id="adminNotice">
+		<result column="BOARD_NUMBER"            property="boardNumber"/> 
+		<result column="BOARD_TITLE"      	      property="boardTitle"/> 
+		<result column="BOARD_CONTENT"        	  property="boardContent"/> 
+		<result column="TODAY_DATE"         	  property="todayDate"/> 
+	</resultMap>
+	
+	
+	
+<!-- 	개인 회원가입 -->
+	<insert id="insertMemInfo">
+		INSERT INTO MEM_INFO (
+			MEM_EMAIL
+			, MEM_PASS
+			, MEM_NAME
+			, MEM_AGE
+			, MEM_BIRTH_YEAR
+			, MEM_BIRTH_MONTH
+			, MEM_BIRTH_DAY
+			, MEM_GENDER
+			, MEM_TEL1
+			, MEM_ADDR
+		) VALUES (
+			#{memEmail}
+			, #{memPass}
+			, #{memName}
+			, #{memAge}
+			, #{memBirthYear}
+			, #{memBirthMonth}
+			, #{memBirthDay}
+			, #{memGender}
+			, #{memTel1}
+			, #{memAddr}
+		)
+	</insert>
+	
+	<!-- 기업 회원가입 -->
+	<insert id="insertCompanyInfo">
+		INSERT INTO COMPANY_INFO (
+			COM_NUM
+			, COM_PASS
+			, COM_EMAIL
+			, COM_NAME
+			, COM_CEO
+			, COM_LOC
+			, COM_TYPE
+			, COM_TEL
+		) VALUES (
+			#{comNum}
+			, #{comPass}
+			, #{comEmail}
+			, #{comName}
+			, #{comCeo}
+			, #{comLoc}
+			, #{comType}
+			, #{comTel}
+		)
+		
+	</insert>
+	
+	
+
+<!-- 	개인 로그인 -->
+	<select id="memberLogin" resultMap="memInfo"> 
+		SELECT
+		    MEM_EMAIL
+		    ,MEM_PASS
+		    ,MEM_NAME
+		    ,MEM_AGE
+		    ,MEM_GENDER
+		    ,MEM_BIRTH
+		    ,MEM_TEL1
+		    ,MEM_TEL2
+		    ,MEM_ADDR
+		    ,MEM_MERRY
+		    ,DEL_YN
+		    ,MEM_JOIN_DATE
+		    ,IS_ADMIN
+		FROM MEM_INFO WHERE MEM_EMAIL = #{memEmail}
+		 AND MEM_PASS = #{memPass}
+	</select>
+
+<!-- 	개인 정보 수정 -->
+	<update id="memUpdate">
+		UPDATE MEM_INFO SET 
+		    MEM_PASS = #{memPass}
+		    ,MEM_NAME = #{memName}
+		    ,MEM_GENDER = #{memGender}
+		    ,MEM_BIRTH = #{memBirth}
+		    ,MEM_TEL1 = #{memTel1}
+		    ,MEM_TEL2 = #{memTel2}
+		    ,MEM_ADDR = #{memAddr}
+		    ,MEM_MERRY = #{memMerry}
+		WHERE MEM_EMAIL = #{memEmail}
+	</update>
+	
+
+<!-- 	기업 로그인 -->
+	<select id="companyLogin" resultMap="companyInfo">
+		SELECT
+			COM_NUM
+			, COM_PASS
+			, COM_EMAIL
+			, COM_NAME
+			, COM_CEO
+			, COM_LOC
+			, COM_TYPE
+			, COM_TEL
+			, COM_JOIN_DATE
+			, COM_AVG_SCORE
+			, COM_GIVE_PERSON
+			, COM_SCORE
+		FROM COMPANY_INFO
+		WHERE COM_NUM = #{comNum}
+		AND COM_PASS = #{comPass}
+	</select>
+
+
+	<select id="selectRecruitList" resultMap="recruitlist">
+		SELECT
+			ANNOUNCE_NUM
+			,CORPORATE_NAME
+			,ANNOUNCE_TITLE
+			,UPTO_HIREDATE
+			,WORK_TYPE
+			,CAREER              
+			,ACADEMIC_BACKGROUND
+			,AREA
+		FROM RECRUIT_LIST
+	
+	</select>
+	
+	<select id="selectDetailRecruitList" resultMap="recruitlist">
+		SELECT
+			ANNOUNCE_TITLE
+			,CORPORATE_NAME
+			,WORK_TYPE
+			,UPTO_HIREDATE
+			,JOBTYPE
+			,WORKTIME
+			,ANNI_SAL              
+			,HIRE_NUM
+			,QUALIFICATION
+			,BENEFIT
+			,ACADEMIC_BACKGROUND
+			,CAREER
+			,AREA
+			,ANNOUNCE_CONTENT
+		FROM RECRUIT_LIST
+		WHERE ANNOUNCE_NUM =#{announceNum}
+	
+	</select>
+
+
+
+
+
+
+
+
+
+
+	<!-- 총 게시글 갯수 출력 -->
+<!-- <select id="countBoard" resultType="int"> -->
+<!-- 	SELECT COUNT(*) FROM BOARD -->
+<!-- </select> -->
+
+<!-- 페이징 처리 후 게시글 조회 -->
+<!-- <select id="selectBoard" resultType="com.my.spring.domain.BoardVO"> -->
+<!-- 	SELECT * -->
+<!-- 	FROM ( -->
+<!-- 	SELECT ROWNUM RN, A.* -->
+<!-- 	FROM ( -->
+<!-- 	SELECT * -->
+<!-- 	FROM BOARD -->
+<!-- 	ORDER BY SEQ DESC -->
+<!-- 	) A -->
+<!-- 	) -->
+<!-- 	WHERE RN BETWEEN #{start} AND #{end} -->
+<!-- </select> -->
+
+
+
+</mapper>

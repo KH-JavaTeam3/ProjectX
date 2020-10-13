@@ -43,35 +43,44 @@ label.error {
 	<div class="mx-auto" style="width: 30%;">
 		<a href="memberJoin.do">개인 회원가입</a> <a href="companyJoin.do">기업 회원가입</a>
 		<h1>기업 회원가입</h1>
-		<form action="join2Act.do" method="post" id="join2Form">
+		<form action="initCompanyJoin.do" method="post" id="join2Form">
 			<div class="form-group">
-				<label for="inputEmail">이메일(아이디)</label> <input type="email"
-					class="form-control" id="inputEmail" name="inputEmail">
+				<label for="comNum">사업자번호</label> <input type="number"
+					class="form-control" id="comNum" name="comNum">
 			</div>
 			<div class="form-group">
-				<label for="inputPassword">비밀번호</label> <input type="password"
-					class="form-control" id="inputPassword" name="inputPassword">
+				<label for="comPass">비밀번호</label> <input type="password"
+					class="form-control" id="comPass" name="comPass">
 			</div>
 			<div class="form-group">
-				<label for="inputPasswordCheck">비밀번호 확인</label> <input type="password"
-					class="form-control" id="inputPasswordCheck" name="inputPasswordCheck">
+				<label for="comPassChk">비밀번호 확인</label> <input type="password"
+					class="form-control" id="comPassChk" name="comPassChk">
 			</div>
 			<div class="form-group">
-				<label for="inputPasswordHint">비밀번호 힌트</label> <input type="text"
-					class="form-control" id="inputPasswordHint" name="inputPasswordHint">
+				<label for="comEmail">이메일</label> <input type="email"
+					class="form-control" id="comEmail" name="comEmail">
 			</div>
 			<div class="form-group">
-				<label for="inputComName">기업명</label> <input type="text"
-					class="form-control" id="inputComName" name="inputComName">
+				<label for="comName">법인명</label> <input type="text"
+					class="form-control" id="comName" name="comName">
 			</div>
 			<div class="form-group">
-				<label for="inputComNum">사업자 등록번호</label> <input type="number"
-					class="form-control" id="inputComNum" name="inputComNum">
+				<label for="comCeo">대표자명</label> <input type="text"
+					class="form-control" id="comCeo" name="comCeo">
 			</div>
 			<div class="form-group">
-				<label for="inputTel">연락처</label> <input type="number"
-					class="form-control" id="inputTel" name="inputTel">
+				<label for="comLoc">본사 주소</label> <input type="text"
+					class="form-control" id="comLoc" name="comLoc">
 			</div>
+			<div class="form-group">
+				<label for="comType">산업군</label> <input type="text"
+					class="form-control" id="comType" name="comType">
+			</div>
+			<div class="form-group">
+				<label for="comTel">연락처</label> <input type="text"
+					class="form-control" id="comTel" name="comTel">
+			</div>
+			
 
 			<button type="submit" class="btn btn-primary">회원가입</button>
 		</form>

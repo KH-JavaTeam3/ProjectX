@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 맵퍼파일 생성 후 반드시 sql-map-config.xml 파일에 mapper 등록해줘야 함 -->
+<mapper namespace="companyMapper">
+
+	<resultMap type="com.spring.biz.vo.MemInfoVO" id="memInfo">
+		<result column="MEM_EMAIL"           property="memEmail"/> 
+		<result column="MEM_PASS"      	      property="memPass"/> 
+		<result column="MEM_NAME"        	  property="memName"/> 
+		<result column="MEM_AGE"         	  property="memAge"/> 
+		<result column="MEM_GENDER"			  property="memGender"/> 
+		<result column="MEM_BIRTH_YEAR"		  property="memBirthYear"/>
+		<result column="MEM_BIRTH_MONTH"  	  property="memBirthMonth"/>
+		<result column="MEM_BIRTH_DAY"  	  property="memBirthDay"/>
+		<result column="MEM_TEL1"     	  	  property="memTel1"/> 
+		<result column="MEM_TEL2"          	  property="memTel2"/> 
+		<result column="MEM_ADDR"          	  property="memAddr"/> 
+		<result column="DEL_YN"           	  property="delYn"/> 
+		<result column="MEM_JOIN_DATE"    	  property="memJoinDate"/> 
+		<result column="IS_ADMIN"			  property="isAdmin"/> 
+		<result column="MEM_IMAGE"        	  property="memImage"/> 
+	</resultMap>
+
+	
+	
+	<resultMap type="com.spring.biz.vo.CompanyInfoVO" id="companyInfo">
+	<result column="COM_NUM"           		property="comNum"/> 
+	<result column="COM_PASS"      	     	property="comPass"/> 
+	<result column="COM_EMAIL"        		property="comEmail"/> 
+	<result column="COM_NAME"         	  	property="comName"/> 
+	<result column="COM_CEO"        		property="comCeo"/> 
+	<result column="COM_LOC"        	 	property="comLoc"/> 
+	<result column="COM_TYPE"           	property="comType"/> 
+	<result column="COM_TEL"           		property="comTel"/> 
+	<result column="COM_JOIN_DATE"         property="comJoinDate"/> 
+	<result column="COM_AVG_SCORE"         property="comAvgScore"/> 
+	<result column="COM_GIVE_PERSON"       property="comGivePerson"/> 
+	<result column="COM_SCORE"           	property="comScore"/> 
+	</resultMap>
+	
+	<resultMap type="com.spring.biz.vo.AdminNoticeVO" id="adminNotice">
+		<result column="BOARD_NUMBER"            property="boardNumber"/> 
+		<result column="BOARD_TITLE"      	      property="boardTitle"/> 
+		<result column="BOARD_CONTENT"        	  property="boardContent"/> 
+		<result column="TODAY_DATE"         	  property="todayDate"/> 
+	</resultMap>
+	
+	<resultMap type="com.spring.biz.vo.RecruitListVO" id="recruitlist">
+		<result column="ANNOUNCE_NUM"            property="announceNum"/> 
+		<result column="ANNOUNCE_TITLE"          property="announceTitle"/> 
+		<result column="ANNOUNCE_CONTENT"        property="announceContent"/> 
+		<result column="WRITE_DATE"         	  property="writeDate"/> 
+		<result column="UPTO_HIREDATE"         	  property="uptoHiredate"/> 
+		<result column="HIRE_NUM"         	 	  property="hireNum"/> 
+		<result column="COM_NUM"         	 	  property="comNum"/> 
+		<result column="JOBTYPE"         	  	  property="jobtype"/> 
+		<result column="WORKTIME"         	  	  property="worktime"/> 
+		<result column="WORK_TYPE"         	  	  property="workType"/> 
+		<result column="ANNI_SAL"         	  	  property="anniSal"/> 
+		<result column="QUALIFICATION"         	  property="qualification"/> 
+		<result column="RESUME_FILE"         	  property="resumeFile"/> 
+		<result column="HIRE_CONDITION"          property="hireCondition"/> 
+		<result column="REGIST_IMAGE"         	  property="registImage"/> 
+		<result column="BENEFIT"         	 	  property="benefit"/> 
+		<result column="CAREER"         	 	  property="career"/> 
+		<result column="ACADEMIC_BACKGROUND"     property="academicBackground"/> 
+		<result column="AREA"         	 	  	  property="area"/> 
+	</resultMap>
+	<!-- 공고 등록 -->
+	<insert id="registHumanSeeker">
+	INSERT INTO RECRUIT_LIST (
+    ANNOUNCE_NUM
+    ,ANNOUNCE_TITLE
+    ,ANNOUNCE_CONTENT
+    ,UPTO_HIREDATE
+    ,HIRE_NUM
+    ,COM_NUM
+    ,JOBTYPE
+    ,WORKTIME
+    ,WORK_TYPE
+    ,ANNI_SAL
+    ,QUALIFICATION
+    ,BENEFIT
+    ,REGIST_IMAGE
+    ,CAREER
+    ,ACADEMIC_BACKGROUND
+    ,AREA
+)
+VALUES (
+ (SELECT NVL(MAX(ANNOUNCE_NUM)+1,1) FROM RECRUIT_LIST)
+ ,#{announceTitle}
+ ,#{announceContent}
+ ,#{uptoHiredate}
+ ,#{hireNum}
+ ,#{comNum}
+ ,#{jobtype}
+ ,#{worktime}
+ ,#{workType}
+ ,#{anniSal}
+ ,#{qualification}
+ ,#{benefit}
+ ,#{registImage}
+ ,#{career}
+ ,#{academicBackground}
+ ,#{area}
+)
+	</insert>
+<!-- 공고 리스트 -->
+<select id="recruitlist"  resultMap="recruitlist">
+	SELECT
+    ANNOUNCE_NUM
+    ,ANNOUNCE_TITLE
+    ,ANNOUNCE_CONTENT
+    ,UPTO_HIREDATE
+    ,HIRE_NUM
+    ,JOBTYPE
+    ,WORKTIME
+    ,WORK_TYPE
+    ,ANNI_SAL
+    ,QUALIFICATION
+    ,BENEFIT
+    ,REGIST_IMAGE
+    ,CAREER
+    ,ACADEMIC_BACKGROUND
+    ,AREA
+FROM RECRUIT_LIST
+WHERE COM_NUM = #{comNum}
+AND HIRE_CONDITION = 'Y'
+</select>
+<!-- 공고 상세보기 -->
+<select id="recruitDeteil"  resultMap="recruitlist">
+	SELECT
+    ANNOUNCE_NUM
+    ,ANNOUNCE_TITLE
+    ,ANNOUNCE_CONTENT
+    ,UPTO_HIREDATE
+    ,HIRE_NUM
+    ,JOBTYPE
+    ,WORKTIME
+    ,WORK_TYPE
+    ,ANNI_SAL
+    ,QUALIFICATION
+    ,BENEFIT
+    ,REGIST_IMAGE
+    ,CAREER
+    ,ACADEMIC_BACKGROUND
+    ,AREA
+FROM RECRUIT_LIST
+WHERE ANNOUNCE_NUM = #{announceNum}
+</select>
+
+<!-- 공고 수정 -->
+<update id="registHumanSeekerUpdate">
+	UPDATE RECRUIT_LIST SET
+	    ANNOUNCE_TITLE = #{announceTitle}
+	    ,ANNOUNCE_CONTENT = #{announceContent}
+	    ,UPTO_HIREDATE = #{uptoHiredate}
+	    ,HIRE_NUM = #{hireNum}
+	    ,JOBTYPE = #{jobtype}
+	    ,WORKTIME = #{worktime}
+	    ,WORK_TYPE = #{workType}
+	    ,ANNI_SAL = #{anniSal}
+	    ,QUALIFICATION = #{qualification}
+	    ,BENEFIT = #{benefit}
+	    ,REGIST_IMAGE = #{registImage}
+	    ,CAREER = #{career}
+	    ,ACADEMIC_BACKGROUND = #{academicBackground}
+	    ,AREA = #{area}
+    WHERE ANNOUNCE_NUM = #{announceNum}
+</update>
+<!-- 공고 다중 삭제 -->
+<update id="recruitDeleteList">
+UPDATE RECRUIT_LIST SET HIRE_CONDITION = 'N'
+WHERE ANNOUNCE_NUM IN 
+<foreach collection="array" item="announceNum" open="(" close=")" separator=",">#{announceNum}</foreach>
+</update>
+
+</mapper>
