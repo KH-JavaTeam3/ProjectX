@@ -84,6 +84,27 @@ public class CompanyController {
 			return "redirect:recruitlist.co";
 		}
 	
+		//기업 마이페이지 이동
+		@RequestMapping(value = "/comMypage.co")
+		public String comMypage() {
+			return "tiles/company/comMypage";
+		}
+		//기업 정보 수정 폼 
+		@RequestMapping(value = "/myComUpdateForm.co")
+		public String myComUpdateForm() {
+			return "tiles/company/myComUpdateForm";
+		}
+		//기업 마이페이지 수정 
+		@RequestMapping(value = "/myComUpdate.co")
+		public String myComUpdate(HttpSession session,CompanyInfoVO companyInfoVO) {
+			int vo = companyService.myComUpdate(companyInfoVO);
+			CompanyInfoVO comNum = (CompanyInfoVO) session.getAttribute("comLogin");
+			if(vo != 0) {
+				session.removeAttribute("comLogin");
+				session.setAttribute("comLogin", companyService.selectMyCom(comNum));
+			}
+			return "redirect:comMypage.co";
+		}
 }
 
 

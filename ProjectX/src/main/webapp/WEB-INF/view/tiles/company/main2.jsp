@@ -7,7 +7,12 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-
+<style type="text/css">
+.main2Btn:hover {
+	cursor: pointer;
+	opacity: 0.9;
+}
+</style>
 <!-- sample.css 파일 사용을 위한 태그 -->
 <link rel="stylesheet" type="text/css"
 	href="resources/css/main.css?ver=3" />
@@ -15,20 +20,18 @@
 <body>
 <div style="height: 120px;">
 </div>
-	<div class="row" style="height: 700px; background: black;">
-			<div class="col-md-3" style="background: blue;">
-				<div style="border: 1px solid;">
-					12312312312
-				</div>
+	<div class="row" style="height: 700px;">
+			<div class="col-md-3">
+				<img class="main2Btn" alt="" src="resources/images/main2_A1.jpg" style="width: 100%; height: 100%;" onclick="location.href='registHumanSeekerForm.co'" >
 			</div>
-			<div class="col-md-3" style="background: red ;">
-			
+			<div class="col-md-3">
+				<img class="main2Btn" alt="" src="resources/images/main2_A2.jpg" style="width: 100%; height: 100%;" onclick="location.href='recruitlist.co'" >
 			</div>
-			<div class="col-md-3" style="background: gray ;">
-			
+			<div class="col-md-3" >
+				<img class="main2Btn" alt="" src="resources/images/main2_A3.jpg" style="width: 100%; height: 100%;" onclick="location.href='comMypage.co'">
 			</div>
-			<div class="col-md-3" style="background: yellow ;">
-			
+			<div class="col-md-3" >
+				<img class="main2Btn" alt="" src="resources/images/main2_A4.jpg" style="width: 100%; height: 100%;" onclick="location.href='#'">
 			</div>
 	</div>
 	<script src="resources/js/main.js?ver=3"></script>

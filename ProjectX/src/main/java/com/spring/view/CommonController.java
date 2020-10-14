@@ -3,6 +3,8 @@ package com.spring.view;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,6 +14,7 @@ import com.spring.biz.CommonService;
 import com.spring.biz.vo.CompanyInfoVO;
 import com.spring.biz.vo.MemInfoVO;
 import com.spring.biz.vo.RecruitListVO;
+import com.spring.biz.vo.SearchVO;
 
 
 
@@ -22,6 +25,9 @@ public class CommonController {
 	//*.do쓰셈
 	//경로는 tiles/common/파일명
 	//jsp는 tiles/common폴더안에 생성
+	
+	private final static Logger logger = LoggerFactory.getLogger(CommonController.class);
+	//로그 생성
 	
 	//메인화면
 	@RequestMapping(value = "/main.do")
@@ -82,6 +88,11 @@ public class CommonController {
 	public String companyLoginForm() {
 		return "login/companyLogin";
 	}
+	//기업 로고 클릭시
+		@RequestMapping(value = "/comLogin.do")
+		public String comLogin() {
+			return "tiles/company/main2";
+		}
 	//기업 로그인
 	@RequestMapping(value = "/companyLogin.do")
 	public String companyLogin(CompanyInfoVO companyInfoVO, HttpSession session) {
@@ -106,10 +117,13 @@ public class CommonController {
 	
 	//기업리스트 이동
 	@RequestMapping(value = "/companyList.do")
-	public String companyList(Model model) {
-		model.addAttribute("companyList",commonService.selectRecruitList());
+	public String companyList(Model model,SearchVO searchVO) {
+		System.out.println(searchVO);
+	
+		model.addAttribute("companyList",commonService.selectRecruitList(searchVO));
 		return "tiles/common/companyList";
 	}
+	
 	//기업리스트 상세보기
 	@RequestMapping(value = "/companyDetail.do")
 	public String companyDetail(RecruitListVO recruitListVO, Model model) {

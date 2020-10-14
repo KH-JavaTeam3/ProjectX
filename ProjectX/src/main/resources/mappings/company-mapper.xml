@@ -11,9 +11,7 @@
 		<result column="MEM_NAME"        	  property="memName"/> 
 		<result column="MEM_AGE"         	  property="memAge"/> 
 		<result column="MEM_GENDER"			  property="memGender"/> 
-		<result column="MEM_BIRTH_YEAR"		  property="memBirthYear"/>
-		<result column="MEM_BIRTH_MONTH"  	  property="memBirthMonth"/>
-		<result column="MEM_BIRTH_DAY"  	  property="memBirthDay"/>
+		<result column="MEM_BIRTH"		  	  property="memBirth"/>
 		<result column="MEM_TEL1"     	  	  property="memTel1"/> 
 		<result column="MEM_TEL2"          	  property="memTel2"/> 
 		<result column="MEM_ADDR"          	  property="memAddr"/> 
@@ -176,5 +174,29 @@ UPDATE RECRUIT_LIST SET HIRE_CONDITION = 'N'
 WHERE ANNOUNCE_NUM IN 
 <foreach collection="array" item="announceNum" open="(" close=")" separator=",">#{announceNum}</foreach>
 </update>
-
+<!-- 사업가 정보 조회 -->
+<select id="selectMyCom" resultMap="companyInfo">
+	SELECT
+		COM_NUM
+	    ,COM_EMAIL
+	    ,COM_PASS
+	    ,COM_NAME
+	    ,COM_CEO
+	    ,COM_LOC
+	    ,COM_TYPE
+	    ,COM_TEL
+	FROM COMPANY_INFO
+	WHERE COM_NUM = #{comNum}
+</select>
+<!-- 사업가 정보 수정 -->
+<update id="myComUpdate">
+UPDATE COMPANY_INFO SET
+	COM_EMAIL = #{comEmail}
+	,COM_NAME = #{comName}
+	,COM_CEO = #{comCeo}
+	,COM_LOC = #{comLoc}
+	,COM_TYPE = #{comType}
+	,COM_TEL = #{comTel}
+WHERE COM_NUM = #{comNum}
+</update>
 </mapper>

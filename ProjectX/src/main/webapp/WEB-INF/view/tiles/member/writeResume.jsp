@@ -20,42 +20,41 @@
 	<input type="text" name="resumeName" style="font-size: 35px; font-weight: bold;" placeholder="제목을 입력해주세요.">
 	<div style="height: 20px;"></div>
 	<!-- 개인_기본정보 -->
-	<span style="font-weight: bold; font-size: 24px;">기본 정보</span><span style="font-size: 19px;">★필수</span>
+	<span style="font-weight: bold; font-size: 24px;">개인 정보</span><input type="button" class="btn btn-primary" onClick="location.href='memUpdateForm.me';" value="개인정보수정" style="background: #ABC2E8; border-color: #ABC2E8;" />
 	<div class="row col-md-12" style="border: 5px solid #ABC2E8; border-radius: 10px;">
 		<div class="col-md-9">
 			<div class="form-row">
 				<div class="form-group col-md-6">
 					<label for="memName">이름</label>
-					<input type="text" class="form-control" id="memName" name="memName" value="${sessionScope.memLogin.memName }">
+					<input type="text" class="form-control" id="memName" name="memName" value="${sessionScope.memLogin.memName }" disabled>
 				</div>
 				<div class="form-group col-md-6">
 					<label for="memEmail">이메일</label>
-					<input type="email" class="form-control" id="memEmail" name="memEmail" value="${sessionScope.memLogin.memEmail }">
+					<input type="email" class="form-control" id="memEmail" name="memEmail" value="${sessionScope.memLogin.memEmail }" readonly>
 				</div>
 				<div class="form-group col-md-6">
 					<label class="col-md-3 control-label" style="padding-left: 0px;">생년월일</label>
-					<input type="date" class="form-control"  name="memBirth" value="${sessionScope.memLogin.memBirth }">
+					<input type="date" class="form-control"  name="memBirth" value="${sessionScope.memLogin.memBirth }" disabled>
 				</div>
 				<div class="form-group col-md-6">
 					<label for="memGender">성별</label>
 				  	<div class="col-md-12" style="padding: 0px;">
-						<label class="radio-inline">
-							<input type="radio" name="memGender" id="memGenderM" value="M"<c:if test="${sessionScope.memLogin.memGender eq 'M' }">checked</c:if> > 남성&emsp;&emsp;&emsp;
-						</label>
-						<label class="radio-inline">
-					  		<input type="radio" name="memGender" id="memGenderW" value="W" <c:if test="${sessionScope.memLogin.memGender eq 'W' }">checked</c:if> > 여성
-						</label>
+				  		<c:if test="${sessionScope.memLogin.memGender eq 'M' }">
+							<input type="text" name="memGender" class="form-control" id="memGender" value="남성"  disabled> 
+						</c:if>
+						<c:if test="${sessionScope.memLogin.memGender eq 'W' }">
+				  			<input type="text" name="memGender" class="form-control" id="memGender" value="여성"  disabled>
+					  	</c:if>
 					</div>
 				</div>
 				<div class="form-group col-md-6">
 					<label for="memTel1">연락처</label>
-					<input type="text" class="form-control" id="memTel1" name="memTel1" value="${sessionScope.memLogin.memTel1 }">
+					<input type="text" class="form-control" id="memTel1" name="memTel1" value="${sessionScope.memLogin.memTel1 }" disabled>
 				</div>
 				<div class="form-group col-md-6">
 					<div class="col-md-12" style="padding: 0px;">
 						<label for="memAddr">주소</label>
-						<input type="button" class="btn btn-primary" onClick="openDaumZipAddress();" value="주소찾기" style="background: #ABC2E8; border-color: #ABC2E8;" /><br/>
-						<input type="text" id="memAddr"  style="width: 99%;" value="${sessionScope.memLogin.memAddr }" name="memAddr"/>
+						<input type="text" id="memAddr"  class="form-control" value="${sessionScope.memLogin.memAddr }" name="memAddr" disabled/>
 					</div>
 				</div>
 			</div>
@@ -66,7 +65,7 @@
 					<div class="col-md-6 form-group">
 						<div class="form-group files uploader offset-md-5">
 							<label for="memImage">사진</label>
-							<input type="file" class="form-control"  id="memImage" name="memImage">
+							<input type="file" class="form-control"  id="memImage" name="memImage" disabled>
 							<img id="preview" src="#">
 						</div>
 					</div>
@@ -96,7 +95,7 @@
 				</div>
 				<div class="form-group col-md-6">
 					<label for="eduLoc">지역</label>
-					<input type="button" class="btn btn-primary" onClick="openDaumZipAddress2();" value="주소찾기" style="background: #ABC2E8; border-color: #ABC2E8;" /><br/>
+					<input type="button" class="btn btn-primary" onClick="openDaumZipAddress2();" value="주소찾기" style="background: #ABC2E8; border-color: #ABC2E8;" />
 					<input type="text" class="form-control" id="eduLoc" name="eduLoc">
 				</div>
 				<div class="form-group col-md-6">

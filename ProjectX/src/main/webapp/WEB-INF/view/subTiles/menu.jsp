@@ -155,9 +155,6 @@ tr td {
 .sc3:focus{
 	outline:none;
 }
-#hoverMenu > li{
-	display: inline-block;
-}
 </style>
 </head>
 
@@ -183,7 +180,7 @@ tr td {
         </div>
         <div class="1" style="margin-top: -17px; padding-left: 126px;">
             <ul class="top">
-                <li class="li" style="margin-left: -7px;"><span><input class="sc1" type="text" placeholder="검색어 입력" autocomplete="off" style="width: 230px;font-size: 12px; height: 30px; "  ></span>
+             <li class="li" style="margin-left: -7px;"><span><input class="sc1" type="text" id="searchSearch" placeholder="검색어 입력" autocomplete="off" style="width: 230px;font-size: 12px; height: 30px; "  ></span>
                     <ul class="dept01">
                         <li class="dept01nop">서울</li>
                         <li class="dept01nop">경기</li>
@@ -200,7 +197,7 @@ tr td {
                         <li class="dept02nop">서비스</li>
                     </ul>
                 </li>
-                <li class="topMenu" style="margin-left: -7px;"><span><input class="sc2" type="text" id="a" placeholder="지역명 입력" autocomplete="off" style="width: 230px;font-size: 12px; height: 30px;  left:225px;" ></span>
+                 <li class="topMenu" style="margin-left: -7px;"><span><input class="sc2" type="text" id="areaSearch" placeholder="지역명 입력" autocomplete="off" style="width: 230px;font-size: 12px; height: 30px;  left:225px;" ></span>
                     <ul class="dept01" id="b">
                         <li class="dept01nop">대전</li>
                         <li class="dept01nop">광주</li>
@@ -217,7 +214,8 @@ tr td {
                         <li class="dept02nop">생산.제조</li>
                     </ul>
                 </li>
-                <li class="topMenu2" style="margin-left: -7px;"><span><input class="sc3" type="text" placeholder="직업(직종명) 입력" autocomplete="off" style="width: 200px; font-size: 12px; height: 30px;"></span>
+               <li class="topMenu2" style="margin-left: -7px;"><span><input class="sc3" type="text"  id="jobSearch" placeholder="직업(직종명) 입력" autocomplete="off" style="width: 200px; font-size: 12px; height: 30px;"></span>
+           
                     <ul class="dept01">
                         <li class="dept01nop">전남</li>
                         <li class="dept01nop">전북</li>
@@ -243,46 +241,34 @@ tr td {
 				<c:if test="${not empty sessionScope.memLogin }"><span style="font-weight: bold; font-size: 14px;">${sessionScope.memLogin.memName }님</span></c:if>
 				<ul>
 					<li><i class="fas fa-angle-down"></i>
-						<ul id="hoverMenu">
+						<ul>
 							<li>
 								<table id="loginMeueTable">
-									<tr>
-										<td style="background: lightblue;width:150px;"><a href="companyLoginForm.do"><span style="font-weight: bold; font-size: 14px;">기업</span><span style="font-size: 13px; font-weight: normal;">로그인</span></a></td>
-									</tr>
-									<tr>
-										<td><a href="registHumanSeeker.do"><span style="font-size: 12px; font-weight: normal;">공고 등록</span></a></td>
-									</tr>
-									<tr>
-										<td><a href="#"><span style="font-size: 12px; font-weight: normal;">공고 이력서 조회</span></a></td>
-									</tr>
-									<tr>
-										<td></td>
-									</tr>
-									<tr>
-										<c:if test="${empty sessionScope.memLogin}"><td colspan="2" align="center" style="background: lightblue; width: 300px; "><a href="memberJoin.do"><span style="font-size: 12px; font-weight: normal;">회원가입</span></a></td></c:if>
-										<c:if test="${not empty sessionScope.memLogin}"><td colspan="2" align="center" style="background: lightblue; width: 300px; "><a href="logout.do"><span style="font-size: 12px; font-weight: normal;">로그아웃</span></a></td></c:if>
-									</tr>
-								</table>
-								</li>
-								<li>
-								<table id="loginMeueTable2">
-									<tr>
-										<td style="background: lightblue;width:150px; border-right: 1px solid lightgray;"><a href="memberLoginForm.do"><span style="font-weight: bold; font-size: 14px;">개인</span><span style="font-size: 13px; font-weight: normal;">로그인</span></a></td>
-									</tr>
-									<tr>
-										<td style="border-right: 1px solid lightgray;"><a href="#"><span style="font-size: 12px; font-weight: normal;">ID.Pass 찾기</span></a></td>
-									</tr>
-									<tr>
-										<td style="border-right: 1px solid lightgray;"><a href="#"><span style="font-size: 12px; font-weight: normal;">이력서 작성 및 조회</span></a></td>
-									</tr>
-									<tr>
-										<td style="border-right: 1px solid lightgray;"><a href="memUpDateForm.me"><span style="font-size: 12px; font-weight: normal;">내정보 수정</span></a></td>
-									</tr>
-									<tr>
-										<c:if test="${empty sessionScope.memLogin}"><td colspan="2" align="center" style="background: lightblue; width: 300px; "><a href="memberJoin.do"><span style="font-size: 12px; font-weight: normal;">회원가입</span></a></td></c:if>
-										<c:if test="${not empty sessionScope.memLogin}"><td colspan="2" align="center" style="background: lightblue; width: 300px; "><a href="logout.do"><span style="font-size: 12px; font-weight: normal;">로그아웃</span></a></td></c:if>
-									</tr>
-								</table>
+								<tr>
+									<td style="background: lightblue;width:150px; border-right: 1px solid lightgray;"><a href="memberLoginForm.do"><span style="font-weight: bold; font-size: 14px;">개인</span><span style="font-size: 13px; font-weight: normal;">로그인</span></a></td>
+									<td style="background: lightblue;width:150px;"><a href="companyLoginForm.do"><span style="font-weight: bold; font-size: 14px;">기업</span><span style="font-size: 13px; font-weight: normal;">로그인</span></a></td>
+								</tr>
+								<tr>
+									<td style="border-right: 1px solid lightgray;"><a href="#"><span style="font-size: 12px; font-weight: normal;">ID.Pass 찾기</span></a></td>
+									<td><a href="registHumanSeekerForm.co"><span style="font-size: 12px; font-weight: normal;">공고 등록</span></a></td>
+								</tr>
+								<tr>
+									<td style="border-right: 1px solid lightgray;"><a href="#"><span style="font-size: 12px; font-weight: normal;">이력서 작성 및 조회</span></a></td>
+									<td><a href="#"><span style="font-size: 12px; font-weight: normal;">공고 이력서 조회</span></a></td>
+								</tr>
+								<tr>
+									<td style="border-right: 1px solid lightgray;"><a href="memUpDateForm.do"><span style="font-size: 12px; font-weight: normal;">내정보 수정</span></a></td>
+									<td><a href="recruitlist.co"><span style="font-size: 12px; font-weight: normal;">공고 수정</span></a></td>
+								</tr>
+								<tr>
+									<td style="border-right: 1px solid lightgray;"></td>
+									<td><a href="recruitDeleteList.co"><span style="font-size: 12px; font-weight: normal;">공고 삭제</span></a></td>
+								</tr>
+								<tr>
+									<c:if test="${empty sessionScope.memLogin}"><td colspan="2" align="center" style="background: lightblue; width: 300px; "><a href="memberJoin.do"><span style="font-size: 12px; font-weight: normal;">회원가입</span></a></td></c:if>
+									<c:if test="${not empty sessionScope.memLogin}"><td colspan="2" align="center" style="background: lightblue; width: 300px; "><a href="logout.do"><span style="font-size: 12px; font-weight: normal;">로그아웃</span></a></td></c:if>
+								</tr>
+							</table>
 							</li>
 						</ul>
 					</li>
@@ -303,9 +289,9 @@ tr td {
 			<span></span>
 			<span></span>
 		</label>
-		
-     <a href="companyList.do"><input id="seatchStyle" type="button" class="fas fa-search" style="width: 25px; height: 25px; color: white;">
-   <input class="fas fa-circle" type="button" id="seatchStyleCircle"style="width: 40px;height: 40px;color: black;"></a>
+		         
+     <a><input id="seatchStyle" type="button" class="fas fa-search search" style="width: 25px; height: 25px; color: white;">
+      <input class="fas fa-circle search" type="button" id="seatchStyleCircle"style="width: 40px;height: 40px;color: black;"></a>
 </div>
 </header>
 </div>
@@ -464,5 +450,7 @@ tr td {
 	</div> -->
 </div>
 </div>
+
+<script src="resources/js/menu.js?ver=5"></script>
 </body>
 </html>

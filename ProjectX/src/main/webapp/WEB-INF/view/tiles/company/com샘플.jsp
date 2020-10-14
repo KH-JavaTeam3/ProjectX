@@ -22,7 +22,31 @@
 </head>
 
 <body>
-<div style="height: 50px;"></div>
+<div style="height: 60px;"></div>
+<div>
+	<ul class="nav nav-tabs" id="myTab" role="tablist">
+  <li class="nav-item" role="presentation">
+    <a class="nav-link" href="comMypage.co">홈</a>
+  </li>
+  <li class="nav-item" role="presentation">
+    <a class="nav-link" href="editMyInfo.me">사업자 정보 수정</a>
+  </li>
+  <li class="nav-item" role="presentation">
+    <a class="nav-link" href="writeResume.me">이력서 등록</a>
+  </li>
+  <li class="nav-item" role="presentation">
+    <a class="nav-link" href="resumeCollection.me">이력서 관리</a>
+  </li>
+  <li class="nav-item" role="presentation">
+    <a class="nav-link" href="#" >공고 조회</a>
+  </li>
+  <li class="nav-item" role="presentation">
+    <a class="nav-link" href="recruitDeleteList.co">공고 삭제</a>
+  </li>
+</ul>
+</div>
+
+<div style="height: 30px;"></div>
 <div>
 	<table>
 		<tr>

@@ -41,6 +41,16 @@ public class CompanyServiceImpl implements CompanyService{
 		return sqlSession.update("recruitDeleteList", announceNums);
 	}
 
+	@Override
+	public CompanyInfoVO selectMyCom(CompanyInfoVO companyInfoVO) {
+		return sqlSession.selectOne("selectMyCom", companyInfoVO);
+	}
+
+	@Override
+	public int myComUpdate(CompanyInfoVO companyInfoVO) {
+		return sqlSession.update("myComUpdate", companyInfoVO);
+	}
+
 	
 }
 

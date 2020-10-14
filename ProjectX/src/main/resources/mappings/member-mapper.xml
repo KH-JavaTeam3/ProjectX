@@ -11,9 +11,7 @@
 		<result column="MEM_NAME"        	  property="memName"/> 
 		<result column="MEM_AGE"         	  property="memAge"/> 
 		<result column="MEM_GENDER"			  property="memGender"/> 
-		<result column="MEM_BIRTH_YEAR"		  property="memBirthYear"/>
-		<result column="MEM_BIRTH_MONTH"  	  property="memBirthMonth"/>
-		<result column="MEM_BIRTH_DAY"  	  property="memBirthDay"/>
+		<result column="MEM_BIRTH"		  	  property="memBirth"/>
 		<result column="MEM_TEL1"     	  	  property="memTel1"/> 
 		<result column="MEM_TEL2"          	  property="memTel2"/> 
 		<result column="MEM_ADDR"          	  property="memAddr"/> 
@@ -71,7 +69,7 @@
 	</resultMap>
 	
 	<!-- 이력서 insert -->
-	<!-- <insert id="insertResume">
+	<insert id="insertResume">
 		INSERT INTO MEM_RESUME (
 			RESUME_NUM
 			, RESUME_NAME
@@ -92,6 +90,7 @@
 			, HOPE_SAL
 			, HOPE_LOC
 			, HOPE_TIME
+			, MEM_EMAIL
 		) VALUES (
 			(SELECT NVL(MAX(RESUME_NUM) + 1 , 1) FROM MEM_RESUME)
 			, #{resumeName}
@@ -112,6 +111,7 @@
 			, #{hopeSal}
 			, #{hopeLoc}
 			, #{hopeTime}
+			, #{memEmail}
 		)
 	</insert>
 	
@@ -124,12 +124,14 @@
 				, LIC_LOC
 				, LIC_GRADE
 				, LIC_DATE
+				, RESUME_NUM
 			) VALUES (
 				(SELECT NVL(MAX(LIC_NUM)+1,1) + #{index} FROM LICENSE)
 			 	, #{license.licName}
 			 	, #{license.licLoc}
 			 	, #{license.licGrade}
 			 	, #{license.licDate}
+			 	, (SELECT NVL(MAX(RESUME_NUM), 1) FROM MEM_RESUME)
 			)
 		</foreach>
 		SELECT * FROM DUAL
@@ -142,15 +144,41 @@
 				PRO_NUM
 				, PRO_TITLE
 				, PRO_CONTENT
+				, RESUME_NUM
 			) VALUES (
 				(SELECT NVL(MAX(PRO_NUM)+1,1) + #{index} FROM PROFILES)
 			 	, #{pro.proTitle}
 			 	, #{pro.proContent}
+			 	, (SELECT NVL(MAX(RESUME_NUM), 1) FROM MEM_RESUME)
 			)
 		</foreach>
 		SELECT * FROM DUAL
 	</insert>
- -->
 
+	<update id="updateMemInfo">
+		UPDATE MEM_INFO
+		SET MEM_NAME = #{memName}
+			, MEM_PASS = #{memPass}
+			, MEM_BIRTH = #{memBirth}
+			, MEM_AGE = #{memAge}
+			, MEM_TEL1 = #{memTel1}
+			, MEM_TEL2 = #{memTel2}
+			, MEM_ADDR = #{memAddr}
+		WHERE MEM_EMAIL = #{memEmail}
+	</update>
+	
+	<select id="selectMemInfoME" resultMap="memInfo">
+		SELECT MEM_EMAIL
+			, MEM_PASS
+			, MEM_NAME
+			, MEM_BIRTH
+			, MEM_AGE
+			, MEM_TEL1
+			, MEM_TEL2
+			, MEM_ADDR
+			, IS_ADMIN
+		FROM MEM_INFO
+		WHERE MEM_EMAIL = #{memEmail}
+	</select>
 
 </mapper>

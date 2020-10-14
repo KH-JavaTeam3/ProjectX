@@ -47,6 +47,7 @@
 		<result column="HIRE_NUM" property="hireNum" />
 		<result column="COM_NUM" property="comNum" />
 		<result column="JOBTYPE" property="jobtype" />
+		<result column="COM_NAME" property="comName" />
 		<result column="WORKTIME" property="worktime" />
 		<result column="WORK_TYPE" property="workType" />
 		<result column="ANNI_SAL" property="anniSal" />
@@ -179,22 +180,6 @@
 		AND COM_PASS = #{comPass}
 	</select>
 
-
-	<select id="selectRecruitList" resultMap="recruitlist">
-		SELECT
-			ANNOUNCE_NUM
-			,COM_NAME
-			,ANNOUNCE_TITLE
-			,UPTO_HIREDATE
-			,WORK_TYPE
-			,CAREER              
-			,ACADEMIC_BACKGROUND
-			,AREA
-			,R.COM_NUM
-		FROM RECRUIT_LIST R, COMPANY_INFO C
-		WHERE R.COM_NUM= C.COM_NUM
-	</select>
-	
 	<select id="selectDetailRecruit" resultMap="recruitlist">
 	SELECT
 	ANNOUNCE_NUM
@@ -219,7 +204,77 @@
 	AND ANNOUNCE_NUM = #{announceNum}
 	</select>
 
+<!-- 		검색 조건 				 -->
+	<select id="selectRecruitList" resultMap="recruitlist">		
+		SELECT
+			ANNOUNCE_NUM
+			,COM_NAME
+			,ANNOUNCE_TITLE
+			,UPTO_HIREDATE
+			,WORK_TYPE
+			,CAREER
+			,ACADEMIC_BACKGROUND
+			,JOBTYPE
+			,AREA
+			,R.COM_NUM
+		FROM RECRUIT_LIST R, COMPANY_INFO C
+		WHERE R.COM_NUM= C.COM_NUM
+	
 
+		<if test="search2 == '' and search3 == '' and search1 != '' ">
+		AND UPPER(COM_NAME) Like UPPER('%'||#{search1}||'%')	
+		OR UPPER(ANNOUNCE_TITLE) Like UPPER('%'||#{search1}||'%')
+		OR UPPER(WORK_TYPE) Like UPPER('%'||#{search1}||'%')
+		OR UPPER(JOBTYPE) Like UPPER('%'||#{search1}||'%')
+		OR UPPER(QUALIFICATION) Like UPPER('%'||#{search1}||'%')
+		OR UPPER(BENEFIT) Like UPPER('%'||#{search1}||'%')
+		OR UPPER(ACADEMIC_BACKGROUND) Like UPPER('%'||#{search1}||'%')
+		OR UPPER(AREA) Like UPPER('%'||#{search1}||'%')
+		
+			
+		</if>
+		<if test="search2 == '' and search3 != '' and search1 != '' ">
+		AND JOBTYPE =#{search3}
+		OR UPPER(COM_NAME) Like UPPER('%'||#{search1}||'%')	
+		OR UPPER(ANNOUNCE_TITLE) Like UPPER('%'||#{search1}||'%')
+		OR UPPER(WORK_TYPE) Like UPPER('%'||#{search1}||'%')
+		OR UPPER(QUALIFICATION) Like UPPER('%'||#{search1}||'%')
+		OR UPPER(BENEFIT) Like UPPER('%'||#{search1}||'%')
+		OR UPPER(ACADEMIC_BACKGROUND) Like UPPER('%'||#{search1}||'%')
+		OR UPPER(AREA) Like UPPER('%'||#{search1}||'%')
+						
+		</if>
+		<if test="search2 != null and search3 == '' and search1 != '' ">
+		AND AREA = #{search2}
+		OR UPPER(COM_NAME) Like UPPER('%'||#{search1}||'%')				
+		OR UPPER(ANNOUNCE_TITLE) Like UPPER('%'||#{search1}||'%')
+		OR UPPER(WORK_TYPE) Like UPPER('%'||#{search1}||'%')
+		OR UPPER(JOBTYPE) Like UPPER('%'||#{search1}||'%')
+		OR UPPER(QUALIFICATION) Like UPPER('%'||#{search1}||'%')
+		OR UPPER(BENEFIT) Like UPPER('%'||#{search1}||'%')
+		OR UPPER(ACADEMIC_BACKGROUND) Like UPPER('%'||#{search1}||'%')
+		
+			
+		</if>
+		<if test="search2 != '' and search3 != '' and search1 != '' ">
+		AND AREA = #{search2}
+		OR JOBTYPE =#{search3}			
+		OR UPPER(COM_NAME) Like UPPER('%'||#{search1}||'%')			
+		OR UPPER(ANNOUNCE_TITLE) Like UPPER('%'||#{search1}||'%')
+		OR UPPER(WORK_TYPE) Like UPPER('%'||#{search1}||'%')
+		OR UPPER(QUALIFICATION) Like UPPER('%'||#{search1}||'%')
+		OR UPPER(BENEFIT) Like UPPER('%'||#{search1}||'%')
+		OR UPPER(ACADEMIC_BACKGROUND) Like UPPER('%'||#{search1}||'%')			
+		</if>
+		
+		<if test="search2 != '' and search3 != '' and search1 == '' ">
+		AND AREA = #{search2}
+		OR JOBTYPE =#{search3}					
+		</if>
+		
+		
+		
+	</select>
 
 
 

@@ -14,7 +14,7 @@
     <a class="nav-link" href="memberMypage.me">홈</a>
   </li>
   <li class="nav-item" role="presentation">
-    <a class="nav-link" href="editMyInfo.me">개인정보수정</a>
+    <a class="nav-link" href="memUpdateForm.me">개인정보수정</a>
   </li>
   <li class="nav-item" role="presentation">
     <a class="nav-link" href="writeResume.me">이력서 등록</a>

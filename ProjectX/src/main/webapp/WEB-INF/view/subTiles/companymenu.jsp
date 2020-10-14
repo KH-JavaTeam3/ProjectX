@@ -167,7 +167,7 @@ tr td {
 <header style="width: 80%"> <!-- 상단 메뉴바 크기 -->
 	<div style="background-color: white;" align="left">
 		<ul class="navi" style="margin-bottom: 0px;">
-			<li><a href="main.do"><img alt="..." src="resources/images/logo.jpg" style="width: 150px; left: 27px;top: 10px; position: fixed" ></a></li>
+			<li><a href="comLogin.do"><img alt="..." src="resources/images/logo.jpg" style="width: 150px; left: 27px;top: 10px; position: fixed" ></a></li>
 			<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#">지역별</a></li>
 			<li><a href="#">직업별</a></li>
 			<li><a href="#">헤드헌팅</a></li>

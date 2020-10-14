@@ -11,6 +11,7 @@ import com.spring.biz.vo.AdminNoticeVO;
 import com.spring.biz.vo.CompanyInfoVO;
 import com.spring.biz.vo.MemInfoVO;
 import com.spring.biz.vo.RecruitListVO;
+import com.spring.biz.vo.SearchVO;
 
 @Service("commonService") 
 public class CommonServiceImpl implements CommonService{
@@ -63,9 +64,9 @@ public class CommonServiceImpl implements CommonService{
 	}
 
 	@Override
-	public List<RecruitListVO> selectRecruitList() {
+	public List<RecruitListVO> selectRecruitList(SearchVO searchVO) {
 		
-		return sqlSession.selectList("selectRecruitList");
+		return sqlSession.selectList("selectRecruitList",searchVO);
 	}
 
 	@Override

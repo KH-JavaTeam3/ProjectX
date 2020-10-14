@@ -6,6 +6,7 @@ import com.spring.biz.vo.AdminNoticeVO;
 import com.spring.biz.vo.CompanyInfoVO;
 import com.spring.biz.vo.MemInfoVO;
 import com.spring.biz.vo.RecruitListVO;
+import com.spring.biz.vo.SearchVO;
 
 public interface CommonService {
 	// 개인 회원가입
@@ -35,7 +36,7 @@ public interface CommonService {
 	// 관리자 페이지 공지사항 글 상세보기
 	AdminNoticeVO selectDetailNotice(int boardNumber);
 
-	List<RecruitListVO> selectRecruitList();
+	List<RecruitListVO> selectRecruitList(SearchVO searchVO);
 	
 	RecruitListVO selectDetailRecruit(RecruitListVO recruitListVO);
 	

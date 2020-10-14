@@ -49,15 +49,8 @@ public class MemberController {
 		
 		//이력서 등록하기 
 		@RequestMapping(value = "/regResume.me")
-		public String regResume(MultiLicenseVO multiLicenseVO, MultiProfilesVO multiProfilesVO, MemResumeVO memResumeVO) {
-			//MemInfoVO memInfoVO, , , 
-//			System.out.println(memInfoVO);
-			System.out.println("------------------------------------");
-			System.out.println(memResumeVO);
-//			System.out.println("-----------------------------------");
-			System.out.println(multiLicenseVO);
-			System.out.println("------------------------------------");
-			System.out.println(multiProfilesVO);
+		public String regResume(MultiLicenseVO multiLicenseVO, MultiProfilesVO multiProfilesVO, MemResumeVO memResumeVO, HttpSession session) {
+			
 			
 			
 //			//첨부파일
@@ -90,10 +83,34 @@ public class MemberController {
 ////			//페이지 정보를 보내줌
 //			model.addAttribute("mainMenu", "admin");
 //			model.addAttribute("adminSideMenu", "insertItem");
+//			multiProfilesVO;
 			
+			//다중 자격증 담기
+			List<LicenseVO> licenseList = new ArrayList<LicenseVO>();
+			for(int i = 0; i < multiLicenseVO.getLicDate().length; i++) {
+				LicenseVO license = new LicenseVO();
+				license.setLicName(multiLicenseVO.getLicName()[i]);
+				license.setLicLoc(multiLicenseVO.getLicLoc()[i]);
+				license.setLicGrade(multiLicenseVO.getLicGrade()[i]);
+				license.setLicDate(multiLicenseVO.getLicDate()[i]);
+				
+				licenseList.add(license);
+			}
+			//다중 자기소개서 담기
+			List<ProfilesVO> profilesList = new ArrayList<ProfilesVO>();
+			for(int i = 0; i < multiProfilesVO.getProTitle().length; i++) {
+				ProfilesVO profiles = new ProfilesVO();
+				profiles.setProTitle(multiProfilesVO.getProTitle()[i]);
+				profiles.setProContent(multiProfilesVO.getProContent()[i]);
+				
+				profilesList.add(profiles);
+			}
+			memResumeVO.setLicenseList(licenseList);
+			memResumeVO.setProfilesList(profilesList);
 			
+			System.out.println(memResumeVO);
 			//이력서 등록
-//			memberService.insertResume(memResumeVO);
+			memberService.insertResume(memResumeVO);
 			
 			return "redirect:resumeCollection.me";
 		}
@@ -105,27 +122,33 @@ public class MemberController {
 			return "tiles/member/resumeCollection";
 		}
 		
-		//개인 정보수정 폼 화면
-		@RequestMapping(value = "/memUpDateForm.me")
-		public String memUpDateForm(HttpSession session) {
-			if(session.getAttribute("memLogin") != null) {
-				return "tiles/member/memUpDateForm";
-			}else {
-				return "redirect:main.do";
-			}
+		//개인 정보수정 폼 화면으로 이동
+		@RequestMapping(value = "/memUpdateForm.me")
+		public String memUpdateForm() {
+			return "tiles/member/memUpdateForm";
 		}
+				
 		//개인 정보수정 화면
-		@RequestMapping(value = "/memUpdate.me")
-		public String memUpDate(MemInfoVO memInfoVO, HttpSession session) {
-//			int i = commonService.memUpdate(memInfoVO);
-//			if(i != 0) {
-//				MemInfoVO vo = commonService.memberLogin(memInfoVO); 
-//				session.removeAttribute("memLogin");
-//				session.setAttribute("memLogin", vo);
-//			}
+		@RequestMapping(value = "/updateMemInfo.me")
+		public String updateMemInfo(MemInfoVO memInfoVO, HttpSession session) {
 			
-			return "redirect:main.do";
+		
+					memberService.updateMemInfo(memInfoVO);
+					MemInfoVO vo = memberService.selectMemInfoME(memInfoVO);
+					if(vo != null) {
+						session.removeAttribute("memLogin");
+						session.setAttribute("memLogin", vo);
+					}
+			return "redirect:memberMypage.me";
 		}
+		
+		
+		
+		
+		
+		
+		
+		
 		
 		//파일 첨부 메소드: 경로지정 아직 안함
 				public List<String>attachFile(MultipartHttpServletRequest multi) throws Exception{

@@ -23,6 +23,7 @@ public class MemResumeVO {
 	private int hopeSal;
 	private String hopeLoc;
 	private String hopeTime;
+	private String memEmail;
 	private List<LicenseVO> licenseList;
 	private List<ProfilesVO> profilesList;
 	
@@ -160,6 +161,12 @@ public class MemResumeVO {
 	public void setProfilesList(List<ProfilesVO> profilesList) {
 		this.profilesList = profilesList;
 	}
+	public String getMemEmail() {
+		return memEmail;
+	}
+	public void setMemEmail(String memEmail) {
+		this.memEmail = memEmail;
+	}
 	@Override
 	public String toString() {
 		return "MemResumeVO [resumeNum=" + resumeNum + ", resumeName=" + resumeName + ", resumeDate=" + resumeDate
@@ -167,8 +174,8 @@ public class MemResumeVO {
 				+ ", eduMajor=" + eduMajor + ", eduBeginDate=" + eduBeginDate + ", eduEndDate=" + eduEndDate
 				+ ", eduScore=" + eduScore + ", eduIsOver=" + eduIsOver + ", beCompany=" + beCompany + ", beCareer="
 				+ beCareer + ", beType=" + beType + ", bePosition=" + bePosition + ", hopeType=" + hopeType
-				+ ", hopeSal=" + hopeSal + ", hopeLoc=" + hopeLoc + ", hopeTime=" + hopeTime + ", licenseList="
-				+ licenseList + ", profilesList=" + profilesList + "]";
+				+ ", hopeSal=" + hopeSal + ", hopeLoc=" + hopeLoc + ", hopeTime=" + hopeTime + ", memEmail=" + memEmail
+				+ ", licenseList=" + licenseList + ", profilesList=" + profilesList + "]";
 	}
 	
 	

@@ -11,9 +11,7 @@
 		<result column="MEM_NAME"        	  property="memName"/> 
 		<result column="MEM_AGE"         	  property="memAge"/> 
 		<result column="MEM_GENDER"			  property="memGender"/> 
-		<result column="MEM_BIRTH_YEAR"		  property="memBirthYear"/>
-		<result column="MEM_BIRTH_MONTH"  	  property="memBirthMonth"/>
-		<result column="MEM_BIRTH_DAY"  	  property="memBirthDay"/>
+		<result column="MEM_BIRTH"		  	  property="memBirth"/>
 		<result column="MEM_TEL1"     	  	  property="memTel1"/> 
 		<result column="MEM_TEL2"          	  property="memTel2"/> 
 		<result column="MEM_ADDR"          	  property="memAddr"/> 

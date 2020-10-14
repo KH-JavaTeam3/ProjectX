@@ -18,4 +18,8 @@ public interface CompanyService {
 	int registHumanSeekerUpdate(RecruitListVO recruitListVO);
 	//구인 공고 다중 삭제
 	int recruitDeleteList(int[] announceNums);
+	//기업 정보 조회
+	CompanyInfoVO selectMyCom(CompanyInfoVO companyInfoVO);
+	//기업 정보 수정
+	int myComUpdate(CompanyInfoVO companyInfoVO);
 }
