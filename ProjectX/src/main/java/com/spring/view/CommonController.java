@@ -4,11 +4,14 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.spring.biz.CommonService;
 import com.spring.biz.vo.CompanyInfoVO;
 import com.spring.biz.vo.MemInfoVO;
+import com.spring.biz.vo.RecruitListVO;
 
 
 
@@ -31,9 +34,16 @@ public class CommonController {
 	public String join() {
 		return "join/memberJoin";
 	}
+	//개인 회원가입 이메일 중복 체크
+	@ResponseBody
+	@RequestMapping(value = "/emailChkAjax.do")
+	public String emailChkAjax(String memEmail) {
+		return commonService.selectEmailChk(memEmail);
+	}
 	//개인 회원가입
 	@RequestMapping(value = "/initMemberJoin.do")
 	public String initMemberJoin(MemInfoVO memInfoVO) {
+		System.out.println(memInfoVO);
 		commonService.insertMemInfo(memInfoVO);
 		return "redirect:main.do";
 	}
@@ -58,7 +68,7 @@ public class CommonController {
 	@RequestMapping(value = "/memberLogin.do")
 	public String memberLogin(MemInfoVO memInfoVO, HttpSession session) {
 		MemInfoVO vo = commonService.memberLogin(memInfoVO);
-		System.out.println(vo);
+		vo.setMemBirth(vo.getMemBirth().substring(0, 10));
 		if(vo != null) {
 			session.setAttribute("memLogin", vo);
 			if(vo.getMemEmail().equals("admin@admin")) {
@@ -96,9 +106,17 @@ public class CommonController {
 	
 	//기업리스트 이동
 	@RequestMapping(value = "/companyList.do")
-	public String companyList() {
-		
+	public String companyList(Model model) {
+		model.addAttribute("companyList",commonService.selectRecruitList());
 		return "tiles/common/companyList";
+	}
+	//기업리스트 상세보기
+	@RequestMapping(value = "/companyDetail.do")
+	public String companyDetail(RecruitListVO recruitListVO, Model model) {
+
+		model.addAttribute("recruitDeteil",commonService.selectDetailRecruit(recruitListVO));
+		
+		return "tiles/common/companyDetail";
 	}
 	
 	

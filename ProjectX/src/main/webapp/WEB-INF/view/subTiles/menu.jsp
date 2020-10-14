@@ -123,8 +123,8 @@ tr td {
 .top>li {float: left; width: 30%; line-height: 80px; }
 .top span {font-size: 20px; font-weight: bold; }
             
-.dept01 {z-index:31; position:fixed; display: none; padding: 20px 0; border-bottom: 1px solid lightgray;border-lift: 1px solid lightgray; border-right: 1px solid lightgray; background: white; width: 200px; top: 56px;}
-.dept02 {z-index:31; position:fixed; display: none; padding: 20px 0; border-bottom: 1px solid lightgray;border-lift: 1px solid lightgray; border-right: 1px solid lightgray; background: white; width: 200px; top: 56px;}
+.dept01 {cursor:pointer;z-index:31; position:fixed; display: none; padding: 20px 0; border-bottom: 1px solid lightgray;border-lift: 1px solid lightgray; border-right: 1px solid lightgray; background: white; width: 200px; top: 56px;}
+.dept02 {cursor:pointer;z-index:31; position:fixed; display: none; padding: 20px 0; border-bottom: 1px solid lightgray;border-lift: 1px solid lightgray; border-right: 1px solid lightgray; background: white; width: 200px; top: 56px;}
             
 .none:after {content: ""; display: block; clear: both; }
    
@@ -155,6 +155,9 @@ tr td {
 .sc3:focus{
 	outline:none;
 }
+#hoverMenu > li{
+	display: inline-block;
+}
 </style>
 </head>
 
@@ -167,7 +170,7 @@ tr td {
 <header style="width: 80%"> <!-- 상단 메뉴바 크기 -->
 	<div style="background-color: white;" align="left">
 		<ul class="navi" style="margin-bottom: 0px;">
-			<li><a href="main.do"><img alt="..." src="resources/images/logo.jpg" style="width: 150px; left: 27px;top: 10px; position: fixed" ></a></li>
+			<li><a href="main.do"><img alt="..." src="resources/images/logo.jpg" style="width: 150px; left: -180px;top: 10px; position: absolute;" ></a></li>
 			<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#">지역별</a></li>
 			<li><a href="#">직업별</a></li>
 			<li><a href="#">헤드헌팅</a></li>
@@ -180,7 +183,7 @@ tr td {
         </div>
         <div class="1" style="margin-top: -17px; padding-left: 126px;">
             <ul class="top">
-                <li class="li" style="margin-left: -7px;"><span><input class="sc1" type="text"  placeholder="검색어 입력" autocomplete="off" style="width: 230px;font-size: 12px; height: 30px; "  ></span>
+                <li class="li" style="margin-left: -7px;"><span><input class="sc1" type="text" placeholder="검색어 입력" autocomplete="off" style="width: 230px;font-size: 12px; height: 30px; "  ></span>
                     <ul class="dept01">
                         <li class="dept01nop">서울</li>
                         <li class="dept01nop">경기</li>
@@ -235,45 +238,63 @@ tr td {
         </div>
 	</div>
 			</li>
-			<li class="liMenu" id="loginMeue" style="right: 118px; top: 32px;position: absolute;" >
+			<li class="liMenu" id="loginMeue" style="right: 200px; top: 32px;position: absolute;" >
 				<c:if test="${empty sessionScope.memLogin }" ><a href="#" style="padding-right: 0px;">로그인</a></c:if>
 				<c:if test="${not empty sessionScope.memLogin }"><span style="font-weight: bold; font-size: 14px;">${sessionScope.memLogin.memName }님</span></c:if>
 				<ul>
 					<li><i class="fas fa-angle-down"></i>
-					<ul>
-						<li>
-							<table id="loginMeueTable">
-								<tr>
-									<td style="background: lightblue;width:150px; border-right: 1px solid lightgray;"><a href="memberLoginForm.do"><span style="font-weight: bold; font-size: 14px;">개인</span><span style="font-size: 13px; font-weight: normal;">로그인</span></a></td>
-									<td style="background: lightblue;width:150px;"><a href="companyLoginForm.do"><span style="font-weight: bold; font-size: 14px;">기업</span><span style="font-size: 13px; font-weight: normal;">로그인</span></a></td>
-								</tr>
-								<tr>
-									<td style="border-right: 1px solid lightgray;"><a href="#"><span style="font-size: 12px; font-weight: normal;">ID.Pass 찾기</span></a></td>
-									<td><a href="registHumanSeeker.do"><span style="font-size: 12px; font-weight: normal;">공고 등록</span></a></td>
-								</tr>
-								<tr>
-									<td style="border-right: 1px solid lightgray;"><a href="#"><span style="font-size: 12px; font-weight: normal;">이력서 작성 및 조회</span></a></td>
-									<td><a href="#"><span style="font-size: 12px; font-weight: normal;">공고 이력서 조회</span></a></td>
-								</tr>
-								<tr>
-									<td style="border-right: 1px solid lightgray;"><a href="memUpDateForm.me"><span style="font-size: 12px; font-weight: normal;">내정보 수정</span></a></td>
-									<td></td>
-								</tr>
-								<tr>
-									<c:if test="${empty sessionScope.memLogin}"><td colspan="2" align="center" style="background: lightblue; width: 300px; "><a href="memberJoin.do"><span style="font-size: 12px; font-weight: normal;">회원가입</span></a></td></c:if>
-									<c:if test="${not empty sessionScope.memLogin}"><td colspan="2" align="center" style="background: lightblue; width: 300px; "><a href="logout.do"><span style="font-size: 12px; font-weight: normal;">로그아웃</span></a></td></c:if>
-								</tr>
-							</table>
-						</li>
-					</ul>
+						<ul id="hoverMenu">
+							<li>
+								<table id="loginMeueTable">
+									<tr>
+										<td style="background: lightblue;width:150px;"><a href="companyLoginForm.do"><span style="font-weight: bold; font-size: 14px;">기업</span><span style="font-size: 13px; font-weight: normal;">로그인</span></a></td>
+									</tr>
+									<tr>
+										<td><a href="registHumanSeeker.do"><span style="font-size: 12px; font-weight: normal;">공고 등록</span></a></td>
+									</tr>
+									<tr>
+										<td><a href="#"><span style="font-size: 12px; font-weight: normal;">공고 이력서 조회</span></a></td>
+									</tr>
+									<tr>
+										<td></td>
+									</tr>
+									<tr>
+										<c:if test="${empty sessionScope.memLogin}"><td colspan="2" align="center" style="background: lightblue; width: 300px; "><a href="memberJoin.do"><span style="font-size: 12px; font-weight: normal;">회원가입</span></a></td></c:if>
+										<c:if test="${not empty sessionScope.memLogin}"><td colspan="2" align="center" style="background: lightblue; width: 300px; "><a href="logout.do"><span style="font-size: 12px; font-weight: normal;">로그아웃</span></a></td></c:if>
+									</tr>
+								</table>
+								</li>
+								<li>
+								<table id="loginMeueTable2">
+									<tr>
+										<td style="background: lightblue;width:150px; border-right: 1px solid lightgray;"><a href="memberLoginForm.do"><span style="font-weight: bold; font-size: 14px;">개인</span><span style="font-size: 13px; font-weight: normal;">로그인</span></a></td>
+									</tr>
+									<tr>
+										<td style="border-right: 1px solid lightgray;"><a href="#"><span style="font-size: 12px; font-weight: normal;">ID.Pass 찾기</span></a></td>
+									</tr>
+									<tr>
+										<td style="border-right: 1px solid lightgray;"><a href="#"><span style="font-size: 12px; font-weight: normal;">이력서 작성 및 조회</span></a></td>
+									</tr>
+									<tr>
+										<td style="border-right: 1px solid lightgray;"><a href="memUpDateForm.me"><span style="font-size: 12px; font-weight: normal;">내정보 수정</span></a></td>
+									</tr>
+									<tr>
+										<c:if test="${empty sessionScope.memLogin}"><td colspan="2" align="center" style="background: lightblue; width: 300px; "><a href="memberJoin.do"><span style="font-size: 12px; font-weight: normal;">회원가입</span></a></td></c:if>
+										<c:if test="${not empty sessionScope.memLogin}"><td colspan="2" align="center" style="background: lightblue; width: 300px; "><a href="logout.do"><span style="font-size: 12px; font-weight: normal;">로그아웃</span></a></td></c:if>
+									</tr>
+								</table>
+							</li>
+						</ul>
 					</li>
 				</ul>
 			</li>
 
-
-			<li class="liMenu" style=" right: 1px; top: 30px; position: absolute;"><a href="adminPage.ad"><i class="fas fa-address-card"></i>이력서 관리</a></li>
-			<li class="liMenu"><a href="memberMypage.me">마이페이지</a></li>
-			<c:if test="${not empty sessionScope.memLogin}"><li class="liMenu" style="border-radius: 10px; background: #ABC2E8; right: -150px; top: 30px; position: absolute;"><c:if test="${sessionScope.memLogin.isAdmin != 'N' }"><a href="adminPage.ad">관리자 페이지</a></c:if></li> </c:if>
+			<c:if test="${sessionScope.memLogin.isAdmin == 'N' }">
+			<li class="liMenu" style=" right: 50px; top: 30px; position: absolute;"><a href="memberMypage.me"><i class="fas fa-address-card"></i>마이페이지</a></li>
+			</c:if>
+			<c:if test="${sessionScope.memLogin.isAdmin == 'Y' }">
+			<li class="liMenu" style=" right: 50px; top: 30px; position: absolute;"><a href="adminPage.ad"><i class="fas fa-address-card"></i>관리자페이지</a></li>
+			</c:if>
 
 		</ul>
 		

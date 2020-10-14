@@ -25,14 +25,14 @@
 		</div>
 	</div> -->
 
-<c:forEach items="${companyList }" var="companyList">
-  <a href="companyDetailList.do?announceNum=${companyList.announceNum}" class="list-group-item list-group-item-action eachCompany" >
+<c:forEach items="${companyList }" var="company">
+  <a href="companyDetail.do?comNum=${company.comNum}&announceNum=${company.announceNum}" class="list-group-item list-group-item-action eachCompany" >
     <div class="d-flex w-100 justify-content-between">
-      <h5 class="mb-1">${companyList.corporateName}</h5>
-      <small>${companyList.uptoHiredate}</small>
+      <h5 class="mb-1">${company.comName}</h5>
+      <small>~${company.uptoHiredate}</small>
     </div>
-    <p class="mb-1">${companyList.announceTitle}</p>
-    <small>${companyList.career}ㅣ${companyList.academicBackground}ㅣ${companyList.workType}ㅣ${companyList.area}</small>
+    <p class="mb-1">${company.announceTitle}</p>
+    <small>${company.career}ㅣ${company.academicBackground}ㅣ${company.workType}ㅣ${company.area}</small>
   </a>
 </c:forEach>
 

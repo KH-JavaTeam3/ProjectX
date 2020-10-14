@@ -10,6 +10,7 @@ public class RecruitListVO {
 	private String uptoHiredate;
 	private int hireNum;
 	private String comNum;
+	private String comName;
 	private String jobtype;
 	private String worktime;
 	private String workType;
@@ -23,6 +24,13 @@ public class RecruitListVO {
 	private String area;
 	
 	
+	
+	public String getComName() {
+		return comName;
+	}
+	public void setComName(String comName) {
+		this.comName = comName;
+	}
 	public String getCareer() {
 		return career;
 	}
@@ -135,10 +143,12 @@ public class RecruitListVO {
 	public String toString() {
 		return "RecruitListVO [announceNum=" + announceNum + ", announceTitle=" + announceTitle + ", announceContent="
 				+ announceContent + ", writeDate=" + writeDate + ", uptoHiredate=" + uptoHiredate + ", hireNum="
-				+ hireNum + ", comNum=" + comNum + ", jobtype=" + jobtype + ", worktime=" + worktime + ", workType="
-				+ workType + ", anniSal=" + anniSal + ", qualification=" + qualification + ", hireCondition="
-				+ hireCondition + ", registImage=" + registImage + ", benefit=" + benefit + ", career=" + career
-				+ ", academicBackground=" + academicBackground + ", area=" + area + "]";
+				+ hireNum + ", comNum=" + comNum + ", comName=" + comName + ", jobtype=" + jobtype + ", worktime="
+				+ worktime + ", workType=" + workType + ", anniSal=" + anniSal + ", qualification=" + qualification
+				+ ", hireCondition=" + hireCondition + ", registImage=" + registImage + ", benefit=" + benefit
+				+ ", career=" + career + ", academicBackground=" + academicBackground + ", area=" + area + "]";
 	}
+	
+	
 	
 }

@@ -47,37 +47,110 @@
 		<result column="TODAY_DATE"         	  property="todayDate"/> 
 	</resultMap>
 	
-
-<!-- 관리자 공지사항 입력 -->
-<!-- 	<insert id="insertNotice"> -->
-<!-- 		INSERT INTO NOTICE_TABLE( -->
-<!-- 			BOARD_NUMBER -->
-<!-- 			,BOARD_TITLE -->
-<!-- 			,BOARD_CONTENT -->
-			
-<!-- 			) VALUES ( -->
-<!-- 			 (SELECT (NVL(MAX(BOARD_NUMBER)+1, 1)) FROM NOTICE_TABLE) -->
-<!-- 			,#{boardTitle} -->
-<!-- 			,#{boardContent} -->
-			
-<!-- 			) -->
-<!-- 	</insert> -->
-	<!-- 관리자 게시글 조회 -->
-<!-- 	<select id="selectNotice" resultMap="adminNotice">  -->
-<!-- 		SELECT BOARD_NUMBER  -->
-<!-- 			,BOARD_TITLE -->
-<!-- 			,BOARD_CONTENT -->
-<!-- 			,TODAY_DATE -->
-<!-- 		FROM NOTICE_TABLE -->
-<!-- 	</select> -->
-	<!-- 관리자 게시글 상세보기 -->
-<!-- 	<select id="selectDetailNotice" resultMap="adminNotice">  -->
-<!-- 		SELECT BOARD_TITLE -->
-<!-- 			,BOARD_CONTENT -->
-<!-- 		FROM NOTICE_TABLE -->
-<!-- 		WHERE BOARD_NUMBER=#{boardNumber} -->
-<!-- 	</select> -->
-
+	<resultMap type="com.spring.biz.vo.MemResumeVO" id="memResume">
+		<result column="RESUME_NUM"            property="resumeNum"/> 
+		<result column="RESUME_NAME"      	    property="resumeName"/> 
+		<result column="RESUME_DATE"        	property="resumeDate"/> 
+		<result column="EDU_GRADE"         	  	property="eduGrade"/> 
+		<result column="EDU_SCHOOL"         	property="eduSchool"/> 
+		<result column="EDU_LOC"         	 	property="eduLoc"/> 
+		<result column="EDU_TYPE"         	  	property="eduType"/> 
+		<result column="EDU_MAJOR"         	  	property="eduMajor"/> 
+		<result column="EDU_BEGIN_DATE"        property="eduBeginDate"/> 
+		<result column="EDU_END_DATE"         	property="eduEndDate"/> 
+		<result column="EDU_IS_OVER"         	property="eduIsOver"/> 
+		<result column="BE_COMPANY"         	property="beCompany"/> 
+		<result column="BE_CAREER"         	  	property="beCareer"/> 
+		<result column="BE_TYPE"         	  	property="beType"/> 
+		<result column="BE_POSITION"         	property="bePosition"/> 
+		<result column="MEM_EMAIL"         	  	property="memEmail"/> 
+		<result column="HOPE_TYPE"         	  	property="hopeType"/> 
+		<result column="HOPE_SAL"         	  	property="hopeSal"/> 
+		<result column="HOPE_LOC"         	  	property="hopeLoc"/> 
+		<result column="HOPE_TIME"         	  	property="hopeTime"/> 
+	</resultMap>
+	
+	<!-- 이력서 insert -->
+	<!-- <insert id="insertResume">
+		INSERT INTO MEM_RESUME (
+			RESUME_NUM
+			, RESUME_NAME
+			, EDU_GRADE
+			, EDU_SCHOOL
+			, EDU_LOC
+			, EDU_TYPE
+			, EDU_MAJOR
+			, EDU_BEGIN_DATE
+			, EDU_END_DATE
+			, EDU_IS_OVER
+			, EDU_SCORE
+			, BE_COMPANY
+			, BE_CAREER
+			, BE_TYPE
+			, BE_POSITION
+			, HOPE_TYPE
+			, HOPE_SAL
+			, HOPE_LOC
+			, HOPE_TIME
+		) VALUES (
+			(SELECT NVL(MAX(RESUME_NUM) + 1 , 1) FROM MEM_RESUME)
+			, #{resumeName}
+			, #{eduGrade}
+			, #{eduSchool}
+			, #{eduLoc}
+			, #{eduType}
+			, #{eduMajor}
+			, #{eduBeginDate}
+			, #{eduEndDate}
+			, #{eduIsOver}
+			, #{eduScore}
+			, #{beCompany}
+			, #{beCareer}
+			, #{beType}
+			, #{bePosition}
+			, #{hopeType}
+			, #{hopeSal}
+			, #{hopeLoc}
+			, #{hopeTime}
+		)
+	</insert>
+	
+	<insert id="insertLicense">
+		INSERT ALL
+		<foreach collection="licenseList" item="license" index="index">
+			INTO LICENSE (
+				LIC_NUM
+				, LIC_NAME
+				, LIC_LOC
+				, LIC_GRADE
+				, LIC_DATE
+			) VALUES (
+				(SELECT NVL(MAX(LIC_NUM)+1,1) + #{index} FROM LICENSE)
+			 	, #{license.licName}
+			 	, #{license.licLoc}
+			 	, #{license.licGrade}
+			 	, #{license.licDate}
+			)
+		</foreach>
+		SELECT * FROM DUAL
+	</insert>
+	
+	<insert id="insertProfiles">
+		INSERT ALL
+		<foreach collection="profilesList" item="pro" index="index">
+			INTO PROFILES (
+				PRO_NUM
+				, PRO_TITLE
+				, PRO_CONTENT
+			) VALUES (
+				(SELECT NVL(MAX(PRO_NUM)+1,1) + #{index} FROM PROFILES)
+			 	, #{pro.proTitle}
+			 	, #{pro.proContent}
+			)
+		</foreach>
+		SELECT * FROM DUAL
+	</insert>
+ -->
 
 
 </mapper>

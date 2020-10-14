@@ -1,15 +1,17 @@
-$(document).ready( () => {
+$(document).ready(function(){
 	
 	//기업목록 소환
 	$(document).on('click', '#companyListBtn', () => {
-		$('#memberList').remove();
+		$('#listDiv').empty();
+		$('#detail').empty();
 		$('#companyDetail').remove();
 		$('#memberDetail').remove();
 		companyListAjax();
 	});
 	//개인목록 소환
 	$(document).on('click', '#memberListBtn', () => {
-		$('#memberList').remove();
+		$('#listDiv').empty();
+		$('#detail').empty();
 		$('#companyDetail').remove();
 		$('#memberDetail').remove();
 		memberListAjax();
@@ -181,7 +183,7 @@ $(document).ready( () => {
 							</tr>
 							<tr>
 								<th scope="col">생년월일 : </th>
-								<td>${result.memBirth}</td>
+								<td>${result.memBirthYear} 년 ${result.memBirthMonth} 월 ${result.memBirthDay} 일 </td>
 							</tr>
 							<tr>
 								<th scope="col">연락처 1 : </th>

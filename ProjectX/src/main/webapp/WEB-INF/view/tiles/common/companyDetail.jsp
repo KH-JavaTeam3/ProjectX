@@ -60,14 +60,15 @@ input[type="number"]::-webkit-inner-spin-button {
 </style>
 </head>
 <body>
-<form action="registHumanSeekerUpdate.co" method="post">
+
 <input type="hidden" value="${sessionScope.comLogin.comNum }" name="comNum">
 <input type="hidden" value="${recruitDeteil.announceNum }" name="announceNum">
-<div class="row" align="center" style="padding-top: 50px;">
+<div class="row col-md-12" style="border: 5px solid #ABC2E8; border-radius: 10px;" >
+<div class="row" align="center" style="padding-top: 50px; margin-left: 0px; width: 100%">
 		<div class="col-md-3" style="text-align: center;">
 			<div class="input-group flex-nowrap">
 			  <div class="input-group-prepend">
-			    <span class="input-group-text" id="addon-wrapping">제목</span>
+			    <span class="input-group-text" id="addon-wrapping" style="background-color:#ABC2E8;">제목</span>
 			  </div>
  				<input type="text" name="announceTitle" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="addon-wrapping" value="${recruitDeteil.announceTitle }">
 			</div>
@@ -75,7 +76,7 @@ input[type="number"]::-webkit-inner-spin-button {
 		<div class="col-md-3">
 			<div class="input-group flex-nowrap">
 			  <div class="input-group-prepend">
-			    <span class="input-group-text" id="addon-wrapping">고용형태</span>
+			    <span class="input-group-text" id="addon-wrapping"style="background-color:#ABC2E8;">고용형태</span>
 			  </div>
  				<input type="text" name="workType" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="addon-wrapping" value="${recruitDeteil.workType }">
 			</div>
@@ -83,7 +84,7 @@ input[type="number"]::-webkit-inner-spin-button {
 		<div class="col-md-3">
 			<div class="input-group flex-nowrap">
 			  <div class="input-group-prepend">
-			    <span class="input-group-text" id="addon-wrapping">모집기간</span>
+			    <span class="input-group-text" id="addon-wrapping"style="background-color:#ABC2E8;">모집기간</span>
 			  </div>
  				<input type="date" name="uptoHiredate" style="border: 1px solid lightgray; width: 266px;"value="${recruitDeteil.uptoHiredate }">
 			</div>
@@ -91,19 +92,20 @@ input[type="number"]::-webkit-inner-spin-button {
 		<div class="col-md-3">
 			<div class="input-group flex-nowrap">
 			  <div class="input-group-prepend">
-			    <span class="input-group-text" id="addon-wrapping">구인직종</span>
+			    <span class="input-group-text" id="addon-wrapping"style="background-color:#ABC2E8;">구인직종</span>
 			  </div>
  				<input type="text" name="jobtype" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="addon-wrapping" value="${recruitDeteil.jobtype }">
 			</div>
 		</div>
+		</div>
 		<div class="col-md-12" style="margin-bottom: 20px; margin-top: 20px;">
 			<table id="recruit" style="text-align: center; width: 100%;">
 				<tr>
-					<td>근무형태</td>
-					<td>연봉</td>
-					<td>모집인원</td>
-					<td>지원자격</td>
-					<td>우대사항</td>
+					<td style="background-color:#ABC2E8">근무형태</td>
+					<td style="background-color:#ABC2E8">연봉</td>
+					<td style="background-color:#ABC2E8">모집인원</td>
+					<td style="background-color:#ABC2E8">지원자격</td>
+					<td style="background-color:#ABC2E8">우대사항</td>
 				</tr>
 				<tr>
 					<td>
@@ -120,9 +122,9 @@ input[type="number"]::-webkit-inner-spin-button {
 			<div class="col-md-12" style="margin-bottom: 20px; margin-top: 20px;">
 			<table style="width: 100%;"> 
 				<tr>
-					<td align="center">학력</td>
-					<td align="center">경력</td>
-					<td align="center">지역</td>
+					<td align="center" style="background-color:#ABC2E8">학력</td>
+					<td align="center" style="background-color:#ABC2E8">경력</td>
+					<td align="center" style="background-color:#ABC2E8">지역</td>
 				</tr>
 				<tr>
 					<td>
@@ -176,7 +178,7 @@ input[type="number"]::-webkit-inner-spin-button {
 			<div class="col-md-12">
 			<table style="width: 100%;">
 				<tr>
-					<td align="center">내용</td>
+					<td align="center" style="background-color:#ABC2E8">내용</td>
 				</tr>
 				<tr>
 					<td align="center">
@@ -185,12 +187,10 @@ input[type="number"]::-webkit-inner-spin-button {
 				</tr>
 			</table>
 			<br>
-			<div align="right">
-			<button type="submit" class="submitBut">수정</button> <button  class="submitBut2" onclick="history.back();">취소</button>
-			</div>
+			
 			</div>
 		</div>
-</form>
+
 
 <script type="text/javascript">
 $(document).on('change', '#validatedCustomFile', function() {

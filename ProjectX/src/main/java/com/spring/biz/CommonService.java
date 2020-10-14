@@ -10,6 +10,9 @@ import com.spring.biz.vo.RecruitListVO;
 public interface CommonService {
 	// 개인 회원가입
 	int insertMemInfo(MemInfoVO memInfoVO);
+	
+	// 개인 회원가입 이메일 중복체크
+	String selectEmailChk(String memEmail);
 
 	// 구직자로그인
 	MemInfoVO memberLogin(MemInfoVO memInfoVO);
@@ -34,7 +37,9 @@ public interface CommonService {
 
 	List<RecruitListVO> selectRecruitList();
 	
-	RecruitListVO selectDetailRecruitList(int announceNum);
+	RecruitListVO selectDetailRecruit(RecruitListVO recruitListVO);
+	
+	
 //	// 기업리스트 페이징처리
 //	public int countBoard();
 //

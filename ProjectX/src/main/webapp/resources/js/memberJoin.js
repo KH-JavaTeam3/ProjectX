@@ -6,9 +6,98 @@ $(document).ready(function(){
 
 	//});
 	
-	initValidate();
+//	initValidate();
 	
+	//이메일 체크
+	$(document).on('click', '#emailChk', function(){
+		let memEmail = $('#memEmail').val();
+		if(memEmail != "" && memEmail != null){
+			emailChkAjax(memEmail);
+		}else{
+			alert('아이디를 입력해주세요');
+		}
+	});
+	
+	//나와라 주소 얍
+	$(document).on('click', '#findAddr', function(){
+		new daum.Postcode({
+			oncomplete : function(data) {
+				// 					jQuery("#postcode1").val(data.postcode1);
+				// 					jQuery("#postcode2").val(data.postcode2);
+				// 					jQuery("#zonecode").val(data.zonecode);
+				jQuery("#address").val(data.address);
+				jQuery("#address").focus();
+			}
+		}).open();
+	});
 });
+
+
+
+
+
+
+
+function emailChkAjax(memEmail){
+	$.ajax({
+		url: 'emailChkAjax.do', //요청경로
+		type: 'post',
+		data: {'memEmail' : memEmail},
+		//요청경로로 던질 파라메터. '파라메터명':파라메터
+		success: function(result) { // ajax 통신 성공 시 실행부분. result가 결과 데이터를 가진다.
+			
+			if(result != "" && result != null){
+				alert('중복된 아이디입니다.');
+			}else{
+				alert('사용하실 수 있는 아이디입니다.');
+			}
+		},
+		error: function(){ //ajax통신 실패 시 실행부분
+			alert('실패');
+		}
+	});
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 /* 함수선언 영역*/
 (function($){

@@ -6,9 +6,7 @@ public class MemInfoVO {
 	private String memName;  
 	private String memAge;     
 	private String memGender;  
-	private int memBirthYear;
-	private int memBirthMonth;
-	private int memBirthDay;
+	private String memBirth;
 	private String memTel1;  
 	private String memTel2;    
 	private String memAddr;    
@@ -46,24 +44,7 @@ public class MemInfoVO {
 	public void setMemGender(String memGender) {
 		this.memGender = memGender;
 	}
-	public int getMemBirthYear() {
-		return memBirthYear;
-	}
-	public void setMemBirthYear(int memBirthYear) {
-		this.memBirthYear = memBirthYear;
-	}
-	public int getMemBirthMonth() {
-		return memBirthMonth;
-	}
-	public void setMemBirthMonth(int memBirthMonth) {
-		this.memBirthMonth = memBirthMonth;
-	}
-	public int getMemBirthDay() {
-		return memBirthDay;
-	}
-	public void setMemBirthDay(int memBirthDay) {
-		this.memBirthDay = memBirthDay;
-	}
+	
 	public String getMemTel1() {
 		return memTel1;
 	}
@@ -106,12 +87,18 @@ public class MemInfoVO {
 	public void setMemImage(String memImage) {
 		this.memImage = memImage;
 	}
+	public String getMemBirth() {
+		return memBirth;
+	}
+	public void setMemBirth(String memBirth) {
+		this.memBirth = memBirth;
+	}
 	@Override
 	public String toString() {
 		return "MemInfoVO [memEmail=" + memEmail + ", memPass=" + memPass + ", memName=" + memName + ", memAge="
-				+ memAge + ", memGender=" + memGender + ", memBirthYear=" + memBirthYear + ", memBirthMonth="
-				+ memBirthMonth + ", memBirthDay=" + memBirthDay + ", memTel1=" + memTel1 + ", memTel2=" + memTel2
-				+ ", memAddr=" + memAddr + ", delYn=" + delYn + ", memJoinDate=" + memJoinDate + ", isAdmin=" + isAdmin
-				+ ", memImage=" + memImage + "]";
-	}   
+				+ memAge + ", memGender=" + memGender + ", memBirth=" + memBirth + ", memTel1=" + memTel1 + ", memTel2="
+				+ memTel2 + ", memAddr=" + memAddr + ", delYn=" + delYn + ", memJoinDate=" + memJoinDate + ", isAdmin="
+				+ isAdmin + ", memImage=" + memImage + "]";
+	}
+	
 }

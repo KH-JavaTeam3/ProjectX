@@ -54,6 +54,7 @@ label.error {
 			<tiles:insertAttribute name="menu" />
 		</header>
 		<div class="myContainer">
+			<tiles:insertAttribute name="submenu"/>
 			<tiles:insertAttribute name="body" />
 		</div>
 <!-- 		<footer> -->

@@ -16,7 +16,12 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.spring.biz.MemberService;
+import com.spring.biz.vo.LicenseVO;
 import com.spring.biz.vo.MemInfoVO;
+import com.spring.biz.vo.MultiLicenseVO;
+import com.spring.biz.vo.MultiProfilesVO;
+import com.spring.biz.vo.ProfilesVO;
+import com.spring.biz.vo.MemResumeVO;
 
 
 
@@ -27,7 +32,7 @@ public class MemberController {
 	// *.me쓰셈
 	//경로는 tiles/member/파일명
 	//jsp는 tiles/member폴더안에 생성
-	
+	//첨부파일: 외부경로(D드라이브)에 저장(server.xml에서도 설정해줘야함- 조장컴퓨터의 D드라이브에 저장됨)
 	
 	//개인 마이페이지 화면 이동
 		@RequestMapping(value = "/memberMypage.me")
@@ -37,34 +42,35 @@ public class MemberController {
 		
 		//이력서 작성페이지로 이동
 		@RequestMapping(value = "/writeResume.me")
-		public String writeResume() {
+		public String writeResume(HttpSession session, Model model) {
+			
 			return "tiles/member/writeResume";
-		}
-		
-		//이력서 모음페이지로 이동
-		@RequestMapping(value = "/resumeCollection.me")
-		public String resumeCollection() {
-			return "tiles/member/resumeCollection";
 		}
 		
 		//이력서 등록하기 
 		@RequestMapping(value = "/regResume.me")
-		public String regResume(MultipartHttpServletRequest multi, Model model) throws Exception {
+		public String regResume(MultiLicenseVO multiLicenseVO, MultiProfilesVO multiProfilesVO, MemResumeVO memResumeVO) {
+			//MemInfoVO memInfoVO, , , 
+//			System.out.println(memInfoVO);
+			System.out.println("------------------------------------");
+			System.out.println(memResumeVO);
+//			System.out.println("-----------------------------------");
+			System.out.println(multiLicenseVO);
+			System.out.println("------------------------------------");
+			System.out.println(multiProfilesVO);
 			
-			//학력사항의 재학기간(4년 기준)
-			//입학기간에 들어갈 날짜
 			
-			//첨부파일
-			List<String> attachedFileNames = attachFile(multi);
-			
-			//사진 ID 값 지정
-//			int goodsId = shopService.getMaxId();
+//			//첨부파일
+//			List<String> attachedFileNames = attachFile(multi);
+//			
+//			//사진 ID 값 지정
+//			int goodsId = .getMaxId();
 //			goodsVO.setGoodsId(goodsId);
-			
-//			//--SHOPPING_IMAGE 테이블에 INSERT하기 위한 파라미터 설정--
-//			//1. 모든 파라메터를 전달하기 위한 리스트 생성
+//			
+////			//--SHOPPING_IMAGE 테이블에 INSERT하기 위한 파라미터 설정--
+////			//1. 모든 파라메터를 전달하기 위한 리스트 생성
 //				List<ImageVO> imageList = new ArrayList<>();
-//			//2. 첨부파일의 개수만큼 VO를 만들어 데이터를 하나씩 쌓기
+////			//2. 첨부파일의 개수만큼 VO를 만들어 데이터를 하나씩 쌓기
 //			for (int i = 0; i < attachedFileNames.size(); i++) {
 //				ImageVO vo = new ImageVO();
 //				String imageId = "IMG" + getNowDateTime() + (i + 1);
@@ -75,17 +81,28 @@ public class MemberController {
 //				
 //				imageList.add(vo);
 //			}	
-//			
+////			
 //			imageVO.setImageList(imageList);
-//			
-//			// 데이터가 빈 값 다 채워줬으면 쿼리 2개 실행
+////			
+////			// 데이터가 빈 값 다 채워줬으면 쿼리 2개 실행
 //			shopService.insertGoods(goodsVO, imageVO);
-//			
-//			//페이지 정보를 보내줌
+////			
+////			//페이지 정보를 보내줌
 //			model.addAttribute("mainMenu", "admin");
 //			model.addAttribute("adminSideMenu", "insertItem");
-//			
-			return "redirect: resumeCollection.me";
+			
+			
+			//이력서 등록
+//			memberService.insertResume(memResumeVO);
+			
+			return "redirect:resumeCollection.me";
+		}
+		
+		//이력서 모음페이지로 이동
+		@RequestMapping(value = "/resumeCollection.me")
+		public String resumeCollection() {
+			
+			return "tiles/member/resumeCollection";
 		}
 		
 		//개인 정보수정 폼 화면
@@ -152,33 +169,33 @@ public class MemberController {
 							}
 						}
 						
-//						//다중첨부
-//						else if (fileName.equals("file2")) {
-//							List<MultipartFile> mfList = multi.getFiles(fileName);
-//							String realName = "";
-//							
-//							for(MultipartFile mf : mfList){
-//								originFileName = mf.getOriginalFilename();
-//								realName = nowDate + "_" + originFileName;
-//								
-//								File file = new File("");
-//								
-//								//파일첨부가 0의 용량이 아닐 때
-//								if (mf.getSize() != 0) {
-//									if (!file.exists()) {
-//										file.mkdirs();	//모르는 경로가 2개 이상이라 여러 개 경로를 만들어야하는 경우
-//										//file.mkdir();	//mkdir = makeDirectory : 경로를 만들어줘(만들어야하는 경로가 1개인 경우)	
-//									}
-//									
-//									//실제 업로드가 되면 해당하는 경로에 첨부파일 업로드(업로드 되는 시간시분초_사진이름: 이미지 중복 등록 가능)
-//									mf.transferTo(new File("D:\\uploadFile\\bookStore\\" + realName));//현재의 시분초가 담긴 데이터를 사용
-//									
-//									//실제 업로드 되면 파일 이름을 실제 이름으로 넣기
-//									fileList.add(realName);
-//								}
-//							}
-//							
-//						}
+						//다중첨부
+						else if (fileName.equals("file2")) {
+							List<MultipartFile> mfList = multi.getFiles(fileName);
+							String realName = "";
+							
+							for(MultipartFile mf : mfList){
+								originFileName = mf.getOriginalFilename();
+								realName = nowDate + "_" + originFileName;
+								
+								File file = new File("");
+								
+								//파일첨부가 0의 용량이 아닐 때
+								if (mf.getSize() != 0) {
+									if (!file.exists()) {
+										file.mkdirs();	//모르는 경로가 2개 이상이라 여러 개 경로를 만들어야하는 경우
+										//file.mkdir();	//mkdir = makeDirectory : 경로를 만들어줘(만들어야하는 경로가 1개인 경우)	
+									}
+									
+									//실제 업로드가 되면 해당하는 경로에 첨부파일 업로드(업로드 되는 시간시분초_사진이름: 이미지 중복 등록 가능)
+									mf.transferTo(new File("D:\\uploadFile\\bookStore\\" + realName));//현재의 시분초가 담긴 데이터를 사용
+									
+									//실제 업로드 되면 파일 이름을 실제 이름으로 넣기
+									fileList.add(realName);
+								}
+							}
+							
+						}
 					}
 					return fileList;
 				}

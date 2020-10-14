@@ -5,6 +5,7 @@ import java.util.List;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.ui.Model;
 
 import com.spring.biz.vo.AdminNoticeVO;
 import com.spring.biz.vo.CompanyInfoVO;
@@ -20,7 +21,10 @@ public class CommonServiceImpl implements CommonService{
 	public int insertMemInfo(MemInfoVO memInfoVO) {
 		return sqlSession.insert("insertMemInfo", memInfoVO);
 	}
-
+	@Override
+	public String selectEmailChk(String memEmail) {
+		return sqlSession.selectOne("selectEmailChk", memEmail);
+	}
 	@Override
 	public MemInfoVO memberLogin(MemInfoVO memInfoVO) {
 		return sqlSession.selectOne("memberLogin", memInfoVO);
@@ -65,10 +69,12 @@ public class CommonServiceImpl implements CommonService{
 	}
 
 	@Override
-	public RecruitListVO selectDetailRecruitList(int announceNum) {
+	public RecruitListVO selectDetailRecruit(RecruitListVO recruitListVO) {
 		
-		return sqlSession.selectOne("selectDetailRecruitList",announceNum);
+		return sqlSession.selectOne("selectDetailRecruit",recruitListVO);
 	}
+
+	
 
 	
 

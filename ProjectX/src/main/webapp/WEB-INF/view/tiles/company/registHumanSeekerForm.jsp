@@ -60,9 +60,11 @@ input[type="number"]::-webkit-inner-spin-button {
 </style>
 </head>
 <body>
+<div style="height: 50px;" ></div>
 <form action="registHumanSeeker.co" method="post">
+<div class="row col-md-12" style="border: 5px solid #ABC2E8; border-radius: 10px;">
 <input type="hidden" value="${sessionScope.comLogin.comNum }" name="comNum">
-<div class="row" align="center" style="padding-top: 50px;">
+<div class="row" align="center" style="padding-top: 50px; margin-left: 0px; width: 100%;">
 		<div class="col-md-3" style="text-align: center;">
 			<div class="input-group flex-nowrap">
 			  <div class="input-group-prepend">
@@ -94,6 +96,7 @@ input[type="number"]::-webkit-inner-spin-button {
 			  </div>
  				<input type="text" name="jobtype" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="addon-wrapping">
 			</div>
+		</div>
 		</div>
 		<div class="col-md-12" style="margin-bottom: 20px; margin-top: 20px;">
 			<table id="recruit" style="text-align: center; width: 100%;">
@@ -127,7 +130,7 @@ input[type="number"]::-webkit-inner-spin-button {
 					<td>
 						<select class="custom-select" id="inputGroupSelect01" name="career">
 						    <option selected>Choose...</option>
-						    <option value="고절">고졸</option>
+						    <option value="고졸">고졸</option>
 						    <option value="대졸(2,3년제)">대졸(2,3년제)</option>
 						    <option value="대졸(4 년제)">대졸(4 년제)</option>
 						</select>
@@ -184,8 +187,9 @@ input[type="number"]::-webkit-inner-spin-button {
 				</tr>
 			</table>
 			<br>
-			<div align="right">
+			<div align="right" style="margin: 5px;">
 			<button type="submit" class="submitBut">작성</button> <button  class="submitBut2" onclick="history.back();">취소</button>
+			<br>
 			</div>
 			</div>
 		</div>

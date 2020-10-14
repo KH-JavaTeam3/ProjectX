@@ -8,7 +8,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<div class="container-fluid" style="margin-top: 100px;">
+	<div class="container-fluid" style="margin-top: 100px; border: 5px solid #ABC2E8; border-radius: 10px; height: 450px;">
 		<div class="row">
 			<div class="col-md-3">
 				<div class="list-group" id="adminSide">
@@ -16,28 +16,12 @@
 						기업목록</button> 
 					<button class="list-group-item list-group-item-action" id="memberListBtn">
 						개인목록</button> 
-						
 				</div>
 			</div>
 			<div class="col-md-3" id="listDiv">
-				
-			
-			
-			
-			
-			
 			</div>
-			<div class="col-md-3" id="detailDiv">
-			
-			
-			
-			
-			
-			
+			<div class="col-md-5" id="detailDiv">
 			</div>
-
-
-
 		</div>
 	</div>
 
@@ -45,7 +29,7 @@
 
 
 
-<script src="resources/js/adminPage.js?ver=4"></script>
+<script src="resources/js/adminPage.js?ver=3"></script>
 </body>
 
 </html>

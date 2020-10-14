@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -50,7 +49,11 @@ label.error {
 		<h1>개인 회원가입</h1>
 		<form action="initMemberJoin.do" method="post" id="loginForm">
 			<div class="form-group">
-				<label for="memEmail">이메일(아이디)</label> <input type="email"
+				<label for="memEmail">이메일(아이디)</label> 
+				<input type="button"
+					class="btn btn-primary"
+					value="중복확인" id="emailChk">
+				<input type="email"
 					class="form-control" id="memEmail" name="memEmail">
 			</div>
 			<div class="form-group">
@@ -71,23 +74,7 @@ label.error {
 			</div>
 			<div class="form-group">
 				<label class="col-md-3 control-label" style="padding-left: 0px;">생년월일</label>
-				<div class="row" style="margin-left: 70px;">
-					<div class="col-md-3">
-						<label class="sr-only">memBirthYear</label> <input
-							type="number" class="form-control" 
-							name="memBirthYear" placeholder="Year">
-					</div>
-					<div class="col-md-3">
-						<label class="sr-only">memBirthMonth</label> <input
-							type="number" class="form-control" 
-							name="memBirthMonth" placeholder="Month">
-					</div>
-					<div class="col-md-3">
-						<label class="sr-only">memBirthDay</label> <input
-							type="number" class="form-control" 
-							name="memBirthDay" placeholder="Day">
-					</div>
-				</div>
+				<input type="date" class="form-control"  name="memBirth">
 			</div>
 			<div class="form-group">
 				<label>성별</label><br>
@@ -107,8 +94,8 @@ label.error {
 					class="form-control" id="memTel1" name="memTel1">
 			</div>
 			<div class="form-group">
-				<label for="zonecode">주소</label> <input type="button"
-					class="btn btn-primary offset-md-9" onclick="openDaumZipAddress();"
+				<label>주소</label> <input type="button"
+					class="btn btn-primary offset-md-9" id="findAddr"
 					value="주소찾기"> <input type="text" class="form-control"
 					id="address" name="memAddr" style="width: 99%;">
 			</div>
@@ -118,23 +105,8 @@ label.error {
 			<button type="submit" class="btn btn-primary">회원가입</button>
 		</form>
 	</div>
-	<script type="text/JavaScript"
-		src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
-	<script type="text/javascript">
-		function openDaumZipAddress() {
-			new daum.Postcode({
-				oncomplete : function(data) {
-					// 					jQuery("#postcode1").val(data.postcode1);
-					// 					jQuery("#postcode2").val(data.postcode2);
-					// 					jQuery("#zonecode").val(data.zonecode);
-					jQuery("#address").val(data.address);
-					jQuery("#address").focus();
-					console.log(data);
-				}
-			}).open();
-		}
-	</script>
-
+<script type="text/JavaScript" src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
+<script src="resources/js/memberJoin.js?ver=4"></script>
 
 
 
@@ -219,6 +191,6 @@ label.error {
 	<!-- //   }, false); -->
 	<!-- // })(); -->
 	<!-- </script> -->
-	<!-- <script src="resources/js/memberJoin.js?ver=4"></script> -->
+	
 </body>
 </html>
