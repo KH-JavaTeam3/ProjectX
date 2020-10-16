@@ -33,23 +33,20 @@ input[type="button"] {
     <a class="nav-link" href="comMypage.co">홈</a>
   </li>
   <li class="nav-item" role="presentation">
-    <a class="nav-link" href="editMyInfo.me">사업자 정보 수정</a>
+    <a class="nav-link" href="myComUpdateForm.co">사업자 정보 수정</a>
   </li>
   <li class="nav-item" role="presentation">
-    <a class="nav-link" href="#" >공고 조회</a>
-  </li>
-  <li class="nav-item" role="presentation">
-    <a class="nav-link" href="recruitDeleteList.co">공고 삭제</a>
+    <a class="nav-link" href="recruitDeleteList.co">공고 삭제 및 수정</a>
   </li>
 </ul>
 </div>
 
-<form action="myComUpdate.co" method="post">
+<form action="myComUpdate.co" method="post" enctype="multipart/form-data">
 <input type="hidden" name="comNum" value="${sessionScope.comLogin.comNum }">
 <div style="height: 50px;"></div>
 <span style="font-weight: bold; font-size: 24px;">정보 수정</span>
    <div style="height: 20px;"></div>
-   <div class="row col-md-12" style="border: 5px solid #ABC2E8; border-radius: 10px; height: 400px;">
+   <div class="row col-md-12" style="border: 5px solid #ABC2E8; border-radius: 10px;">
       <div class="col-md-12" style="margin: 0px; padding: 0px;">
          <div class="form-row">
             <div class="form-group col-md-6" style="padding: 30px 50px 0px 30px;">
@@ -77,6 +74,12 @@ input[type="button"] {
                <label for="comTel">연락처</label>
                <input type="text" class="form-control" id="comTel" name=comTel value="${sessionScope.comLogin.comTel}">
             </div>
+            <div class="col-md-12">
+				<div class="custom-file mb-3" >
+				    <input type="file" class="custom-file-input" id="validatedCustomFile" name="file1" required>
+				    <label class="custom-file-label" for="validatedCustomFile" id="registImage">${sessionScope.comLogin.comImage }</label>
+		     	</div>
+			</div>
          </div>
       </div>
    </div>
@@ -103,6 +106,10 @@ input[type="button"] {
          }
       }).open();
    }
+$(document).on('change', '#validatedCustomFile', function() {
+	var image = $('#validatedCustomFile').val();
+	$('#registImage').text(image);
+});
 </script> 
 </form>
 </body>

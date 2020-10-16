@@ -66,6 +66,21 @@
 		<result column="HOPE_SAL"         	  	property="hopeSal"/> 
 		<result column="HOPE_LOC"         	  	property="hopeLoc"/> 
 		<result column="HOPE_TIME"         	  	property="hopeTime"/> 
+		<result column="MEM_EMAIL"				property="memEmail"/>
+	</resultMap>
+	
+	<resultMap type="com.spring.biz.vo.LicenseVO" id="license">
+		<result column="LIC_NUM"		property="licNum"/>
+		<result column="LIC_NAME"		property="licName"/>
+		<result column="LIC_LOC"		property="licLoc"/>
+		<result column="LIC_GRADE"		property="licGrade"/>
+		<result column="LIC_DATE"		property="licDate"/>
+	</resultMap>
+	
+	<resultMap type="com.spring.biz.vo.ProfilesVO" id="profiles">
+		<result column="PRO_NUM"		property="proNum"/>
+		<result column="PRO_TITLE"		property="proTitle"/>
+		<result column="PRO_CONTENT"	property="proContent"/>
 	</resultMap>
 	
 	<!-- 이력서 insert -->
@@ -159,11 +174,12 @@
 		UPDATE MEM_INFO
 		SET MEM_NAME = #{memName}
 			, MEM_PASS = #{memPass}
-			, MEM_BIRTH = #{memBirth}
-			, MEM_AGE = #{memAge}
 			, MEM_TEL1 = #{memTel1}
 			, MEM_TEL2 = #{memTel2}
 			, MEM_ADDR = #{memAddr}
+			<if test="memImage != null">
+			, MEM_IMAGE = #{memImage}
+			</if>
 		WHERE MEM_EMAIL = #{memEmail}
 	</update>
 	
@@ -177,8 +193,66 @@
 			, MEM_TEL2
 			, MEM_ADDR
 			, IS_ADMIN
+			, MEM_IMAGE
 		FROM MEM_INFO
 		WHERE MEM_EMAIL = #{memEmail}
 	</select>
-
+	
+	<select id="selectResumeList" resultMap="memResume">
+		SELECT RESUME_NUM
+			, RESUME_NAME
+		FROM MEM_RESUME
+		WHERE MEM_EMAIL = #{memEmail}
+	</select>
+	
+	<select id="selectResumeDetail" resultMap="memResume">
+		SELECT
+			RESUME_NUM
+			, RESUME_NAME
+			, RESUME_DATE
+			, EDU_GRADE
+			, EDU_SCHOOL
+			, EDU_LOC
+			, EDU_TYPE
+			, EDU_MAJOR
+			, EDU_BEGIN_DATE
+			, EDU_END_DATE
+			, EDU_IS_OVER
+			, EDU_SCORE
+			, BE_COMPANY
+			, BE_CAREER
+			, BE_TYPE
+			, BE_POSITION
+			, HOPE_TYPE
+			, HOPE_SAL
+			, HOPE_LOC
+			, HOPE_TIME
+		FROM MEM_RESUME
+		WHERE RESUME_NUM = #{resumeNum}
+	</select>
+	
+	<select id="selectLicenseList" resultMap="license">
+		SELECT
+			LIC_NUM
+			, LIC_NAME
+			, LIC_LOC
+			, LIC_GRADE
+			, LIC_DATE
+		FROM LICENSE
+		WHERE RESUME_NUM = #{resumeNum}
+	</select>
+	
+	<select id="selectProfilesList" resultMap="profiles">
+		SELECT
+			PRO_NUM
+			, PRO_TITLE
+			, PRO_CONTENT
+		FROM PROFILES
+		WHERE RESUME_NUM = #{resumeNum}
+	</select>
+	
+	
+	
+	
+	
 </mapper>

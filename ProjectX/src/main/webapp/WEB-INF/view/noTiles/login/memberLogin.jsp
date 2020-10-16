@@ -42,8 +42,8 @@
 						class="form-control" id="memPass" name="memPass">
 				</div>
 				<br>
-				<button type="submit" class="btn btn-primary"
-					style="width: 200px; height: 40px;">Submit</button>
+				<input type="submit" class="btn btn-primary"
+					style="width: 200px; height: 40px;" value="Submit">
 			</form>
 		</div>
 	</div>

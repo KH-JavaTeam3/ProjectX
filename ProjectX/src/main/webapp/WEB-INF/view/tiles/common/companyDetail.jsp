@@ -64,13 +64,14 @@ input[type="number"]::-webkit-inner-spin-button {
 <input type="hidden" value="${sessionScope.comLogin.comNum }" name="comNum">
 <input type="hidden" value="${recruitDeteil.announceNum }" name="announceNum">
 <div class="row col-md-12" style="border: 5px solid #ABC2E8; border-radius: 10px;" >
-<div class="row" align="center" style="padding-top: 50px; margin-left: 0px; width: 100%">
+	<div class="col-md-12" align="center"><span style="font-size: 24px; font-weight: bold;"> ${recruitDeteil.comName } </span></div>
+<div class="row" align="center" style="padding-top: 20px; margin-left: 0px; width: 100%">
 		<div class="col-md-3" style="text-align: center;">
 			<div class="input-group flex-nowrap">
 			  <div class="input-group-prepend">
 			    <span class="input-group-text" id="addon-wrapping" style="background-color:#ABC2E8;">제목</span>
 			  </div>
- 				<input type="text" name="announceTitle" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="addon-wrapping" value="${recruitDeteil.announceTitle }">
+ 				<input type="text" name="announceTitle" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="addon-wrapping" value="${recruitDeteil.announceTitle }" >
 			</div>
 		</div>
 		<div class="col-md-3">
@@ -78,7 +79,7 @@ input[type="number"]::-webkit-inner-spin-button {
 			  <div class="input-group-prepend">
 			    <span class="input-group-text" id="addon-wrapping"style="background-color:#ABC2E8;">고용형태</span>
 			  </div>
- 				<input type="text" name="workType" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="addon-wrapping" value="${recruitDeteil.workType }">
+ 				<input type="text" name="workType" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="addon-wrapping" value="${recruitDeteil.workType }" >
 			</div>
 		</div>
 		<div class="col-md-3">
@@ -169,12 +170,12 @@ input[type="number"]::-webkit-inner-spin-button {
 				</tr>
 			</table>
 		</div>
-			<div class="col-md-12">
-				<div class="custom-file mb-3">
-				    <input type="file" class="custom-file-input" id="validatedCustomFile" name="registImage" value="${recruitDeteil.registImage }">
-				    <label class="custom-file-label" for="validatedCustomFile" id="registImage">${recruitDeteil.registImage }</label>
-		  </div>
+			
+			
+			<div class="col-md-12" align="center" >
+					<img id="preview" src="resources/images/comProfile/${recruitDeteil.registImage } " style=" width:100%; margin-top: 10px; margin-bottom: 10px;">
 			</div>
+			
 			<div class="col-md-12">
 			<table style="width: 100%;">
 				<tr>
@@ -189,6 +190,10 @@ input[type="number"]::-webkit-inner-spin-button {
 			<br>
 			
 			</div>
+			<div class="col-md-12" align="right" style="margin-bottom : 5px;">
+				<input type="button" style="background: #ABC2E8; border: 1px solid; color: white; width: 120px; height: 30px;" id="" value="지원">
+					<input type="button" style="background: #ABC2E8; border: 1px solid; color: white; width: 120px; height: 30px;" id="" value="취소" onclick="history.back();">
+			</div>
 		</div>
 
 
@@ -199,5 +204,6 @@ $(document).on('change', '#validatedCustomFile', function() {
 	$('#registImageHidden').val(image);
 });
 </script>
+<script src="resources/js/comWriteResume.js?ver=0"></script>
 </body>
 </html>

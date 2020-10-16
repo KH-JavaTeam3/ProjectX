@@ -13,7 +13,16 @@ public class CompanyInfoVO {
 	private int comAvgScore;
 	private int comGivePerson;
 	private int comScore;
+	private String comImage;
 	
+	
+	
+	public String getComImage() {
+		return comImage;
+	}
+	public void setComImage(String comImage) {
+		this.comImage = comImage;
+	}
 	public String getComNum() {
 		return comNum;
 	}
@@ -91,7 +100,7 @@ public class CompanyInfoVO {
 		return "CompanyInfoVO [comNum=" + comNum + ", comPass=" + comPass + ", comEmail=" + comEmail + ", comName="
 				+ comName + ", comCeo=" + comCeo + ", comLoc=" + comLoc + ", comType=" + comType + ", comTel=" + comTel
 				+ ", comJoinDate=" + comJoinDate + ", comAvgScore=" + comAvgScore + ", comGivePerson=" + comGivePerson
-				+ ", comScore=" + comScore + "]";
+				+ ", comScore=" + comScore + ", comImage=" + comImage + "]";
 	}
 	
 	

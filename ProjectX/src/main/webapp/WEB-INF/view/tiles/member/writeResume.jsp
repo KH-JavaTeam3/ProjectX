@@ -4,11 +4,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-<!-- <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css"> -->
-<!-- <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script> -->
-<!-- <script src="//code.jquery.com/jquery-1.11.1.min.js"></script> -->
-<!-- <script type="text/JavaScript"    src="http://code.jquery.com/jquery-1.7.min.js"></script> -->
-
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" href="resources/css/writeResume.css">
@@ -66,7 +61,7 @@
 						<div class="form-group files uploader offset-md-5">
 							<label for="memImage">사진</label>
 							<input type="file" class="form-control"  id="memImage" name="memImage" disabled>
-							<img id="preview" src="#">
+							<img id="preview" src="resources/images/memberProfile/${sessionScope.memLogin.memImage }">
 						</div>
 					</div>
 				</div>
@@ -111,7 +106,7 @@
 										<option>사회과학계열</option>
 										<option>예/체능계열</option>
 										<option>공학계열</option>
-										<option>전기/전자/정보통신계열</option>
+										<option>정보통신계열</option>
 										<option>의학계열</option>
 									</select>
 								</div>
@@ -214,7 +209,7 @@
 		   </div>
 		   <div class="form-group col-md-6">
 		     <label for="beCareer">경력</label>
-		     <input type="number" class="form-control" id="beCareer" name="beCareer">
+		     <input type="number" class="form-control" id="beCareer" name="beCareer">년
 		   </div>
 		   <div class="form-group col-md-6">
 		     <label for="beType">직종</label>

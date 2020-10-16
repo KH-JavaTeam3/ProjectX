@@ -61,7 +61,7 @@ input[type="number"]::-webkit-inner-spin-button {
 </head>
 <body>
 <div style="height: 50px;" ></div>
-<form action="registHumanSeeker.co" method="post">
+<form action="registHumanSeeker.co" method="post" enctype="multipart/form-data">
 <div class="row col-md-12" style="border: 5px solid #ABC2E8; border-radius: 10px;">
 <input type="hidden" value="${sessionScope.comLogin.comNum }" name="comNum">
 <div class="row" align="center" style="padding-top: 50px; margin-left: 0px; width: 100%;">
@@ -70,7 +70,7 @@ input[type="number"]::-webkit-inner-spin-button {
 			  <div class="input-group-prepend">
 			    <span class="input-group-text" id="addon-wrapping">제목</span>
 			  </div>
- 				<input type="text" name="announceTitle" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="addon-wrapping">
+ 				<input type="text" name="announceTitle" class="form-control" aria-label="Username" aria-describedby="addon-wrapping">
 			</div>
 		</div>
 		<div class="col-md-3">
@@ -78,7 +78,7 @@ input[type="number"]::-webkit-inner-spin-button {
 			  <div class="input-group-prepend">
 			    <span class="input-group-text" id="addon-wrapping">고용형태</span>
 			  </div>
- 				<input type="text" name="workType" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="addon-wrapping">
+ 				<input type="text" name="workType" class="form-control" aria-label="Username" aria-describedby="addon-wrapping">
 			</div>
 		</div>
 		<div class="col-md-3">
@@ -94,7 +94,7 @@ input[type="number"]::-webkit-inner-spin-button {
 			  <div class="input-group-prepend">
 			    <span class="input-group-text" id="addon-wrapping">구인직종</span>
 			  </div>
- 				<input type="text" name="jobtype" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="addon-wrapping">
+ 				<input type="text" name="jobtype" class="form-control" aria-label="Username" aria-describedby="addon-wrapping">
 			</div>
 		</div>
 		</div>
@@ -171,9 +171,9 @@ input[type="number"]::-webkit-inner-spin-button {
 		</div>
 			<div class="col-md-12">
 				<div class="custom-file mb-3">
-				    <input type="file" class="custom-file-input" id="validatedCustomFile" name="registImage" required>
+				    <input type="file" class="custom-file-input" id="validatedCustomFile" name="file1" required>
 				    <label class="custom-file-label" for="validatedCustomFile" id="registImage">대표 이미지...</label>
-		  </div>
+		     	</div>
 			</div>
 			<div class="col-md-12">
 			<table style="width: 100%;">

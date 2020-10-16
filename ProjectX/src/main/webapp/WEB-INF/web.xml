@@ -105,6 +105,7 @@
 		<url-pattern>*.co</url-pattern>
 	</servlet-mapping>
 	
+	
 	<!-- <mvc:resources location="/resources/css/" mapping="/css/**"/> -->
 	<context-param>
 	  	<param-name>log4jConfigLocation</param-name>

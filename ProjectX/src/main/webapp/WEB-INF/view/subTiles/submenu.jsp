@@ -20,7 +20,7 @@
     <a class="nav-link" href="writeResume.me">이력서 등록</a>
   </li>
   <li class="nav-item" role="presentation">
-    <a class="nav-link" href="resumeCollection.me">이력서 관리</a>
+    <a class="nav-link" href="resumeList.me">이력서 관리</a>
   </li>
   <li class="nav-item" role="presentation">
     <a class="nav-link" href="#" >최근 본 공고</a>

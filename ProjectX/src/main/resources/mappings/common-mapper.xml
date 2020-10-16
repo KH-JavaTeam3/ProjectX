@@ -36,6 +36,7 @@
 	<result column="COM_AVG_SCORE"         property="comAvgScore"/> 
 	<result column="COM_GIVE_PERSON"       property="comGivePerson"/> 
 	<result column="COM_SCORE"           	property="comScore"/> 
+	<result column="COM_IMAGE"           	property="comImage"/> 
 	</resultMap>
 
 	<resultMap type="com.spring.biz.vo.RecruitListVO" id="recruitlist">
@@ -141,6 +142,7 @@
 		    ,MEM_ADDR
 		    ,MEM_JOIN_DATE
 		    ,IS_ADMIN
+		    ,MEM_IMAGE
 		FROM MEM_INFO WHERE MEM_EMAIL = #{memEmail}
 		 AND MEM_PASS = #{memPass}
 	</select>
@@ -175,6 +177,7 @@
 			, COM_AVG_SCORE
 			, COM_GIVE_PERSON
 			, COM_SCORE
+			, COM_IMAGE
 		FROM COMPANY_INFO
 		WHERE COM_NUM = #{comNum}
 		AND COM_PASS = #{comPass}
@@ -204,8 +207,9 @@
 	AND ANNOUNCE_NUM = #{announceNum}
 	</select>
 
-<!-- 		검색 조건 				 -->
-	<select id="selectRecruitList" resultMap="recruitlist">		
+<!-- 검색기능 -->
+
+	 <select id="selectRecruitList" resultMap="recruitlist">		
 		SELECT
 			ANNOUNCE_NUM
 			,COM_NAME
@@ -218,63 +222,73 @@
 			,AREA
 			,R.COM_NUM
 		FROM RECRUIT_LIST R, COMPANY_INFO C
-		WHERE R.COM_NUM= C.COM_NUM
-	
-
-		<if test="search2 == '' and search3 == '' and search1 != '' ">
-		AND UPPER(COM_NAME) Like UPPER('%'||#{search1}||'%')	
+		WHERE R.COM_NUM= C.COM_NUM	
+		AND HIRE_CONDITION = 'Y'
+		<!-- 검색 조건 --> 				
+		<if test="search2 == '' and search3 == '' and search1 != '' ">	
+		AND (UPPER(COM_NAME) Like UPPER('%'||#{search1}||'%')
 		OR UPPER(ANNOUNCE_TITLE) Like UPPER('%'||#{search1}||'%')
 		OR UPPER(WORK_TYPE) Like UPPER('%'||#{search1}||'%')
 		OR UPPER(JOBTYPE) Like UPPER('%'||#{search1}||'%')
 		OR UPPER(QUALIFICATION) Like UPPER('%'||#{search1}||'%')
 		OR UPPER(BENEFIT) Like UPPER('%'||#{search1}||'%')
 		OR UPPER(ACADEMIC_BACKGROUND) Like UPPER('%'||#{search1}||'%')
-		OR UPPER(AREA) Like UPPER('%'||#{search1}||'%')
-		
-			
+		OR UPPER(AREA) Like UPPER('%'||#{search1}||'%'))					
 		</if>
-		<if test="search2 == '' and search3 != '' and search1 != '' ">
-		AND JOBTYPE =#{search3}
+		
+	  	<if test="search2 == '' and search3 != '' and search1 != '' ">
+		AND (JOBTYPE =#{search3}
 		OR UPPER(COM_NAME) Like UPPER('%'||#{search1}||'%')	
 		OR UPPER(ANNOUNCE_TITLE) Like UPPER('%'||#{search1}||'%')
 		OR UPPER(WORK_TYPE) Like UPPER('%'||#{search1}||'%')
 		OR UPPER(QUALIFICATION) Like UPPER('%'||#{search1}||'%')
 		OR UPPER(BENEFIT) Like UPPER('%'||#{search1}||'%')
 		OR UPPER(ACADEMIC_BACKGROUND) Like UPPER('%'||#{search1}||'%')
-		OR UPPER(AREA) Like UPPER('%'||#{search1}||'%')
+		OR UPPER(AREA) Like UPPER('%'||#{search1}||'%'))
 						
-		</if>
-		<if test="search2 != null and search3 == '' and search1 != '' ">
-		AND AREA = #{search2}
+		</if> 
+		<if test="search2 != '' and search3 == '' and search1 != '' ">
+		AND (AREA = #{search2}
 		OR UPPER(COM_NAME) Like UPPER('%'||#{search1}||'%')				
 		OR UPPER(ANNOUNCE_TITLE) Like UPPER('%'||#{search1}||'%')
 		OR UPPER(WORK_TYPE) Like UPPER('%'||#{search1}||'%')
 		OR UPPER(JOBTYPE) Like UPPER('%'||#{search1}||'%')
 		OR UPPER(QUALIFICATION) Like UPPER('%'||#{search1}||'%')
 		OR UPPER(BENEFIT) Like UPPER('%'||#{search1}||'%')
-		OR UPPER(ACADEMIC_BACKGROUND) Like UPPER('%'||#{search1}||'%')
-		
-			
+		OR UPPER(ACADEMIC_BACKGROUND) Like UPPER('%'||#{search1}||'%'))
+					
 		</if>
 		<if test="search2 != '' and search3 != '' and search1 != '' ">
-		AND AREA = #{search2}
+		AND (AREA = #{search2}
 		OR JOBTYPE =#{search3}			
 		OR UPPER(COM_NAME) Like UPPER('%'||#{search1}||'%')			
 		OR UPPER(ANNOUNCE_TITLE) Like UPPER('%'||#{search1}||'%')
 		OR UPPER(WORK_TYPE) Like UPPER('%'||#{search1}||'%')
 		OR UPPER(QUALIFICATION) Like UPPER('%'||#{search1}||'%')
 		OR UPPER(BENEFIT) Like UPPER('%'||#{search1}||'%')
-		OR UPPER(ACADEMIC_BACKGROUND) Like UPPER('%'||#{search1}||'%')			
+		OR UPPER(ACADEMIC_BACKGROUND) Like UPPER('%'||#{search1}||'%'))			
 		</if>
 		
 		<if test="search2 != '' and search3 != '' and search1 == '' ">
-		AND AREA = #{search2}
-		OR JOBTYPE =#{search3}					
-		</if>
+		AND (AREA = #{search2}
+		OR JOBTYPE =#{search3})					
+		</if>  
 		
 		
 		
-	</select>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	</select> 
 
 
 

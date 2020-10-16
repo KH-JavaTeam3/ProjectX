@@ -245,28 +245,29 @@ tr td {
 							<li>
 								<table id="loginMeueTable">
 								<tr>
-									<td style="background: lightblue;width:150px; border-right: 1px solid lightgray;"><a href="memberLoginForm.do"><span style="font-weight: bold; font-size: 14px;">개인</span><span style="font-size: 13px; font-weight: normal;">로그인</span></a></td>
-									<td style="background: lightblue;width:150px;"><a href="companyLoginForm.do"><span style="font-weight: bold; font-size: 14px;">기업</span><span style="font-size: 13px; font-weight: normal;">로그인</span></a></td>
+									<td style="background: #ABC2E8;width:150px; border-right: 1px solid lightgray;"><c:if test="${empty sessionScope.memLogin }"><a href="memberLoginForm.do"><span style="font-weight: bold; font-size: 14px;">개인</span><span style="font-size: 13px; font-weight: normal;">로그인</span></a></c:if>
+									<c:if test="${not empty sessionScope.memLogin }"><span style="font-weight: bold; font-size: 14px;">${sessionScope.memLogin.memName }님</span> 환영합니다.</c:if></td>
+									<td style="background: #ABC2E8;width:150px;"><c:if test="${empty sessionScope.memLogin }"><a href="companyLoginForm.do"><span style="font-weight: bold; font-size: 14px;">기업</span><span style="font-size: 13px; font-weight: normal;">로그인</span></a></c:if></td>
 								</tr>
 								<tr>
 									<td style="border-right: 1px solid lightgray;"><a href="#"><span style="font-size: 12px; font-weight: normal;">ID.Pass 찾기</span></a></td>
-									<td><a href="registHumanSeekerForm.co"><span style="font-size: 12px; font-weight: normal;">공고 등록</span></a></td>
+									<td><c:if test="${not empty sessionScope.comLogin }"><a href="registHumanSeekerForm.co"><span style="font-size: 12px; font-weight: normal;">공고 등록</span></a></c:if></td>
 								</tr>
 								<tr>
-									<td style="border-right: 1px solid lightgray;"><a href="#"><span style="font-size: 12px; font-weight: normal;">이력서 작성 및 조회</span></a></td>
-									<td><a href="#"><span style="font-size: 12px; font-weight: normal;">공고 이력서 조회</span></a></td>
+									<td style="border-right: 1px solid lightgray;"><a href="writeResume.me"><span style="font-size: 12px; font-weight: normal;">이력서 작성 및 조회</span></a></td>
+									<td><c:if test="${not empty sessionScope.comLogin }"><a href="#"><span style="font-size: 12px; font-weight: normal;">공고 이력서 조회</span></a></c:if></td>
 								</tr>
 								<tr>
-									<td style="border-right: 1px solid lightgray;"><a href="memUpDateForm.do"><span style="font-size: 12px; font-weight: normal;">내정보 수정</span></a></td>
-									<td><a href="recruitlist.co"><span style="font-size: 12px; font-weight: normal;">공고 수정</span></a></td>
+									<td style="border-right: 1px solid lightgray;"><a href="memUpdateForm.me"><span style="font-size: 12px; font-weight: normal;">내정보 수정</span></a></td>
+									<td><c:if test="${not empty sessionScope.comLogin }"><a href="recruitlist.co"><span style="font-size: 12px; font-weight: normal;">공고 수정</span></a></c:if></td>
 								</tr>
 								<tr>
 									<td style="border-right: 1px solid lightgray;"></td>
-									<td><a href="recruitDeleteList.co"><span style="font-size: 12px; font-weight: normal;">공고 삭제</span></a></td>
+									<td><c:if test="${not empty sessionScope.comLogin }"><a href="recruitDeleteList.co"><span style="font-size: 12px; font-weight: normal;">공고 삭제</span></a></c:if></td>
 								</tr>
 								<tr>
-									<c:if test="${empty sessionScope.memLogin}"><td colspan="2" align="center" style="background: lightblue; width: 300px; "><a href="memberJoin.do"><span style="font-size: 12px; font-weight: normal;">회원가입</span></a></td></c:if>
-									<c:if test="${not empty sessionScope.memLogin}"><td colspan="2" align="center" style="background: lightblue; width: 300px; "><a href="logout.do"><span style="font-size: 12px; font-weight: normal;">로그아웃</span></a></td></c:if>
+									<c:if test="${empty sessionScope.memLogin}"><td colspan="2" align="center" style="background: #ABC2E8; width: 300px; "><a href="memberJoin.do"><span style="font-size: 12px; font-weight: normal;">회원가입</span></a></td></c:if>
+									<c:if test="${not empty sessionScope.memLogin}"><td colspan="2" align="center" style="background: #ABC2E8; width: 300px; "><a href="logout.do"><span style="font-size: 12px; font-weight: normal;">로그아웃</span></a></td></c:if>
 								</tr>
 							</table>
 							</li>
@@ -451,6 +452,6 @@ tr td {
 </div>
 </div>
 
-<script src="resources/js/menu.js?ver=5"></script>
+<script src="resources/js/menu.js?ver=6"></script>
 </body>
 </html>

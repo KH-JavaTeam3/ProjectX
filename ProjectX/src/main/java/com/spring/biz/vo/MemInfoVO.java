@@ -14,6 +14,7 @@ public class MemInfoVO {
 	private String memJoinDate;
 	private String isAdmin;  
 	private String memImage;
+	
 	public String getMemEmail() {
 		return memEmail;
 	}
@@ -93,6 +94,7 @@ public class MemInfoVO {
 	public void setMemBirth(String memBirth) {
 		this.memBirth = memBirth;
 	}
+	
 	@Override
 	public String toString() {
 		return "MemInfoVO [memEmail=" + memEmail + ", memPass=" + memPass + ", memName=" + memName + ", memAge="

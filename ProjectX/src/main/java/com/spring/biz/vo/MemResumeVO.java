@@ -2,6 +2,10 @@ package com.spring.biz.vo;
 
 import java.util.List;
 
+/**
+ * @author user
+ *
+ */
 public class MemResumeVO {
 	private int resumeNum;
 	private String resumeName;
@@ -161,6 +165,7 @@ public class MemResumeVO {
 	public void setProfilesList(List<ProfilesVO> profilesList) {
 		this.profilesList = profilesList;
 	}
+	
 	public String getMemEmail() {
 		return memEmail;
 	}
@@ -177,7 +182,6 @@ public class MemResumeVO {
 				+ ", hopeSal=" + hopeSal + ", hopeLoc=" + hopeLoc + ", hopeTime=" + hopeTime + ", memEmail=" + memEmail
 				+ ", licenseList=" + licenseList + ", profilesList=" + profilesList + "]";
 	}
-	
 	
 	
 	

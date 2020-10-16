@@ -1,6 +1,11 @@
 /* 페이지 로딩 후 실행 */
 $(document).ready(function(){
+	
+
+// 미리보기 엑박 방지
+if($('#preview').attr("src").length < 35){
 	$('#preview').hide();
+}
 	
 	
 	//사진 미리보기
@@ -65,8 +70,33 @@ $(document).ready(function(){
 	$(document).on('click','#deleteBtn1', function(){
 		$(this).parent().parent().remove();
 	});
-});
 
+	$(document).on('click', '#findAddr', function(){
+		
+		   new daum.Postcode({
+		      oncomplete : function(data) {
+		    	jQuery("#memAddr").val(data.address);
+				jQuery("#memAddr").focus();
+		      }
+		   }).open();
+	});
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+});
 /* 함수선언 영역*/
 (function($){
 	//aaa라는 함수선언

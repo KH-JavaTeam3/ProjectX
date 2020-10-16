@@ -36,6 +36,7 @@
 	<result column="COM_AVG_SCORE"         property="comAvgScore"/> 
 	<result column="COM_GIVE_PERSON"       property="comGivePerson"/> 
 	<result column="COM_SCORE"           	property="comScore"/> 
+	<result column="COM_IMAGE"           	property="comImage"/> 
 	</resultMap>
 	
 	<resultMap type="com.spring.biz.vo.AdminNoticeVO" id="adminNotice">
@@ -197,6 +198,7 @@ UPDATE COMPANY_INFO SET
 	,COM_LOC = #{comLoc}
 	,COM_TYPE = #{comType}
 	,COM_TEL = #{comTel}
+	,COM_IMAGE = #{comImage}
 WHERE COM_NUM = #{comNum}
 </update>
 </mapper>

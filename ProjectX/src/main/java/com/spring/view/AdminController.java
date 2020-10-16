@@ -9,7 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.spring.biz.AdminService;
+import com.spring.biz.service.AdminService;
 import com.spring.biz.vo.CompanyInfoVO;
 import com.spring.biz.vo.MemInfoVO;
 

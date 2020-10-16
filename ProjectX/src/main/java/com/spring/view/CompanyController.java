@@ -1,15 +1,22 @@
 package com.spring.view;
 
+import java.io.File;
 import java.util.Arrays;
+import java.util.Iterator;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.springframework.http.codec.multipart.MultipartHttpMessageReader;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
-import com.spring.biz.CompanyService;
+import com.spring.biz.service.CompanyService;
+import com.spring.biz.util.Time;
 import com.spring.biz.vo.CompanyInfoVO;
 import com.spring.biz.vo.RecruitListVO;
 
@@ -35,8 +42,33 @@ public class CompanyController {
 		}
 		//기업 공고 등록
 		@RequestMapping(value = "/registHumanSeeker.co")
-		public String registHumanSeeker(HttpSession session, RecruitListVO recruitListVO) {
-			System.out.println(recruitListVO);
+		public String registHumanSeeker(HttpSession session, RecruitListVO recruitListVO, MultipartHttpServletRequest multi, HttpServletRequest request)throws Exception {
+			//사진 이름(현재시분초)
+			String nowDate = Time.getNowDateTime();
+			
+			//첨부파일에 대한 encoding 설정
+			multi.setCharacterEncoding("UTF-8");
+			
+			//multipartRequest에서 첨부파일에 대한 데이터 받기
+			Iterator<String> enu = multi.getFileNames();
+			
+			//첨부파일이 존재하면 첨부파일 개수만큼 반복
+			while(enu.hasNext()){
+				String fileName = enu.next();
+				
+				//서버에 업로드 되는 파일명
+				MultipartFile mf = multi.getFile(fileName);
+				String originFileName = mf.getOriginalFilename();
+				String realName = nowDate + "_" + originFileName;
+				
+				//용량이 0이 아닐 경우
+				if(mf.getSize() != 0){
+					//실제 첨부파일이 들어갈 경로
+					String realPath = request.getSession().getServletContext().getRealPath("resources/images/comProfile");
+					mf.transferTo(new File(realPath + "/" + realName));
+					recruitListVO.setRegistImage(realName);
+				}
+			}
 			companyService.registHumanSeeker(recruitListVO);
 			return "tiles/company/main2";
 		}
@@ -96,7 +128,33 @@ public class CompanyController {
 		}
 		//기업 마이페이지 수정 
 		@RequestMapping(value = "/myComUpdate.co")
-		public String myComUpdate(HttpSession session,CompanyInfoVO companyInfoVO) {
+		public String myComUpdate(HttpSession session,CompanyInfoVO companyInfoVO, MultipartHttpServletRequest multi, HttpServletRequest request)throws Exception {
+			//사진 이름(현재시분초)
+			String nowDate = Time.getNowDateTime();
+			
+			//첨부파일에 대한 encoding 설정
+			multi.setCharacterEncoding("UTF-8");
+			
+			//multipartRequest에서 첨부파일에 대한 데이터 받기
+			Iterator<String> enu = multi.getFileNames();
+			
+			//첨부파일이 존재하면 첨부파일 개수만큼 반복
+			while(enu.hasNext()){
+				String fileName = enu.next();
+				
+				//서버에 업로드 되는 파일명
+				MultipartFile mf = multi.getFile(fileName);
+				String originFileName = mf.getOriginalFilename();
+				String realName = nowDate + "_" + originFileName;
+				
+				//용량이 0이 아닐 경우
+				if(mf.getSize() != 0){
+					//실제 첨부파일이 들어갈 경로
+					String realPath = request.getSession().getServletContext().getRealPath("resources/images/comProfile");
+					mf.transferTo(new File(realPath + "/" + realName));
+					companyInfoVO.setComImage(realName);
+				}
+			}
 			int vo = companyService.myComUpdate(companyInfoVO);
 			CompanyInfoVO comNum = (CompanyInfoVO) session.getAttribute("comLogin");
 			if(vo != 0) {

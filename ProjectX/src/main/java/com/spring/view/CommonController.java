@@ -10,7 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.spring.biz.CommonService;
+import com.spring.biz.service.CommonService;
 import com.spring.biz.vo.CompanyInfoVO;
 import com.spring.biz.vo.MemInfoVO;
 import com.spring.biz.vo.RecruitListVO;
@@ -32,12 +32,14 @@ public class CommonController {
 	//메인화면
 	@RequestMapping(value = "/main.do")
 	public String Main() {
+		logger.info("메인화면 이동");
 		return "tiles/common/main";
 	}
 	
 	//개인 회원가입 화면
 	@RequestMapping(value = "/memberJoin.do")
 	public String join() {
+		logger.info("개인 회원가입 화면 ");
 		return "join/memberJoin";
 	}
 	//개인 회원가입 이메일 중복 체크
@@ -66,7 +68,7 @@ public class CommonController {
 	}
 	//개인 로그인 화면
 	@RequestMapping(value = "/memberLoginForm.do")
-	public String memberLogin() {
+	public String memberLoginForm() {
 		
 		return "login/memberLogin";
 	}
@@ -100,13 +102,16 @@ public class CommonController {
 		System.out.println(vo);
 		if(vo != null) {
 			session.setAttribute("comLogin", vo);
+			return "tiles/company/main2";
+		}else {
+			return "tiles/common/main";
 		}
-		return "tiles/company/main2";
 	}
 	//로그아웃
 	@RequestMapping(value = "/logout.do")
 	public String logout(HttpSession session) {
 		session.removeAttribute("memLogin");
+		session.removeAttribute("comLogin");
 		return "redirect:main.do";
 	}
 	
@@ -167,6 +172,7 @@ public class CommonController {
 //	public String startBootstrap() {
 //		return "sample/startBootstrap";
 //	}
+	
 	
 }
 

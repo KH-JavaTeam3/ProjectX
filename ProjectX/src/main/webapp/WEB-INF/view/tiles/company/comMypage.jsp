@@ -32,10 +32,7 @@
     <a class="nav-link" href="myComUpdateForm.co">사업자 정보 수정</a>
   </li>
   <li class="nav-item" role="presentation">
-    <a class="nav-link" href="#" >공고 조회</a>
-  </li>
-  <li class="nav-item" role="presentation">
-    <a class="nav-link" href="recruitDeleteList.co">공고 삭제</a>
+    <a class="nav-link" href="recruitDeleteList.co">공고 삭제 및 수정</a>
   </li>
 </ul>
 </div>
