@@ -11,8 +11,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.spring.biz.service.CommonService;
+import com.spring.biz.util.GetSession;
 import com.spring.biz.vo.CompanyInfoVO;
 import com.spring.biz.vo.MemInfoVO;
+import com.spring.biz.vo.MemResumeVO;
 import com.spring.biz.vo.RecruitListVO;
 import com.spring.biz.vo.SearchVO;
 
@@ -138,21 +140,14 @@ public class CommonController {
 		return "tiles/common/companyDetail";
 	}
 	
-	
-	
-	
-	
-	
-
-	
-	
-	
-	
-	
-	
-	
-	
-	
+	//기업 이력서 넣기
+	@RequestMapping(value = "/resumeApp.do")
+	public String resumeApp(int resumeNum, int comNum) {
+		System.out.println(resumeNum);
+		System.out.println(comNum);
+		
+		return "tiles/common/";
+	}
 //	@RequestMapping(value = "/cover.do")
 //	public String cover() {
 //		return "sample/cover";

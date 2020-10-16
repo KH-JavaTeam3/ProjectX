@@ -37,7 +37,7 @@
     left: 50px;
     width: 50px;
     right: 0;
-    height: 56px;
+    height: 100%;
     content: "";
   /*    background-image: url(https://image.flaticon.com/icons/png/128/109/109612.png); */
     display: block;

@@ -19,6 +19,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import com.spring.biz.service.MemberService;
 import com.spring.biz.util.GetSession;
 import com.spring.biz.util.Time;
+import com.spring.biz.vo.ForRecruitVO;
 import com.spring.biz.vo.LicenseVO;
 import com.spring.biz.vo.MemInfoVO;
 import com.spring.biz.vo.MultiLicenseVO;
@@ -168,7 +169,15 @@ public class MemberController {
 		
 		return "redirect:updateResume.me";
 	}
-	
+	//공고 지원 클릭시 이력서 상세 페이지
+			@RequestMapping(value = "/resumeApplication.me")
+			public String resumeApplication(HttpSession session, Model model, int comNum) {
+				ForRecruitVO vo = new ForRecruitVO();
+				vo.setComNum(comNum);
+				vo.setResumeList(memberService.selectResumeList(GetSession.getMemEmail(session)));
+				model.addAttribute("resumeList", vo);
+				return "tiles/common/resumeApplication";
+			}
 		
 		
 		

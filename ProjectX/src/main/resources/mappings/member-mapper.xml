@@ -191,6 +191,7 @@
 			, MEM_AGE
 			, MEM_TEL1
 			, MEM_TEL2
+			, MEM_GENDER
 			, MEM_ADDR
 			, IS_ADMIN
 			, MEM_IMAGE

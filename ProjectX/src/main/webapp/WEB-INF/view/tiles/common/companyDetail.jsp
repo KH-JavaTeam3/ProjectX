@@ -110,8 +110,8 @@ input[type="number"]::-webkit-inner-spin-button {
 				</tr>
 				<tr>
 					<td>
-        				<input type="radio" name="worktime" value="주간" <c:if test="${recruitDeteil.worktime == '주간'}"> checked="checked" </c:if>>주간
-        				<input type="radio" name="worktime" value="야간" <c:if test="${recruitDeteil.worktime == '야간'}"> checked="checked" </c:if>>야간
+        				<c:if test="${recruitDeteil.worktime == '주간'}"> <span>주간</span> </c:if> 
+        				<c:if test="${recruitDeteil.worktime == '야간'}"> <span>야간</span> </c:if>
 					</td>
 					<td><input class="input" type="number" name="anniSal" value="${recruitDeteil.anniSal }"> </td>
 					<td><input class="input" type="number" name="hireNum" min="0" value="${recruitDeteil.hireNum }"></td>
@@ -128,44 +128,14 @@ input[type="number"]::-webkit-inner-spin-button {
 					<td align="center" style="background-color:#ABC2E8">지역</td>
 				</tr>
 				<tr>
-					<td>
-						<select class="custom-select" id="inputGroupSelect01" name="career">
-						    <option>Choose...</option>
-						    <option value="고졸" <c:if test="${recruitDeteil.career == '고졸' }">selected</c:if>>고졸</option>
-						    <option value="대졸(2,3년제)" <c:if test="${recruitDeteil.career == '대졸(2,3년제)'}">selected</c:if>>대졸(2,3년제)</option>
-						    <option value="대졸(4 년제)"<c:if test="${recruitDeteil.career == '대졸(4년제)'  }">selected</c:if>>대졸(4 년제)</option>
-						</select>
+					<td align="center">
+						${recruitDeteil.career }
 					</td>
-					<td>
-						<select class="custom-select" id="inputGroupSelect02" name="academicBackground">
-						    <option >Choose...</option>
-						    <option value="신입"<c:if test="${recruitDeteil.academicBackground == '신입' }">selected</c:if>>신입</option>
-						    <option value="경력" <c:if test="${recruitDeteil.academicBackground == '경력' }">selected</c:if>>경력</option>
-						    <option value="경력 5년" <c:if test="${recruitDeteil.academicBackground == '경력 5년' }">selected</c:if>>경력 5년</option>
-						</select>
+					<td align="center">
+						${recruitDeteil.academicBackground }
 					</td>
-					<td>
-						<select class="custom-select" id="inputGroupSelect03" name="area">
-						    <option>Choose...</option>
-						    <option value="전국" <c:if test="${recruitDeteil.area == '전국' }">selected</c:if>>전국</option>
-						    <option value="서울" <c:if test="${recruitDeteil.area == '서울' }">selected</c:if>>서울</option>
-						    <option value="대구" <c:if test="${recruitDeteil.area == '대구' }">selected</c:if>>대구</option>
-						    <option value="세종" <c:if test="${recruitDeteil.area == '세종' }">selected</c:if>>세종</option>
-						    <option value="전남" <c:if test="${recruitDeteil.area == '전남' }">selected</c:if>>전남</option>
-						    <option value="제주" <c:if test="${recruitDeteil.area == '제주' }">selected</c:if>>제주</option>
-						    <option value="경기" <c:if test="${recruitDeteil.area == '경기' }">selected</c:if>>경기</option>
-						    <option value="대전" <c:if test="${recruitDeteil.area == '대전' }">selected</c:if>>대전</option>
-						    <option value="강원" <c:if test="${recruitDeteil.area == '강원' }">selected</c:if>>강원</option>
-						    <option value="전북" <c:if test="${recruitDeteil.area == '전북' }">selected</c:if>>전북</option>
-						    <option value="해외" <c:if test="${recruitDeteil.area == '해외' }">selected</c:if>>해외</option>
-						    <option value="인천" <c:if test="${recruitDeteil.area == '인천' }">selected</c:if>>인천</option>
-						    <option value="광주" <c:if test="${recruitDeteil.area == '광주' }">selected</c:if>>광주</option>
-						    <option value="경남" <c:if test="${recruitDeteil.area == '경남' }">selected</c:if>>경남</option>
-						    <option value="부산" <c:if test="${recruitDeteil.area == '부산' }">selected</c:if>>부산</option>
-						    <option value="울산" <c:if test="${recruitDeteil.area == '울산' }">selected</c:if>>울산</option>
-						    <option value="경북" <c:if test="${recruitDeteil.area == '경북' }">selected</c:if>>경북</option>
-						    <option value="충북" <c:if test="${recruitDeteil.area == '충북' }">selected</c:if>>충북</option>
-						</select>
+					<td align="center">
+						${recruitDeteil.area }
 					</td>
 				</tr>
 			</table>
@@ -183,7 +153,7 @@ input[type="number"]::-webkit-inner-spin-button {
 				</tr>
 				<tr>
 					<td align="center">
-						<textarea class="textarea" name="announceContent" rows="7" cols="15" style="width: 100%; border: none;">${recruitDeteil.announceContent }</textarea>
+						<textarea class="textarea" name="announceContent" rows="7" cols="15" style="width: 100%; border: none;" disabled="disabled">${recruitDeteil.announceContent }</textarea>
 					</td>
 				</tr>
 			</table>
@@ -191,7 +161,7 @@ input[type="number"]::-webkit-inner-spin-button {
 			
 			</div>
 			<div class="col-md-12" align="right" style="margin-bottom : 5px;">
-				<input type="button" style="background: #ABC2E8; border: 1px solid; color: white; width: 120px; height: 30px;" id="" value="지원">
+				<input type="button" style="background: #ABC2E8; border: 1px solid; color: white; width: 120px; height: 30px;" value="지원" onclick="location.href='resumeApplication.me?comNum=${recruitDeteil.comNum}'">
 					<input type="button" style="background: #ABC2E8; border: 1px solid; color: white; width: 120px; height: 30px;" id="" value="취소" onclick="history.back();">
 			</div>
 		</div>

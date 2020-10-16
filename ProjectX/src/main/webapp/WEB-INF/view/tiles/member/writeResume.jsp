@@ -7,6 +7,12 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" href="resources/css/writeResume.css">
+<style type="text/css">
+#preview{
+	width: 162px;
+	height: 231px;
+}
+</style>
 </head>
 <body>
 <form action="regResume.me" method="post" >
