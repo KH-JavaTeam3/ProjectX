@@ -26,7 +26,7 @@
     margin: 0px;
 	width: 180px;
     height: 250px;
-    font-size: 10px;
+    font-size: 0px;
 }
 
 .files input:focus{     outline: 2px dashed #7896CF;  outline-offset: -5px;
@@ -140,7 +140,7 @@
 								<div class="form-group files uploader offset-md-5">
 								<div style="height: 15px;"></div>
 									<input type="file" class="form-control"  id="memImage" name="memImage" disabled>
-									<img id="preview" src="resources/images/memberProfile/${sessionScope.memLogin.memImage }">
+									<img id="preview" src="resources/images/memberProfile/${sessionScope.memLogin.memImage }" onerror="this.src='resources/images/profile.png'">
 								</div>
 							</div>
 						</div>
@@ -159,15 +159,14 @@
 <div>
 	<table class="table">
 		<tr>
-			<td>테이블1</td>
-			<td>테이블2</td>
+			<td>무엇을</td>
+			<td>넣을까요</td>
 		</tr>
 		<tr>
-			<td>테이블3</td>
-			<td>테이블4</td>
+			<td>좋은거 있으면</td>
+			<td>말해주세여</td>
 		</tr>
 	</table>
 </div>
-
 </body>
 </html>

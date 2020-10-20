@@ -28,25 +28,38 @@
 	<div style="height: 40px;"></div>
 	<div class="mx-auto" id="loginContainer" style="width: 30%;">
 		<div align="center">
+			<a href="memberLoginForm.do">개인회원 로그인</a> <a href="companyLoginForm.do">기업회원 로그인</a>
 			<h2>개인회원 로그인</h2>
 		</div>
 		<div style="height: 15px;"></div>
 		<div align="center">
-			<form action="memberLogin.do" method="post">
+			<form action="memberLogin.do" method="post" id="loginForm">
 				<div class="form-group">
 					<label for="memEmail">이메일</label> <input type="email"
-						class="form-control" id="memEmail" name="memEmail">
+						class="form-control" id="memEmail" name="memEmail" required>
 				</div>
 				<div class="form-group">
 					<label for="memPass">비밀번호</label> <input type="password"
-						class="form-control" id="memPass" name="memPass">
+						class="form-control" id="memPass" name="memPass" required>
 				</div>
-				<br>
+				 <div class="form-group form-check">
+				    <input type="checkbox" class="form-check-input" id="keepLogin" name="keepLogin" value="on">
+				    <label class="form-check-label" for="keepLogin">Check me out</label>
+				  </div>
 				<input type="submit" class="btn btn-primary"
 					style="width: 200px; height: 40px;" value="Submit">
 			</form>
 		</div>
 	</div>
+<!-- 유효성 검사 자바스크립트 -->
+<script src="resources/js/jquery.validate.js"></script>
+<script type="text/javascript">
+(function($){
+	
+	 
 
+
+});
+</script>
 </body>
 </html>

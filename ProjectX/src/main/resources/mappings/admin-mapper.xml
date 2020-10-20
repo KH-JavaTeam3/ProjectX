@@ -24,25 +24,18 @@
 	
 	
 	<resultMap type="com.spring.biz.vo.CompanyInfoVO" id="companyInfo">
-	<result column="COM_NUM"           		property="comNum"/> 
-	<result column="COM_PASS"      	     	property="comPass"/> 
-	<result column="COM_EMAIL"        		property="comEmail"/> 
-	<result column="COM_NAME"         	  	property="comName"/> 
-	<result column="COM_CEO"        		property="comCeo"/> 
-	<result column="COM_LOC"        	 	property="comLoc"/> 
-	<result column="COM_TYPE"           	property="comType"/> 
-	<result column="COM_TEL"           		property="comTel"/> 
-	<result column="COM_JOIN_DATE"         property="comJoinDate"/> 
-	<result column="COM_AVG_SCORE"         property="comAvgScore"/> 
-	<result column="COM_GIVE_PERSON"       property="comGivePerson"/> 
-	<result column="COM_SCORE"           	property="comScore"/> 
-	</resultMap>
-	
-	<resultMap type="com.spring.biz.vo.AdminNoticeVO" id="adminNotice">
-		<result column="BOARD_NUMBER"            property="boardNumber"/> 
-		<result column="BOARD_TITLE"      	      property="boardTitle"/> 
-		<result column="BOARD_CONTENT"        	  property="boardContent"/> 
-		<result column="TODAY_DATE"         	  property="todayDate"/> 
+		<result column="COM_NUM"           		property="comNum"/> 
+		<result column="COM_PASS"      	     	property="comPass"/> 
+		<result column="COM_EMAIL"        		property="comEmail"/> 
+		<result column="COM_NAME"         	  	property="comName"/> 
+		<result column="COM_CEO"        		property="comCeo"/> 
+		<result column="COM_LOC"        	 	property="comLoc"/> 
+		<result column="COM_TYPE"           	property="comType"/> 
+		<result column="COM_TEL"           		property="comTel"/> 
+		<result column="COM_JOIN_DATE"         property="comJoinDate"/> 
+		<result column="COM_AVG_SCORE"         property="comAvgScore"/> 
+		<result column="COM_GIVE_PERSON"       property="comGivePerson"/> 
+		<result column="COM_SCORE"           	property="comScore"/> 
 	</resultMap>
 	
 
@@ -76,19 +69,17 @@
 	</select>
 
 	<select id="selectMemberAD" resultMap="memInfo">
-		SELECT	MEM_EMAIL,
-			MEM_PASS,
-			MEM_NAME,
-			MEM_AGE,
-			MEM_GENDER,
-			MEM_BIRTH_YEAR,
-			MEM_BIRTH_MONTH,
-			MEM_BIRTH_DAY,
-			MEM_TEL1,
-			MEM_TEL2,
-			MEM_ADDR,
-			MEM_JOIN_DATE
-		FROM MEM_INFO
+		SELECT	MEM_EMAIL
+			, MEM_PASS
+			, MEM_NAME
+			, MEM_AGE
+			, MEM_GENDER
+			, MEM_BIRTH
+			, MEM_TEL1
+			, MEM_TEL2
+			, MEM_ADDR
+			, MEM_JOIN_DATE
+			FROM MEM_INFO
 		WHERE MEM_NAME = #{memName}
 	</select>
 

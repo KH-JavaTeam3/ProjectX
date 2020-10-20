@@ -28,6 +28,7 @@
 	<div style="height: 40px;"></div>
 	<div class="mx-auto" id="loginContainer" style="width: 30%;">
 		<div align="center">
+			<a href="memberLoginForm.do">개인회원 로그인</a> <a href="companyLoginForm.do">기업회원 로그인</a>
 			<h2>기업회원 로그인</h2>
 		</div>
 		<div style="height: 15px;"></div>
@@ -35,13 +36,16 @@
 			<form action="companyLogin.do" method="post">
 				<div class="form-group">
 					<label for="comNum">사업자번호</label> <input type="text"
-						class="form-control" id="comNum" name="comNum">
+						class="form-control" id="comNum" name="comNum" required>
 				</div>
 				<div class="form-group">
 					<label for="comPass">비밀번호</label> <input type="password"
-						class="form-control" id="comPass" name="comPass">
+						class="form-control" id="comPass" name="comPass" required>
 				</div>
-				<br>
+				<div class="form-group form-check">
+				    <input type="checkbox" class="form-check-input" id="keepLogin" name="keepLogin" value="on">
+				    <label class="form-check-label" for="keepLogin">Check me out</label>
+				  </div>
 				<button type="submit" class="btn btn-primary"
 					style="width: 200px; height: 40px;">Submit</button>
 			</form>

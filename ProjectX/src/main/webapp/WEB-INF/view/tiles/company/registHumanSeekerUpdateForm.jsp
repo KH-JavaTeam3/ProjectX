@@ -60,7 +60,7 @@ input[type="number"]::-webkit-inner-spin-button {
 </style>
 </head>
 <body>
-<form action="registHumanSeekerUpdate.co" method="post">
+<form action="registHumanSeekerUpdate.co" method="post" enctype="multipart/form-data">
 <input type="hidden" value="${sessionScope.comLogin.comNum }" name="comNum">
 <input type="hidden" value="${recruitDeteil.announceNum }" name="announceNum">
 <div class="row" align="center" style="padding-top: 50px;">
@@ -169,7 +169,7 @@ input[type="number"]::-webkit-inner-spin-button {
 		</div>
 			<div class="col-md-12">
 				<div class="custom-file mb-3">
-				    <input type="file" class="custom-file-input" id="validatedCustomFile" name="registImage" value="${recruitDeteil.registImage }">
+				    <input type="file" class="custom-file-input" id="validatedCustomFile" name="file1" value="${recruitDeteil.registImage }">
 				    <label class="custom-file-label" for="validatedCustomFile" id="registImage">${recruitDeteil.registImage }</label>
 		  </div>
 			</div>

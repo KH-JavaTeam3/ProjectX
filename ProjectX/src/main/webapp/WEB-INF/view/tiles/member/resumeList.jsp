@@ -6,10 +6,13 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<style type="text/css">
+@font-face { font-family: 'MyLotteBold'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.0/MyLotteBold.woff') format('woff'); font-weight: normal; font-style: normal; }
+</style>
 </head>
 <body>
-<div style="height: 50px;"></div>
-	<h1>이력서 목록</h1>
+<div style="height: 30px;"></div>
+	<span style="font-weight: bold; font-size: 30px; font-family:'MyLotteBold';">이력서 모음</span>
 	<table class="table table-hover">
 		<c:forEach items="${resumeList }" var="re">
 		<tr>

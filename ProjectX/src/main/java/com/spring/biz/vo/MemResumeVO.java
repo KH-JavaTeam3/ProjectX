@@ -17,7 +17,7 @@ public class MemResumeVO {
 	private String eduMajor;
 	private String eduBeginDate;
 	private String eduEndDate;
-	private int eduScore;
+	private double eduScore;
 	private String eduIsOver;
 	private String beCompany;
 	private int beCareer;
@@ -28,8 +28,17 @@ public class MemResumeVO {
 	private String hopeLoc;
 	private String hopeTime;
 	private String memEmail;
-	private List<LicenseVO> licenseList;
-	private List<ProfilesVO> profilesList;
+	private List<LicenseVO> licenseList; // 자격증 목록
+	private List<ProfilesVO> profilesList; // 자소서 목록
+	
+	
+	private int comMypageNum;
+	private int comNum;
+	private int announceNum;
+	private String resumeResult;
+	private MemInfoVO memInfoVO;
+	private int ynN;
+	
 	
 	public int getResumeNum() {
 		return resumeNum;
@@ -146,13 +155,12 @@ public class MemResumeVO {
 	public void setHopeTime(String hopeTime) {
 		this.hopeTime = hopeTime;
 	}
-	public int getEduScore() {
+	public double getEduScore() {
 		return eduScore;
 	}
-	public void setEduScore(int eduScore) {
+	public void setEduScore(double eduScore) {
 		this.eduScore = eduScore;
 	}
-	
 	public List<LicenseVO> getLicenseList() {
 		return licenseList;
 	}
@@ -165,12 +173,47 @@ public class MemResumeVO {
 	public void setProfilesList(List<ProfilesVO> profilesList) {
 		this.profilesList = profilesList;
 	}
-	
 	public String getMemEmail() {
 		return memEmail;
 	}
 	public void setMemEmail(String memEmail) {
 		this.memEmail = memEmail;
+	}
+	public int getComMypageNum() {
+		return comMypageNum;
+	}
+	public void setComMypageNum(int comMypageNum) {
+		this.comMypageNum = comMypageNum;
+	}
+	public int getComNum() {
+		return comNum;
+	}
+	public void setComNum(int comNum) {
+		this.comNum = comNum;
+	}
+	public int getAnnounceNum() {
+		return announceNum;
+	}
+	public void setAnnounceNum(int announceNum) {
+		this.announceNum = announceNum;
+	}
+	public String getResumeResult() {
+		return resumeResult;
+	}
+	public void setResumeResult(String resumeResult) {
+		this.resumeResult = resumeResult;
+	}
+	public int getYnN() {
+		return ynN;
+	}
+	public void setYnN(int ynN) {
+		this.ynN = ynN;
+	}
+	public MemInfoVO getMemInfoVO() {
+		return memInfoVO;
+	}
+	public void setMemInfoVO(MemInfoVO memInfoVO) {
+		this.memInfoVO = memInfoVO;
 	}
 	@Override
 	public String toString() {
@@ -180,9 +223,8 @@ public class MemResumeVO {
 				+ ", eduScore=" + eduScore + ", eduIsOver=" + eduIsOver + ", beCompany=" + beCompany + ", beCareer="
 				+ beCareer + ", beType=" + beType + ", bePosition=" + bePosition + ", hopeType=" + hopeType
 				+ ", hopeSal=" + hopeSal + ", hopeLoc=" + hopeLoc + ", hopeTime=" + hopeTime + ", memEmail=" + memEmail
-				+ ", licenseList=" + licenseList + ", profilesList=" + profilesList + "]";
+				+ ", licenseList=" + licenseList + ", profilesList=" + profilesList + ", comMypageNum=" + comMypageNum
+				+ ", comNum=" + comNum + ", announceNum=" + announceNum + ", resumeResult=" + resumeResult
+				+ ", memInfoVO=" + memInfoVO + ", ynN=" + ynN + "]";
 	}
-	
-	
-	
 }

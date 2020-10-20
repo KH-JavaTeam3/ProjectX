@@ -1,20 +1,28 @@
 package com.spring.view;
 
+
+import java.util.Calendar;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import javax.annotation.Resource;
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.spring.biz.service.CommonService;
-import com.spring.biz.util.GetSession;
+import com.spring.biz.util.TimeUtil;
 import com.spring.biz.vo.CompanyInfoVO;
+import com.spring.biz.vo.ForRecruitVO;
 import com.spring.biz.vo.MemInfoVO;
-import com.spring.biz.vo.MemResumeVO;
 import com.spring.biz.vo.RecruitListVO;
 import com.spring.biz.vo.SearchVO;
 
@@ -28,20 +36,53 @@ public class CommonController {
 	//경로는 tiles/common/파일명
 	//jsp는 tiles/common폴더안에 생성
 	
-	private final static Logger logger = LoggerFactory.getLogger(CommonController.class);
+//	private final static Logger logger = LoggerFactory.getLogger(CommonController.class);
 	//로그 생성
 	
 	//메인화면
 	@RequestMapping(value = "/main.do")
-	public String Main() {
-		logger.info("메인화면 이동");
+	public String Main(HttpSession session, MemInfoVO memInfoVO, String toDay, @CookieValue(value="loginCookie", required = false) String loginCookie) {
+		//해당날짜를 받아서 모집기간이 지난 공고를 자동으로 업데이트 하는 작업.
+				Calendar cal = Calendar.getInstance();
+				System.out.println(cal);
+				TimeUtil.getNowDateTime(); // 시간 가져오는 클래스
+				int year = cal.get(Calendar.YEAR);
+				int month = cal.get(Calendar.MONTH) + 1;
+				int day = cal.get(Calendar.DAY_OF_MONTH);
+				toDay = year + "-" + month + "-" + day;
+				
+				List<RecruitListVO> list = commonService.selectOldList(toDay);
+				for(int i = 0; i < list.size(); i++) {
+					int a = list.get(i).getAnnounceNum();
+					commonService.oldListUpdate(a);
+				}
+		if(loginCookie != null) {
+			
+			//자동로그인을 한 개인 조회
+			MemInfoVO findMember = commonService.findMember(loginCookie);
+			if(findMember != null) { // 있으면
+				MemInfoVO memberLogin = commonService.memberLogin(findMember); //로그인 쿼리
+				if(memberLogin != null) {// 로그인 정보가 있으면
+					memberLogin.setMemBirth(memberLogin.getMemBirth().substring(0, 10)); // 날짜 자르기
+					session.setAttribute("memLogin", memberLogin);  // 세션담기
+				}
+			}
+			//자동로그인을 한 기업 조회
+			CompanyInfoVO findComMember = commonService.findComMember(loginCookie);
+			if(findComMember != null) { // 있으면
+				CompanyInfoVO companyLogin = commonService.companyLogin(findComMember); //기업 로그인 쿼리
+				if(companyLogin != null) { // 로그인 정보 있으면
+					session.setAttribute("comLogin", companyLogin); //세션담기
+					return "tiles/company/main2";
+				}
+			}
+		}
 		return "tiles/common/main";
 	}
 	
 	//개인 회원가입 화면
 	@RequestMapping(value = "/memberJoin.do")
 	public String join() {
-		logger.info("개인 회원가입 화면 ");
 		return "join/memberJoin";
 	}
 	//개인 회원가입 이메일 중복 체크
@@ -76,16 +117,26 @@ public class CommonController {
 	}
 	//개인 로그인
 	@RequestMapping(value = "/memberLogin.do")
-	public String memberLogin(MemInfoVO memInfoVO, HttpSession session) {
+	public String memberLogin(MemInfoVO memInfoVO, String keepLogin, HttpSession session, HttpServletResponse response) {
 		MemInfoVO vo = commonService.memberLogin(memInfoVO);
-		vo.setMemBirth(vo.getMemBirth().substring(0, 10));
 		if(vo != null) {
+			vo.setMemBirth(vo.getMemBirth().substring(0, 10));
 			session.setAttribute("memLogin", vo);
-			if(vo.getMemEmail().equals("admin@admin")) {
-				return "tiles/admin/adminPage";
+			
+			//자동 로그인
+			if(keepLogin != null) {
+				Cookie loginCookie = new Cookie("loginCookie", session.getId());//자동로그인 체크시 쿠키 생성
+				loginCookie.setMaxAge(60*60*24*3);//쿠키의 유지시간 설정(60초 * 60분 * 24시간) = 하루
+				response.addCookie(loginCookie); //쿠키 등록
+				Map<String, String> map = new HashMap<>(); //매퍼에 객체 한개던지려고 Map 만듬
+				map.put("setId", session.getId());
+				map.put("memEmail", vo.getMemEmail());
+				commonService.updateCookie(map);//DB에 자동로그인정보 저장
 			}
+			return "result/mLoginSuccess";
+		}else {
+			return "result/mLoginFail";
 		}
-		return "tiles/common/main";
 	}
 	//기업 로그인 화면
 	@RequestMapping(value = "/companyLoginForm.do")
@@ -93,28 +144,47 @@ public class CommonController {
 		return "login/companyLogin";
 	}
 	//기업 로고 클릭시
-		@RequestMapping(value = "/comLogin.do")
-		public String comLogin() {
-			return "tiles/company/main2";
-		}
+	@RequestMapping(value = "/comLogin.do")
+	public String comLogin() {
+		return "tiles/company/main2";
+	}
 	//기업 로그인
 	@RequestMapping(value = "/companyLogin.do")
-	public String companyLogin(CompanyInfoVO companyInfoVO, HttpSession session) {
+	public String companyLogin(CompanyInfoVO companyInfoVO, String keepLogin, HttpSession session, HttpServletResponse response) {
 		CompanyInfoVO vo = commonService.companyLogin(companyInfoVO);
-		System.out.println(vo);
 		if(vo != null) {
 			session.setAttribute("comLogin", vo);
+			if(keepLogin != null) {
+				Cookie loginCookie = new Cookie("loginCookie", session.getId());//자동로그인 체크시 쿠키 생성
+				loginCookie.setMaxAge(60*60*24);//쿠키의 유지시간 설정(60초 * 60분 * 24시간) = 하루
+				response.addCookie(loginCookie); //쿠키 등록
+				Map<String, String> map = new HashMap<>(); //매퍼에 객체 한개던지려고 Map 만듬
+				map.put("setId", session.getId());
+				map.put("comNum", vo.getComNum());
+				commonService.updateComCookie(map);//DB에 자동로그인정보 저장
+			}
+			
+			
 			return "tiles/company/main2";
 		}else {
 			return "tiles/common/main";
 		}
 	}
 	//로그아웃
+	@ResponseBody
 	@RequestMapping(value = "/logout.do")
-	public String logout(HttpSession session) {
+	public String logout(HttpSession session, HttpServletRequest request, HttpServletResponse response) {
 		session.removeAttribute("memLogin");
 		session.removeAttribute("comLogin");
-		return "redirect:main.do";
+		Cookie[] getCookie = request.getCookies();
+		if(getCookie != null) {
+			for(Cookie cookie : getCookie) {
+				cookie.setMaxAge(0);
+				response.addCookie(cookie);
+			}
+		}
+
+		return "로그아웃";
 	}
 	
 	
@@ -134,7 +204,7 @@ public class CommonController {
 	//기업리스트 상세보기
 	@RequestMapping(value = "/companyDetail.do")
 	public String companyDetail(RecruitListVO recruitListVO, Model model) {
-
+		commonService.updateViews(recruitListVO.getAnnounceNum());
 		model.addAttribute("recruitDeteil",commonService.selectDetailRecruit(recruitListVO));
 		
 		return "tiles/common/companyDetail";
@@ -142,33 +212,14 @@ public class CommonController {
 	
 	//기업 이력서 넣기
 	@RequestMapping(value = "/resumeApp.do")
-	public String resumeApp(int resumeNum, int comNum) {
-		System.out.println(resumeNum);
-		System.out.println(comNum);
-		
-		return "tiles/common/";
+	public String resumeApp(ForRecruitVO forRecruitVO) {
+		Map<String, Object> map = new HashMap<>();
+		map.put("comNum", forRecruitVO.getComNum());
+		map.put("announceNum",forRecruitVO.getAnnounceNum());
+		map.put("resumeNum",forRecruitVO.getResumeNum());
+		commonService.insertComMypage(map);
+		return "tiles/common/main";
 	}
-//	@RequestMapping(value = "/cover.do")
-//	public String cover() {
-//		return "sample/cover";
-//	}
-//	
-//	@RequestMapping(value = "/carousel.do")
-//	public String carousel() {
-//		return "sample/carousel";
-//	}
-//	
-//	@RequestMapping(value = "/dashBoard.do")
-//	public String dashBoard() {
-//		return "sample/dashBoard";
-//	}
-//	
-//	@RequestMapping(value = "/startBootstrap.do")
-//	public String startBootstrap() {
-//		return "sample/startBootstrap";
-//	}
-	
-	
 }
 
 

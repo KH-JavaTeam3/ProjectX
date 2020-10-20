@@ -2,7 +2,7 @@ package com.spring.biz.util;
 
 import java.util.Calendar;
 
-public class Time {
+public class TimeUtil {
 	//현재 날짜시분초 메소드
 	public static String getNowDateTime(){
 		Calendar cal = Calendar.getInstance();

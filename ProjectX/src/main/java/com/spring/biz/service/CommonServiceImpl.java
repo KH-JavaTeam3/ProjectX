@@ -1,13 +1,12 @@
 package com.spring.biz.service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.ui.Model;
 
-import com.spring.biz.vo.AdminNoticeVO;
 import com.spring.biz.vo.CompanyInfoVO;
 import com.spring.biz.vo.MemInfoVO;
 import com.spring.biz.vo.RecruitListVO;
@@ -30,49 +29,58 @@ public class CommonServiceImpl implements CommonService{
 	public MemInfoVO memberLogin(MemInfoVO memInfoVO) {
 		return sqlSession.selectOne("memberLogin", memInfoVO);
 	}
-
+	@Override
+	public MemInfoVO findMember(String getId) {
+		return sqlSession.selectOne("findMember", getId);
+	}
+	@Override
+	public void updateCookie(Map<String, String> map) {
+		sqlSession.update("updateCookie", map);
+	}
 	@Override
 	public int memUpdate(MemInfoVO memInfoVO) {
 		return sqlSession.update("memUpdate", memInfoVO);
 	}
-
 	@Override
 	public int insertCompanyInfo(CompanyInfoVO companyInfoVO) {
 		return sqlSession.insert("insertCompanyInfo", companyInfoVO);
 	}
-
 	@Override
 	public CompanyInfoVO companyLogin(CompanyInfoVO companyInfoVO) {
 		return sqlSession.selectOne("companyLogin", companyInfoVO);
 	}
 	@Override
-	public int insertNotice(AdminNoticeVO adminNoticeVO) {
-		
-		return sqlSession.insert("insertNotice",adminNoticeVO);
+	public void updateComCookie(Map<String, String> map) {
+		sqlSession.update("updateComCookie", map);
 	}
-
 	@Override
-	public List<AdminNoticeVO> selectNotice() {
-		
-		return sqlSession.selectList("selectNotice");
+	public CompanyInfoVO findComMember(String getId) {
+		return sqlSession.selectOne("findComMember", getId);
 	}
-
-	@Override
-	public AdminNoticeVO selectDetailNotice(int boardNumber) {
-	
-		return sqlSession.selectOne("selectDetailNotice",boardNumber);
-	}
-
 	@Override
 	public List<RecruitListVO> selectRecruitList(SearchVO searchVO) {
-		
 		return sqlSession.selectList("selectRecruitList",searchVO);
 	}
-
 	@Override
 	public RecruitListVO selectDetailRecruit(RecruitListVO recruitListVO) {
-		
 		return sqlSession.selectOne("selectDetailRecruit",recruitListVO);
+	}
+	@Override
+	public void updateViews(int announceNum) {
+		sqlSession.update("updateViews", announceNum);
+		
+	}
+	@Override
+	public List<RecruitListVO> selectOldList(String toDay) {
+		return sqlSession.selectList("selectOldList", toDay);
+	}
+	@Override
+	public int oldListUpdate(int i) {
+		return sqlSession.update("oldListUpdate", i);
+	}
+	@Override
+	public int insertComMypage(Map<String, Object> map) {
+		return sqlSession.insert("insertComMypage", map);
 	}
 
 	

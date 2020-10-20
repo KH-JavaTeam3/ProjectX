@@ -24,52 +24,51 @@
 	
 	
 	<resultMap type="com.spring.biz.vo.CompanyInfoVO" id="companyInfo">
-	<result column="COM_NUM"           		property="comNum"/> 
-	<result column="COM_PASS"      	     	property="comPass"/> 
-	<result column="COM_EMAIL"        		property="comEmail"/> 
-	<result column="COM_NAME"         	  	property="comName"/> 
-	<result column="COM_CEO"        		property="comCeo"/> 
-	<result column="COM_LOC"        	 	property="comLoc"/> 
-	<result column="COM_TYPE"           	property="comType"/> 
-	<result column="COM_TEL"           		property="comTel"/> 
-	<result column="COM_JOIN_DATE"         property="comJoinDate"/> 
-	<result column="COM_AVG_SCORE"         property="comAvgScore"/> 
-	<result column="COM_GIVE_PERSON"       property="comGivePerson"/> 
-	<result column="COM_SCORE"           	property="comScore"/> 
-	<result column="COM_IMAGE"           	property="comImage"/> 
+		<result column="COM_NUM"           		property="comNum"/> 
+		<result column="COM_PASS"      	     	property="comPass"/> 
+		<result column="COM_EMAIL"        		property="comEmail"/> 
+		<result column="COM_NAME"         	  	property="comName"/> 
+		<result column="COM_CEO"        		property="comCeo"/> 
+		<result column="COM_LOC"        	 	property="comLoc"/> 
+		<result column="COM_TYPE"           	property="comType"/> 
+		<result column="COM_TEL"           		property="comTel"/> 
+		<result column="COM_JOIN_DATE"         property="comJoinDate"/> 
+		<result column="COM_AVG_SCORE"         property="comAvgScore"/> 
+		<result column="COM_GIVE_PERSON"       property="comGivePerson"/> 
+		<result column="COM_SCORE"           	property="comScore"/> 
+		<result column="COM_IMAGE"           	property="comImage"/> 
 	</resultMap>
 
 	<resultMap type="com.spring.biz.vo.RecruitListVO" id="recruitlist">
-		<result column="ANNOUNCE_NUM" property="announceNum" />
-		<result column="ANNOUNCE_TITLE" property="announceTitle" />
-		<result column="ANNOUNCE_CONTENT" property="announceContent" />
-		<result column="WRITE_DATE" property="writeDate" />
-		<result column="UPTO_HIREDATE" property="uptoHiredate" />
-		<result column="HIRE_NUM" property="hireNum" />
-		<result column="COM_NUM" property="comNum" />
-		<result column="JOBTYPE" property="jobtype" />
-		<result column="COM_NAME" property="comName" />
-		<result column="WORKTIME" property="worktime" />
-		<result column="WORK_TYPE" property="workType" />
-		<result column="ANNI_SAL" property="anniSal" />
-		<result column="QUALIFICATION" property="qualification" />
-		<result column="HIRE_CONDITION" property="hireCondition" />
-		<result column="REGIST_IMAGE" property="registImage" />
-		<result column="BENEFIT" property="benefit" />
-		<result column="CAREER" property="career" />
-		<result column="ACADEMIC_BACKGROUND" property="academicBackground" />
-		<result column="AREA" property="area" />
-		<result column="CORPORATE_NAME" property="corporateName" />
-	
+		<result column="ANNOUNCE_NUM" 			property="announceNum" />
+		<result column="ANNOUNCE_TITLE" 		property="announceTitle" />
+		<result column="ANNOUNCE_CONTENT" 		property="announceContent" />
+		<result column="WRITE_DATE" 			property="writeDate" />
+		<result column="UPTO_HIREDATE" 			property="uptoHiredate" />
+		<result column="HIRE_NUM" 				property="hireNum" />
+		<result column="COM_NUM" 				property="comNum" />
+		<result column="JOBTYPE" 				property="jobtype" />
+		<result column="COM_NAME" 				property="comName" />
+		<result column="WORKTIME" 				property="worktime" />
+		<result column="WORK_TYPE" 				property="workType" />
+		<result column="ANNI_SAL" 				property="anniSal" />
+		<result column="QUALIFICATION" 			property="qualification" />
+		<result column="HIRE_CONDITION" 		property="hireCondition" />
+		<result column="REGIST_IMAGE" 			property="registImage" />
+		<result column="BENEFIT" 				property="benefit" />
+		<result column="CAREER" 				property="career" />
+		<result column="ACADEMIC_BACKGROUND" 	property="academicBackground" />
+		<result column="AREA" 					property="area" />
+		<result column="CORPORATE_NAME" 		property="corporateName" />
 	</resultMap>
 	
-	<resultMap type="com.spring.biz.vo.AdminNoticeVO" id="adminNotice">
-		<result column="BOARD_NUMBER"            property="boardNumber"/> 
-		<result column="BOARD_TITLE"      	      property="boardTitle"/> 
-		<result column="BOARD_CONTENT"        	  property="boardContent"/> 
-		<result column="TODAY_DATE"         	  property="todayDate"/> 
+	<resultMap type="com.spring.biz.vo.ForRecruitVO" id="forRecruit">
+		<result column="COM_NUM"            	  property="comNum"/> 
+		<result column="ANNOUNCE_NUM"      	      property="announceNum"/> 
+		<result column="COM_MYPAGE_NUM"        	  property="comMypageNum"/> 
+		<result column="RESUME_NUM"         	  property="resumeNum"/> 
+		<result column="RESUME_RESULT"         	  property="resumeResult"/> 
 	</resultMap>
-	
 	
 	
 <!-- 	개인 회원가입 -->
@@ -123,12 +122,10 @@
 			, #{comType}
 			, #{comTel}
 		)
-		
 	</insert>
 	
 	
-
-<!-- 	개인 로그인 -->
+	<!-- 개인 로그인 -->
 	<select id="memberLogin" resultMap="memInfo"> 
 		SELECT
 		    MEM_EMAIL
@@ -147,10 +144,25 @@
 		 AND MEM_PASS = #{memPass}
 	</select>
 
-<!-- 	개인 정보 수정 -->
+	<!-- 자동로그인용 개인 조회 -->
+	<select id="findMember" resultMap="memInfo">
+		SELECT
+		    MEM_EMAIL
+		    ,MEM_PASS
+		FROM MEM_INFO WHERE SESSION_ID = #{getId}
+	</select>
+
+	<!-- 자동로그인용 쿠키 업데이트 -->
+	<update id="updateCookie">
+		UPDATE	MEM_INFO
+		SET SESSION_ID = #{setId}
+		WHERE MEM_EMAIL = #{memEmail}
+	</update>
+
+	<!-- 	개인 정보 수정 -->
 	<update id="memUpdate">
-		UPDATE MEM_INFO SET 
-		    MEM_PASS = #{memPass}
+		UPDATE MEM_INFO 
+		SET MEM_PASS = #{memPass}
 		    ,MEM_NAME = #{memName}
 		    ,MEM_GENDER = #{memGender}
 		    ,MEM_BIRTH = #{memBirth}
@@ -183,6 +195,22 @@
 		AND COM_PASS = #{comPass}
 	</select>
 
+<!-- 	기업 자동로그인 쿠키 업데이트 -->
+	<update id="updateComCookie">
+		UPDATE COMPANY_INFO
+		SET COM_SESSION_ID = #{setId}
+		WHERE COM_NUM = #{comNum}
+	</update>
+
+<!-- 자동로그인용 기업 조회 -->
+	<select id="findComMember" resultMap="companyInfo">
+		SELECT COM_NUM
+			, COM_PASS
+		FROM COMPANY_INFO 
+		WHERE COM_SESSION_ID = #{getId}
+	</select>
+
+<!-- 	채용공고 상세 보기 -->
 	<select id="selectDetailRecruit" resultMap="recruitlist">
 	SELECT
 	ANNOUNCE_NUM
@@ -207,9 +235,15 @@
 	AND R.COM_NUM = #{comNum}
 	AND ANNOUNCE_NUM = #{announceNum}
 	</select>
+	
+<!-- 	채용공고 조회수 증가 -->
+	<update id="updateViews">
+		UPDATE RECRUIT_LIST
+		SET RECRUIT_VIEWS = (SELECT (MAX(RECRUIT_VIEWS) +1) FROM RECRUIT_LIST)
+		WHERE ANNOUNCE_NUM = #{announceNum}
+	</update>
 
 <!-- 검색기능 -->
-
 	 <select id="selectRecruitList" resultMap="recruitlist">		
 		SELECT
 			ANNOUNCE_NUM
@@ -274,29 +308,35 @@
 		AND (AREA = #{search2}
 		OR JOBTYPE =#{search3})					
 		</if>  
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
 	</select> 
+	
+	<!-- 실행시 날짜가 지난 공고목록 조회 -->
+<select id="selectOldList" resultMap="recruitlist">
+SELECT ANNOUNCE_NUM 
+FROM RECRUIT_LIST
+WHERE UPTO_HIREDATE &lt; #{toDay}
+</select>
 
+<!-- 날짜가 지난 공고 업데이트 -->
+<update id="oldListUpdate">
+UPDATE RECRUIT_LIST SET HIRE_CONDITION = 'N'
+WHERE ANNOUNCE_NUM = #{announceNum}
+</update>
 
-
-
-
-
-
+<!-- 이력서 지원 넣기 -->
+<insert id="insertComMypage">
+INSERT INTO COM_MYPAGE(
+    COM_MYPAGE_NUM
+    ,COM_NUM
+    ,ANNOUNCE_NUM
+    ,RESUME_NUM
+) VALUES(
+    (SELECT NVL(MAX(COM_MYPAGE_NUM)+1,1) FROM COM_MYPAGE)
+    ,#{comNum}
+    ,#{announceNum}
+    ,#{resumeNum}
+)
+</insert>
 
 	<!-- 총 게시글 갯수 출력 -->
 <!-- <select id="countBoard" resultType="int"> -->
@@ -316,7 +356,4 @@
 <!-- 	) -->
 <!-- 	WHERE RN BETWEEN #{start} AND #{end} -->
 <!-- </select> -->
-
-
-
 </mapper>

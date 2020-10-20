@@ -6,8 +6,8 @@
 <head>
 <meta charset="UTF-8">
 <title><tiles:insertAttribute name="title" /></title>
-<link rel="stylesheet" type="text/css"
-	href="resources/css/reset.css?ver=2" />
+<link rel="shortcut icon" href="resources/images/favicon.ico" type="image/x-icon">
+<link rel="stylesheet" type="text/css" href="resources/css/reset.css?ver=2" />
 <!-- 옛날 부트스트랩 CSS -->
 <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css"> -->
 <!-- 옛날 부트스트랩 CSS 테마 -->

@@ -20,7 +20,8 @@
 @font-face { font-family: 'MyLotteBold'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.0/MyLotteBold.woff') format('woff'); font-weight: normal; font-style: normal; }
 input[type="button"] {
    position: relative;
-   left: 527px;
+   left: 484px;
+   margin-bottom: 5px;
 }
 </style>
 </head>
@@ -37,6 +38,9 @@ input[type="button"] {
   </li>
   <li class="nav-item" role="presentation">
     <a class="nav-link" href="recruitDeleteList.co">공고 삭제 및 수정</a>
+  </li>
+  <li class="nav-item" role="presentation">
+    <a class="nav-link" href="resumeInquiry.co">지원받은 이력서 조회</a>
   </li>
 </ul>
 </div>

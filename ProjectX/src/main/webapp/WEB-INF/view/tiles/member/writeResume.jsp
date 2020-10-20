@@ -5,14 +5,10 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Insert title here</title>
-<link rel="stylesheet" href="resources/css/writeResume.css">
-<style type="text/css">
-#preview{
-	width: 162px;
-	height: 231px;
-}
-</style>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<link rel="stylesheet" href="resources/css/writeResume.css?ver=2">
 </head>
 <body>
 <form action="regResume.me" method="post" >
@@ -21,7 +17,7 @@
 	<input type="text" name="resumeName" style="font-size: 35px; font-weight: bold;" placeholder="제목을 입력해주세요.">
 	<div style="height: 20px;"></div>
 	<!-- 개인_기본정보 -->
-	<span style="font-weight: bold; font-size: 24px;">개인 정보</span><input type="button" class="btn btn-primary" onClick="location.href='memUpdateForm.me';" value="개인정보수정" style="background: #ABC2E8; border-color: #ABC2E8;" />
+	<span style="font-weight: bold; font-size: 24px;">개인 정보</span><input type="button" class="btn btn-primary" onClick="location.href='memUpdateForm.me';" value="개인정보수정" style="background: #ABC2E8; border-color: #ABC2E8; margin-bottom: 5px;"/>
 	<div class="row col-md-12" style="border: 5px solid #ABC2E8; border-radius: 10px;">
 		<div class="col-md-9">
 			<div class="form-row">
@@ -67,7 +63,7 @@
 						<div class="form-group files uploader offset-md-5">
 							<label for="memImage">사진</label>
 							<input type="file" class="form-control"  id="memImage" name="memImage" disabled>
-							<img id="preview" src="resources/images/memberProfile/${sessionScope.memLogin.memImage }">
+							<img id="preview" src="resources/images/memberProfile/${sessionScope.memLogin.memImage }" onerror="this.src='resources/images/profile.png'">
 						</div>
 					</div>
 				</div>
@@ -96,49 +92,43 @@
 				</div>
 				<div class="form-group col-md-6">
 					<label for="eduLoc">지역</label>
-					<input type="button" class="btn btn-primary" onClick="openDaumZipAddress2();" value="주소찾기" style="background: #ABC2E8; border-color: #ABC2E8;" />
+					<input type="button" class="btn btn-primary" id="openAddr" value="주소찾기" style="background: #ABC2E8; border-color: #ABC2E8;" />
 					<input type="text" class="form-control" id="eduLoc" name="eduLoc">
 				</div>
 				<div class="form-group col-md-6">
-					<div class="row">
-						<div class="col-md-9">
-							<label for="eduType">전공</label>
-							<div class="row">
-								<div class="col-md-5">
-									<select style="height: 35px;" id="eduType" name="eduType">
-										<option value="">전공계열 선택</option>
-										<option>어문계열</option>
-										<option>인문과학계열</option>
-										<option>사회과학계열</option>
-										<option>예/체능계열</option>
-										<option>공학계열</option>
-										<option>정보통신계열</option>
-										<option>의학계열</option>
-									</select>
-								</div>
-								<div class="col-md-6">
-									<input type="text" class="form-control" id="eduMajor" name="eduMajor" placeholder="전공학과">
-								</div>
+					<label for="eduType" style="padding: 5px;">전공</label> 
+						<div class="form-group row col-md-12">
+							<div class="col-md-4" style="padding: 0px;">
+								<select style="height: 35px; width: 100%;" id="eduType" name="eduType" class="form-control">
+									<option value="">전공계열 선택</option>
+									<option>어문계열</option>
+									<option>인문과학계열</option>
+									<option>사회과학계열</option>
+									<option>예/체능계열</option>
+									<option>공학계열</option>
+									<option>정보통신계열</option>
+									<option>의학계열</option>
+								</select>
 							</div>
-						</div>
-						<div class="col-md-3">
-							<label for="eduScore">학점</label>
-					  		<input type="number" class="form-control" id="eduScore" name="eduScore" max="4.5" min="0" step="0.1">
-						</div>
-												
-												
+							<div class="col-md-4">
+								<input type="text" class="form-control" id="eduMajor" name="eduMajor" placeholder="전공학과" style="width: 100%;">
+							</div>
+							<div class="col-md-4">
+								<input type="number" class="form-control" id="eduScore" name="eduScore" max="4.5" min="0" step="0.01" placeholder="학점" style="width: 100%;">
+							</div>
+						</div>	
 					</div>
 				</div>
 				<div class="form-group col-md-6">
 					<label for="eduBeginDate">입학일</label>
-					<input type="date" class="form-control" id="eduBeginDate" name="eduBeginDate">
+					<input type="text" class="form-control" id="eduBeginDate" name="eduBeginDate" autocomplete="off">
 				</div>
 				<div class="form-group col-md-6">
 					<label for="eduEndDate">졸업일</label>
 					<div class="row col-md-12">
-						<input type="date" class="form-control col-md-11" id="eduEndDate" name="eduEndDate">
+						<input type="text" class="form-control col-md-11" id="eduEndDate" name="eduEndDate" autocomplete="off">
 						<div class="col-md-1" style="padding:2px;">
-							<select style="height: 40px;" id="eduIsOver" name="eduIsOver">
+							<select class="form-control" style="height: 40px;" id="eduIsOver" name="eduIsOver" >
 					  			<option value="">선택하세요</option>
 					  			<option>졸업예정</option>
 					  			<option>졸업</option>
@@ -158,7 +148,6 @@
 	<svg width="40px" height="40px" viewBox="0 0 16 16" class="bi bi-plus offset-md-11" fill="currentColor" xmlns="http://www.w3.org/2000/svg" id="addCertifi">
 	  <path fill-rule="evenodd" d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
 	</svg>
-<!-- <input type="button" value="버튼" id="addBtn"> -->
 	<div class="row col-md-12" style="border: 5px solid #ABC2E8; border-radius: 10px;">
 		<div class="col-md-12" id="licenseDiv">
 			<div class="form-row">
@@ -177,7 +166,7 @@
 			  </div>
 			  <div class="form-group col-md-12">
 				  <label for="licDate">취득일</label>
-				  <input type="date" class="form-control" id="licDate" name="licDate"> <!-- 예전에 했던 toDate 적용 -->
+				  <input type="text" class="form-control licDate" id="licDate" name="licDate"> <!-- 예전에 했던 toDate 적용 -->
 			  </div>
 			</div>
 		</div>
@@ -189,7 +178,6 @@
 	<svg width="40px" height="40px" viewBox="0 0 16 16" class="bi bi-plus offset-md-10" fill="currentColor" xmlns="http://www.w3.org/2000/svg" id="addProfile">
 	  <path fill-rule="evenodd" d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
 	</svg>
-<!-- <input type="button" value="버튼" id="addBtn"> -->
 	<div class="row col-md-12" style="border: 5px solid #ABC2E8; border-radius: 10px;">
 		<div class="col-md-12" id="profileDiv">
 		   <div class="form-group col-md-12">
@@ -215,11 +203,23 @@
 		   </div>
 		   <div class="form-group col-md-6">
 		     <label for="beCareer">경력</label>
-		     <input type="number" class="form-control" id="beCareer" name="beCareer">년
+		     <input type="number" class="form-control" id="beCareer" name="beCareer" value="0" min="0">년
 		   </div>
 		   <div class="form-group col-md-6">
-		     <label for="beType">직종</label>
-		     <input type="text" class="form-control" id="beType" name="beType">
+				<label for="beType">직종</label>
+				<select class="form-control" style="height: 40px;" id="beType" name="beType">
+		  			<option value="">선택하세요</option>
+		  			<option>경영.사무</option>
+		  			<option>영업.고객상담</option>
+		  			<option>IT.인터넷</option>
+		  			<option>디자인</option>
+		  			<option>서비스</option>
+		  			<option>전문직</option>
+		  			<option>의료</option>
+		  			<option>건설</option>
+		  			<option>교육</option>
+		  			<option>생산.제조</option>
+				</select>
 		   </div>
 		   <div class="form-group col-md-6">
 		     <label for="bePosition">직책</label>
@@ -237,7 +237,19 @@
 			<div class="form-row">
 				<div class="form-group col-md-6">
 					<label for="hopeType">희망 직종</label>
-					<input type="text" class="form-control" id="hopeType" name="hopeType">
+					<select class="form-control" style="height: 40px;" id="hopeType" name="hopeType">
+			  			<option value="">선택하세요</option>
+			  			<option>경영.사무</option>
+			  			<option>영업.고객상담</option>
+			  			<option>IT.인터넷</option>
+			  			<option>디자인</option>
+			  			<option>서비스</option>
+			  			<option>전문직</option>
+			  			<option>의료</option>
+			  			<option>건설</option>
+			  			<option>교육</option>
+			  			<option>생산.제조</option>
+					</select>
 				</div>
 				<div class="form-group col-md-6">
 					<label for="hopeSal">희망 연봉(단위: 만원)</label>
@@ -264,25 +276,8 @@
 	</div>
 </form>	
 
-<script type="text/JavaScript"    src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
-<script type="text/javascript">
-   function openDaumZipAddress() {
-      new daum.Postcode({
-         oncomplete : function(data) {
-        	 jQuery("#address").val(data.address);
-				jQuery("#address").focus();
-         }
-      }).open();
-   }
-   function openDaumZipAddress2() {
-      new daum.Postcode({
-         oncomplete : function(data) {
-        	 jQuery("#eduLoc").val(data.address);
-				jQuery("#eduLoc").focus();
-         }
-      }).open();
-   }
-</script>
+<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script src="resources/js/writeResume.js?ver=4"></script>
 </body>
 </html>

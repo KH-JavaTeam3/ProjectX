@@ -112,6 +112,12 @@
 	  	<param-value>log4j.xml</param-value>
 	</context-param>
 	
+	<!-- 세션 시간 정하기(분 단위) -->
+	<session-config>
+    	<session-timeout>120</session-timeout>
+	</session-config>
+	
+	
 </web-app>
 
 

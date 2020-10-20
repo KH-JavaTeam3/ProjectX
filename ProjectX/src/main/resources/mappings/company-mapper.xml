@@ -39,13 +39,6 @@
 	<result column="COM_IMAGE"           	property="comImage"/> 
 	</resultMap>
 	
-	<resultMap type="com.spring.biz.vo.AdminNoticeVO" id="adminNotice">
-		<result column="BOARD_NUMBER"            property="boardNumber"/> 
-		<result column="BOARD_TITLE"      	      property="boardTitle"/> 
-		<result column="BOARD_CONTENT"        	  property="boardContent"/> 
-		<result column="TODAY_DATE"         	  property="todayDate"/> 
-	</resultMap>
-	
 	<resultMap type="com.spring.biz.vo.RecruitListVO" id="recruitlist">
 		<result column="ANNOUNCE_NUM"            property="announceNum"/> 
 		<result column="ANNOUNCE_TITLE"          property="announceTitle"/> 
@@ -67,6 +60,47 @@
 		<result column="ACADEMIC_BACKGROUND"     property="academicBackground"/> 
 		<result column="AREA"         	 	  	  property="area"/> 
 	</resultMap>
+	<resultMap type="com.spring.biz.vo.ForRecruitVO" id="forRecruit">
+		<result column="COM_NUM"            	  property="comNum"/> 
+		<result column="PRO_NUM"            	  property="proNum"/> 
+		<result column="PRO_TITLE"            	  property="proTitle"/> 
+		<result column="PRO_CONTENT"            	  property="proContent"/> 
+		<result column="ANNOUNCE_NUM"      	      property="announceNum"/> 
+		<result column="COM_MYPAGE_NUM"        	  property="comMypageNum"/> 
+		<result column="RESUME_NUM"         	  property="resumeNum"/> 
+		<result column="RESUME_RESULT"         	  property="resumeResult"/> 
+		<result column="COM_NAME"         	  property="comName"/> 
+	</resultMap>
+	
+	<resultMap type="com.spring.biz.vo.MemResumeVO" id="memResume">
+		<result column="RESUME_NUM"            property="resumeNum"/> 
+		<result column="RESUME_NAME"      	    property="resumeName"/> 
+		<result column="RESUME_DATE"        	property="resumeDate"/> 
+		<result column="EDU_GRADE"         	  	property="eduGrade"/> 
+		<result column="EDU_SCHOOL"         	property="eduSchool"/> 
+		<result column="EDU_LOC"         	 	property="eduLoc"/> 
+		<result column="EDU_TYPE"         	  	property="eduType"/> 
+		<result column="EDU_MAJOR"         	  	property="eduMajor"/> 
+		<result column="EDU_BEGIN_DATE"        property="eduBeginDate"/> 
+		<result column="EDU_END_DATE"         	property="eduEndDate"/> 
+		<result column="EDU_IS_OVER"         	property="eduIsOver"/> 
+		<result column="BE_COMPANY"         	property="beCompany"/> 
+		<result column="BE_CAREER"         	  	property="beCareer"/> 
+		<result column="BE_TYPE"         	  	property="beType"/> 
+		<result column="BE_POSITION"         	property="bePosition"/> 
+		<result column="MEM_EMAIL"         	  	property="memEmail"/> 
+		<result column="HOPE_TYPE"         	  	property="hopeType"/> 
+		<result column="HOPE_SAL"         	  	property="hopeSal"/> 
+		<result column="HOPE_LOC"         	  	property="hopeLoc"/> 
+		<result column="HOPE_TIME"         	  	property="hopeTime"/> 
+		<result column="MEM_EMAIL"				property="memEmail"/>
+		<result column="COM_MYPAGE_NUM"			property="comMypageNum"/>
+		<result column="COM_NUM"				property="comNum"/>
+		<result column="ANNOUNCE_NUM"			property="announceNum"/>
+		<result column="RESUME_NUM"				property="resumeNum"/>
+		<result column="RESUME_RESULT"			property="resumeResult"/>
+	</resultMap>
+	
 	<!-- 공고 등록 -->
 	<insert id="registHumanSeeker">
 	INSERT INTO RECRUIT_LIST (
@@ -86,26 +120,26 @@
     ,CAREER
     ,ACADEMIC_BACKGROUND
     ,AREA
-)
-VALUES (
- (SELECT NVL(MAX(ANNOUNCE_NUM)+1,1) FROM RECRUIT_LIST)
- ,#{announceTitle}
- ,#{announceContent}
- ,#{uptoHiredate}
- ,#{hireNum}
- ,#{comNum}
- ,#{jobtype}
- ,#{worktime}
- ,#{workType}
- ,#{anniSal}
- ,#{qualification}
- ,#{benefit}
- ,#{registImage}
- ,#{career}
- ,#{academicBackground}
- ,#{area}
-)
+	)VALUES (
+	 (SELECT NVL(MAX(ANNOUNCE_NUM)+1,1) FROM RECRUIT_LIST)
+	 ,#{announceTitle}
+	 ,#{announceContent}
+	 ,#{uptoHiredate}
+	 ,#{hireNum}
+	 ,#{comNum}
+	 ,#{jobtype}
+	 ,#{worktime}
+	 ,#{workType}
+	 ,#{anniSal}
+	 ,#{qualification}
+	 ,#{benefit}
+	 ,#{registImage}
+	 ,#{career}
+	 ,#{academicBackground}
+	 ,#{area}
+	)
 	</insert>
+	
 <!-- 공고 리스트 -->
 <select id="recruitlist"  resultMap="recruitlist">
 	SELECT
@@ -127,6 +161,7 @@ VALUES (
 FROM RECRUIT_LIST
 WHERE COM_NUM = #{comNum}
 AND HIRE_CONDITION = 'Y'
+ORDER BY UPTO_HIREDATE DESC
 </select>
 <!-- 공고 상세보기 -->
 <select id="recruitDeteil"  resultMap="recruitlist">
@@ -189,16 +224,63 @@ WHERE ANNOUNCE_NUM IN
 	FROM COMPANY_INFO
 	WHERE COM_NUM = #{comNum}
 </select>
-<!-- 사업가 정보 수정 -->
-<update id="myComUpdate">
-UPDATE COMPANY_INFO SET
-	COM_EMAIL = #{comEmail}
-	,COM_NAME = #{comName}
-	,COM_CEO = #{comCeo}
-	,COM_LOC = #{comLoc}
-	,COM_TYPE = #{comType}
-	,COM_TEL = #{comTel}
-	,COM_IMAGE = #{comImage}
-WHERE COM_NUM = #{comNum}
-</update>
+	
+	<!-- 사업가 정보 수정 -->
+	<update id="myComUpdate">
+	UPDATE COMPANY_INFO SET
+		COM_EMAIL = #{comEmail}
+		,COM_NAME = #{comName}
+		,COM_CEO = #{comCeo}
+		,COM_LOC = #{comLoc}
+		,COM_TYPE = #{comType}
+		,COM_TEL = #{comTel}
+		,COM_IMAGE = #{comImage}
+	WHERE COM_NUM = #{comNum}
+	</update>
+	
+	<!-- 이력서 조회 -->
+	<select id="resumeInquiryList" resultMap="memResume">
+		SELECT
+		    COM_MYPAGE_NUM
+		    ,COM_NUM
+		    ,ANNOUNCE_NUM
+		    ,C.RESUME_NUM
+		    ,RESUME_NAME
+		    ,RESUME_DATE
+		    ,EDU_GRADE
+		    ,EDU_SCHOOL
+		    ,EDU_LOC
+		    ,EDU_TYPE
+		    ,EDU_MAJOR
+		    ,EDU_BEGIN_DATE
+		    ,EDU_END_DATE
+		    ,EDU_IS_OVER
+		    ,BE_CAREER
+		    ,BE_TYPE
+		    ,BE_POSITION
+		    ,HOPE_TYPE
+		    ,HOPE_SAL
+		    ,HOPE_TIME
+		    ,HOPE_LOC
+		    ,MEM_EMAIL
+		    ,RESUME_RESULT
+		    ,(SELECT COM_NAME FROM COMPANY_INFO WHERE COM_NUM = #{comNum}) AS COM_NAME
+		FROM COM_MYPAGE C, MEM_RESUME P
+		WHERE COM_NUM = #{comNum}
+		AND C.RESUME_NUM = P.RESUME_NUM
+		ORDER BY COM_MYPAGE_NUM
+	</select>
+	
+	<!-- 이력서 합격 불합격 -->
+	<update id="resumeResultUpdate">
+	UPDATE COM_MYPAGE SET
+	<if test="ynN == 1">
+	RESUME_RESULT = 'Y' 
+	</if> 
+	<if test="ynN == 0">
+	RESUME_RESULT = 'N' 
+	</if> 
+	WHERE COM_MYPAGE_NUM = #{comMypageNum}
+	</update>
+	
 </mapper>

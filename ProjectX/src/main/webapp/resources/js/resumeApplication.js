@@ -22,12 +22,18 @@ $(document).ready(function(){
 			alert('이력서는 하나만 지원 됩니다.');
 			return;
 		}
+		var resumeNum = 0;
 		//체크가된 노드 벨류값을 가져온다
 		$('.chk:checked').each(function(index, element) {
-			var resumeNum = $(element).val();
+			resumeNum = $(element).val();
 		})
+		console.log(resumeNum);
 		var comNum = $('.resumeAppcomNum').val();
-		location.href ='resumeApp.do?resumeNum='+resumeNum+'&comNum='+comNum;		
+		var announceNum = $('.resumeAppannounceNum').val();
+		alert(resumeNum);
+		alert(comNum);
+		alert(announceNum);
+		location.href ='resumeApp.do?resumeNum='+resumeNum+'&comNum='+comNum+'&announceNum='+announceNum;
 	});
 	//클릭 이벤트
 	//$(document).on('click', '선택자', function() {

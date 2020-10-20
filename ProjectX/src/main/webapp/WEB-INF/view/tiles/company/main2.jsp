@@ -31,7 +31,7 @@
 				<img class="main2Btn" alt="" src="resources/images/main2_A3.jpg" style="width: 100%; height: 100%;" onclick="location.href='comMypage.co'">
 			</div>
 			<div class="col-md-3" >
-				<img class="main2Btn" alt="" src="resources/images/main2_A4.jpg" style="width: 100%; height: 100%;" onclick="location.href='#'">
+				<img class="main2Btn" alt="" src="resources/images/main2_A4.jpg" style="width: 100%; height: 100%;" onclick="location.href='resumeInquiry.co'">
 			</div>
 	</div>
 	<script src="resources/js/main.js?ver=3"></script>

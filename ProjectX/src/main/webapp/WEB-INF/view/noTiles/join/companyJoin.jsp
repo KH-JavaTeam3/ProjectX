@@ -93,6 +93,5 @@ label.error {
 		return regexpr.test(value);
 	});
 </script>
-<!-- <script src="resources/js/join2.js?ver=5"></script> -->
 </body>
 </html>

@@ -2,9 +2,9 @@ package com.spring.biz.service;
 
 import java.util.List;
 
-import com.spring.biz.vo.AdminNoticeVO;
 import com.spring.biz.vo.CompanyInfoVO;
-import com.spring.biz.vo.MemInfoVO;
+import com.spring.biz.vo.ForRecruitVO;
+import com.spring.biz.vo.MemResumeVO;
 import com.spring.biz.vo.RecruitListVO;
 
 public interface CompanyService {
@@ -22,4 +22,8 @@ public interface CompanyService {
 	CompanyInfoVO selectMyCom(CompanyInfoVO companyInfoVO);
 	//기업 정보 수정
 	int myComUpdate(CompanyInfoVO companyInfoVO);
+	//기업이 받은 이력서 조회
+	List<ForRecruitVO> resumeInquiryList(ForRecruitVO forRecruitVO);
+	//기업이 받은 이력서 합격 여부 결정
+	int resumeResultUpdate(MemResumeVO memResumeVO);
 }

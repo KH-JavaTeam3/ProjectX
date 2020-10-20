@@ -9,6 +9,7 @@
 </head>
 <body>
 <input type="hidden" value="${resumeList.comNum }" class="resumeAppcomNum">
+<input type="hidden" value="${resumeList.announceNum }" class="resumeAppannounceNum">
 <div style="height: 50px;"></div>
 	<table class="table table-hover">
 		<c:forEach items="${resumeList.resumeList }" var="re">
@@ -22,15 +23,6 @@
 		<input type="button" style="background: #ABC2E8; border: 1px solid; color: white; width: 120px; height: 30px;" id="resumeAppBut" value="확인">
 		<input type="button" style="background: #ABC2E8; border: 1px solid; color: white; width: 120px; height: 30px;" id="cartBuyPage" value="취소" onclick=" location.href='comMypage.co'">
 	</div>
-<script type="text/javascript">
-	const move = document.querySelector('#moveToResumeTd');
-	move.addEventListener('click', function() {
-		console.log(move);
-		location.href="moveToResumeDetail.me";
-		
-	});
-</script>
-  <!-- smaple.js를 사용하기 위한 태그 -->
-<script src="resources/js/resumeApplication.js?ver=1"></script>
+<script src="resources/js/resumeApplication.js?ver=9"></script>
 </body>
 </html>

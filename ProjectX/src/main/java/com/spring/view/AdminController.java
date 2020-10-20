@@ -1,6 +1,5 @@
 package com.spring.view;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -50,7 +49,10 @@ public class AdminController {
 	@ResponseBody
 	@RequestMapping(value = "/memberDetailAjax.ad")
 	public MemInfoVO membeDetailAjax(String memName) {
-		return adminService.selectMemberAD(memName);
+		MemInfoVO vo = new MemInfoVO();
+		vo = adminService.selectMemberAD(memName);
+		vo.setMemBirth(vo.getMemBirth().substring(0, 10));
+		return vo;
 	}
 	
 	

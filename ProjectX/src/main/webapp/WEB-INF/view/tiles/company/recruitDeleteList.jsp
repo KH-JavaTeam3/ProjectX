@@ -47,6 +47,9 @@ table.type09 td {
   <li class="nav-item" role="presentation">
     <a class="nav-link" href="recruitDeleteList.co">공고 삭제 및 수정</a>
   </li>
+  <li class="nav-item" role="presentation">
+    <a class="nav-link" href="resumeInquiry.co">지원받은 이력서 조회</a>
+  </li>
 </ul>
 </div>
 	
@@ -69,15 +72,15 @@ table.type09 td {
 		    	</tr>
 		    <tbody>
 		    <c:forEach items="${recruitlist }" var="recruit" varStatus="num">
-		    <tr onclick="location.href='recruitDeleteForm.co?announceNum=${recruit.announceNum }'">
+		    <tr>
 		    	<th><input type="checkbox" class="chk" value="${recruit.announceNum }" checked></th>
 		        <td scope="row" onclick="location.href='recruitDeleteForm.co?announceNum=${recruit.announceNum }'">${num.count }</td>
-		        <td>${recruit.announceTitle }</td>
-		        <td> ${recruit.worktime }</td>
-		        <td> ${recruit.jobtype }</td>
-		        <td> ${recruit.workType }</td>
-		        <td> ${recruit.area }</td>
-		        <td> ${recruit.uptoHiredate }</td>
+		        <td onclick="location.href='recruitDeleteForm.co?announceNum=${recruit.announceNum }'"> ${recruit.announceTitle }</td>
+		        <td onclick="location.href='recruitDeleteForm.co?announceNum=${recruit.announceNum }'"> ${recruit.worktime }</td>
+		        <td onclick="location.href='recruitDeleteForm.co?announceNum=${recruit.announceNum }'"> ${recruit.jobtype }</td>
+		        <td onclick="location.href='recruitDeleteForm.co?announceNum=${recruit.announceNum }'"> ${recruit.workType }</td>
+		        <td onclick="location.href='recruitDeleteForm.co?announceNum=${recruit.announceNum }'"> ${recruit.area }</td>
+		        <td onclick="location.href='recruitDeleteForm.co?announceNum=${recruit.announceNum }'"> ${recruit.uptoHiredate }</td>
 		    </tr>
 		    </c:forEach>
 		    </tbody>
@@ -88,6 +91,13 @@ table.type09 td {
 			</div>
 		</div>
 </body>
+<!-- <script type="text/javascript">
+$(document).on('click', '.delete', function(){
+	var num = $(this).parent().children().children().val();
+	alert(num);
+	location.href='recruitDeleteForm.co?announceNum=num';
+});
+</script> -->
   <!-- smaple.js를 사용하기 위한 태그 -->
 <script src="resources/js/recruitDeleteList.js?ver=1"></script>
 </html>

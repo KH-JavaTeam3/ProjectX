@@ -9,6 +9,7 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,7 +19,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.spring.biz.service.MemberService;
 import com.spring.biz.util.GetSession;
-import com.spring.biz.util.Time;
+import com.spring.biz.util.TimeUtil;
 import com.spring.biz.vo.ForRecruitVO;
 import com.spring.biz.vo.LicenseVO;
 import com.spring.biz.vo.MemInfoVO;
@@ -53,31 +54,41 @@ public class MemberController {
 	
 	//이력서 등록하기 
 	@RequestMapping(value = "/regResume.me")
-	public String regResume(MultiLicenseVO multiLicenseVO, MultiProfilesVO multiProfilesVO, MemResumeVO memResumeVO) {
-			
+	public String regResume(MultiLicenseVO multiLicenseVO, MultiProfilesVO multiProfilesVO, HttpServletRequest request, MemResumeVO memResumeVO) {
+		
 		//다중 자격증 담기
-		List<LicenseVO> licenseList = new ArrayList<LicenseVO>();
-		for(int i = 0; i < multiLicenseVO.getLicDate().length; i++) {
-			LicenseVO license = new LicenseVO();
-			license.setLicName(multiLicenseVO.getLicName()[i]);
-			license.setLicLoc(multiLicenseVO.getLicLoc()[i]);
-			license.setLicGrade(multiLicenseVO.getLicGrade()[i]);
-			license.setLicDate(multiLicenseVO.getLicDate()[i]);
+		if(multiLicenseVO.getLicName() != null && multiLicenseVO.getLicName().length > 0) {
+			List<LicenseVO> licenseList = new ArrayList<LicenseVO>();
 			
-			licenseList.add(license);
+			for(int i = 0; i < multiLicenseVO.getLicDate().length; i++) {
+				LicenseVO license = new LicenseVO();
+				license.setLicName(multiLicenseVO.getLicName()[i]);
+				license.setLicLoc(multiLicenseVO.getLicLoc()[i]);
+				license.setLicGrade(multiLicenseVO.getLicGrade()[i]);
+				license.setLicDate(multiLicenseVO.getLicDate()[i]);
+				
+				licenseList.add(license);
+			}
+			MemResumeVO vo = new MemResumeVO();
+			vo.setLicenseList(licenseList);
+			memberService.insertLicense(vo);
 		}
 		//다중 자기소개서 담기
-		List<ProfilesVO> profilesList = new ArrayList<ProfilesVO>();
-		for(int i = 0; i < multiProfilesVO.getProTitle().length; i++) {
-			ProfilesVO profiles = new ProfilesVO();
-			profiles.setProTitle(multiProfilesVO.getProTitle()[i]);
-			profiles.setProContent(multiProfilesVO.getProContent()[i]);
+		if(multiProfilesVO.getProTitle() != null && multiProfilesVO.getProTitle().length > 0) {
+			List<ProfilesVO> profilesList = new ArrayList<ProfilesVO>();
 			
-			profilesList.add(profiles);
+			for(int i = 0; i < multiProfilesVO.getProTitle().length; i++) {
+				ProfilesVO profiles = new ProfilesVO();
+				profiles.setProTitle(multiProfilesVO.getProTitle()[i]);
+				profiles.setProContent(multiProfilesVO.getProContent()[i]);
+				
+				profilesList.add(profiles);
+			}
+			MemResumeVO vo = new MemResumeVO();
+			vo.setProfilesList(profilesList);
+			memberService.insertProfiles(vo);
 		}
 		
-		memResumeVO.setLicenseList(licenseList);
-		memResumeVO.setProfilesList(profilesList);
 		
 		//이력서 등록
 		memberService.insertResume(memResumeVO);
@@ -96,7 +107,7 @@ public class MemberController {
 	@RequestMapping(value = "/updateMemInfo.me")
 	public String updateMemInfo(MemInfoVO memInfoVO, HttpSession session, MultipartHttpServletRequest multi, HttpServletRequest request)throws Exception{
 		//사진 이름(현재시분초)
-		String nowDate = Time.getNowDateTime();
+		String nowDate = TimeUtil.getNowDateTime();
 		
 		//첨부파일에 대한 encoding 설정
 		multi.setCharacterEncoding("UTF-8");
@@ -170,16 +181,40 @@ public class MemberController {
 		return "redirect:updateResume.me";
 	}
 	//공고 지원 클릭시 이력서 상세 페이지
-			@RequestMapping(value = "/resumeApplication.me")
-			public String resumeApplication(HttpSession session, Model model, int comNum) {
-				ForRecruitVO vo = new ForRecruitVO();
-				vo.setComNum(comNum);
-				vo.setResumeList(memberService.selectResumeList(GetSession.getMemEmail(session)));
-				model.addAttribute("resumeList", vo);
-				return "tiles/common/resumeApplication";
-			}
-		
-		
+	@RequestMapping(value = "/resumeApplication.me")
+	public String resumeApplication(HttpSession session, Model model, String comNum, int announceNum) {
+		ForRecruitVO vo = new ForRecruitVO();
+		vo.setComNum(comNum);
+		vo.setAnnounceNum(announceNum);
+		vo.setResumeList(memberService.selectResumeList(GetSession.getMemEmail(session)));
+		model.addAttribute("resumeList", vo);
+		return "tiles/common/resumeApplication";
+	}
+	//내가 선호하는 기업
+		@RequestMapping(value = "/myFavoriteCompany.me")
+		public String myFavoriteCompany() {
+			
+			return "tiles/member/myFavoriteCompany";
+		}	
+		//기업에 넣은 이력서 상세 보기
+		@RequestMapping(value = "/comMoveToResumeDetail.me")
+		public String comMoveToResumeDetail(HttpSession session, Model model, int resumeNum, MemInfoVO memInfoVO,int comMypageNum) {
+			
+			MemResumeVO vo = memberService.selectResumeDetail(resumeNum);
+			List<LicenseVO> licenseList = memberService.selectLicenseList(resumeNum);
+			
+			//날짜 포맷 변경
+			licenseList.forEach((t) -> {
+				t.setLicDate(t.getLicDate().substring(0, 10));
+			});
+			vo.setComMypageNum(comMypageNum);
+			vo.setMemInfoVO(memberService.selectMemInfoME(memInfoVO));
+			vo.setLicenseList(licenseList);
+			vo.setProfilesList(memberService.selectProfilesList(resumeNum));
+			
+			model.addAttribute("memResume", vo);
+			return "tiles/company/comResumeDetail";
+		}
 		
 		
 		

@@ -263,7 +263,7 @@ tr td {
 								</tr>
 								<tr>
 									<c:if test="${empty sessionScope.comLogin}"><td colspan="2" align="center" style="background: #ABC2E8; width: 300px; "><a href="memberJoin.do"><span style="font-size: 12px; font-weight: normal;">회원가입</span></a></td></c:if>
-									<c:if test="${not empty sessionScope.comLogin}"><td colspan="2" align="center" style="background: #ABC2E8; width: 300px; "><a href="logout.do"><span style="font-size: 12px; font-weight: normal;">로그아웃</span></a></td></c:if>
+									<c:if test="${not empty sessionScope.comLogin}"><td colspan="2" align="center" style="background: #ABC2E8; width: 300px; "><span style="font-size: 12px; font-weight: normal;" id="logout">로그아웃</span></td></c:if>
 								</tr>
 							</table>
 						</li>
@@ -440,4 +440,5 @@ tr td {
 </div>
 </div>
 </body>
+<script src="resources/js/companymenu.js?ver=1"></script>
 </html>

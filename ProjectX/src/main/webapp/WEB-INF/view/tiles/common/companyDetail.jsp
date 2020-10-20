@@ -61,7 +61,7 @@ input[type="number"]::-webkit-inner-spin-button {
 </head>
 <body>
 
-<input type="hidden" value="${sessionScope.comLogin.comNum }" name="comNum">
+<input type="hidden" value="${recruitDeteil.comNum }" name="comNum">
 <input type="hidden" value="${recruitDeteil.announceNum }" name="announceNum">
 <div class="row col-md-12" style="border: 5px solid #ABC2E8; border-radius: 10px;" >
 	<div class="col-md-12" align="center"><span style="font-size: 24px; font-weight: bold;"> ${recruitDeteil.comName } </span></div>
@@ -161,7 +161,7 @@ input[type="number"]::-webkit-inner-spin-button {
 			
 			</div>
 			<div class="col-md-12" align="right" style="margin-bottom : 5px;">
-				<input type="button" style="background: #ABC2E8; border: 1px solid; color: white; width: 120px; height: 30px;" value="지원" onclick="location.href='resumeApplication.me?comNum=${recruitDeteil.comNum}'">
+				<input type="button" style="background: #ABC2E8; border: 1px solid; color: white; width: 120px; height: 30px;" value="지원" onclick="location.href='resumeApplication.me?comNum=${recruitDeteil.comNum }&announceNum=${recruitDeteil.announceNum }'">
 					<input type="button" style="background: #ABC2E8; border: 1px solid; color: white; width: 120px; height: 30px;" id="" value="취소" onclick="history.back();">
 			</div>
 		</div>

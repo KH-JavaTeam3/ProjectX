@@ -1,32 +1,45 @@
 $(document).ready(function(){
 	
+	
+	
 	//기업목록 소환
-	$(document).on('click', '#companyListBtn', () => {
+	$(document).on('click', '#companyListBtn', function() {
 		$('#listDiv').empty();
 		$('#detail').empty();
 		$('#companyDetail').remove();
 		$('#memberDetail').remove();
+		$(this).addClass('active');
+		$('#memberListBtn').removeClass('active');
 		companyListAjax();
 	});
+	
 	//개인목록 소환
-	$(document).on('click', '#memberListBtn', () => {
+	$(document).on('click', '#memberListBtn', function() {
 		$('#listDiv').empty();
 		$('#detail').empty();
 		$('#companyDetail').remove();
 		$('#memberDetail').remove();
+		$(this).addClass('active');
+		$('#companyListBtn').removeClass('active');
 		memberListAjax();
 	});
+	
 	//기업상세 소환
 	$(document).on('click', '.companyDetailBtn', function() {
 		$('#companyDetail').remove();
 		companyDetailAjax($(this).text());
 	});
+	
 	//개인상세 소환
 	$(document).on('click', '.memberDetailBtn', function(){
 		$('#memberDetail').remove();
 		memberDetailAjax($(this).text());
 	});
 
+	//공지목록 소환
+	$(document).on('click', '#noticeListBtn', function(){
+		
+	})
 
 
 
@@ -63,7 +76,7 @@ $(document).ready(function(){
 	
 	
 	
-	
+	//기업목록
 	function companyListAjax(){
 		$.ajax({
 			url: 'companyListAjax.ad', //요청경로
@@ -87,6 +100,7 @@ $(document).ready(function(){
 		});
 	}
 	
+	//개인목록
 	function memberListAjax(){
 		$.ajax({
 			url: 'memberListAjax.ad', //요청경로
@@ -110,6 +124,7 @@ $(document).ready(function(){
 		});
 	}
 	
+	//기업 상세
 	function companyDetailAjax(comName){
 		$.ajax({
 			url: 'companyDetailAjax.ad', //요청경로
@@ -160,6 +175,7 @@ $(document).ready(function(){
 		});
 	}
 	
+	//개인 상세
 	function memberDetailAjax(memName){
 		$.ajax({
 			url: 'memberDetailAjax.ad', //요청경로
@@ -183,7 +199,7 @@ $(document).ready(function(){
 							</tr>
 							<tr>
 								<th scope="col">생년월일 : </th>
-								<td>${result.memBirthYear} 년 ${result.memBirthMonth} 월 ${result.memBirthDay} 일 </td>
+								<td>${result.memBirth}</td>
 							</tr>
 							<tr>
 								<th scope="col">연락처 1 : </th>

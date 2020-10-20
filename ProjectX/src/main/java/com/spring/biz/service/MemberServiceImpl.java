@@ -3,12 +3,9 @@ package com.spring.biz.service;
 
 import java.util.List;
 
-import javax.servlet.http.HttpSession;
-
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;import com.spring.biz.util.GetSession;
 import com.spring.biz.vo.LicenseVO;
 import com.spring.biz.vo.MemInfoVO;
 import com.spring.biz.vo.MemResumeVO;
@@ -19,12 +16,9 @@ public class MemberServiceImpl implements MemberService{
 	@Autowired
 	private SqlSessionTemplate sqlSession;
 
-	@Transactional(rollbackFor = Exception.class)
 	@Override
 	public void insertResume(MemResumeVO memResumeVO) {
 		sqlSession.insert("insertResume", memResumeVO);
-		insertLicense(memResumeVO);
-		insertProfiles(memResumeVO);
 	}
 	
 	

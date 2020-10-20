@@ -21,28 +21,19 @@
 		<result column="MEM_IMAGE"        	  property="memImage"/> 
 	</resultMap>
 
-	
-	
 	<resultMap type="com.spring.biz.vo.CompanyInfoVO" id="companyInfo">
-	<result column="COM_NUM"           		property="comNum"/> 
-	<result column="COM_PASS"      	     	property="comPass"/> 
-	<result column="COM_EMAIL"        		property="comEmail"/> 
-	<result column="COM_NAME"         	  	property="comName"/> 
-	<result column="COM_CEO"        		property="comCeo"/> 
-	<result column="COM_LOC"        	 	property="comLoc"/> 
-	<result column="COM_TYPE"           	property="comType"/> 
-	<result column="COM_TEL"           		property="comTel"/> 
-	<result column="COM_JOIN_DATE"         property="comJoinDate"/> 
-	<result column="COM_AVG_SCORE"         property="comAvgScore"/> 
-	<result column="COM_GIVE_PERSON"       property="comGivePerson"/> 
-	<result column="COM_SCORE"           	property="comScore"/> 
-	</resultMap>
-	
-	<resultMap type="com.spring.biz.vo.AdminNoticeVO" id="adminNotice">
-		<result column="BOARD_NUMBER"            property="boardNumber"/> 
-		<result column="BOARD_TITLE"      	      property="boardTitle"/> 
-		<result column="BOARD_CONTENT"        	  property="boardContent"/> 
-		<result column="TODAY_DATE"         	  property="todayDate"/> 
+		<result column="COM_NUM"           		property="comNum"/> 
+		<result column="COM_PASS"      	     	property="comPass"/> 
+		<result column="COM_EMAIL"        		property="comEmail"/> 
+		<result column="COM_NAME"         	  	property="comName"/> 
+		<result column="COM_CEO"        		property="comCeo"/> 
+		<result column="COM_LOC"        	 	property="comLoc"/> 
+		<result column="COM_TYPE"           	property="comType"/> 
+		<result column="COM_TEL"           		property="comTel"/> 
+		<result column="COM_JOIN_DATE"         property="comJoinDate"/> 
+		<result column="COM_AVG_SCORE"         property="comAvgScore"/> 
+		<result column="COM_GIVE_PERSON"       property="comGivePerson"/> 
+		<result column="COM_SCORE"           	property="comScore"/> 
 	</resultMap>
 	
 	<resultMap type="com.spring.biz.vo.MemResumeVO" id="memResume">
@@ -56,6 +47,7 @@
 		<result column="EDU_MAJOR"         	  	property="eduMajor"/> 
 		<result column="EDU_BEGIN_DATE"        property="eduBeginDate"/> 
 		<result column="EDU_END_DATE"         	property="eduEndDate"/> 
+		<result column="EDU_SCORE"         		property="eduScore"/>
 		<result column="EDU_IS_OVER"         	property="eduIsOver"/> 
 		<result column="BE_COMPANY"         	property="beCompany"/> 
 		<result column="BE_CAREER"         	  	property="beCareer"/> 

@@ -6,9 +6,9 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.spring.biz.vo.AdminNoticeVO;
 import com.spring.biz.vo.CompanyInfoVO;
-import com.spring.biz.vo.MemInfoVO;
+import com.spring.biz.vo.ForRecruitVO;
+import com.spring.biz.vo.MemResumeVO;
 import com.spring.biz.vo.RecruitListVO;
 
 @Service("companyService") 
@@ -49,6 +49,16 @@ public class CompanyServiceImpl implements CompanyService{
 	@Override
 	public int myComUpdate(CompanyInfoVO companyInfoVO) {
 		return sqlSession.update("myComUpdate", companyInfoVO);
+	}
+
+	@Override
+	public List<ForRecruitVO> resumeInquiryList(ForRecruitVO forRecruitVO) {
+		return sqlSession.selectList("resumeInquiryList", forRecruitVO);
+	}
+
+	@Override
+	public int resumeResultUpdate(MemResumeVO memResumeVO) {
+		return sqlSession.update("resumeResultUpdate", memResumeVO);
 	}
 
 	

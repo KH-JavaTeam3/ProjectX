@@ -139,7 +139,7 @@ select {
             <div class="form-group col-md-6" style="padding: 30px 30px 0px 0px;">
                <div class="col-md-12" style="padding: 0px;">
                   <label for="memAddr">주소</label>
-                  <input type="button" class="btn btn-primary offset-md-9" id="findAddr" value="주소찾기">
+                  <input type="button" class="btn btn-primary offset-md-9" id="findAddr" value="주소찾기" style="margin-bottom: 5px;">
                   <input type="text" id="memAddr"  class="form-control" value="${sessionScope.memLogin.memAddr }" name="memAddr"/>
                </div>
             </div>
@@ -151,10 +151,8 @@ select {
             <div class="form-group col-md-6" style="padding: 30px 30px 0px 0px;">
                   <div class="form-group files uploader offset-md-5">
                      <label for="memImage">사진</label>
-                     <input type="file" class="form-control"  id="memImage" name="file1">\
-                     	<c:if test="${not empty sessionScope.memLogin.memImage}">
+                     <input type="file" class="form-control"  id="memImage" name="file1">
                      <img id="preview" src="resources/images/memberProfile/${sessionScope.memLogin.memImage }">
-                     	</c:if>
                   </div>
                </div>
             </div>
@@ -167,6 +165,11 @@ select {
      </div>
 <script type="text/JavaScript" src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 <script src="resources/js/writeResume.js?ver=3"></script>
+<script type="text/javascript">
+	if($('#preview').attr("src").length < 35){
+		$('#preview').hide();
+	}
+</script>
 </form>
 </body>
 </html>

@@ -49,6 +49,9 @@ table.type09 td {
   <li class="nav-item" role="presentation">
     <a class="nav-link" href="recruitDeleteList.co">공고 삭제 및 수정</a>
   </li>
+  <li class="nav-item" role="presentation">
+    <a class="nav-link" href="resumeInquiry.co">지원받은 이력서 조회</a>
+  </li>
 </ul>
 </div>
 	

@@ -9,33 +9,34 @@
 <title>Insert title here</title>
 <!-- 검색엔진 소스 -->
 <script type="text/javascript">/* 드롭다운 속도조절  */
-$(document).on('click', '.topMenu span', function() {
-    $('.dept01').slideDown(20);
-    $('.dept02').slideUp(1);   
+$(document).ready(function(){
+	$(document).on('click', '.topMenu span', function() {
+	    $('.dept01').slideDown(20);
+	    $('.dept02').slideUp(1);   
+	});
+	$(document).on('click', '.topMenu2 span', function() {
+	    $('.dept02').slideDown(20);
+	    $('.dept01').slideUp(1);
+	});
+	//검색창 바탕클릭시 검색창 히든
+	$('body').click(function(e){
+	    if( !$('.dept01').has(e.target).length ) $('.dept01').hide();
+	}); 
+	$('body').click(function(e){
+	    if( !$('.dept02').has(e.target).length ) $('.dept02').hide();
+	}); 
+	//검색창 검색어 클릭 이벤트
+	$(document).on('click', '.dept01nop', function() {
+	    var dept01 = $(this).text();
+	    $('.sc2').val(dept01);
+	    $('.dept01').hide();
+	});
+	$(document).on('click', '.dept02nop', function() {
+	    var dept02 = $(this).text();
+	    $('.sc3').val(dept02);
+	    $('.dept02').hide();
+	});
 });
-$(document).on('click', '.topMenu2 span', function() {
-    $('.dept02').slideDown(20);
-    $('.dept01').slideUp(1);
-});
-//검색창 바탕클릭시 검색창 히든
-$('body').click(function(e){
-    if( !$('.dept01').has(e.target).length ) $('.dept01').hide();
-}); 
-$('body').click(function(e){
-    if( !$('.dept02').has(e.target).length ) $('.dept02').hide();
-}); 
-//검색창 검색어 클릭 이벤트
-$(document).on('click', '.dept01nop', function() {
-    var dept01 = $(this).text();
-    $('.sc2').val(dept01);
-    $('.dept01').hide();
-});
-$(document).on('click', '.dept02nop', function() {
-    var dept02 = $(this).text();
-    $('.sc3').val(dept02);
-    $('.dept02').hide();
-});
-
 </script>
 
 <!-- 아이콘을 띄우기 위한 소스 -->
@@ -155,6 +156,9 @@ tr td {
 .sc3:focus{
 	outline:none;
 }
+#logout:hover {
+	cursor: pointer;
+}
 </style>
 </head>
 
@@ -267,7 +271,7 @@ tr td {
 								</tr>
 								<tr>
 									<c:if test="${empty sessionScope.memLogin}"><td colspan="2" align="center" style="background: #ABC2E8; width: 300px; "><a href="memberJoin.do"><span style="font-size: 12px; font-weight: normal;">회원가입</span></a></td></c:if>
-									<c:if test="${not empty sessionScope.memLogin}"><td colspan="2" align="center" style="background: #ABC2E8; width: 300px; "><a href="logout.do"><span style="font-size: 12px; font-weight: normal;">로그아웃</span></a></td></c:if>
+									<c:if test="${not empty sessionScope.memLogin}"><td colspan="2" align="center" style="background: #ABC2E8; width: 300px; " ><span style="font-size: 12px; font-weight: normal;" id="logout">로그아웃</span></td></c:if>
 								</tr>
 							</table>
 							</li>
@@ -452,6 +456,6 @@ tr td {
 </div>
 </div>
 
-<script src="resources/js/menu.js?ver=6"></script>
+<script src="resources/js/menu.js?ver=1"></script>
 </body>
 </html>
