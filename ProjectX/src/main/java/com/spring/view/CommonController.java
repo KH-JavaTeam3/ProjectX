@@ -138,16 +138,19 @@ public class CommonController {
 			return "result/mLoginFail";
 		}
 	}
+	
 	//기업 로그인 화면
 	@RequestMapping(value = "/companyLoginForm.do")
 	public String companyLoginForm() {
 		return "login/companyLogin";
 	}
+	
 	//기업 로고 클릭시
 	@RequestMapping(value = "/comLogin.do")
 	public String comLogin() {
 		return "tiles/company/main2";
 	}
+	
 	//기업 로그인
 	@RequestMapping(value = "/companyLogin.do")
 	public String companyLogin(CompanyInfoVO companyInfoVO, String keepLogin, HttpSession session, HttpServletResponse response) {
@@ -163,8 +166,6 @@ public class CommonController {
 				map.put("comNum", vo.getComNum());
 				commonService.updateComCookie(map);//DB에 자동로그인정보 저장
 			}
-			
-			
 			return "tiles/company/main2";
 		}else {
 			return "tiles/common/main";
@@ -179,8 +180,8 @@ public class CommonController {
 		Cookie[] getCookie = request.getCookies();
 		if(getCookie != null) {
 			for(Cookie cookie : getCookie) {
-				cookie.setMaxAge(0);
-				response.addCookie(cookie);
+					cookie.setMaxAge(0);
+					response.addCookie(cookie);
 			}
 		}
 
@@ -194,9 +195,16 @@ public class CommonController {
 	
 	//기업리스트 이동
 	@RequestMapping(value = "/companyList.do")
-	public String companyList(Model model,SearchVO searchVO) {
-		System.out.println(searchVO);
-	
+	public String companyList(Model model, SearchVO searchVO) {
+		if(searchVO.getKeyword() == null) {
+			searchVO.setKeyword("");
+		}
+		if(searchVO.getPlace() == null) {
+			searchVO.setPlace("");
+		}
+		if(searchVO.getJobtype() == null) {
+			searchVO.setJobtype("");
+		}
 		model.addAttribute("companyList",commonService.selectRecruitList(searchVO));
 		return "tiles/common/companyList";
 	}
@@ -207,6 +215,62 @@ public class CommonController {
 		commonService.updateViews(recruitListVO.getAnnounceNum());
 		model.addAttribute("recruitDeteil",commonService.selectDetailRecruit(recruitListVO));
 		
+		
+	//나이때 별 데이터 조회 및 넘기기(그래프)
+		List<Integer> list =  commonService.selectMemberAge(recruitListVO);
+//		list.forEach(t->System.out.println(t));
+		
+		int age20 = 0;
+		int age30 = 0;
+		int age40 = 0;
+		int age50 = 0;
+		int age60 = 0;
+				
+		for(int age : list) {
+			if(age / 10 == 2) {
+				age20 += 1;
+			}
+			else if(age / 10 == 3) {
+				age30 += 1;
+			}
+			else if(age / 10 == 4) {
+				age40 += 1;
+			}
+			else if(age / 10 == 5) {
+				age50 += 1;
+			}
+			else {
+				age60 += 1;
+			}
+		}
+		
+		model.addAttribute("age20", age20);
+		model.addAttribute("age30", age30);
+		model.addAttribute("age40", age40);
+		model.addAttribute("age50", age50);
+		model.addAttribute("age60", age60);
+	//성별 데이터 조회 및 넘기기(그래프)
+		List<String> list1 =  commonService.selectMemberGender(recruitListVO.getAnnounceNum());
+		
+		int genderM =0;
+		int genderW =0;
+		for(String gender : list1) {
+			if(gender.equals("M")) {
+				genderM +=1;
+			}
+			else {
+				genderW +=1;
+			}
+		}
+		int non = 0;
+		if(genderM == 0 && genderW == 0) {
+			non = 1;
+		}
+		model.addAttribute("genderM",genderM);
+		model.addAttribute("genderW",genderW);
+		model.addAttribute("non",non);
+	//공고 마감 카운트 다운		
+		model.addAttribute("hireDate",commonService.selectTime(recruitListVO.getAnnounceNum()));
 		return "tiles/common/companyDetail";
 	}
 	

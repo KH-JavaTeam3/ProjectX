@@ -244,7 +244,8 @@ tr td {
 						<li>
 							<table id="loginMeueTable">
 								<tr>
-									<td style="background: #ABC2E8;width:150px;"><a href="companyLoginForm.do"><span style="font-weight: bold; font-size: 14px;">기업</span><span style="font-size: 13px; font-weight: normal;">로그인</span></a></td>
+									<c:if test="${empty sessionScope.comLogin }" ><td style="background: #ABC2E8;width:150px;"><a href="companyLoginForm.do"><span style="font-weight: bold; font-size: 14px;">기업</span><span style="font-size: 13px; font-weight: normal;">로그인</span></a></td></c:if>
+									<c:if test="${not empty sessionScope.comLogin }" ><td style="background: #ABC2E8;width:150px;"><span style="font-weight: bold; font-size: 14px;">환영 합니다.</span></td></c:if>
 								</tr>
 								<tr>
 									<td><a href="registHumanSeekerForm.co"><span style="font-size: 12px; font-weight: normal;">공고 등록</span></a></td>

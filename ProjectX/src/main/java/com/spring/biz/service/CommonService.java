@@ -3,6 +3,7 @@ package com.spring.biz.service;
 import java.util.List;
 import java.util.Map;
 
+
 import com.spring.biz.vo.CompanyInfoVO;
 import com.spring.biz.vo.MemInfoVO;
 import com.spring.biz.vo.RecruitListVO;
@@ -48,13 +49,21 @@ public interface CommonService {
 	void updateViews(int announceNum);
 	
 	//날짜가 지난 공고 리스트 뽑기
-		List<RecruitListVO> selectOldList(String toDay);
+	List<RecruitListVO> selectOldList(String toDay);
 		
-		//날짜가 지난 공고 업데이트
-		int oldListUpdate(int i);
+	//날짜가 지난 공고 업데이트
+	int oldListUpdate(int i);
 		
-		//이력서 넣기
-		int insertComMypage(Map<String, Object> map);
+	//이력서 넣기
+	int insertComMypage(Map<String, Object> map);
+		
+	//지원한 사람 나이 가져오기
+	List<Integer> selectMemberAge(RecruitListVO recruitListVO);
+	//지원한 사람 성별 가져오기
+	List<String> selectMemberGender(int announceNum);
+	//공고 마감 시간 가져오기
+	String selectTime(int announceNum);
+		
 //	// 기업리스트 페이징처리
 //	public int countBoard();
 //

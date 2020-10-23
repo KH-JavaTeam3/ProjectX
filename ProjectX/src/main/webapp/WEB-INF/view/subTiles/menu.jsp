@@ -133,14 +133,14 @@ tr td {
 #button{
    width: 500px;
 }
-#seatchStyle{
+#searchStyle{
    position: absolute;
    top : 53%;
    left: 71%;
    transform : translate(-50%,-50%);
    z-index: 25;
 }
-#seatchStyleCircle{
+#searchStyleCircle{
    position: absolute;
    top : 53%;
    left: 71%;
@@ -159,6 +159,10 @@ tr td {
 #logout:hover {
 	cursor: pointer;
 }
+#hamburgerLocationTr li{
+	cursor: pointer;
+}
+
 </style>
 </head>
 
@@ -184,7 +188,7 @@ tr td {
         </div>
         <div class="1" style="margin-top: -17px; padding-left: 126px;">
             <ul class="top">
-             <li class="li" style="margin-left: -7px;"><span><input class="sc1" type="text" id="searchSearch" placeholder="검색어 입력" autocomplete="off" style="width: 230px;font-size: 12px; height: 30px; "  ></span>
+             <li class="li" style="margin-left: -7px;"><span><input class="sc1" type="text" id="keywordSearch" placeholder="검색어 입력" autocomplete="off" style="width: 230px;font-size: 12px; height: 30px; "  ></span>
                     <ul class="dept01">
                         <li class="dept01nop">서울</li>
                         <li class="dept01nop">경기</li>
@@ -295,8 +299,8 @@ tr td {
 			<span></span>
 		</label>
 		         
-     <a><input id="seatchStyle" type="button" class="fas fa-search search" style="width: 25px; height: 25px; color: white;">
-      <input class="fas fa-circle search" type="button" id="seatchStyleCircle"style="width: 40px;height: 40px;color: black;"></a>
+     <a><input id="searchStyle" type="button" class="fas fa-search search" style="width: 25px; height: 25px; color: white;">
+      <input class="fas fa-circle search" type="button" id="searchStyleCircle"style="width: 40px;height: 40px;color: black;"></a>
 </div>
 </header>
 </div>
@@ -314,39 +318,39 @@ tr td {
 			<span style="font-size: 20px; font-weight: bold;">지역별</span> <i class="fas fa-angle-right" style="color: lightgray;"></i>
 		</td>
 	</tr>
-	<tr>
+	<tr id="hamburgerLocationTr">
 		<td>
 			<ul>
-				<li><a href="#">서울</a></li>
-				<li><a href="#">대구</a></li>
-				<li><a href="#">세종</a></li>
-				<li><a href="#">전남</a></li>
-				<li><a href="#">제주</a></li>
+				<li>서울</li>
+				<li>대구</li>
+				<li>세종</li>
+				<li>전남</li>
+				<li>제주</li>
 			</ul>
 		</td>
 		<td>
 			<ul>
-				<li><a href="#">경기</a></li>
-				<li><a href="#">대전</a></li>
-				<li><a href="#">강원</a></li>
-				<li><a href="#">전북</a></li>
-				<li><a href="#">해외</a></li>
+				<li>경기</li>
+				<li>대전</li>
+				<li>강원</li>
+				<li>전북</li>
+				<li>해외</li>
 			</ul>
 		</td>
 		<td>
 			<ul>
-				<li><a href="#">인천</a></li>
-				<li><a href="#">광주</a></li>
-				<li><a href="#">경남</a></li>
-				<li><a href="#">충남</a></li>
-				<li><a href="#">부산</a></li>
+				<li>인천</li>
+				<li>광주</li>
+				<li>경남</li>
+				<li>충남</li>
+				<li>부산</li>
 			</ul>
 		</td>
 		<td>
 			<ul>
-				<li><a href="#">울산</a></li>
-				<li><a href="#">경북</a></li>
-				<li><a href="#">충북</a></li>
+				<li>울산</li>
+				<li>경북</li>
+				<li>충북</li>
 			</ul>
 		</td>
 	</tr>
@@ -456,6 +460,6 @@ tr td {
 </div>
 </div>
 
-<script src="resources/js/menu.js?ver=1"></script>
+<script src="resources/js/menu.js?ver=3"></script>
 </body>
 </html>

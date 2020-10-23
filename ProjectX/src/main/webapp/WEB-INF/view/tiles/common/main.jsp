@@ -29,8 +29,8 @@
 							src="https://images.unsplash.com/photo-1507679799987-c73779587ccf?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1351&q=80"
 							class="d-block w-100" style="height: 750px;">
 						<div class="carousel-caption d-none d-md-block">
-							<h5>슬라이드 메뉴 1</h5>
-							<p>슬라이드 메뉴 1 에 대한설명</p>
+							<h5>구인 구직 사이트 파인드림</h5>
+							<p>///</p>
 						</div>
 					</div>
 					<div class="carousel-item">
@@ -38,8 +38,8 @@
 							src="https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1352&q=80"
 							class="d-block w-100" style="height: 750px;">
 						<div class="carousel-caption d-none d-md-block">
-							<h5>슬라이드 메뉴 2</h5>
-							<p>슬라이드 메뉴 2 에 대한설명</p>
+							<h5>구인 구직 사이트 파인드림</h5>
+							<p>///</p>
 						</div>
 					</div>
 					<div class="carousel-item">
@@ -47,8 +47,8 @@
 							src="https://images.unsplash.com/photo-1549923746-9507eec27243?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80"
 							class="d-block w-100" style="height: 750px;">
 						<div class="carousel-caption d-none d-md-block">
-							<h5>슬라이드 메뉴 3</h5>
-							<p>슬라이드 메뉴 3 에 대한설명</p>
+							<h5>구인 구직 사이트 파인드림</h5>
+							<p>///</p>
 						</div>
 					</div>
 				</div>

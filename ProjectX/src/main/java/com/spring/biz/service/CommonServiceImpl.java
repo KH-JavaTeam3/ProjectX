@@ -6,7 +6,6 @@ import java.util.Map;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import com.spring.biz.vo.CompanyInfoVO;
 import com.spring.biz.vo.MemInfoVO;
 import com.spring.biz.vo.RecruitListVO;
@@ -81,6 +80,21 @@ public class CommonServiceImpl implements CommonService{
 	@Override
 	public int insertComMypage(Map<String, Object> map) {
 		return sqlSession.insert("insertComMypage", map);
+	}
+	@Override
+	public List<Integer> selectMemberAge(RecruitListVO recruitListVO) {
+		
+		return sqlSession.selectList("selectMemberAge",recruitListVO);
+	}
+	@Override
+	public List<String> selectMemberGender(int announceNum) {
+		
+		return sqlSession.selectList("selectMemberGender",announceNum);
+	}
+	@Override
+	public String selectTime(int announceNum) {
+		
+		return sqlSession.selectOne("selectTime",announceNum);
 	}
 
 	

@@ -94,7 +94,22 @@ input[type="number"]::-webkit-inner-spin-button {
 			  <div class="input-group-prepend">
 			    <span class="input-group-text" id="addon-wrapping">구인직종</span>
 			  </div>
- 				<input type="text" name="jobtype" class="form-control" aria-label="Username" aria-describedby="addon-wrapping">
+ 				<!-- <input type="text" name="jobtype" class="form-control" aria-label="Username" aria-describedby="addon-wrapping"> -->
+				  <select class="custom-select" id="inputGroupSelect01" name="jobtype">
+				    <option selected>Choose...</option>
+				    <option>경영.사무</option>
+				    <option>전문직</option>
+				    <option>미디어</option>
+				    <option>영업.고객상담</option>
+				    <option>의료</option>
+				    <option>특수계층.공공</option>
+				    <option>IT.인터넷</option>
+				    <option>건설</option>
+				    <option>디자인</option>
+				    <option>교육</option>
+				    <option>서비스</option>
+				    <option>생산.제조</option>
+				  </select>
 			</div>
 		</div>
 		</div>

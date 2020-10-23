@@ -15,7 +15,6 @@
 	<input type="text" name="resumeName" style="font-size: 35px; font-weight: bold;" readonly value="${memResume.resumeName }">
 	<div style="height: 20px;"></div>
 	<!-- 개인_기본정보 -->
-	<span style="font-weight: bold; font-size: 24px;">개인 정보</span><input type="button" class="btn btn-primary" onClick="location.href='memUpdateForm.me';" value="개인정보수정" style="background: #ABC2E8; border-color: #ABC2E8;" />
 	<div class="row col-md-12" style="border: 5px solid #ABC2E8; border-radius: 10px;">
 		<div class="col-md-9">
 			<div class="form-row">
@@ -77,21 +76,15 @@
 			<div class="form-row">
 				<div class="form-group col-md-6">
 					<label for="eduGrade">학력구분</label>
-					<select class="form-control" id="eduGrade" name="eduGrade" style="height: 35px;">
-						<option>선택하세요</option>
-						<option <c:if test="${memResume.eduGrade eq '고등학교' }">selected</c:if> >고등학교</option>
-						<option <c:if test="${memResume.eduGrade eq '대학교(2,3년제)' }">selected</c:if> >대학교(2,3년제)</option>
-						<option <c:if test="${memResume.eduGrade eq '대학교(4년제)' }">selected</c:if> >대학교(4년제)</option>
-					</select>
+					<input type="text" class="form-control" id="eduSchool" name="eduSchool" value="${memResume.eduGrade }" disabled="disabled" style="background: white;">
 				</div>
 				<div class="form-group col-md-6">
 					<label for="eduSchool">학교명</label>
-					<input type="text" class="form-control" id="eduSchool" name="eduSchool" value="${memResume.eduSchool }">
+					<input type="text" class="form-control" id="eduSchool" name="eduSchool" value="${memResume.eduSchool }" disabled="disabled" style="background: white;">
 				</div>
 				<div class="form-group col-md-6">
 					<label for="eduLoc">지역</label>
-					<input type="button" class="btn btn-primary" onClick="openDaumZipAddress2();" value="주소찾기" style="background: #ABC2E8; border-color: #ABC2E8;" />
-					<input type="text" class="form-control" id="eduLoc" name="eduLoc" value="${memResume.eduLoc }">
+					<input type="text" class="form-control" id="eduLoc" name="eduLoc" value="${memResume.eduLoc }" disabled="disabled" style="background: white;">
 				</div>
 				<div class="form-group col-md-6">
 					<div class="row">
@@ -111,13 +104,13 @@
 									</select>
 								</div>
 								<div class="col-md-6">
-									<input type="text" class="form-control" id="eduMajor" name="eduMajor" placeholder="전공학과" value="${memResume.eduMajor }">
+									<input type="text" class="form-control" id="eduMajor" name="eduMajor" placeholder="전공학과" value="${memResume.eduMajor }" disabled="disabled" style="background: white;">
 								</div>
 							</div>
 						</div>
 						<div class="col-md-3">
 							<label for="eduScore">학점</label>
-					  		<input type="number" class="form-control" id="eduScore" name="eduScore" max="4.5" min="0" step="0.1" value="${memResume.eduScore }">
+					  		<input type="number" class="form-control" id="eduScore" name="eduScore" max="4.5" min="0" step="0.1" value="${memResume.eduScore }" disabled="disabled" style="background: white;">
 						</div>
 												
 												
@@ -125,20 +118,14 @@
 				</div>
 				<div class="form-group col-md-6">
 					<label for="eduBeginDate">입학일</label>
-					<input type="date" class="form-control" id="eduBeginDate" name="eduBeginDate" value="${memResume.eduBeginDate }">
+					<input type="date" class="form-control" id="eduBeginDate" name="eduBeginDate" value="${memResume.eduBeginDate }" disabled="disabled" style="background: white;">
 				</div>
 				<div class="form-group col-md-6">
 					<label for="eduEndDate">졸업일</label>
 					<div class="row col-md-12">
-						<input type="date" class="form-control col-md-11" id="eduEndDate" name="eduEndDate" value="${memResume.eduEndDate }">
-						<div class="col-md-1" style="padding:2px;">
-							<select style="height: 40px;" id="eduIsOver" name="eduIsOver">
-					  			<option>선택하세요</option>
-					  			<option <c:if test="${memResume.eduIsOver eq '졸업예정' }">selected</c:if> >졸업예정</option>
-					  			<option <c:if test="${memResume.eduIsOver eq '졸업' }">selected</c:if> >졸업</option>
-					  			<option <c:if test="${memResume.eduIsOver eq '휴학' }">selected</c:if> >휴학</option>
-					  			<option <c:if test="${memResume.eduIsOver eq '중퇴' }">selected</c:if> >중퇴</option>
-					  		</select>
+						<input type="date" class="form-control col-md-11" id="eduEndDate" name="eduEndDate" value="${memResume.eduEndDate }" disabled="disabled" style="background: white; ">
+						<div class="col-md-1" style="padding:0px;">
+					  		<input type="text" class="form-control" id="eduMajor" name="eduMajor" placeholder="전공학과" value="${memResume.eduIsOver }" disabled="disabled" style="background: white;margin-left: 5px;">
 						</div>
 					</div>
 				</div>
@@ -155,19 +142,19 @@
 				<div class="form-row">
 				   <div class="form-group col-md-12" >
 					  <label for="licName">자격증 이름</label>
-					  <input type="text" class="form-control" id="licName" name="licName" value="${lic.licName }">
+					  <input type="text" class="form-control" id="licName" name="licName" value="${lic.licName }" disabled="disabled" style="background: white;">
 					</div>
 				  <div class="form-group col-md-6">
 				    <label for="licLoc">발행처/기관</label>
-				    <input type="text" class="form-control" id="licLoc" name="licLoc" value="${lic.licLoc }">
+				    <input type="text" class="form-control" id="licLoc" name="licLoc" value="${lic.licLoc }" disabled="disabled" style="background: white;">
 				  </div>
 				  <div class="form-group col-md-6">
 				    <label for="licGrade">점수</label>
-				    <input type="text" class="form-control" id="licGrade" name="licGrade" value="${lic.licGrade }">
+				    <input type="text" class="form-control" id="licGrade" name="licGrade" value="${lic.licGrade }" disabled="disabled" style="background: white;">
 				  </div>
 				  <div class="form-group col-md-12">
 					  <label for="licDate">취득일</label>
-					  <input type="date" class="form-control" id="licDate" name="licDate" value="${lic.licDate }"> 
+					  <input type="date" class="form-control" id="licDate" name="licDate" value="${lic.licDate }" disabled="disabled" style="background: white;"> 
 				  </div>
 				</div>
 			</div>
@@ -182,11 +169,11 @@
 			<div class="col-md-12" id="profileDiv">
 			   <div class="form-group col-md-12">
 				  <label for="proTitle">자기소개서 이름</label>
-				  <input type="text" class="form-control" id="proTitle" name="proTitle" value="${pro.proTitle }">
+				  <input type="text" class="form-control" id="proTitle" name="proTitle" value="${pro.proTitle }" disabled="disabled" style="background: white;">
 				</div>
 			   <div class="form-group col-md-12">
 				  <label for="proContent">자기소개서 내용</label>
-				  <textarea rows="10" cols="60" class="form-control" id="proContent" name="proContent">${pro.proContent }</textarea>
+				  <textarea rows="10" cols="60" class="form-control" id="proContent" name="proContent" disabled="disabled" style="background: white;">${pro.proContent }</textarea>
 				</div>
 			</div>
 		</c:forEach>
@@ -200,19 +187,19 @@
 		 <div class="form-row">
 		   <div class="form-group col-md-6">
 		     <label for="beCompany">회사명</label>
-		     <input type="text" class="form-control" id="beCompany" name="beCompany" value="${memResume.beCompany }">
+		     <input type="text" class="form-control" id="beCompany" name="beCompany" value="${memResume.beCompany }" disabled="disabled" style="background: white;">
 		   </div>
 		   <div class="form-group col-md-6">
 		     <label for="beCareer">경력</label>
-		     <input type="number" class="form-control" id="beCareer" name="beCareer" value="${memResume.beCareer }">년
+		     <input type="text" class="form-control" id="beCareer" name="beCareer" value="${memResume.beCareer }년" disabled="disabled" style="background: white;">
 		   </div>
 		   <div class="form-group col-md-6">
 		     <label for="beType">직종</label>
-		     <input type="text" class="form-control" id="beType" name="beType" value="${memResume.beType }">
+		     <input type="text" class="form-control" id="beType" name="beType" value="${memResume.beType }" disabled="disabled" style="background: white;">
 		   </div>
 		   <div class="form-group col-md-6">
 		     <label for="bePosition">직책</label>
-		     <input type="text" class="form-control" id="bePosition" name="bePosition" value="${memResume.bePosition }">
+		     <input type="text" class="form-control" id="bePosition" name="bePosition" value="${memResume.bePosition }" disabled="disabled" style="background: white;">
 		   </div>
 		 </div>
 		</div>
@@ -226,21 +213,20 @@
 			<div class="form-row">
 				<div class="form-group col-md-6">
 					<label for="hopeType">희망 직종</label>
-					<input type="text" class="form-control" id="hopeType" name="hopeType" value="${memResume.hopeType }">
+					<input type="text" class="form-control" id="hopeType" name="hopeType" value="${memResume.hopeType }" disabled="disabled" style="background: white;">
 				</div>
 				<div class="form-group col-md-6">
 					<label for="hopeSal">희망 연봉(단위: 만원)</label>
-					<input type="number" class="form-control" id="hopeSal" name="hopeSal" min="0" value="${memResume.hopeSal }">
+					<input type="number" class="form-control" id="hopeSal" name="hopeSal" min="0" value="${memResume.hopeSal }" disabled="disabled" style="background: white;">
 				</div>
 				<div class="form-group col-md-6">
 					<label for="hopeLoc">희망 지역</label>
-					<input type="text" class="form-control" id="hopeLoc" name="hopeLoc" value="${memResume.hopeLoc }">
+					<input type="text" class="form-control" id="hopeLoc" name="hopeLoc" value="${memResume.hopeLoc }" disabled="disabled" style="background: white;">
 				</div>
 				<div class="form-group col-md-6">
 					<label for="hopeTime">희망 근무시간</label>
-					<input type="text" class="form-control" id="hopeTime" name="hopeTime" value="${memResume.hopeTime }">
+					<input type="text" class="form-control" id="hopeTime" name="hopeTime" value="${memResume.hopeTime }" disabled="disabled" style="background: white;">
 				</div>
-				
 			</div>
 		</div>
 	</div>

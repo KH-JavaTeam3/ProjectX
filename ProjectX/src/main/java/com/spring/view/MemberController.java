@@ -9,7 +9,6 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,11 +21,12 @@ import com.spring.biz.util.GetSession;
 import com.spring.biz.util.TimeUtil;
 import com.spring.biz.vo.ForRecruitVO;
 import com.spring.biz.vo.LicenseVO;
+import com.spring.biz.vo.LikeCompanyVO;
 import com.spring.biz.vo.MemInfoVO;
+import com.spring.biz.vo.MemResumeVO;
 import com.spring.biz.vo.MultiLicenseVO;
 import com.spring.biz.vo.MultiProfilesVO;
 import com.spring.biz.vo.ProfilesVO;
-import com.spring.biz.vo.MemResumeVO;
 
 
 
@@ -34,6 +34,8 @@ import com.spring.biz.vo.MemResumeVO;
 public class MemberController {
 	@Resource(name = "memberService")
 	MemberService memberService;
+	
+	
 	// *.me쓰셈
 	//경로는 tiles/member/파일명
 	//jsp는 tiles/member폴더안에 생성
@@ -130,6 +132,7 @@ public class MemberController {
 				String realPath = request.getSession().getServletContext().getRealPath("resources/images/memberProfile");
 				mf.transferTo(new File(realPath + "/" + realName));
 				memInfoVO.setMemImage(realName);
+				System.out.println(realPath);
 			}
 		}
 
@@ -190,12 +193,41 @@ public class MemberController {
 		model.addAttribute("resumeList", vo);
 		return "tiles/common/resumeApplication";
 	}
-	//내가 선호하는 기업
-		@RequestMapping(value = "/myFavoriteCompany.me")
-		public String myFavoriteCompany() {
+	
+	//선호 공고리스트로 이동
+	@RequestMapping(value = "/likeRecruit.me")
+	public String likeRecruit() {
+		ForRecruitVO vo = new ForRecruitVO();
+		return "tiles/member/likeRecruit";
+	}
+		//관심 기업
+		@RequestMapping(value = "/likeCompany.me")
+		public String likeCompany(Model model, LikeCompanyVO likeCompanyVO,HttpSession session, String a) {
+			MemInfoVO member = (MemInfoVO) session.getAttribute("memLogin");
 			
-			return "tiles/member/myFavoriteCompany";
-		}	
+			if(session.getAttribute("memLogin") == null){
+				model.addAttribute("msg");
+				model.addAttribute("url");
+				return "tiles/member/alert";
+			}
+			
+			if(a != null) {
+				LikeCompanyVO vo = memberService.chkHeart(likeCompanyVO);
+				
+				if(vo != null) {
+					memberService.deleteLikeCompany(likeCompanyVO);
+				}
+				
+				else {
+					memberService.insertLikeCompany(likeCompanyVO);
+				}
+			}
+			model.addAttribute("likeCompanyList", memberService.selectLikeCompany(member.getMemEmail()));
+			
+			return "redirect:companyList.do"; 
+		}
+		
+		
 		//기업에 넣은 이력서 상세 보기
 		@RequestMapping(value = "/comMoveToResumeDetail.me")
 		public String comMoveToResumeDetail(HttpSession session, Model model, int resumeNum, MemInfoVO memInfoVO,int comMypageNum) {

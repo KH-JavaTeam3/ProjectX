@@ -44,7 +44,7 @@
 				</div>
 				 <div class="form-group form-check">
 				    <input type="checkbox" class="form-check-input" id="keepLogin" name="keepLogin" value="on">
-				    <label class="form-check-label" for="keepLogin">Check me out</label>
+				    <label class="form-check-label" for="keepLogin">자동 로그인</label>
 				  </div>
 				<input type="submit" class="btn btn-primary"
 					style="width: 200px; height: 40px;" value="Submit">

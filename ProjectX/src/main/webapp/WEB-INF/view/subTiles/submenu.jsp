@@ -23,10 +23,10 @@
     <a class="nav-link" href="resumeList.me">이력서 관리</a>
   </li>
   <li class="nav-item" role="presentation">
-    <a class="nav-link" href="#" >최근 본 공고</a>
+    <a class="nav-link" href="likeRecruit.me" >선호하는 공고</a>
   </li>
   <li class="nav-item" role="presentation">
-    <a class="nav-link" href="myFavoriteCompany.me">내가 선호하는 기업</a>
+    <a class="nav-link" href="likeCompany.me">내가 선호하는 기업</a>
   </li>
 </ul>
 </div>

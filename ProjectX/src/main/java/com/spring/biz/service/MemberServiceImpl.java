@@ -7,6 +7,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.spring.biz.vo.LicenseVO;
+import com.spring.biz.vo.LikeCompanyVO;
 import com.spring.biz.vo.MemInfoVO;
 import com.spring.biz.vo.MemResumeVO;
 import com.spring.biz.vo.ProfilesVO;
@@ -67,6 +68,26 @@ public class MemberServiceImpl implements MemberService{
 		return sqlSession.selectList("selectProfilesList", resumeNum);
 	}
 	
+	@Override
+	public LikeCompanyVO chkHeart(LikeCompanyVO likeCompanyVO) {
+		return sqlSession.selectOne("chkHeart", likeCompanyVO);
+	}
+
+	@Override
+	public int insertLikeCompany(LikeCompanyVO likeCompanyVO) {
+		return sqlSession.insert("insertLikeCompany", likeCompanyVO);
+	}
+
+
+	@Override
+	public int deleteLikeCompany(LikeCompanyVO likeCompanyVO) {
+		return sqlSession.delete("deleteLikeCompany", likeCompanyVO);
+	}
+
+	@Override
+	public List<LikeCompanyVO> selectLikeCompany(String memEmail) {
+		return sqlSession.selectList("selectLikeCompany", memEmail);
+	}
 }
 
 

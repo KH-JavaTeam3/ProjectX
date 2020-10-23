@@ -1,33 +1,34 @@
 package com.spring.biz.vo;
 
 public class SearchVO {
-	private String search1;
-	private String search2;
-	private String search3;
+	private String keyword;
+	private String place;
+	private String jobtype;
+	public String getKeyword() {
+		return keyword;
+	}
+	public void setKeyword(String keyword) {
+		this.keyword = keyword;
+	}
 	
-	public String getSearch1() {
-		return search1;
+	public String getPlace() {
+		return place;
 	}
-	public void setSearch1(String search1) {
-		this.search1 = search1;
+	public void setPlace(String place) {
+		this.place = place;
 	}
-	public String getSearch2() {
-		return search2;
+	public String getJobtype() {
+		return jobtype;
 	}
-	public void setSearch2(String search2) {
-		this.search2 = search2;
-	}
-	public String getSearch3() {
-		return search3;
-	}
-	public void setSearch3(String search3) {
-		this.search3 = search3;
+	public void setJobtype(String jobtype) {
+		this.jobtype = jobtype;
 	}
 	@Override
 	public String toString() {
-		return "SearchVO [search1=" + search1 + ", search2=" + search2 + ", search3=" + search3 + "]";
+		return "SearchVO [keyword=" + keyword + ", place=" + place + ", jobtype=" + jobtype + "]";
 	}
-
+	
+	
 	
 	
 }

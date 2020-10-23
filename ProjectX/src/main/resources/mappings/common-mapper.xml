@@ -60,6 +60,7 @@
 		<result column="ACADEMIC_BACKGROUND" 	property="academicBackground" />
 		<result column="AREA" 					property="area" />
 		<result column="CORPORATE_NAME" 		property="corporateName" />
+		<result column="RECRUIT_VIEWS" 		property="recruitViews" />
 	</resultMap>
 	
 	<resultMap type="com.spring.biz.vo.ForRecruitVO" id="forRecruit">
@@ -213,7 +214,7 @@
 <!-- 	채용공고 상세 보기 -->
 	<select id="selectDetailRecruit" resultMap="recruitlist">
 	SELECT
-	ANNOUNCE_NUM
+		ANNOUNCE_NUM
 		,ANNOUNCE_TITLE
 		,ANNOUNCE_CONTENT
 		,UPTO_HIREDATE
@@ -230,6 +231,7 @@
 		,AREA
 		,COM_NAME
 		,R.COM_NUM
+		,RECRUIT_VIEWS
 	FROM RECRUIT_LIST R, COMPANY_INFO C
 	WHERE R.COM_NUM = C.COM_NUM
 	AND R.COM_NUM = #{comNum}
@@ -256,59 +258,95 @@
 			,JOBTYPE
 			,AREA
 			,R.COM_NUM
+			,RECRUIT_VIEWS
 		FROM RECRUIT_LIST R, COMPANY_INFO C
 		WHERE R.COM_NUM= C.COM_NUM	
 		AND HIRE_CONDITION = 'Y'
+		
 		<!-- 검색 조건 --> 				
-		<if test="search2 == '' and search3 == '' and search1 != '' ">	
-		AND (UPPER(COM_NAME) Like UPPER('%'||#{search1}||'%')
-		OR UPPER(ANNOUNCE_TITLE) Like UPPER('%'||#{search1}||'%')
-		OR UPPER(WORK_TYPE) Like UPPER('%'||#{search1}||'%')
-		OR UPPER(JOBTYPE) Like UPPER('%'||#{search1}||'%')
-		OR UPPER(QUALIFICATION) Like UPPER('%'||#{search1}||'%')
-		OR UPPER(BENEFIT) Like UPPER('%'||#{search1}||'%')
-		OR UPPER(ACADEMIC_BACKGROUND) Like UPPER('%'||#{search1}||'%')
-		OR UPPER(AREA) Like UPPER('%'||#{search1}||'%'))					
+		<if test="keyword != '' and place == '' and jobtype == '' ">	
+			AND (UPPER(COM_NAME) Like UPPER('%'||#{keyword}||'%')
+			OR UPPER(ANNOUNCE_TITLE) Like UPPER('%'||#{keyword}||'%')
+			OR UPPER(WORK_TYPE) Like UPPER('%'||#{keyword}||'%')
+			OR UPPER(JOBTYPE) Like UPPER('%'||#{keyword}||'%')
+			OR UPPER(QUALIFICATION) Like UPPER('%'||#{keyword}||'%')
+			OR UPPER(BENEFIT) Like UPPER('%'||#{keyword}||'%')
+			OR UPPER(ACADEMIC_BACKGROUND) Like UPPER('%'||#{keyword}||'%')
+			OR UPPER(AREA) Like UPPER('%'||#{keyword}||'%'))					
 		</if>
 		
-	  	<if test="search2 == '' and search3 != '' and search1 != '' ">
-		AND (JOBTYPE =#{search3}
-		OR UPPER(COM_NAME) Like UPPER('%'||#{search1}||'%')	
-		OR UPPER(ANNOUNCE_TITLE) Like UPPER('%'||#{search1}||'%')
-		OR UPPER(WORK_TYPE) Like UPPER('%'||#{search1}||'%')
-		OR UPPER(QUALIFICATION) Like UPPER('%'||#{search1}||'%')
-		OR UPPER(BENEFIT) Like UPPER('%'||#{search1}||'%')
-		OR UPPER(ACADEMIC_BACKGROUND) Like UPPER('%'||#{search1}||'%')
-		OR UPPER(AREA) Like UPPER('%'||#{search1}||'%'))
-						
+	  	<if test="keyword != '' and place == '' and jobtype != '' ">
+			AND (JOBTYPE =#{jobtype}
+			OR UPPER(COM_NAME) Like UPPER('%'||#{keyword}||'%')	
+			OR UPPER(ANNOUNCE_TITLE) Like UPPER('%'||#{keyword}||'%')
+			OR UPPER(WORK_TYPE) Like UPPER('%'||#{keyword}||'%')
+			OR UPPER(QUALIFICATION) Like UPPER('%'||#{keyword}||'%')
+			OR UPPER(BENEFIT) Like UPPER('%'||#{keyword}||'%')
+			OR UPPER(ACADEMIC_BACKGROUND) Like UPPER('%'||#{keyword}||'%')
+			OR UPPER(AREA) Like UPPER('%'||#{keyword}||'%'))
 		</if> 
-		<if test="search2 != '' and search3 == '' and search1 != '' ">
-		AND (AREA = #{search2}
-		OR UPPER(COM_NAME) Like UPPER('%'||#{search1}||'%')				
-		OR UPPER(ANNOUNCE_TITLE) Like UPPER('%'||#{search1}||'%')
-		OR UPPER(WORK_TYPE) Like UPPER('%'||#{search1}||'%')
-		OR UPPER(JOBTYPE) Like UPPER('%'||#{search1}||'%')
-		OR UPPER(QUALIFICATION) Like UPPER('%'||#{search1}||'%')
-		OR UPPER(BENEFIT) Like UPPER('%'||#{search1}||'%')
-		OR UPPER(ACADEMIC_BACKGROUND) Like UPPER('%'||#{search1}||'%'))
-					
-		</if>
-		<if test="search2 != '' and search3 != '' and search1 != '' ">
-		AND (AREA = #{search2}
-		OR JOBTYPE =#{search3}			
-		OR UPPER(COM_NAME) Like UPPER('%'||#{search1}||'%')			
-		OR UPPER(ANNOUNCE_TITLE) Like UPPER('%'||#{search1}||'%')
-		OR UPPER(WORK_TYPE) Like UPPER('%'||#{search1}||'%')
-		OR UPPER(QUALIFICATION) Like UPPER('%'||#{search1}||'%')
-		OR UPPER(BENEFIT) Like UPPER('%'||#{search1}||'%')
-		OR UPPER(ACADEMIC_BACKGROUND) Like UPPER('%'||#{search1}||'%'))			
+		
+		<if test="keyword != '' and place != '' and jobtype == '' ">
+			AND (AREA = #{place}
+			OR UPPER(COM_NAME) Like UPPER('%'||#{keyword}||'%')				
+			OR UPPER(ANNOUNCE_TITLE) Like UPPER('%'||#{keyword}||'%')
+			OR UPPER(WORK_TYPE) Like UPPER('%'||#{keyword}||'%')
+			OR UPPER(JOBTYPE) Like UPPER('%'||#{keyword}||'%')
+			OR UPPER(QUALIFICATION) Like UPPER('%'||#{keyword}||'%')
+			OR UPPER(BENEFIT) Like UPPER('%'||#{keyword}||'%')
+			OR UPPER(ACADEMIC_BACKGROUND) Like UPPER('%'||#{keyword}||'%'))
 		</if>
 		
-		<if test="search2 != '' and search3 != '' and search1 == '' ">
-		AND (AREA = #{search2}
-		OR JOBTYPE =#{search3})					
+		<if test="keyword == '' and place != '' and jobtype != '' ">
+			AND (AREA = #{place}
+			OR JOBTYPE =#{jobtype})					
 		</if>  
+		
+		<if test="keyword == '' and place != '' and jobtype == '' ">
+		
+		</if>
+		
+		<if test="keyword == '' and place == '' and jobtype != '' ">
+		
+		</if>
+		 
+		<if test="keyword != '' and place != '' and jobtype != '' ">
+			AND (AREA = #{place}
+			OR JOBTYPE =#{jobtype}			
+			OR UPPER(COM_NAME) Like UPPER('%'||#{keyword}||'%')			
+			OR UPPER(ANNOUNCE_TITLE) Like UPPER('%'||#{keyword}||'%')
+			OR UPPER(WORK_TYPE) Like UPPER('%'||#{keyword}||'%')
+			OR UPPER(QUALIFICATION) Like UPPER('%'||#{keyword}||'%')
+			OR UPPER(BENEFIT) Like UPPER('%'||#{keyword}||'%')
+			OR UPPER(ACADEMIC_BACKGROUND) Like UPPER('%'||#{keyword}||'%'))			
+		</if>
 	</select> 
+	<!-- 기업 지원한 사람 나이 셀렉트 -->
+	<select id="selectMemberAge" resultType="int">
+		SELECT MEM_AGE
+		FROM MEM_INFO I , MEM_RESUME R, COM_MYPAGE M, RECRUIT_LIST L
+		WHERE I.MEM_EMAIL = R.MEM_EMAIL
+		AND R.RESUME_NUM = M.RESUME_NUM
+		AND M.COM_NUM =L.COM_NUM
+		AND L.ANNOUNCE_NUM =#{announceNum}
+	</select>
+<!-- 기업 지원한 성별 셀렉트 -->
+	<select id="selectMemberGender" resultType="string">
+		SELECT MEM_GENDER
+		FROM MEM_INFO I , MEM_RESUME R, COM_MYPAGE M, RECRUIT_LIST L
+		WHERE I.MEM_EMAIL = R.MEM_EMAIL
+		AND R.RESUME_NUM = M.RESUME_NUM
+		AND M.COM_NUM =L.COM_NUM
+		AND L.ANNOUNCE_NUM =#{announceNum}
+	</select>
+<!-- 시간 카운트 다운 -->
+	<select id="selectTime" resultType="string">
+		SELECT UPTO_HIREDATE
+		FROM RECRUIT_LIST
+		WHERE ANNOUNCE_NUM =#{announceNum}
+	</select>
+	
+	
 	
 	<!-- 실행시 날짜가 지난 공고목록 조회 -->
 <select id="selectOldList" resultMap="recruitlist">
@@ -330,11 +368,13 @@ INSERT INTO COM_MYPAGE(
     ,COM_NUM
     ,ANNOUNCE_NUM
     ,RESUME_NUM
+    ,RESUME_RESULT
 ) VALUES(
     (SELECT NVL(MAX(COM_MYPAGE_NUM)+1,1) FROM COM_MYPAGE)
     ,#{comNum}
     ,#{announceNum}
     ,#{resumeNum}
+    ,'N'
 )
 </insert>
 

@@ -46,39 +46,39 @@ label.error {
 		<form action="initCompanyJoin.do" method="post" id="join2Form">
 			<div class="form-group">
 				<label for="comNum">사업자번호</label> <input type="number"
-					class="form-control" id="comNum" name="comNum">
+					class="form-control" id="comNum" name="comNum" required>
 			</div>
 			<div class="form-group">
 				<label for="comPass">비밀번호</label> <input type="password"
-					class="form-control" id="comPass" name="comPass">
+					class="form-control" id="comPass" name="comPass" required>
 			</div>
 			<div class="form-group">
 				<label for="comPassChk">비밀번호 확인</label> <input type="password"
-					class="form-control" id="comPassChk" name="comPassChk">
+					class="form-control" id="comPassChk" name="comPassChk" required>
 			</div>
 			<div class="form-group">
 				<label for="comEmail">이메일</label> <input type="email"
-					class="form-control" id="comEmail" name="comEmail">
+					class="form-control" id="comEmail" name="comEmail" required>
 			</div>
 			<div class="form-group">
 				<label for="comName">법인명</label> <input type="text"
-					class="form-control" id="comName" name="comName">
+					class="form-control" id="comName" name="comName" required>
 			</div>
 			<div class="form-group">
 				<label for="comCeo">대표자명</label> <input type="text"
-					class="form-control" id="comCeo" name="comCeo">
+					class="form-control" id="comCeo" name="comCeo" required>
 			</div>
 			<div class="form-group">
 				<label for="comLoc">본사 주소</label> <input type="text"
-					class="form-control" id="comLoc" name="comLoc">
+					class="form-control" id="comLoc" name="comLoc" required>
 			</div>
 			<div class="form-group">
 				<label for="comType">산업군</label> <input type="text"
-					class="form-control" id="comType" name="comType">
+					class="form-control" id="comType" name="comType" required>
 			</div>
 			<div class="form-group">
 				<label for="comTel">연락처</label> <input type="text"
-					class="form-control" id="comTel" name="comTel">
+					class="form-control" id="comTel" name="comTel" required>
 			</div>
 			
 

@@ -4,6 +4,7 @@ package com.spring.biz.service;
 import java.util.List;
 
 import com.spring.biz.vo.LicenseVO;
+import com.spring.biz.vo.LikeCompanyVO;
 import com.spring.biz.vo.MemInfoVO;
 import com.spring.biz.vo.MemResumeVO;
 import com.spring.biz.vo.ProfilesVO;
@@ -32,4 +33,17 @@ public interface MemberService {
 	
 	//이력서 상세 중 자소서 모음
 	List<ProfilesVO> selectProfilesList(int resumeNum);
+	
+	//하트 눌렀는지 확인
+	LikeCompanyVO chkHeart(LikeCompanyVO likeCompanyVO);
+	
+	//하트를 한 번 눌렀을 때
+	int insertLikeCompany(LikeCompanyVO likeCompanyVO);
+	
+	//하트를 다시 눌렀을 때
+	int deleteLikeCompany(LikeCompanyVO likeCompanyVO);
+	
+	//관심기업 조회 리스트
+	List<LikeCompanyVO> selectLikeCompany(String memEmail);
+	
 }

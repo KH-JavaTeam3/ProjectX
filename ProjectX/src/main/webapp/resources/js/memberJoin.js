@@ -1,12 +1,7 @@
 /* 페이지 로딩 후 실행 */
 $(document).ready(function(){
 	
-	//클릭 이벤트
-	//$(document).on('click', '선택자', function() {
-
-	//});
 	
-//	initValidate();
 	
 	//이메일 체크
 	$(document).on('click', '#emailChk', function(){
@@ -27,6 +22,74 @@ $(document).ready(function(){
 			}
 		}).open();
 	});
+	
+	$(document).on('click', '#formBtn', function(){
+		if($(this).is('[type="button"]')){
+			alert('이메일 중복체크를 해주세요');
+		}
+	});
+	
+	
+	
+	
+	
+	 $.datepicker.setDefaults($.datepicker.regional['ko']); 
+     $( "#memBirth" ).datepicker({
+       changeYear: true, 
+       changeMonth: true,
+       yearRange: 'c-70:c+0',
+       monthNames: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
+       monthNamesShort: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
+       dayNames: ['월요일', '화요일', '수요일', '목요일', '금요일', '토요일', '일요일'],
+       dayNamesMin: ['월', '화', '수', '목', '금', '토', '일'], 
+       showMonthAfterYear: true,
+       dateFormat: 'yy-mm-dd'
+     });
+	
+	
+	
+	
+	
+	
+	
+	//이메일 체크 함수
+	function emailChkAjax(memEmail){
+		$.ajax({
+			url: 'emailChkAjax.do', //요청경로
+			type: 'post',
+			data: {'memEmail' : memEmail},
+			//요청경로로 던질 파라메터. '파라메터명':파라메터
+			success: function(result) { // ajax 통신 성공 시 실행부분. result가 결과 데이터를 가진다.
+				
+				if(result != "" && result != null){
+					alert('중복된 아이디입니다.');
+				}else{
+					alert('사용하실 수 있는 아이디입니다.');
+					if($('#formBtn').is('[type="button"]')){
+						let btn = $('#emailChk');
+						btn.addClass('active');
+						if(btn.hasClass('active')){
+							$('#formBtn').prop('type', 'submit');
+						}
+					}
+				}
+			},
+			error: function(){ //ajax통신 실패 시 실행부분
+				alert('실패');
+			}
+		});
+	}
+	
+	
+	
+
+	
+	
+	
+	
+	
+	
+	
 });
 
 
@@ -35,25 +98,6 @@ $(document).ready(function(){
 
 
 
-function emailChkAjax(memEmail){
-	$.ajax({
-		url: 'emailChkAjax.do', //요청경로
-		type: 'post',
-		data: {'memEmail' : memEmail},
-		//요청경로로 던질 파라메터. '파라메터명':파라메터
-		success: function(result) { // ajax 통신 성공 시 실행부분. result가 결과 데이터를 가진다.
-			
-			if(result != "" && result != null){
-				alert('중복된 아이디입니다.');
-			}else{
-				alert('사용하실 수 있는 아이디입니다.');
-			}
-		},
-		error: function(){ //ajax통신 실패 시 실행부분
-			alert('실패');
-		}
-	});
-}
 
 
 

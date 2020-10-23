@@ -59,6 +59,7 @@
 		<result column="CAREER"         	 	  property="career"/> 
 		<result column="ACADEMIC_BACKGROUND"     property="academicBackground"/> 
 		<result column="AREA"         	 	  	  property="area"/> 
+		
 	</resultMap>
 	<resultMap type="com.spring.biz.vo.ForRecruitVO" id="forRecruit">
 		<result column="COM_NUM"            	  property="comNum"/> 
@@ -198,7 +199,9 @@ WHERE ANNOUNCE_NUM = #{announceNum}
 	    ,ANNI_SAL = #{anniSal}
 	    ,QUALIFICATION = #{qualification}
 	    ,BENEFIT = #{benefit}
+	    <if test="registImage != null">
 	    ,REGIST_IMAGE = #{registImage}
+	    </if>
 	    ,CAREER = #{career}
 	    ,ACADEMIC_BACKGROUND = #{academicBackground}
 	    ,AREA = #{area}

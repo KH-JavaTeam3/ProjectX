@@ -1,15 +1,12 @@
 package com.spring.view;
 
 import java.io.File;
-import java.util.Arrays;
 import java.util.Iterator;
-import java.util.List;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-import org.springframework.http.codec.multipart.MultipartHttpMessageReader;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,11 +15,9 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.spring.biz.service.CompanyService;
-import com.spring.biz.util.GetSession;
 import com.spring.biz.util.TimeUtil;
 import com.spring.biz.vo.CompanyInfoVO;
 import com.spring.biz.vo.ForRecruitVO;
-import com.spring.biz.vo.LicenseVO;
 import com.spring.biz.vo.MemResumeVO;
 import com.spring.biz.vo.RecruitListVO;
 
@@ -108,9 +103,12 @@ public class CompanyController {
 			while(enu.hasNext()){
 				String fileName = enu.next();
 				
+				
 				//서버에 업로드 되는 파일명
 				MultipartFile mf = multi.getFile(fileName);
+				
 				String originFileName = mf.getOriginalFilename();
+				System.out.println(originFileName);
 				String realName = nowDate + "_" + originFileName;
 				
 				//용량이 0이 아닐 경우
@@ -121,7 +119,7 @@ public class CompanyController {
 					recruitListVO.setRegistImage(realName);
 				}
 			}
-			System.out.println(recruitListVO);
+				
 			companyService.registHumanSeekerUpdate(recruitListVO);
 			return "redirect:recruitlist.co";
 		}

@@ -93,7 +93,22 @@ input[type="number"]::-webkit-inner-spin-button {
 			  <div class="input-group-prepend">
 			    <span class="input-group-text" id="addon-wrapping">구인직종</span>
 			  </div>
- 				<input type="text" name="jobtype" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="addon-wrapping" value="${recruitDeteil.jobtype }">
+ 				<%-- <input type="text" name="jobtype" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="addon-wrapping" value="${recruitDeteil.jobtype }"> --%>
+ 				  <select class="custom-select" id="inputGroupSelect01" name="jobtype">
+				    <option>${recruitDeteil.jobtype }</option>
+				    <option>경영.사무</option>
+				    <option>전문직</option>
+				    <option>미디어</option>
+				    <option>영업.고객상담</option>
+				    <option>의료</option>
+				    <option>특수계층.공공</option>
+				    <option>IT.인터넷</option>
+				    <option>건설</option>
+				    <option>디자인</option>
+				    <option>교육</option>
+				    <option>서비스</option>
+				    <option>생산.제조</option>
+				  </select>
 			</div>
 		</div>
 		<div class="col-md-12" style="margin-bottom: 20px; margin-top: 20px;">
@@ -169,7 +184,7 @@ input[type="number"]::-webkit-inner-spin-button {
 		</div>
 			<div class="col-md-12">
 				<div class="custom-file mb-3">
-				    <input type="file" class="custom-file-input" id="validatedCustomFile" name="file1" value="${recruitDeteil.registImage }">
+				    <input type="file" class="custom-file-input" id="validatedCustomFile" name="file1">
 				    <label class="custom-file-label" for="validatedCustomFile" id="registImage">${recruitDeteil.registImage }</label>
 		  </div>
 			</div>

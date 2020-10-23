@@ -22,9 +22,14 @@ public class RecruitListVO {
 	private String career;
 	private String academicBackground;
 	private String area;
+	private int recruitViews;
 	
-	
-	
+	public int getRecruitViews() {
+		return recruitViews;
+	}
+	public void setRecruitViews(int recruitViews) {
+		this.recruitViews = recruitViews;
+	}
 	public String getComName() {
 		return comName;
 	}
@@ -139,6 +144,7 @@ public class RecruitListVO {
 	public void setRegistImage(String registImage) {
 		this.registImage = registImage;
 	}
+	
 	@Override
 	public String toString() {
 		return "RecruitListVO [announceNum=" + announceNum + ", announceTitle=" + announceTitle + ", announceContent="
@@ -146,7 +152,8 @@ public class RecruitListVO {
 				+ hireNum + ", comNum=" + comNum + ", comName=" + comName + ", jobtype=" + jobtype + ", worktime="
 				+ worktime + ", workType=" + workType + ", anniSal=" + anniSal + ", qualification=" + qualification
 				+ ", hireCondition=" + hireCondition + ", registImage=" + registImage + ", benefit=" + benefit
-				+ ", career=" + career + ", academicBackground=" + academicBackground + ", area=" + area + "]";
+				+ ", career=" + career + ", academicBackground=" + academicBackground + ", area=" + area
+				+ ", recruitViews=" + recruitViews + "]";
 	}
 	
 	

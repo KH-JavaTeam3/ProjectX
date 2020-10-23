@@ -9,13 +9,12 @@
 <link rel="stylesheet" href="resources/css/writeResume.css">
 </head>
 <body>
-<div style="height: 50px;"></div>
-	<div style="height: 50px;"></div>
+<div style="height: 30px;"></div>
 	<!-- 이력서 제목 -->
 	<input type="text" name="resumeName" style="font-size: 35px; font-weight: bold;" readonly value="${memResume.resumeName }">
 	<div style="height: 20px;"></div>
 	<!-- 개인_기본정보 -->
-	<span style="font-weight: bold; font-size: 24px;">개인 정보</span><input type="button" class="btn btn-primary" onClick="location.href='memUpdateForm.me';" value="개인정보수정" style="background: #ABC2E8; border-color: #ABC2E8;" />
+	<span style="font-weight: bold; font-size: 24px;">개인 정보</span><input type="button" class="btn btn-primary" onClick="location.href='memUpdateForm.me';" value="개인정보수정" style="background: #ABC2E8; border-color: #ABC2E8; margin-bottom: 5px;"/>
 	<div class="row col-md-12" style="border: 5px solid #ABC2E8; border-radius: 10px;">
 		<div class="col-md-9">
 			<div class="form-row">
@@ -61,7 +60,7 @@
 						<div class="form-group files uploader offset-md-5">
 							<label for="memImage">사진</label>
 							<input type="file" class="form-control"  id="memImage" name="memImage" disabled>
-							<img id="preview" src="resources/images/memberProfile/${sessionScope.memLogin.memImage }">
+							<img id="preview" src="resources/images/memberProfile/${sessionScope.memLogin.memImage }" onerror="this.src='resources/images/profile.png'">
 						</div>
 					</div>
 				</div>
@@ -90,7 +89,6 @@
 				</div>
 				<div class="form-group col-md-6">
 					<label for="eduLoc">지역</label>
-					<input type="button" class="btn btn-primary" onClick="openDaumZipAddress2();" value="주소찾기" style="background: #ABC2E8; border-color: #ABC2E8;" />
 					<input type="text" class="form-control" id="eduLoc" name="eduLoc" value="${memResume.eduLoc }">
 				</div>
 				<div class="form-group col-md-6">

@@ -75,6 +75,20 @@
 		<result column="PRO_CONTENT"	property="proContent"/>
 	</resultMap>
 	
+	<resultMap type="com.spring.biz.vo.LikeCompanyVO" id="likeCompany">
+		<result column="LIKE_NUM"			property="likeNum"/>
+		<result column="COM_NUM"			property="comNum"/>
+		<result column="MEM_EMAIL"			property="memEmail"/>
+		<result column="COM_NAME"			property="comName"/>
+		<result column="ANNOUNCE_NUM"		property="announceNum"/>
+	</resultMap>
+	
+	<resultMap type="com.spring.biz.vo.LikeRecruitVO" id="likeRecruit">
+		<result column="LIKE_RECRUIT_NUM"	property="likeRecruitNum"/>
+		<result column="ANNOUNCE_NUM"		property="announceNum"/>
+		<result column="MEM_EMAIL"			property="memEmail"/>
+	</resultMap>
+	
 	<!-- 이력서 insert -->
 	<insert id="insertResume">
 		INSERT INTO MEM_RESUME (
@@ -244,8 +258,53 @@
 		WHERE RESUME_NUM = #{resumeNum}
 	</select>
 	
+	<!-- 하트를 눌렀는지에 대해 확인 -->
+	<select id="chkHeart" resultMap="likeCompany">
+		SELECT * FROM LIKE_COMPANY
+        WHERE ANNOUNCE_NUM = #{announceNum}
+        AND MEM_EMAIL = #{memEmail}
+	</select>
 	
+	<!-- 하트 눌렀을 때 -->
+	<insert id="insertLikeCompany">
+		INSERT INTO LIKE_COMPANY(
+			LIKE_NUM
+			, COM_NUM
+			, MEM_EMAIL
+			, ANNOUNCE_NUM
+		)VALUES(
+			(SELECT NVL(MAX(LIKE_NUM) + 1, 1) FROM LIKE_COMPANY)
+			, #{comNum}
+			, #{memEmail}
+			, #{announceNum}
+		)
+	</insert>
 	
+	<!-- 하트를 다시 눌렀을 때 -->
+	<delete id="deleteLikeCompany">
+		DELETE LIKE_COMPANY
+		WHERE ANNOUNCE_NUM = #{announceNum} 
+		AND MEM_EMAIL = #{memEmail}
+	</delete>
 	
+	<!-- 관심 기업 조회 -->
+	<select id="selectLikeCompany" resultMap="likeCompany">
+		SELECT LIKE_NUM
+			, C.COM_NUM 
+			, C.COM_NAME
+			, MEM_EMAIL
+			, ANNOUNCE_NUM
+		FROM LIKE_COMPANY L, COMPANY_INFO C
+		WHERE L.COM_NUM = C.COM_NUM
+		AND MEM_EMAIL = #{memEmail}
+		ORDER BY ANNOUNCE_NUM DESC
+	</select>
 	
+	<!-- 관심 공고 조회 -->
+	<select id="selectLikeRecruitList" resultMap="likeRecruit">
+		SELECT LIKE_RECRUIT_NUM
+			, ANNOUNCE_NUM
+			, MEM_EMAIL
+		FROM LIKE_RECRUIT
+	</select>
 </mapper>
