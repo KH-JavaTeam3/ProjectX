@@ -8,6 +8,8 @@
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
 <meta charset="UTF-8">
 <head>
+<!-- 지도  -->
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=c18d5b75b8ce7472bc049b59b3a7f5f9&libraries=services"></script>
 <title>Insert title here</title>
 <style type="text/css">
 .divtop > div {
@@ -35,6 +37,7 @@ input[type="number"]::-webkit-inner-spin-button {
 </style>
 </head>
 <body>
+<div style="height: 30px;"></div>
 <div align="center">
 	<div class="row" style="border-bottom : 3px solid #f1f3f9;border-top : 3px solid #f1f3f9; width: 80%;" >
 		<div class="col-md-6" style="padding-bottom: 20px; padding-top: 20px;" align="left">
@@ -92,23 +95,32 @@ input[type="number"]::-webkit-inner-spin-button {
 		</div>
 	</div>
 		<div align="right" style="width: 80%; padding-bottom: 10px;">
-			<span style="font-size: 11px;font-weight: normal;">조회수 : ${recruitDeteil.recruitViews }</span>
+ 		<img src="resources/images/eye.png" style="width: 15px; height: 15px;"> 
+			<span style="font-size: 11px;font-weight: normal;">
+			 ${recruitDeteil.recruitViews }</span>
 		</div>
 		<div class="col-md-12" align="center" style="width: 80%;padding-bottom: 20px;">
-			<img id="preview" src="resources/images/comProfile/${recruitDeteil.registImage } " style=" width:100%;">
+ 			<img id="preview" src="resources/images/comProfile/${recruitDeteil.registImage}" style=" width:100%;"> 
 		</div>
 		<div align="left" style="width: 80%;">
 			<span style="font-weight: bolder;font-size: 20px; padding-bottom: 10px;">접수기간 및 방법</span>
 		</div>
 		<div class="row" style="border : 3px solid #f1f3f9;border-top: 1px solid; width: 80%;" >
-			<div class="col-md-4" style="padding-bottom: 20px; padding-top: 20px; width: 80%;" align="center">
+			<div class="col-md-4" style="padding-bottom: 20px; padding-top: 45px; width: 80%;" align="center">
 				<p style="font-size: 15px; color: #4c78ea; margin: 0px;">남은 기간</p>
 				<!-- 카운트 다운 -->
 				<p id="HourCountdown" style="font-size: 20px; color: #4c78ea; font-weight: bolder; margin: 0px;"></p>
 				<p style="margin: 5px;"><span style="border:1px solid #4876ef; color:#4876ef;border-radius : 15px; padding: 3px;margin-right: 5px; ">마감일</span><span style="color:#4876ef;">${recruitDeteil.uptoHiredate } 23:59</span> </p>
 			</div>
-			<div class="col-md-8" style="padding-bottom: 20px; padding-top: 20px; width: 80%; background: #f8f9fa;" align="left">
+			<div class="col-md-4" style="padding-bottom: 20px; padding-top: 20px; width: 80%; background: #f8f9fa;" align="left">
 				<p style="margin: 0px;padding-left: 20px;"><span style="color: #888;" >지원방법 : </span><span style="color:#444;"> 홈페이지 지원</span></p>
+				<p style="margin: 0px;padding-left: 20px;"><span style="color: #888;" >본사주소 : </span><span style="color:#444;"> ${recruitDeteil.comLoc }</span></p>
+				<p style="margin: 0px;padding-left: 20px;"><span style="color: #888;" >이메일 : </span><span style="color:#444;"> ${recruitDeteil.comEmail }</span></p>
+				<p style="margin: 0px;padding-left: 20px;"><span style="color: #888;" >연락처 : </span><span style="color:#444;"> ${recruitDeteil.comTel }</span></p>
+			</div>
+			<div class="col-md-4" style="padding-bottom: 20px; padding-top: 20px; width: 80%; background: #f8f9fa;" align="left">
+				<!--지도  -->
+					<div id="map" style="width:200px;height:150px;" align="left"></div>
 			</div>
 		</div>
 		<div align="left" style="width: 80%;">
@@ -145,8 +157,8 @@ input[type="number"]::-webkit-inner-spin-button {
 						labels : [ '20대', '30대', '40대', '50대', '60대이상'],
 						datasets : [ {
 							label : '지원자 수',
-							data : [ ${age20}, ${age30}, ${age40}, ${age50}, ${age60} ],
-							backgroundColor : [ 'rgba(54, 162, 235, 0.2)',
+							data : [ ${age20}, ${age30}, ${age40}, ${age50}, ${age60}]
+							,backgroundColor:[ 'rgba(54, 162, 235, 0.2)',
 									'rgba(54, 162, 235, 0.2)',
 									'rgba(54, 162, 235, 0.2)',
 									'rgba(54, 162, 235, 0.2)',
@@ -159,7 +171,7 @@ input[type="number"]::-webkit-inner-spin-button {
 									'rgba(54, 162, 235, 1)',
 									'rgba(54, 162, 235, 1)'],
 							borderWidth : 1
-						} ]
+						}]
 					},
 					options : {
 						scales : {
@@ -175,10 +187,9 @@ input[type="number"]::-webkit-inner-spin-button {
 	
 <!-- 원형차트 -->
 <script> 
-data = { 
-			datasets: [{ backgroundColor: ['rgba(255, 99, 132, 0.6)','rgba(54, 162, 235, 0.6)'],
-					data: [${genderW},${genderM}] }],labels: ['여자','남자'] }; 
-			var ctx1 = document.getElementById("myChart1"); var myPieChart = new Chart(ctx1, { type: 'pie', data: data, options: {} }); 
+data = { datasets: [{ backgroundColor: ['rgba(255, 99, 132, 0.6)','rgba(54, 162, 235, 0.6)'],
+		 data: [${genderW},${genderM}] }],labels: ['여자','남자'] }; 
+	var ctx1 = document.getElementById("myChart1"); var myPieChart = new Chart(ctx1, { type: 'pie', data: data, options: {} }); 
 </script>
 <!-- 카운트다운 -->
 <script type="text/javascript">
@@ -216,7 +227,44 @@ function CountDownTimer(dt, id) {
     timer = setInterval(showRemaining, 1000);
 }
 </script>
+<script>
+var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+    mapOption = {
+        center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
+        level: 3 // 지도의 확대 레벨
+    };  
 
+// 지도를 생성합니다    
+var map = new kakao.maps.Map(mapContainer, mapOption); 
+
+// 주소-좌표 변환 객체를 생성합니다
+var geocoder = new kakao.maps.services.Geocoder();
+
+// 주소로 좌표를 검색합니다
+geocoder.addressSearch('${recruitDeteil.comLoc}', function(result, status) {
+
+    // 정상적으로 검색이 완료됐으면 
+     if (status === kakao.maps.services.Status.OK) {
+
+        var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+
+        // 결과값으로 받은 위치를 마커로 표시합니다
+        var marker = new kakao.maps.Marker({
+            map: map,
+            position: coords
+        });
+
+        // 인포윈도우로 장소에 대한 설명을 표시합니다
+        var infowindow = new kakao.maps.InfoWindow({
+            content: '<div style="width:200px;  text-align:center;padding:6px 0;">'+'<span style="font-size:8px;">'+'${recruitDeteil.comLoc}'+'</span></div>'
+        });
+        infowindow.open(map, marker);
+
+        // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
+        map.setCenter(coords);
+    } 
+});    
+</script>
 
 <script src="resources/js/comWriteResume.js?ver=3"></script>
 </body>

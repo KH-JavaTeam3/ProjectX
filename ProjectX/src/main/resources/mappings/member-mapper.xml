@@ -4,7 +4,8 @@
 
 <!-- 맵퍼파일 생성 후 반드시 sql-map-config.xml 파일에 mapper 등록해줘야 함 -->
 <mapper namespace="memberMapper">
-
+	
+	<!-- 개인정보 -->
 	<resultMap type="com.spring.biz.vo.MemInfoVO" id="memInfo">
 		<result column="MEM_EMAIL"           property="memEmail"/> 
 		<result column="MEM_PASS"      	      property="memPass"/> 
@@ -20,7 +21,8 @@
 		<result column="IS_ADMIN"			  property="isAdmin"/> 
 		<result column="MEM_IMAGE"        	  property="memImage"/> 
 	</resultMap>
-
+	
+	<!-- 회사정보 -->
 	<resultMap type="com.spring.biz.vo.CompanyInfoVO" id="companyInfo">
 		<result column="COM_NUM"           		property="comNum"/> 
 		<result column="COM_PASS"      	     	property="comPass"/> 
@@ -28,6 +30,7 @@
 		<result column="COM_NAME"         	  	property="comName"/> 
 		<result column="COM_CEO"        		property="comCeo"/> 
 		<result column="COM_LOC"        	 	property="comLoc"/> 
+		<result column="COM_LOC_DETAIL"        	property="comLocDetail"/> 
 		<result column="COM_TYPE"           	property="comType"/> 
 		<result column="COM_TEL"           		property="comTel"/> 
 		<result column="COM_JOIN_DATE"         property="comJoinDate"/> 
@@ -36,6 +39,7 @@
 		<result column="COM_SCORE"           	property="comScore"/> 
 	</resultMap>
 	
+	<!-- 이력서 정보 -->
 	<resultMap type="com.spring.biz.vo.MemResumeVO" id="memResume">
 		<result column="RESUME_NUM"            property="resumeNum"/> 
 		<result column="RESUME_NAME"      	    property="resumeName"/> 
@@ -49,10 +53,6 @@
 		<result column="EDU_END_DATE"         	property="eduEndDate"/> 
 		<result column="EDU_SCORE"         		property="eduScore"/>
 		<result column="EDU_IS_OVER"         	property="eduIsOver"/> 
-		<result column="BE_COMPANY"         	property="beCompany"/> 
-		<result column="BE_CAREER"         	  	property="beCareer"/> 
-		<result column="BE_TYPE"         	  	property="beType"/> 
-		<result column="BE_POSITION"         	property="bePosition"/> 
 		<result column="MEM_EMAIL"         	  	property="memEmail"/> 
 		<result column="HOPE_TYPE"         	  	property="hopeType"/> 
 		<result column="HOPE_SAL"         	  	property="hopeSal"/> 
@@ -61,32 +61,57 @@
 		<result column="MEM_EMAIL"				property="memEmail"/>
 	</resultMap>
 	
+	<!-- 자격증 정보 -->
 	<resultMap type="com.spring.biz.vo.LicenseVO" id="license">
 		<result column="LIC_NUM"		property="licNum"/>
 		<result column="LIC_NAME"		property="licName"/>
 		<result column="LIC_LOC"		property="licLoc"/>
 		<result column="LIC_GRADE"		property="licGrade"/>
 		<result column="LIC_DATE"		property="licDate"/>
+		<result column="RESUME_NUM"		property="resumeNum"/>
 	</resultMap>
 	
+	<!-- 자기소개서 정보 -->
 	<resultMap type="com.spring.biz.vo.ProfilesVO" id="profiles">
 		<result column="PRO_NUM"		property="proNum"/>
 		<result column="PRO_TITLE"		property="proTitle"/>
 		<result column="PRO_CONTENT"	property="proContent"/>
 	</resultMap>
 	
+	<!-- 경력사항 정보 -->
+	<resultMap type="com.spring.biz.vo.CareerVO" id="career">
+		<result column="CAR_NUM" 		property="carNum"/>
+		<result column="CAR_COMPANY" 	property="carCompany"/>
+		<result column="CAR_CAREER" 	property="carCareer"/>
+		<result column="CAR_TYPE"		property="carType"/>
+		<result column="CAR_POSITION" 	property="carPosition"/>
+		<result column="RESUME_NUM" 	property="resumeNum"/>
+	</resultMap>
+	
+	<!-- 관심 기업 정보 -->
 	<resultMap type="com.spring.biz.vo.LikeCompanyVO" id="likeCompany">
 		<result column="LIKE_NUM"			property="likeNum"/>
 		<result column="COM_NUM"			property="comNum"/>
-		<result column="MEM_EMAIL"			property="memEmail"/>
 		<result column="COM_NAME"			property="comName"/>
-		<result column="ANNOUNCE_NUM"		property="announceNum"/>
+		<result column="MEM_EMAIL"			property="memEmail"/>
+		<result column="COM_LOC"			property="comLoc"/>
+		<result column="COM_TYPE"			property="comType"/>
+		<result column="COM_EMAIL"			property="comEmail"/>
+		<result column="COM_TEL"			property="comTel"/>
 	</resultMap>
 	
+	<!-- 관심 공고 정보 -->
 	<resultMap type="com.spring.biz.vo.LikeRecruitVO" id="likeRecruit">
-		<result column="LIKE_RECRUIT_NUM"	property="likeRecruitNum"/>
-		<result column="ANNOUNCE_NUM"		property="announceNum"/>
-		<result column="MEM_EMAIL"			property="memEmail"/>
+		<result column="LIKE_RECRUIT_NUM"			property="likeRecruitNum"/>
+		<result column="ANNOUNCE_NUM"				property="announceNum"/>
+		<result column="MEM_EMAIL"					property="memEmail"/>
+		<result column="ANNOUNCE_TITLE"				property="announceTitle"/>
+		<result column="UPTO_HIREDATE"				property="uptoHiredate"/>
+		<result column="WORK_TYPE"					property="workType"/>
+		<result column="CAREER"						property="career"/>
+		<result column="ACADEMIC_BACKGROUND"		property="academicBackground"/>
+		<result column="AREA"						property="area"/>
+		<result column="COM_NUM"					property="comNum"/>
 	</resultMap>
 	
 	<!-- 이력서 insert -->
@@ -103,10 +128,6 @@
 			, EDU_END_DATE
 			, EDU_IS_OVER
 			, EDU_SCORE
-			, BE_COMPANY
-			, BE_CAREER
-			, BE_TYPE
-			, BE_POSITION
 			, HOPE_TYPE
 			, HOPE_SAL
 			, HOPE_LOC
@@ -124,10 +145,6 @@
 			, #{eduEndDate}
 			, #{eduIsOver}
 			, #{eduScore}
-			, #{beCompany}
-			, #{beCareer}
-			, #{beType}
-			, #{bePosition}
 			, #{hopeType}
 			, #{hopeSal}
 			, #{hopeLoc}
@@ -136,6 +153,7 @@
 		)
 	</insert>
 	
+	<!-- 자격증 insert -->
 	<insert id="insertLicense">
 		INSERT ALL
 		<foreach collection="licenseList" item="license" index="index">
@@ -147,17 +165,18 @@
 				, LIC_DATE
 				, RESUME_NUM
 			) VALUES (
-				(SELECT NVL(MAX(LIC_NUM)+1,1) + #{index} FROM LICENSE)
+				(SELECT NVL(MAX(LIC_NUM)+1, 1) + #{index} FROM LICENSE)
 			 	, #{license.licName}
 			 	, #{license.licLoc}
 			 	, #{license.licGrade}
 			 	, #{license.licDate}
-			 	, (SELECT NVL(MAX(RESUME_NUM), 1) FROM MEM_RESUME)
+			 	, (SELECT MAX(RESUME_NUM) FROM MEM_RESUME)
 			)
 		</foreach>
 		SELECT * FROM DUAL
 	</insert>
 	
+	<!-- 자기소개서 insert -->
 	<insert id="insertProfiles">
 		INSERT ALL
 		<foreach collection="profilesList" item="pro" index="index">
@@ -167,15 +186,39 @@
 				, PRO_CONTENT
 				, RESUME_NUM
 			) VALUES (
-				(SELECT NVL(MAX(PRO_NUM)+1,1) + #{index} FROM PROFILES)
+				(SELECT NVL(MAX(PRO_NUM)+1, 1) + #{index} FROM PROFILES)
 			 	, #{pro.proTitle}
 			 	, #{pro.proContent}
-			 	, (SELECT NVL(MAX(RESUME_NUM), 1) FROM MEM_RESUME)
+			 	, (SELECT MAX(RESUME_NUM) FROM MEM_RESUME)
 			)
 		</foreach>
 		SELECT * FROM DUAL
 	</insert>
-
+	
+	<!-- 경력사항 INSERT -->
+	<insert id="insertCareer">
+		INSERT ALL
+		<foreach collection="careerList" item="car" index="index">
+			INTO CAREER (
+				CAR_NUM
+				, CAR_COMPANY
+				, CAR_CAREER
+				, CAR_TYPE
+				, CAR_POSITION
+				, RESUME_NUM
+			) VALUES (
+				(SELECT NVL(MAX(CAR_NUM)+1, 1) + #{index} FROM CAREER)
+			 	, #{car.carCompany}
+			 	, #{car.carCareer}
+			 	, #{car.carType}
+			 	, #{car.carPosition}
+			 	, (SELECT MAX(RESUME_NUM) FROM MEM_RESUME)
+			)
+		</foreach>
+		SELECT * FROM DUAL
+	</insert>
+	
+	<!-- 개인정보 수정 -->
 	<update id="updateMemInfo">
 		UPDATE MEM_INFO
 		SET MEM_NAME = #{memName}
@@ -189,6 +232,112 @@
 		WHERE MEM_EMAIL = #{memEmail}
 	</update>
 	
+	<!-- 이력서 수정 -->
+	<update id="updateMemResume">
+		UPDATE MEM_RESUME
+		SET
+		RESUME_NAME = #{resumeName}							
+		, EDU_GRADE = #{eduGrade}
+		, EDU_SCHOOL = #{eduSchool}
+		, EDU_LOC	= #{eduLoc}
+		, EDU_TYPE = #{eduType}
+		, EDU_MAJOR = #{eduMajor}	
+		, EDU_BEGIN_DATE = #{eduBeginDate}
+		, EDU_END_DATE = #{eduEndDate}
+		, EDU_SCORE = #{eduScore}
+		, EDU_IS_OVER = #{eduIsOver}
+		, HOPE_TYPE = #{hopeType}
+		, HOPE_SAL = #{hopeSal}
+		, HOPE_LOC = #{hopeLoc}
+		, HOPE_TIME = #{hopeTime}
+		WHERE RESUME_NUM = #{resumeNum}
+	</update>
+	
+	<!-- 자격증 수정 -->
+	<insert id="mergeLicense">
+		MERGE INTO LICENSE
+		USING DUAL
+		ON (LIC_NUM = #{licNum})
+		WHEN MATCHED THEN
+			UPDATE
+			SET
+			LIC_NAME = #{licName}
+			, LIC_LOC = #{licLoc}
+			, LIC_GRADE = #{licGrade}
+			, LIC_DATE = #{licDate}
+		WHEN NOT MATCHED THEN
+			INSERT (
+				LIC_NUM
+				, LIC_NAME
+				, LIC_LOC
+				, LIC_GRADE
+				, LIC_DATE
+				, RESUME_NUM
+			) VALUES (
+				#{licNum}
+			 	, #{licName}
+			 	, #{licLoc}
+			 	, #{licGrade}
+			 	, #{licDate}
+			 	, #{resumeNum}
+			)
+	</insert>
+
+	<!-- 자기소개서 수정 -->
+	<insert id="mergeProfiles">
+		MERGE INTO PROFILES
+		USING DUAL
+		ON (PRO_NUM = #{proNum})
+		WHEN MATCHED THEN
+			UPDATE
+			SET
+			PRO_TITLE = #{proTitle}
+			, PRO_CONTENT = #{proContent}
+		WHEN NOT MATCHED THEN
+			INSERT (
+				PRO_NUM
+				, PRO_TITLE
+				, PRO_CONTENT
+				, RESUME_NUM
+			) VALUES (
+				#{proNum}
+			 	, #{proTitle}
+			 	, #{proContent}
+			 	, #{resumeNum}
+			)
+	</insert>
+	
+	<!-- 경력사항 수정 -->
+	<insert id="mergeCareer">
+		MERGE INTO CAREER
+		USING DUAL
+		ON (CAR_NUM = #{carNum})
+		WHEN MATCHED THEN
+			UPDATE
+			SET
+			CAR_COMPANY = #{carCompany}	
+			, CAR_CAREER = #{carCareer}	
+			, CAR_TYPE = #{carType}	
+			, CAR_POSITION = #{carPosition}
+		WHEN NOT MATCHED THEN
+			INSERT (
+				CAR_NUM
+				, CAR_COMPANY
+				, CAR_CAREER
+				, CAR_TYPE
+				, CAR_POSITION
+				, RESUME_NUM
+			) VALUES (
+				#{carNum}
+			 	, #{carCompany}
+			 	, #{carCareer}
+			 	, #{carType}
+			 	, #{carPosition}
+			 	, #{resumeNum}
+			)
+	</insert>
+
+	<!-- 개인정보 조회 -->
 	<select id="selectMemInfoME" resultMap="memInfo">
 		SELECT MEM_EMAIL
 			, MEM_PASS
@@ -205,6 +354,7 @@
 		WHERE MEM_EMAIL = #{memEmail}
 	</select>
 	
+	<!-- 이력서 조회 -->
 	<select id="selectResumeList" resultMap="memResume">
 		SELECT RESUME_NUM
 			, RESUME_NAME
@@ -212,9 +362,9 @@
 		WHERE MEM_EMAIL = #{memEmail}
 	</select>
 	
+	<!-- 이력서 상세조회 -->
 	<select id="selectResumeDetail" resultMap="memResume">
-		SELECT
-			RESUME_NUM
+		SELECT RESUME_NUM
 			, RESUME_NAME
 			, RESUME_DATE
 			, EDU_GRADE
@@ -226,10 +376,6 @@
 			, EDU_END_DATE
 			, EDU_IS_OVER
 			, EDU_SCORE
-			, BE_COMPANY
-			, BE_CAREER
-			, BE_TYPE
-			, BE_POSITION
 			, HOPE_TYPE
 			, HOPE_SAL
 			, HOPE_LOC
@@ -238,52 +384,132 @@
 		WHERE RESUME_NUM = #{resumeNum}
 	</select>
 	
+	<!-- 자격증 조회 -->
 	<select id="selectLicenseList" resultMap="license">
-		SELECT
-			LIC_NUM
+		SELECT LIC_NUM
 			, LIC_NAME
 			, LIC_LOC
 			, LIC_GRADE
 			, LIC_DATE
 		FROM LICENSE
 		WHERE RESUME_NUM = #{resumeNum}
+		ORDER BY LIC_NUM
 	</select>
 	
+	<!-- 자기소개서 조회 -->
 	<select id="selectProfilesList" resultMap="profiles">
-		SELECT
-			PRO_NUM
+		SELECT PRO_NUM
 			, PRO_TITLE
 			, PRO_CONTENT
 		FROM PROFILES
 		WHERE RESUME_NUM = #{resumeNum}
+		ORDER BY PRO_NUM
 	</select>
 	
-	<!-- 하트를 눌렀는지에 대해 확인 -->
+	<!-- 경력사항 조회 -->
+	<select id="selectCareerList" resultMap="career">
+		SELECT CAR_NUM
+			, CAR_COMPANY
+			, CAR_CAREER
+			, CAR_TYPE
+			, CAR_POSITION
+		FROM CAREER
+		WHERE RESUME_NUM = #{resumeNum}
+		ORDER BY CAR_NUM
+	</select>
+	
+	<!-- 자격증 개별 삭제 -->
+	<delete id="deleteLic">
+		DELETE LICENSE
+		WHERE LIC_NUM = #{licNum} 
+	</delete>
+	
+	<!-- 자기소개 개별 삭제 -->
+	<delete id="deleteProfiles">
+		DELETE PROFILES
+		WHERE PRO_NUM = #{proNum}
+	</delete>
+	
+	<!-- 경력사항 개별 삭제 -->
+	<delete id="deleteCareer">
+		DELETE CAREER
+		WHERE CAR_NUM = #{carNum}
+	</delete>
+	
+	<!-- 이력서 삭제 시 관려-->
+	<delete id="deleteAllLic">
+		DELETE LICENSE
+		WHERE RESUME_NUM = #{resumeNum}
+	</delete>
+	
+	<!-- 이력서 삭제 -->
+	<delete id="deleteResume">
+		DELETE MEM_RESUME
+		WHERE RESUME_NUM = #{resumeNum}
+	</delete>
+	
+	<!-- 관심 공고 조회 -->
+	<select id="selectLikeRecruitList" resultMap="likeRecruit">
+		SELECT LIKE_RECRUIT_NUM
+		    , L.ANNOUNCE_NUM
+		    , MEM_EMAIL
+		    , ANNOUNCE_TITLE
+		    , UPTO_HIREDATE
+		    , WORK_TYPE
+		    , CAREER
+		    , ACADEMIC_BACKGROUND
+		    , AREA
+		    , RECRUIT_VIEWS
+		    , COM_NUM
+		FROM LIKE_RECRUIT L, RECRUIT_LIST R
+		WHERE MEM_EMAIL = #{memEmail}
+		AND L.ANNOUNCE_NUM = R.ANNOUNCE_NUM
+		ORDER BY ANNOUNCE_NUM
+	</select>
+	
+	<!-- 관심공고에 추가 -->
+	<insert id="insertHeartOfLikeRecruit">
+		INSERT INTO LIKE_RECRUIT (
+			LIKE_RECRUIT_NUM
+			, ANNOUNCE_NUM
+			, MEM_EMAIL
+		) VALUES(
+			(SELECT NVL(MAX(LIKE_RECRUIT_NUM) + 1, 1) FROM LIKE_RECRUIT)
+			, #{announceNum}	
+			, #{memEmail}	
+		)
+	</insert>
+	
+	<!-- 관심 공고에서 제거 -->
+	<delete id="deleteHeartOfLikeRecruit">
+		DELETE LIKE_RECRUIT
+		WHERE MEM_EMAIL = #{memEmail}
+		AND ANNOUNCE_NUM = #{announceNum}	
+	</delete>
+	
+	<!-- 하트체크 -->
 	<select id="chkHeart" resultMap="likeCompany">
 		SELECT * FROM LIKE_COMPANY
         WHERE ANNOUNCE_NUM = #{announceNum}
         AND MEM_EMAIL = #{memEmail}
 	</select>
 	
-	<!-- 하트 눌렀을 때 -->
+	<!-- 관심기업에 추가 -->
 	<insert id="insertLikeCompany">
-		INSERT INTO LIKE_COMPANY(
+		INSERT INTO LIKE_(
 			LIKE_NUM
 			, COM_NUM
-			, MEM_EMAIL
-			, ANNOUNCE_NUM
-		)VALUES(
+			, MEM_EMAIL)VALUES(
 			(SELECT NVL(MAX(LIKE_NUM) + 1, 1) FROM LIKE_COMPANY)
 			, #{comNum}
 			, #{memEmail}
-			, #{announceNum}
-		)
+			)
 	</insert>
 	
-	<!-- 하트를 다시 눌렀을 때 -->
+	<!-- 관심기업에서 삭제 -->
 	<delete id="deleteLikeCompany">
 		DELETE LIKE_COMPANY
-		WHERE ANNOUNCE_NUM = #{announceNum} 
+		WHERE COM_NUM = #{comNum} 
 		AND MEM_EMAIL = #{memEmail}
 	</delete>
 	
@@ -292,19 +518,28 @@
 		SELECT LIKE_NUM
 			, C.COM_NUM 
 			, C.COM_NAME
+            , C.COM_LOC
+            , C.COM_TYPE
+            , C.COM_EMAIL
+            , C.COM_TEL
 			, MEM_EMAIL
-			, ANNOUNCE_NUM
 		FROM LIKE_COMPANY L, COMPANY_INFO C
 		WHERE L.COM_NUM = C.COM_NUM
 		AND MEM_EMAIL = #{memEmail}
-		ORDER BY ANNOUNCE_NUM DESC
 	</select>
 	
-	<!-- 관심 공고 조회 -->
-	<select id="selectLikeRecruitList" resultMap="likeRecruit">
-		SELECT LIKE_RECRUIT_NUM
-			, ANNOUNCE_NUM
-			, MEM_EMAIL
-		FROM LIKE_RECRUIT
+	<select id="selectMaxLicNum" resultType="int">
+		SELECT NVL(MAX(LIC_NUM), 1)
+		FROM LICENSE
+	</select>
+	
+	<select id="selectMaxProfilesNum" resultType="int">
+		SELECT NVL(MAX(PRO_NUM), 1)
+		FROM PROFILES
+	</select>
+	
+	<select id="selectMaxCareerNum" resultType="int">
+		SELECT NVL(MAX(CAR_NUM), 1)
+		FROM CAREER
 	</select>
 </mapper>

@@ -30,6 +30,7 @@
 	<result column="COM_NAME"         	  	property="comName"/> 
 	<result column="COM_CEO"        		property="comCeo"/> 
 	<result column="COM_LOC"        	 	property="comLoc"/> 
+	<result column="COM_LOC_DETAIL"        	property="comLocDetail"/> 
 	<result column="COM_TYPE"           	property="comType"/> 
 	<result column="COM_TEL"           		property="comTel"/> 
 	<result column="COM_JOIN_DATE"         property="comJoinDate"/> 
@@ -85,10 +86,6 @@
 		<result column="EDU_BEGIN_DATE"        property="eduBeginDate"/> 
 		<result column="EDU_END_DATE"         	property="eduEndDate"/> 
 		<result column="EDU_IS_OVER"         	property="eduIsOver"/> 
-		<result column="BE_COMPANY"         	property="beCompany"/> 
-		<result column="BE_CAREER"         	  	property="beCareer"/> 
-		<result column="BE_TYPE"         	  	property="beType"/> 
-		<result column="BE_POSITION"         	property="bePosition"/> 
 		<result column="MEM_EMAIL"         	  	property="memEmail"/> 
 		<result column="HOPE_TYPE"         	  	property="hopeType"/> 
 		<result column="HOPE_SAL"         	  	property="hopeSal"/> 
@@ -222,6 +219,7 @@ WHERE ANNOUNCE_NUM IN
 	    ,COM_NAME
 	    ,COM_CEO
 	    ,COM_LOC
+	    ,COM_LOC_DETAIL
 	    ,COM_TYPE
 	    ,COM_TEL
 	FROM COMPANY_INFO
@@ -235,6 +233,7 @@ WHERE ANNOUNCE_NUM IN
 		,COM_NAME = #{comName}
 		,COM_CEO = #{comCeo}
 		,COM_LOC = #{comLoc}
+		,COM_LOC_DETAIL = #{comLocDetail}
 		,COM_TYPE = #{comType}
 		,COM_TEL = #{comTel}
 		,COM_IMAGE = #{comImage}
@@ -258,9 +257,6 @@ WHERE ANNOUNCE_NUM IN
 		    ,EDU_BEGIN_DATE
 		    ,EDU_END_DATE
 		    ,EDU_IS_OVER
-		    ,BE_CAREER
-		    ,BE_TYPE
-		    ,BE_POSITION
 		    ,HOPE_TYPE
 		    ,HOPE_SAL
 		    ,HOPE_TIME

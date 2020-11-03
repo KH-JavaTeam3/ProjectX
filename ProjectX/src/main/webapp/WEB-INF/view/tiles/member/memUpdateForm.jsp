@@ -7,6 +7,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style type="text/css">
+@font-face { font-family: 'MyLotteBold'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.0/MyLotteBold.woff') format('woff'); font-weight: normal; font-style: normal; }
 .memberInfo{
    padding: 100px; 
 /*    margin: 200px; */
@@ -93,12 +94,44 @@ select {
    border-color: lightgray;
    border-radius: 5px;
 }
+
+input[type="button"]{
+	background-color: #658DC6;
+	border: 0px;
+	color: white;
+}
+
+input[type="submit"]{
+	background-color: #0F4C81;
+	border: 0px;
+	color: white;
+}
+
+input[type="submit"]:hover{
+	background-color: #0F4C81;
+	border: 0px;
+	color: white;
+}
+
+button[type="button"] {
+	background-color: #658DC6;
+	border: 0px;
+	color: white;
+}
+
+button[type="button"]:hover {
+	background-color: #658DC6;
+	border: 0px;
+	color: white;
+}
+
 </style>
 </head>
 <body>
 <form action="updateMemInfo.me" method="post" enctype="multipart/form-data">
-<div style="height: 50px;"></div>
-<div class="row col-md-12" style="border: 5px solid #ABC2E8; border-radius: 10px;">
+<div style="height: 100px;"></div>
+<span style="font-weight: bold; font-size: 30px; font-family:'MyLotteBold'; color: #0F4C81;">개인정보 수정</span>
+<div class="row col-md-12" style="border: 5px solid #658DC6; border-radius: 10px;">
       <div class="col-md-9">
          <div class="form-row">
             <div class="form-group col-md-6" style="padding: 30px 30px 0px 0px;">
@@ -139,7 +172,7 @@ select {
             <div class="form-group col-md-6" style="padding: 30px 30px 0px 0px;">
                <div class="col-md-12" style="padding: 0px;">
                   <label for="memAddr">주소</label>
-                  <input type="button" class="btn btn-primary offset-md-9" id="findAddr" value="주소찾기" style="margin-bottom: 5px;">
+                  <input type="button" class="btn btn-primary offset-md-9" id="findAddr" value="주소찾기" style="margin-bottom: 5px; background-color: #658DC6;">
                   <input type="text" id="memAddr"  class="form-control" value="${sessionScope.memLogin.memAddr }" name="memAddr"/>
                </div>
             </div>
@@ -148,7 +181,7 @@ select {
       <div class="col-md-3">
          <div class="container">
             <div class="row">
-            <div class="form-group col-md-6" style="padding: 30px 30px 0px 0px;">
+            <div class="form-group col-md-3" style="padding: 30px 30px 0px 0px;">
                   <div class="form-group files uploader offset-md-5">
                      <label for="memImage">사진</label>
                      <input type="file" class="form-control"  id="memImage" name="file1">
@@ -161,14 +194,14 @@ select {
    </div>
    <div style="height: 30px;"></div>
    <div align="center">
-        <input type="submit" class="btn btn-primary" value="수정">&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<button class="btn btn-danger" type="button" onClick="location.href='main.do'">취소</button>
+        <input type="submit" class="btn btn-primary" value="수정">&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<button class="btn btn-primary" type="button" onClick="history.back()">취소</button>
      </div>
 <script type="text/JavaScript" src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 <script src="resources/js/writeResume.js?ver=3"></script>
 <script type="text/javascript">
-	if($('#preview').attr("src").length < 35){
-		$('#preview').hide();
-	}
+   if($('#preview').attr("src").length < 35){
+      $('#preview').hide();
+   }
 </script>
 </form>
 </body>

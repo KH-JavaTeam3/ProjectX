@@ -30,6 +30,7 @@
 		<result column="COM_NAME"         	  	property="comName"/> 
 		<result column="COM_CEO"        		property="comCeo"/> 
 		<result column="COM_LOC"        	 	property="comLoc"/> 
+		<result column="COM_LOC_DETAIL"        	property="comLocDetail"/> 
 		<result column="COM_TYPE"           	property="comType"/> 
 		<result column="COM_TEL"           		property="comTel"/> 
 		<result column="COM_JOIN_DATE"         property="comJoinDate"/> 
@@ -60,7 +61,12 @@
 		<result column="ACADEMIC_BACKGROUND" 	property="academicBackground" />
 		<result column="AREA" 					property="area" />
 		<result column="CORPORATE_NAME" 		property="corporateName" />
-		<result column="RECRUIT_VIEWS" 		property="recruitViews" />
+		<result column="RECRUIT_VIEWS" 			property="recruitViews" />
+		<result column="COM_CEO" 				property="comCeo" />
+		<result column="COM_LOC" 				property="comLoc" />
+		<result column="COM_TEL" 				property="comTel" />
+		<result column="COM_EMAIL" 				property="comEmail" />
+		<result column="COM_TYPE" 				property="comType" />
 	</resultMap>
 	
 	<resultMap type="com.spring.biz.vo.ForRecruitVO" id="forRecruit">
@@ -87,7 +93,7 @@
 			#{memEmail}
 			, #{memPass}
 			, #{memName}
-			, #{memAge}
+			, TO_CHAR(SYSDATE, 'YYYY') -  SUBSTR(#{memBirth},1,4) + 1
 			, #{memBirth}
 			, #{memGender}
 			, #{memTel1}
@@ -111,6 +117,7 @@
 			, COM_NAME
 			, COM_CEO
 			, COM_LOC
+			, COM_LOC_DETAIL
 			, COM_TYPE
 			, COM_TEL
 		) VALUES (
@@ -120,10 +127,18 @@
 			, #{comName}
 			, #{comCeo}
 			, #{comLoc}
+			, #{comLocDetail}
 			, #{comType}
 			, #{comTel}
 		)
 	</insert>
+	
+	<!-- 	개인 회원가입 이메일 중복 체크 -->
+	<select id="selectComNumChk" resultType="string">
+		SELECT COM_NUM
+		FROM COMPANY_INFO
+		WHERE COM_NUM = #{comNum}
+	</select>
 	
 	
 	<!-- 개인 로그인 -->
@@ -160,6 +175,14 @@
 		WHERE MEM_EMAIL = #{memEmail}
 	</update>
 
+<!-- 	임시비밀번호로 업데이트 -->
+	<update id="updateFakePass">
+		UPDATE MEM_INFO
+		SET MEM_PASS = #{memPass}
+		WHERE MEM_EMAIL = #{memEmail}
+	</update>
+
+
 	<!-- 	개인 정보 수정 -->
 	<update id="memUpdate">
 		UPDATE MEM_INFO 
@@ -184,6 +207,7 @@
 			, COM_NAME
 			, COM_CEO
 			, COM_LOC
+			, COM_LOC_DETAIL
 			, COM_TYPE
 			, COM_TEL
 			, COM_JOIN_DATE
@@ -232,6 +256,9 @@
 		,COM_NAME
 		,R.COM_NUM
 		,RECRUIT_VIEWS
+		,C.COM_LOC
+		,C.COM_EMAIL
+		,C.COM_TEL
 	FROM RECRUIT_LIST R, COMPANY_INFO C
 	WHERE R.COM_NUM = C.COM_NUM
 	AND R.COM_NUM = #{comNum}
@@ -241,7 +268,7 @@
 <!-- 	채용공고 조회수 증가 -->
 	<update id="updateViews">
 		UPDATE RECRUIT_LIST
-		SET RECRUIT_VIEWS = (SELECT (MAX(RECRUIT_VIEWS) +1) FROM RECRUIT_LIST)
+		SET RECRUIT_VIEWS = (SELECT (MAX(RECRUIT_VIEWS) +1) FROM RECRUIT_LIST WHERE ANNOUNCE_NUM = #{announceNum})
 		WHERE ANNOUNCE_NUM = #{announceNum}
 	</update>
 
@@ -296,18 +323,18 @@
 			OR UPPER(BENEFIT) Like UPPER('%'||#{keyword}||'%')
 			OR UPPER(ACADEMIC_BACKGROUND) Like UPPER('%'||#{keyword}||'%'))
 		</if>
-		
+
 		<if test="keyword == '' and place != '' and jobtype != '' ">
 			AND (AREA = #{place}
-			OR JOBTYPE =#{jobtype})					
-		</if>  
-		
-		<if test="keyword == '' and place != '' and jobtype == '' ">
-		
+			AND JOBTYPE =#{jobtype})
 		</if>
-		
+	
+		<if test="keyword == '' and place != '' and jobtype == '' ">
+			AND AREA = #{place}
+		</if>
+	
 		<if test="keyword == '' and place == '' and jobtype != '' ">
-		
+			AND JOBTYPE =#{jobtype}
 		</if>
 		 
 		<if test="keyword != '' and place != '' and jobtype != '' ">
@@ -349,51 +376,102 @@
 	
 	
 	<!-- 실행시 날짜가 지난 공고목록 조회 -->
-<select id="selectOldList" resultMap="recruitlist">
-SELECT ANNOUNCE_NUM 
-FROM RECRUIT_LIST
-WHERE UPTO_HIREDATE &lt; #{toDay}
-</select>
+	<select id="selectOldList" resultMap="recruitlist">
+		SELECT ANNOUNCE_NUM 
+		FROM RECRUIT_LIST
+		WHERE UPTO_HIREDATE &lt; #{toDay}
+	</select>
 
-<!-- 날짜가 지난 공고 업데이트 -->
-<update id="oldListUpdate">
-UPDATE RECRUIT_LIST SET HIRE_CONDITION = 'N'
-WHERE ANNOUNCE_NUM = #{announceNum}
-</update>
+	<!-- 날짜가 지난 공고 업데이트 -->
+	<update id="oldListUpdate">
+		UPDATE RECRUIT_LIST SET HIRE_CONDITION = 'N'
+		WHERE ANNOUNCE_NUM = #{announceNum}
+	</update>
 
-<!-- 이력서 지원 넣기 -->
-<insert id="insertComMypage">
-INSERT INTO COM_MYPAGE(
-    COM_MYPAGE_NUM
-    ,COM_NUM
-    ,ANNOUNCE_NUM
-    ,RESUME_NUM
-    ,RESUME_RESULT
-) VALUES(
-    (SELECT NVL(MAX(COM_MYPAGE_NUM)+1,1) FROM COM_MYPAGE)
-    ,#{comNum}
-    ,#{announceNum}
-    ,#{resumeNum}
-    ,'N'
-)
-</insert>
+	<!-- 이력서 지원 넣기 -->
+	<insert id="insertComMypage">
+		INSERT INTO COM_MYPAGE(
+		    COM_MYPAGE_NUM
+		    ,COM_NUM
+		    ,ANNOUNCE_NUM
+		    ,RESUME_NUM
+		    ,RESUME_RESULT
+		) VALUES(
+		    (SELECT NVL(MAX(COM_MYPAGE_NUM)+1,1) FROM COM_MYPAGE)
+		    ,#{comNum}
+		    ,#{announceNum}
+		    ,#{resumeNum}
+		    ,'N'
+		)
+	</insert>
 
-	<!-- 총 게시글 갯수 출력 -->
-<!-- <select id="countBoard" resultType="int"> -->
-<!-- 	SELECT COUNT(*) FROM BOARD -->
-<!-- </select> -->
-
-<!-- 페이징 처리 후 게시글 조회 -->
-<!-- <select id="selectBoard" resultType="com.my.spring.domain.BoardVO"> -->
-<!-- 	SELECT * -->
-<!-- 	FROM ( -->
-<!-- 	SELECT ROWNUM RN, A.* -->
-<!-- 	FROM ( -->
-<!-- 	SELECT * -->
-<!-- 	FROM BOARD -->
-<!-- 	ORDER BY SEQ DESC -->
-<!-- 	) A -->
-<!-- 	) -->
-<!-- 	WHERE RN BETWEEN #{start} AND #{end} -->
-<!-- </select> -->
+	<select id="selectAddress" resultType="String">
+		SELECT COM_LOC
+		FROM COMPANY_INFO C,RECRUIT_LIST R
+		WHERE C.COM_NUM =R.COM_NUM
+		AND R.ANNOUNCE_NUM=#{announceNum}	
+		
+	</select>
+<!-- 기업 이름만 뽑자 -->
+	<select id="selectComNameList" resultMap="recruitlist">
+		select DISTINCT
+		   	 C.COM_NUM
+		    ,C.COM_NAME
+		    ,C.COM_CEO
+		    ,C.COM_LOC
+		    ,C.COM_LOC_DETAIL
+		    ,C.COM_TYPE
+		    ,C.COM_TEL
+		    ,C.COM_EMAIL
+		from COMPANY_INFO C , RECRUIT_LIST R
+		WHERE C.COM_NUM = R.COM_NUM
+		AND HIRE_CONDITION = 'Y'
+		ORDER BY COM_NUM
+	</select>
+	
+	<!-- 기업 이름 뽑은거로 공고 리스트 조회 -->
+	<select id="selectComNameAsRecruitList" resultMap="recruitlist">
+		SELECT      
+			ANNOUNCE_NUM
+			,ANNOUNCE_TITLE
+			,UPTO_HIREDATE
+			,WORK_TYPE
+			,CAREER
+			,ACADEMIC_BACKGROUND
+			,JOBTYPE
+			,AREA
+			,R.COM_NUM
+			,RECRUIT_VIEWS
+            ,C.COM_NAME
+            ,C.COM_CEO
+            ,C.COM_LOC
+            ,C.COM_LOC_DETAIL
+            ,C.COM_TEL
+            ,C.COM_EMAIL
+            ,R.RECRUIT_VIEWS
+		FROM RECRUIT_LIST R, COMPANY_INFO C
+		WHERE R.COM_NUM= C.COM_NUM
+		AND HIRE_CONDITION = 'Y'
+        ORDER BY R.COM_NUM
+	</select>
+    
+    <!-- 메인페이지 조회수 높은 뇨속 출력 -->
+    <select id="selectViewsList" resultMap="recruitlist">
+    	SELECT 
+		    ANNOUNCE_NUM
+		    ,ANNOUNCE_TITLE
+		    ,ANNOUNCE_CONTENT
+		    ,UPTO_HIREDATE
+		    ,R.COM_NUM
+		    ,C.COM_NAME
+		    ,JOBTYPE
+		    ,WORK_TYPE
+		    ,REGIST_IMAGE
+		    ,RECRUIT_VIEWS
+		FROM RECRUIT_LIST R, COMPANY_INFO C
+		WHERE RECRUIT_VIEWS &gt; 0
+		AND R.COM_NUM = C.COM_NUM 
+		ORDER BY RECRUIT_VIEWS DESC
+    </select>
+	
 </mapper>

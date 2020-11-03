@@ -19,10 +19,6 @@ public class MemResumeVO {
 	private String eduEndDate;
 	private double eduScore;
 	private String eduIsOver;
-	private String beCompany;
-	private int beCareer;
-	private String beType;
-	private String bePosition;
 	private String hopeType;
 	private int hopeSal;
 	private String hopeLoc;
@@ -30,8 +26,15 @@ public class MemResumeVO {
 	private String memEmail;
 	private List<LicenseVO> licenseList; // 자격증 목록
 	private List<ProfilesVO> profilesList; // 자소서 목록
+	private List<CareerVO> careerList; // 경력사항 목록
 	
 	
+	public List<CareerVO> getCareerList() {
+		return careerList;
+	}
+	public void setCareerList(List<CareerVO> careerList) {
+		this.careerList = careerList;
+	}
 	private int comMypageNum;
 	private int comNum;
 	private int announceNum;
@@ -106,30 +109,6 @@ public class MemResumeVO {
 	}
 	public void setEduIsOver(String eduIsOver) {
 		this.eduIsOver = eduIsOver;
-	}
-	public String getBeCompany() {
-		return beCompany;
-	}
-	public void setBeCompany(String beCompany) {
-		this.beCompany = beCompany;
-	}
-	public int getBeCareer() {
-		return beCareer;
-	}
-	public void setBeCareer(int beCareer) {
-		this.beCareer = beCareer;
-	}
-	public String getBeType() {
-		return beType;
-	}
-	public void setBeType(String beType) {
-		this.beType = beType;
-	}
-	public String getBePosition() {
-		return bePosition;
-	}
-	public void setBePosition(String bePosition) {
-		this.bePosition = bePosition;
 	}
 	public String getHopeType() {
 		return hopeType;
@@ -220,11 +199,11 @@ public class MemResumeVO {
 		return "MemResumeVO [resumeNum=" + resumeNum + ", resumeName=" + resumeName + ", resumeDate=" + resumeDate
 				+ ", eduGrade=" + eduGrade + ", eduSchool=" + eduSchool + ", eduLoc=" + eduLoc + ", eduType=" + eduType
 				+ ", eduMajor=" + eduMajor + ", eduBeginDate=" + eduBeginDate + ", eduEndDate=" + eduEndDate
-				+ ", eduScore=" + eduScore + ", eduIsOver=" + eduIsOver + ", beCompany=" + beCompany + ", beCareer="
-				+ beCareer + ", beType=" + beType + ", bePosition=" + bePosition + ", hopeType=" + hopeType
-				+ ", hopeSal=" + hopeSal + ", hopeLoc=" + hopeLoc + ", hopeTime=" + hopeTime + ", memEmail=" + memEmail
-				+ ", licenseList=" + licenseList + ", profilesList=" + profilesList + ", comMypageNum=" + comMypageNum
-				+ ", comNum=" + comNum + ", announceNum=" + announceNum + ", resumeResult=" + resumeResult
-				+ ", memInfoVO=" + memInfoVO + ", ynN=" + ynN + "]";
+				+ ", eduScore=" + eduScore + ", eduIsOver=" + eduIsOver + ", hopeType=" + hopeType + ", hopeSal="
+				+ hopeSal + ", hopeLoc=" + hopeLoc + ", hopeTime=" + hopeTime + ", memEmail=" + memEmail
+				+ ", licenseList=" + licenseList + ", profilesList=" + profilesList + ", careerList=" + careerList
+				+ ", comMypageNum=" + comMypageNum + ", comNum=" + comNum + ", announceNum=" + announceNum
+				+ ", resumeResult=" + resumeResult + ", memInfoVO=" + memInfoVO + ", ynN=" + ynN + "]";
 	}
+	
 }

@@ -4,7 +4,7 @@ public class MemInfoVO {
 	private String memEmail;    
 	private String memPass;    
 	private String memName;  
-	private String memAge;     
+	private int memAge;     
 	private String memGender;  
 	private String memBirth;
 	private String memTel1;  
@@ -33,10 +33,10 @@ public class MemInfoVO {
 	public void setMemName(String memName) {
 		this.memName = memName;
 	}
-	public String getMemAge() {
+	public int getMemAge() {
 		return memAge;
 	}
-	public void setMemAge(String memAge) {
+	public void setMemAge(int memAge) {
 		this.memAge = memAge;
 	}
 	public String getMemGender() {

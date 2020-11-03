@@ -37,12 +37,20 @@ public class CommonServiceImpl implements CommonService{
 		sqlSession.update("updateCookie", map);
 	}
 	@Override
+	public void updateFakePass(MemInfoVO memInfoVO) {
+		sqlSession.update("updateFakePass", memInfoVO);
+	}
+	@Override
 	public int memUpdate(MemInfoVO memInfoVO) {
 		return sqlSession.update("memUpdate", memInfoVO);
 	}
 	@Override
 	public int insertCompanyInfo(CompanyInfoVO companyInfoVO) {
 		return sqlSession.insert("insertCompanyInfo", companyInfoVO);
+	}
+	@Override
+	public String selectComNumChk(String comNum) {
+		return sqlSession.selectOne("selectComNumChk", comNum);
 	}
 	@Override
 	public CompanyInfoVO companyLogin(CompanyInfoVO companyInfoVO) {
@@ -66,7 +74,7 @@ public class CommonServiceImpl implements CommonService{
 	}
 	@Override
 	public void updateViews(int announceNum) {
-		sqlSession.update("updateViews", announceNum);
+		sqlSession.update("commonMapper.updateViews", announceNum);
 		
 	}
 	@Override
@@ -96,7 +104,24 @@ public class CommonServiceImpl implements CommonService{
 		
 		return sqlSession.selectOne("selectTime",announceNum);
 	}
-
+	@Override
+	public String selectAddress(int announceNum) {
+		
+		return sqlSession.selectOne("selectAddress",announceNum);
+	}
+	@Override
+	public List<RecruitListVO> selectComNameList() {
+		return sqlSession.selectList("selectComNameList");
+	}
+	@Override
+	public List<RecruitListVO> selectComNameAsRecruitList() {
+		return sqlSession.selectList("selectComNameAsRecruitList");
+	}
+	@Override
+	public List<RecruitListVO> selectViewsList() {
+		return sqlSession.selectList("selectViewsList");
+	}
+	
 	
 
 	

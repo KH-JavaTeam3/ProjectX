@@ -7,6 +7,7 @@ public class CompanyInfoVO {
 	private String comName;
 	private String comCeo;
 	private String comLoc;
+	private String comLocDetail;
 	private String comType;
 	private String comTel;
 	private String comJoinDate;
@@ -17,6 +18,12 @@ public class CompanyInfoVO {
 	
 	
 	
+	public String getComLocDetail() {
+		return comLocDetail;
+	}
+	public void setComLocDetail(String comLocDetail) {
+		this.comLocDetail = comLocDetail;
+	}
 	public String getComImage() {
 		return comImage;
 	}
@@ -98,12 +105,11 @@ public class CompanyInfoVO {
 	@Override
 	public String toString() {
 		return "CompanyInfoVO [comNum=" + comNum + ", comPass=" + comPass + ", comEmail=" + comEmail + ", comName="
-				+ comName + ", comCeo=" + comCeo + ", comLoc=" + comLoc + ", comType=" + comType + ", comTel=" + comTel
-				+ ", comJoinDate=" + comJoinDate + ", comAvgScore=" + comAvgScore + ", comGivePerson=" + comGivePerson
-				+ ", comScore=" + comScore + ", comImage=" + comImage + "]";
+				+ comName + ", comCeo=" + comCeo + ", comLoc=" + comLoc + ", comLocDetail=" + comLocDetail
+				+ ", comType=" + comType + ", comTel=" + comTel + ", comJoinDate=" + comJoinDate + ", comAvgScore="
+				+ comAvgScore + ", comGivePerson=" + comGivePerson + ", comScore=" + comScore + ", comImage=" + comImage
+				+ "]";
 	}
-	
-	
 	
 	
 	

@@ -4,37 +4,47 @@
 <tiles-definitions>
 	<definition name="baseLayout" template="/WEB-INF/view/subTiles/template.jsp">
 		<put-attribute name="title" value="Findream"/>
-		<put-attribute name="menu" value=""/>
-		<put-attribute name="submenu" value=""/>
+		<put-attribute name="menu" value="/WEB-INF/view/subTiles/menu.jsp"/>
+		<put-attribute name="submenu" value="/WEB-INF/view/subTiles/submenu.jsp"/>
+		<put-attribute name="submenu2" value=""/>
+		<put-attribute name="foot" value=""/>
 		<put-attribute name="body" value=""/>
-		<put-attribute name="foot" value="/WEB-INF/view/subTiles/foot.jsp"/>
 	</definition>
 	
 	<definition name="tiles/common/*" extends="baseLayout">
 		<put-attribute name="body" value="/WEB-INF/view/tiles/common/{1}.jsp" />
-		<put-attribute name="menu" value="/WEB-INF/view/subTiles/menu.jsp"/>
 	</definition>
-	
-	<definition name="tiles/company/*" extends="baseLayout">
-		<put-attribute name="body" value="/WEB-INF/view/tiles/company/{1}.jsp" />
-		<put-attribute name="menu" value="/WEB-INF/view/subTiles/companymenu.jsp"/>
+	<definition name="tiles/common/main" extends="baseLayout">
+		<put-attribute name="body" value="/WEB-INF/view/tiles/common/main.jsp" />
+		<put-attribute name="submenu2" value="/WEB-INF/view/subTiles/submenu2.jsp"/>
 	</definition>
-	
+	<definition name="tiles/common/companyList" extends="baseLayout">
+		<put-attribute name="submenu2" value="/WEB-INF/view/subTiles/submenu2.jsp"/>
+		<put-attribute name="body" value="/WEB-INF/view/tiles/common/companyList.jsp" />
+	</definition>
+	<definition name="tiles/common/company" extends="baseLayout">
+		<put-attribute name="submenu2" value="/WEB-INF/view/subTiles/submenu2.jsp"/>
+		<put-attribute name="body" value="/WEB-INF/view/tiles/common/company.jsp" />
+	</definition>
 	<definition name="tiles/member/*" extends="baseLayout">
 		<put-attribute name="body" value="/WEB-INF/view/tiles/member/{1}.jsp" />
-		<put-attribute name="menu" value="/WEB-INF/view/subTiles/menu.jsp"/>
-		<put-attribute name="submenu" value="/WEB-INF/view/subTiles/submenu.jsp"/>
 	</definition>
-	
+	<definition name="tiles/company/*" extends="baseLayout">
+		<put-attribute name="body" value="/WEB-INF/view/tiles/company/{1}.jsp" />
+	</definition>
 	<definition name="tiles/admin/*" extends="baseLayout">
 		<put-attribute name="body" value="/WEB-INF/view/tiles/admin/{1}.jsp" />
-		<put-attribute name="menu" value="/WEB-INF/view/subTiles/menu.jsp"/>
 	</definition>
-	
+	<definition name="tiles/board/freeBoardList" extends="baseLayout">
+		<put-attribute name="body" value="/WEB-INF/view/tiles/board/freeBoardList.jsp" />
+		<put-attribute name="foot" value="/WEB-INF/view/subTiles/foot.jsp"/>
+	</definition>
+	<definition name="tiles/board/qaBoardList" extends="baseLayout">
+		<put-attribute name="body" value="/WEB-INF/view/tiles/board/qaBoardList.jsp" />
+		<put-attribute name="foot" value="/WEB-INF/view/subTiles/foot.jsp"/>
+	</definition>
 	<definition name="tiles/board/*" extends="baseLayout">
 		<put-attribute name="body" value="/WEB-INF/view/tiles/board/{1}.jsp" />
-		<put-attribute name="menu" value="/WEB-INF/view/subTiles/menu.jsp"/>
-		<put-attribute name="submenu" value="/WEB-INF/view/subTiles/boardSubmenu.jsp"/>
 	</definition>
 	
 	

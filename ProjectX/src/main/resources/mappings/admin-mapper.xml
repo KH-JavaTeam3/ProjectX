@@ -30,6 +30,7 @@
 		<result column="COM_NAME"         	  	property="comName"/> 
 		<result column="COM_CEO"        		property="comCeo"/> 
 		<result column="COM_LOC"        	 	property="comLoc"/> 
+		<result column="COM_LOC_DETAIL"        	property="comLocDetail"/> 
 		<result column="COM_TYPE"           	property="comType"/> 
 		<result column="COM_TEL"           		property="comTel"/> 
 		<result column="COM_JOIN_DATE"         property="comJoinDate"/> 
@@ -43,12 +44,14 @@
 		SELECT COM_NUM
 			, COM_NAME
 		FROM COMPANY_INFO
+		ORDER BY COM_NAME
 	</select>
 
 	<select id="selectMemberListAD" resultMap="memInfo">
 		SELECT MEM_EMAIL
 			, MEM_NAME
 		FROM MEM_INFO
+		ORDER BY MEM_NAME
 	</select>
 
 	<select id="selectCompnayAD" resultMap="companyInfo">
@@ -58,6 +61,7 @@
 			COM_NAME,
 			COM_CEO,
 			COM_LOC,
+			COM_LOC_DETAIL,
 			COM_TYPE,
 			COM_TEL,
 			COM_JOIN_DATE,
@@ -65,7 +69,7 @@
 			COM_GIVE_PERSON,
 			COM_SCORE
 		FROM COMPANY_INFO
-		WHERE COM_NAME = #{comName}
+		WHERE COM_NUM = #{comNum}
 	</select>
 
 	<select id="selectMemberAD" resultMap="memInfo">
@@ -80,7 +84,7 @@
 			, MEM_ADDR
 			, MEM_JOIN_DATE
 			FROM MEM_INFO
-		WHERE MEM_NAME = #{memName}
+		WHERE MEM_EMAIL = #{memEmail}
 	</select>
 
 

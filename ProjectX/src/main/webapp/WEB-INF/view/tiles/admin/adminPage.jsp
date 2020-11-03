@@ -10,19 +10,26 @@
 .memberDetailBtn:hover, .companyDetailBtn:hover{
 	cursor: pointer;
 }
+#listDiv{
+	cursor: pointer;
+	
+}
+.toScroll{
+	overflow-y: scroll;
+	height: 430px;
+}
 </style>
 </head>
 <body>
 	<div class="container-fluid" style="margin-top: 100px; border: 5px solid #ABC2E8; border-radius: 10px; height: 500px;">
-		<div class="row" style="margin-top: 50px;">
+		<div class="row" style="margin-top: 30px;">
 			<div class="col-md-3">
 				<div class="list-group" id="adminSide">
 					<button class="list-group-item list-group-item-action" id="companyListBtn">
 						기업목록</button> 
 					<button class="list-group-item list-group-item-action" id="memberListBtn">
 						개인목록</button> 
-					<button class="list-group-item list-group-item-action" id="noticeListBtn">
-						공지사항</button> 
+					
 				</div>
 			</div>
 			<div class="col-md-4 text-center" id="listDiv">
@@ -36,7 +43,7 @@
 
 
 
-<script src="resources/js/adminPage.js?ver=4"></script>
+<script src="resources/js/adminPage.js?ver=5"></script>
 </body>
 
 </html>

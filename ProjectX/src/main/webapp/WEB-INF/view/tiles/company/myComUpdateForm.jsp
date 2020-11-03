@@ -27,23 +27,6 @@ input[type="button"] {
 </head>
 
 <body>
-<div style="height: 60px;"></div>
-<div>
-	<ul class="nav nav-tabs" id="myTab" role="tablist">
-  <li class="nav-item" role="presentation">
-    <a class="nav-link" href="comMypage.co">홈</a>
-  </li>
-  <li class="nav-item" role="presentation">
-    <a class="nav-link" href="myComUpdateForm.co">사업자 정보 수정</a>
-  </li>
-  <li class="nav-item" role="presentation">
-    <a class="nav-link" href="recruitDeleteList.co">공고 삭제 및 수정</a>
-  </li>
-  <li class="nav-item" role="presentation">
-    <a class="nav-link" href="resumeInquiry.co">지원받은 이력서 조회</a>
-  </li>
-</ul>
-</div>
 
 <form action="myComUpdate.co" method="post" enctype="multipart/form-data">
 <input type="hidden" name="comNum" value="${sessionScope.comLogin.comNum }">
@@ -73,6 +56,10 @@ input[type="button"] {
                <label for="comLoc">본사 주소</label>
                   <input type="button" class="btn btn-primary" onClick="openDaumZipAddress();" value="주소찾기" style="background: #ABC2E8; border-color: #ABC2E8;" /><br/>
                   <input type="text" id="comLoc"  style="width: 99%;" value="${sessionScope.comLogin.comLoc }" name="comLoc"/>
+            </div>
+            <div class="form-group col-md-6"  style="padding: 30px 50px 0px 30px;">
+               <label for="comLocDetail">상세 주소</label>
+                  <input type="text" id="comLocDetail"   name="comLocDetail" style="width: 99%;" value="${sessionScope.comLogin.comLoc }"/>
             </div>
             <div class="form-group col-md-6" style="padding: 30px 50px 0px 30px;">
                <label for="comTel">연락처</label>

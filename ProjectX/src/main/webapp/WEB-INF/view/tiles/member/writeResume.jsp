@@ -9,6 +9,11 @@
 <title>Insert title here</title>
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <link rel="stylesheet" href="resources/css/writeResume.css?ver=2">
+<style type="text/css">
+svg{
+	cursor: pointer;
+}
+</style>
 </head>
 <body>
 <form action="regResume.me" method="post" >
@@ -17,8 +22,8 @@
 	<input type="text" name="resumeName" style="font-size: 35px; font-weight: bold;" placeholder="제목을 입력해주세요.">
 	<div style="height: 20px;"></div>
 	<!-- 개인_기본정보 -->
-	<span style="font-weight: bold; font-size: 24px;">개인 정보</span><input type="button" class="btn btn-primary" onClick="location.href='memUpdateForm.me';" value="개인정보수정" style="background: #ABC2E8; border-color: #ABC2E8; margin-bottom: 14px;"/>
-	<div class="row col-md-12" style="border: 5px solid #ABC2E8; border-radius: 10px;">
+	<span style="font-weight: bold; font-size: 24px; color: #0F4C81;">개인 정보</span><input type="button" class="btn btn-primary" onClick="location.href='memUpdateForm.me';" value="개인정보수정" style="background: #ABC2E8; border-color: #ABC2E8; margin-bottom: 14px;"/>
+	<div class="row col-md-12" style="border: 5px solid #658DC6; border-radius: 10px;">
 		<div class="col-md-9">
 			<div class="form-row">
 				<div class="form-group col-md-6">
@@ -73,8 +78,8 @@
 
 <!-- 개인_학력사항 -->	
 	<div style="height: 20px;"></div>
-	<span style="font-weight: bold; font-size: 24px;">학력 사항</span><!-- 학교 정보에 대한 DB 필요 -->
-	<div class="row col-md-12" style="border: 5px solid #ABC2E8; border-radius: 10px;">
+	<span style="font-weight: bold; font-size: 24px;color: #0F4C81;">학력 사항</span><!-- 학교 정보에 대한 DB 필요 -->
+	<div class="row col-md-12" style="border: 5px solid #658DC6; border-radius: 10px;">
 		<div class="row col-md-12">
 			<div class="form-row">
 				<div class="form-group col-md-6">
@@ -119,7 +124,7 @@
 						</div>
 						<div class="col-md-3" style="top: 14px; left: -80px;">
 							<label for="eduScore">학점</label>
-					  		<input type="number" class="form-control" id="eduScore" name="eduScore" max="4.5" min="0" step="0.1" value="0.00" style="height: 40px;">
+					  		<input type="number" class="form-control" id="eduScore" name="eduScore" max="4.5" min="0" step="0.01" value="0.00" style="height: 40px;">
 						</div>
 					</div>
 				</div>
@@ -148,11 +153,12 @@
    
 <!-- 개인_자격증 -->
 	<div style="height: 20px;"></div>
-	<span style="font-weight: bold; font-size: 24px;">자격증</span>
+	<span style="font-weight: bold; font-size: 24px;color: #0F4C81;">자격증</span>
 	<svg width="2em" height="2em" viewBox="0 0 16 16" class="offset-md-11 bi bi-plus" fill="currentColor" xmlns="http://www.w3.org/2000/svg" id="addCertifi">
 	  <path fill-rule="evenodd" d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
 	</svg>
-	<div class="row col-md-12" style="border: 5px solid #ABC2E8; border-radius: 10px;">
+	<div class="row col-md-12" style="border: 5px solid #658DC6; border-radius: 10px;">
+	
 		<div class="col-md-12" id="licenseDiv">
 			<div class="form-row">
 			   <div class="form-group col-md-12" style="padding-left: 20px;">
@@ -174,15 +180,16 @@
 			  </div>
 			</div>
 		</div>
+		
 	</div>
 
 <!-- 개인_자기소개 -->
 	<div style="height: 20px;"></div>
-	<span style="font-weight: bold; font-size: 24px;">자기소개</span>
+	<span style="font-weight: bold; font-size: 24px;color: #0F4C81;">자기소개</span>
 	<svg style="margin-left: 89.8%;" width="2em" height="2em" viewBox="0 0 16 16" class="offset-md-10 bi bi-plus" fill="currentColor" xmlns="http://www.w3.org/2000/svg" id="addProfile">
 	  <path fill-rule="evenodd" d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
 	</svg>
-	<div class="row col-md-12" style="border: 5px solid #ABC2E8; border-radius: 10px;">
+	<div class="row col-md-12" style="border: 5px solid #658DC6; border-radius: 10px;">
 		<div class="col-md-12" id="profileDiv">
 		   <div class="form-group col-md-12">
 			  <label for="proTitle">자기소개서 이름</label>
@@ -190,35 +197,37 @@
 			</div>
 		   <div class="form-group col-md-12">
 			  <label for="proContent">자기소개서 내용</label>
-			  <textarea rows="10" cols="60" class="form-control" id="proContent" name="proContent"></textarea>
+			  	<textarea rows="10" cols="60" class="form-control" id="proContent" name="proContent" wrap="hard"></textarea>
 			</div>
 		</div>
 	</div>
 
 <!-- 개인_경력사항 -->
 	<div style="height: 20px;"></div>
-	<span style="font-weight: bold; font-size: 24px;">경력 사항</span>
-	<div class="row col-md-12" style="border: 5px solid #ABC2E8; border-radius: 10px;">
-		<div class="col-md-12">
-		 <div class="form-row">
+	<span style="font-weight: bold; font-size: 24px;color: #0F4C81;">경력 사항</span>
+	<svg style="margin-left: 89.8%;" width="2em" height="2em" viewBox="0 0 16 16" class="offset-md-10 bi bi-plus" fill="currentColor" xmlns="http://www.w3.org/2000/svg" id="addCareer">
+	  <path fill-rule="evenodd" d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
+	</svg>
+	<div class="row col-md-12" style="border: 5px solid #658DC6; border-radius: 10px;">
+		<div class="col-md-12" id="careerDiv">
+		 <div class="form-row" style="padding: 0px 15px;">
 		   <div class="form-group col-md-6">
-		     <label for="beCompany">회사명</label>
-		     <input type="text" class="form-control" id="beCompany" name="beCompany">
+		     <label for="carCompany">회사명</label>
+		     <input type="text" class="form-control" id="carCompany" name="carCompany">
 		   </div>
 		   <div class="form-group col-md-6">
-		     <label for="beCareer">경력</label>
+		     <label for="carCareer">경력</label>
 		     <div class="row col-md-12">
-		     	<input type="number" class="form-control col-md-11" id="beCareer" name="beCareer">
-				<span class="col-md-1">년</span>
+		     	<input type="number" class="form-control" id="carCareer" name="carCareer" placeholder="년차를 입력해주세요">
 		   	 </div>
 		   </div>
 		   <div class="form-group col-md-6">
-		     <label for="beType">직종</label>
-		     <input type="text" class="form-control" id="beType" name="beType">
+		     <label for="carType">직종</label>
+		     <input type="text" class="form-control" id="carType" name="carType">
 		   </div>
 		   <div class="form-group col-md-6">
-		     <label for="bePosition">직책</label>
-		     <input type="text" class="form-control" id="bePosition" name="bePosition">
+		     <label for="carPosition">직책</label>
+		     <input type="text" class="form-control" id="carPosition" name="carPosition">
 		   </div>
 		 </div>
 		</div>
@@ -226,8 +235,8 @@
 
 <!-- 희망 근무 조건 -->
 	<div style="height: 20px;"></div>
-	<span style="font-weight: bold; font-size: 24px;">희망 조건</span>
-	<div class="row col-md-12" style="border: 5px solid #ABC2E8; border-radius: 10px;">
+	<span style="font-weight: bold; font-size: 24px;color: #0F4C81;">희망 조건</span>
+	<div class="row col-md-12" style="border: 5px solid #658DC6; border-radius: 10px;">
 		<div class="col-md-12">
 			<div class="form-row">
 				<div class="form-group col-md-6">
@@ -238,7 +247,7 @@
 					<label for="hopeSal">희망 연봉</label>
 					<div class="row col-md-12">
 						<input type="number" class="form-control col-md-10" id="hopeSal" name="hopeSal" min="0" value="2500">
-						<span class="col-md-2">만원</span>
+						<span class="col-md-2" style="left: -13px; top: 7px; font-size: 17.5px;">만원</span>
 					</div>
 				</div>
 				<div class="form-group col-md-6">
@@ -264,6 +273,6 @@
 
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-<script src="resources/js/writeResume.js?ver=6"></script>
+<script src="resources/js/writeResume.js?ver=4"></script>
 </body>
 </html>

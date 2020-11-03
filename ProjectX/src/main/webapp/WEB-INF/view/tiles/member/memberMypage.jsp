@@ -6,13 +6,35 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-
 <style type="text/css">
 @font-face { font-family: 'MyLotteBold'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.0/MyLotteBold.woff') format('woff'); font-weight: normal; font-style: normal; }
 .memberInfo{
 	padding: 100px; 
-/* 	margin: 200px; */
 }
+
+#myInfoTitle{
+	position: relative;
+    left: 132px;
+}
+
+svg{
+	position: relative;
+	right: -1158px;
+	color: #658DC6;
+	font-weight: bold;
+}
+
+.editMyInfo{
+	position: relative;
+	right: -1160px;
+	color: #658DC6;
+	font-weight: bold;
+}
+
+ .editMyInfo:hover{ 
+ 	text-decoration: none; 
+ 	font-weight: bolder; 
+ } 
 
 .files input {
     outline: 2px dashed #7896CF;
@@ -55,7 +77,7 @@
     background-repeat: no-repeat;
 }
 .infoTable {
-	width: 1100px;
+	width: 900px;
 	margin: 20px;
  	height: 250px;
 	text-align: center;
@@ -71,26 +93,20 @@
     border-bottom: 1px solid #ccc;
     border-top: 1px solid #ccc;
 }
-}
+
 </style>
 </head>
 <body>
-<div style="height: 30px;"></div>
-<!-- MyInfo 시작점: 아코디언메뉴 시작 -->
-<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
-  <div class="panel panel-default">
-    <div class="panel-heading" role="tab" id="headingOne">
-      <h4 class="panel-title">
-        <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-          <span style="font-weight: bold; font-size: 30px; font-family:'MyLotteBold';">My Info</span>
-        </a>
-      </h4>
-    </div>
-    <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+<div style="height: 100px;"></div>
+<span style="font-weight: bold; font-size: 30px; font-family:'MyLotteBold'; color: #0F4C81;" id="myInfoTitle">My Info</span>
+<svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-gear" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+  <path fill-rule="evenodd" d="M8.837 1.626c-.246-.835-1.428-.835-1.674 0l-.094.319A1.873 1.873 0 0 1 4.377 3.06l-.292-.16c-.764-.415-1.6.42-1.184 1.185l.159.292a1.873 1.873 0 0 1-1.115 2.692l-.319.094c-.835.246-.835 1.428 0 1.674l.319.094a1.873 1.873 0 0 1 1.115 2.693l-.16.291c-.415.764.42 1.6 1.185 1.184l.292-.159a1.873 1.873 0 0 1 2.692 1.116l.094.318c.246.835 1.428.835 1.674 0l.094-.319a1.873 1.873 0 0 1 2.693-1.115l.291.16c.764.415 1.6-.42 1.184-1.185l-.159-.291a1.873 1.873 0 0 1 1.116-2.693l.318-.094c.835-.246.835-1.428 0-1.674l-.319-.094a1.873 1.873 0 0 1-1.115-2.692l.16-.292c.415-.764-.42-1.6-1.185-1.184l-.291.159A1.873 1.873 0 0 1 8.93 1.945l-.094-.319zm-2.633-.283c.527-1.79 3.065-1.79 3.592 0l.094.319a.873.873 0 0 0 1.255.52l.292-.16c1.64-.892 3.434.901 2.54 2.541l-.159.292a.873.873 0 0 0 .52 1.255l.319.094c1.79.527 1.79 3.065 0 3.592l-.319.094a.873.873 0 0 0-.52 1.255l.16.292c.893 1.64-.902 3.434-2.541 2.54l-.292-.159a.873.873 0 0 0-1.255.52l-.094.319c-.527 1.79-3.065 1.79-3.592 0l-.094-.319a.873.873 0 0 0-1.255-.52l-.292.16c-1.64.893-3.433-.902-2.54-2.541l.159-.292a.873.873 0 0 0-.52-1.255l-.319-.094c-1.79-.527-1.79-3.065 0-3.592l.319-.094a.873.873 0 0 0 .52-1.255l-.16-.292c-.892-1.64.902-3.433 2.541-2.54l.292.159a.873.873 0 0 0 1.255-.52l.094-.319z"/>
+  <path fill-rule="evenodd" d="M8 5.754a2.246 2.246 0 1 0 0 4.492 2.246 2.246 0 0 0 0-4.492zM4.754 8a3.246 3.246 0 1 1 6.492 0 3.246 3.246 0 0 1-6.492 0z"/>
+</svg><a href="memUpdateForm.me" class="editMyInfo" style="font-size: 17px;">개인정보 수정</a>
       <div class="panel-body">
       	<div align="center">
-			<div class="row col-md-12" style="border: 5px solid #ABC2E8; border-radius: 10px;">
-				<div class="col-md-9">
+			<div class="row col-md-10" style="border: 5px solid #658DC6; border-radius: 10px;">
+				<div class="col-md-7">
 					<div class="form-row">
 						<table class="infoTable">
 							<colgroup>
@@ -133,7 +149,7 @@
 				</div>
 				
 				<!-- 사진 시작 -->
-				<div class="col-md-3">
+				<div class="offset-md-2	 col-md-1">
 					<div class="container">
 						<div class="row">
 							<div class="col-md-6 form-group">
@@ -150,23 +166,5 @@
 			</div>
 		</div>
       </div>
-    </div>
-  </div>
-</div><!-- 아코디언 끝 -->
-
-<!-- 아코디언 아래 메뉴 시작 -->
-<div style="height: 20px;"></div>
-<div>
-	<table class="table">
-		<tr>
-			<td>무엇을</td>
-			<td>넣을까요</td>
-		</tr>
-		<tr>
-			<td>좋은거 있으면</td>
-			<td>말해주세여</td>
-		</tr>
-	</table>
-</div>
 </body>
 </html>

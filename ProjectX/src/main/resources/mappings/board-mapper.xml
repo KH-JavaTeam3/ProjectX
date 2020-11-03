@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="boardMapper">
+	<resultMap type="com.spring.biz.vo.BoardVO" id="board">
+		<result column="BOARD_NUM" 			property="boardNum"/>
+		<result column="BOARD_TITLE" 		property="boardTitle"/>
+		<result column="BOARD_CONTENT" 		property="boardContent"/>
+		<result column="BOARD_VIEWS" 		property="boardViews"/>
+		<result column="BOARD_DATE" 		property="boardDate"/>
+		<result column="BOARD_WRITER"		property="boardWriter"/>
+		<result column="BOARD_WRITER_NAME"	property="boardWriterName"/>
+		<result column="BOARD_COUNT"		property="boardCount"/>
+	</resultMap>
+	<resultMap type="com.spring.biz.vo.BoardVO2" id="board2">
+		<result column="BOARD2_NUM" 			property="board2Num"/>
+		<result column="BOARD2_TITLE" 			property="board2Title"/>
+		<result column="BOARD2_CONTENT" 		property="board2Content"/>
+		<result column="BOARD2_VIEWS" 			property="board2Views"/>
+		<result column="BOARD2_DATE" 			property="board2Date"/>
+		<result column="BOARD2_WRITER"			property="board2Writer"/>
+		<result column="BOARD2_WRITER_NAME"		property="board2WriterName"/>
+		<result column="BOARD2_COUNT"			property="board2Count"/>
+	</resultMap>
+
+<!-- 	SELECT BOARD_NUM
+		,BOARD_TITLE
+		,BOARD_WRITER
+		,BOARD_VIEWS
+		,TO_CHAR(BOARD_DATE,'YYYY-MM-DD HH24:MI') AS BOARD_DATE
+		,BOARD_WRITER_NAME
+		,BOARD_CONTENT
+	FROM BOARD
+	WHERE BOARD_CARTEGORY ='자유게시판'
+	ORDER BY BOARD_DATE DESC
+	 -->
+	 
+<!-- 	 자게 전체 -->
+<select id="selectFreeBoardList" resultMap="board">
+	 
+		SELECT BOARD_NUM
+			,BOARD_TITLE
+			,BOARD_WRITER
+			,BOARD_VIEWS
+			,TO_CHAR(BOARD_DATE,'YYYY-MM-DD HH24:MI:SS') AS BOARD_DATE
+			,BOARD_WRITER_NAME
+			,BOARD_CONTENT
+			,BOARD_COUNT
+				FROM (
+					SELECT ROWNUM BOARD_COUNT, A.* 
+					FROM (
+							SELECT * 
+							FROM BOARD 
+							 
+							) A
+					)
+	WHERE BOARD_COUNT BETWEEN #{start} AND #{end}
+	ORDER BY BOARD_DATE DESC
+
+
+</select>
+
+<!-- 큐게 전체 -->
+<select id="selectQaBoardList" resultMap="board2">
+		SELECT BOARD2_NUM
+			,BOARD2_TITLE
+			,BOARD2_WRITER
+			,BOARD2_VIEWS
+			,TO_CHAR(BOARD2_DATE,'YYYY-MM-DD HH24:MI:SS') AS BOARD2_DATE
+			,BOARD2_WRITER_NAME
+			,BOARD2_CONTENT
+			,BOARD2_COUNT
+				FROM (
+					SELECT ROWNUM BOARD2_COUNT, A.* 
+					FROM (
+							SELECT * 
+							FROM BOARD2 
+							 
+							) A
+					)
+	WHERE BOARD2_COUNT BETWEEN #{start} AND #{end}
+	ORDER BY BOARD2_DATE DESC
+</select>
+
+<!-- 자게 검색 -->
+<select id="selectFBoardSearchList" resultMap="board">
+	SELECT BOARD_NUM
+		,BOARD_TITLE
+		,BOARD_WRITER
+		,BOARD_VIEWS
+		,BOARD_DATE 
+		,BOARD_WRITER_NAME
+		,BOARD_CONTENT
+	FROM BOARD	
+	<if test="select != '전체' and search != ''">
+		WHERE ${select} LIKE UPPER('%'||#{search}||'%')
+	</if>
+	<if test="select != '전체' and search == ''">
+		WHERE ${select} LIKE UPPER('%'||#{search}||'%')
+	</if>
+	<if test="select == '전체' and search != ''">
+		WHERE (
+			BOARD_TITLE LIKE UPPER('%'||#{search}||'%')
+			OR BOARD_CONTENT LIKE UPPER('%'||#{search}||'%')
+			OR BOARD_WRITER LIKE UPPER('%'||#{search}||'%')
+			)
+	</if>	
+	ORDER BY BOARD_DATE DESC
+</select>
+
+<!-- 큐게 검색 -->
+<select id="selectQBoardSearchList" resultMap="board2">
+	SELECT BOARD2_NUM
+		,BOARD2_TITLE
+		,BOARD2_WRITER
+		,BOARD2_VIEWS
+		,BOARD2_DATE
+		,BOARD2_WRITER_NAME
+		,BOARD2_CONTENT
+	FROM BOARD2	
+	<if test="select2 != '전체' and search2 != ''">
+		AND ${select2} LIKE UPPER('%'||#{search2}||'%')
+	</if>
+	<if test="select2 != '전체' and search2 == ''">
+		AND ${select} LIKE UPPER('%'||#{search}||'%')
+	</if>
+	<if test="select2 == '전체' and search2 != ''">
+		AND (
+			BOARD2_TITLE LIKE UPPER('%'||#{search2}||'%')
+			OR BOARD2_CONTENT LIKE UPPER('%'||#{search2}||'%')
+			OR BOARD2_WRITER LIKE UPPER('%'||#{search2}||'%')
+			)
+	</if>	
+	ORDER BY BOARD2_DATE DESC
+</select>
+
+
+<!-- 자게 insert -->
+<insert id="insertFreeBoard">
+	INSERT INTO BOARD (
+		BOARD_NUM
+		,BOARD_TITLE
+		,BOARD_CONTENT
+		,BOARD_WRITER
+		,BOARD_WRITER_NAME  
+	) VALUES (
+		(SELECT NVL(MAX(BOARD_NUM) + 1 , 1) FROM BOARD)
+		,#{boardTitle}
+		,#{boardContent}
+		,#{boardWriter}	
+		,#{boardWriterName}	
+	)
+</insert>
+
+<!-- 큐게 insert -->
+<insert id="insertQaBoard">
+	INSERT INTO BOARD2 (
+		BOARD2_NUM
+		,BOARD2_TITLE
+		,BOARD2_CONTENT
+		,BOARD2_WRITER
+		,BOARD2_WRITER_NAME  
+	) VALUES (
+		(SELECT NVL(MAX(BOARD2_NUM) + 1 , 1) FROM BOARD2)
+		,#{boardTitle}
+		,#{boardContent}
+		,#{boardWriter}	
+		,#{boardWriterName}	
+	)
+</insert>
+
+
+<!-- 자게 상세 -->
+<select id="selectDFBoard" resultMap="board">
+	SELECT BOARD_NUM 
+	    ,BOARD_TITLE
+	    ,BOARD_WRITER
+	    ,BOARD_DATE
+	    ,BOARD_VIEWS
+	    ,BOARD_CONTENT
+	    ,BOARD_WRITER_NAME
+	FROM BOARD
+	WHERE BOARD_NUM=#{boardNum}
+</select>
+
+<!-- 큐게 상세 -->
+<select id="selectDQBoard" resultMap="board2">
+	SELECT BOARD2_NUM 
+	    ,BOARD2_TITLE
+	    ,BOARD2_WRITER
+	    ,BOARD2_DATE
+	    ,BOARD2_VIEWS
+	    ,BOARD2_CONTENT
+	    ,BOARD2_WRITER_NAME
+	FROM BOARD2
+	WHERE BOARD2_NUM=#{boardNum}
+</select>
+
+<!-- 자게 조회수 증가 -->
+<update id="updateFreeViews">
+		UPDATE BOARD
+		SET BOARD_VIEWS = (SELECT (MAX(BOARD_VIEWS) +1) FROM BOARD WHERE BOARD_NUM = #{boardNum})
+		WHERE BOARD_NUM = #{boardNum}
+</update>
+
+<!-- 큐게 조회수 증가 -->
+<update id="updateQaViews">
+		UPDATE BOARD2
+		SET BOARD2_VIEWS = (SELECT (MAX(BOARD2_VIEWS) +1) FROM BOARD2 WHERE BOARD2_NUM = #{boardNum})
+		WHERE BOARD2_NUM = #{boardNum}
+</update>
+
+
+<!-- 자게 게시글 개수 -->
+<select id="countFreeBoard" resultType="int">
+	SELECT COUNT(*) FROM BOARD
+</select>
+
+<!-- 큐게 게시글 개수 -->
+<select id="countQaBoard" resultType="int">
+	SELECT COUNT(*) FROM BOARD2
+</select>
+
+<!-- 자게 삭제 -->
+<delete id="deleteFBoard">
+	DELETE BOARD
+		WHERE BOARD_NUM = #{boardNum}
+    	AND BOARD_WRITER = #{boardWriter}
+</delete>
+
+<!-- 큐게 삭제 -->
+<delete id="deleteQBoard">
+	DELETE BOARD2
+	WHERE BOARD2_NUM = #{boardNum}
+   	AND BOARD2_WRITER = #{boardWriter}
+</delete>
+	
+<!-- 	자게 수정 -->
+<update id="updateFBoard">
+	UPDATE BOARD SET 
+		BOARD_TITLE=#{boardTitle}
+		,BOARD_CONTENT =#{boardContent}
+		,BOARD_DATE = SYSDATE
+	WHERE BOARD_NUM = #{boardNum}
+    AND BOARD_WRITER = #{boardWriter}	
+</update>
+
+<!-- 	큐게 수정 -->
+<update id="updateQBoard">
+	UPDATE BOARD2 SET 
+		BOARD2_TITLE=#{boardTitle}
+		,BOARD2_CONTENT =#{boardContent}
+		,BOARD2_DATE = SYSDATE
+	WHERE BOARD2_NUM = #{boardNum}
+    AND BOARD2_WRITER = #{boardWriter}	
+</update>
+
+</mapper>

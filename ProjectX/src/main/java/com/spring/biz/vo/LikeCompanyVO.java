@@ -5,8 +5,35 @@ public class LikeCompanyVO {
 	private String comNum;
 	private String memEmail;
 	private String comName;
-	private int announceNum;
+	private String comLoc;
+	private String comType;
+	private String comEmail;
+	private String comTel;
 	
+	public String getComLoc() {
+		return comLoc;
+	}
+	public void setComLoc(String comLoc) {
+		this.comLoc = comLoc;
+	}
+	public String getComType() {
+		return comType;
+	}
+	public void setComType(String comType) {
+		this.comType = comType;
+	}
+	public String getComEmail() {
+		return comEmail;
+	}
+	public void setComEmail(String comEmail) {
+		this.comEmail = comEmail;
+	}
+	public String getComTel() {
+		return comTel;
+	}
+	public void setComTel(String comTel) {
+		this.comTel = comTel;
+	}
 	public String getComName() {
 		return comName;
 	}
@@ -31,17 +58,12 @@ public class LikeCompanyVO {
 	public void setMemEmail(String memEmail) {
 		this.memEmail = memEmail;
 	}
-	public int getAnnounceNum() {
-		return announceNum;
-	}
-	public void setAnnounceNum(int announceNum) {
-		this.announceNum = announceNum;
-	}
 	
 	@Override
 	public String toString() {
 		return "LikeCompanyVO [likeNum=" + likeNum + ", comNum=" + comNum + ", memEmail=" + memEmail + ", comName="
-				+ comName + ", announceNum=" + announceNum + "]";
+				+ comName + ", comLoc=" + comLoc + ", comType=" + comType + ", comEmail=" + comEmail + ", comTel="
+				+ comTel + "]";
 	}
 	
 }

@@ -6,6 +6,8 @@ public class LicenseVO {
 	private String licLoc;
 	private String licGrade;
 	private String licDate;
+	private int resumeNum;
+	
 	public int getLicNum() {
 		return licNum;
 	}
@@ -36,10 +38,17 @@ public class LicenseVO {
 	public void setLicDate(String licDate) {
 		this.licDate = licDate;
 	}
+	public int getResumeNum() {
+		return resumeNum;
+	}
+	public void setResumeNum(int resumeNum) {
+		this.resumeNum = resumeNum;
+	}
+	
 	@Override
 	public String toString() {
 		return "LicenseVO [licNum=" + licNum + ", licName=" + licName + ", licLoc=" + licLoc + ", licGrade=" + licGrade
-				+ ", licDate=" + licDate + "]";
+				+ ", licDate=" + licDate + ", resumeNum=" + resumeNum + "]";
 	}
 	
 	

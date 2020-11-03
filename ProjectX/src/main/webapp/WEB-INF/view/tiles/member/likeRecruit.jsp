@@ -5,25 +5,46 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<style type="text/css">
+@font-face { font-family: 'MyLotteBold'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.0/MyLotteBold.woff') format('woff'); font-weight: normal; font-style: normal; }
+table {
+	width: 80%;
+	text-align: center;
+}
+a{
+	color: black;
+}
+a:hover {
+	text-decoration: none;
+	color: #1061e3;
+}
+
+</style>
 <title>Insert title here</title>
 </head>
 <body>
 <div style="height: 30px;"></div>
-<span style="font-family: MyLotteBold; font-size: 30px;">관심공고</span>
-<div class="row col-md-12" style="border: 5px solid #ABC2E8; border-radius: 10px;">
-	<table>
-		<tr>
-			<td>기업1</td>
-			<td>기업2</td>
-			<td>기업3</td>
-			<td>기업4</td>
-		</tr>
-		<tr>
-			<td>공고1</td>
-			<td>공고2</td>
-			<td>공고3</td>
-			<td>공고4</td>
-		</tr>
+<span style="font-family: MyLotteBold; font-size: 30px; color: #0F4C81;">관심공고</span>
+<div class="row col-md-12" style="border: 5px solid #658DC6; border-radius: 10px;">
+	<table class="table">
+	<colgroup>
+		<col width="40%">
+		<col width="15%">
+		<col width="15%">
+		<col width="10%">
+		<col width="10%">
+		<col width="*">
+	</colgroup>
+		<c:forEach items="${likeRecruitList }" var="likeRecruit">
+			<tr onclick="location.href='companyDetail.do?comNum=${likeRecruit.comNum}&announceNum=${likeRecruit.announceNum }'">
+				<td>${likeRecruit.announceTitle }</td>
+				<td>~${likeRecruit.uptoHiredate }</td>
+				<td>${likeRecruit.workType }</td>
+				<td>${likeRecruit.career }</td>
+				<td>${likeRecruit.academicBackground }</td>
+				<td>${likeRecruit.area }</td>
+			</tr>
+		</c:forEach>
 	</table>
 </div>
 </body>

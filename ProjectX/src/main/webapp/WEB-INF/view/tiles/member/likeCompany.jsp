@@ -12,23 +12,32 @@
 </head>
 <body>
 <div style="height: 30px;"></div>
-<span style="font-family: MyLotteBold; font-size: 30px;">관심기업</span>
-<div class="row col-md-12" style="border: 5px solid #ABC2E8; border-radius: 10px;">
-	<table>
-<!-- 		<tr> -->
-<%-- 			<c:forEach items="${likeCompanyList }" var="likeCompany"> --%>
-<!-- 				<td> -->
-<%-- 					<a href="companyDetail.do">${likeCompanyList.comImage }</a> --%>
-<!-- 				</td> -->
-<%-- 			</c:forEach> --%>
-<!-- 		</tr> -->
-		<tr>
-			<c:forEach items="${likeCompanyList }" var="likeCompany">
-				<td style="border: 1px solid black;">
-					${likeCompany.comName }
-				</td>
-			</c:forEach>
-		</tr>
+<span style="font-family: MyLotteBold; font-size: 30px; color: #0F4C81;">관심기업</span>
+<div class="row col-md-12" style="border: 5px solid #658DC6; border-radius: 10px;">
+	<table class="table">
+	<colgroup>
+		<col width="30%">
+		<col width="15%">
+		<col width="15%">
+		<col width="10%">
+		<col width="20%">
+	</colgroup>
+		<tr onclick="location.href='companyDetail.do?comNum=${likeRecruit.comNum}&announceNum=${likeRecruit.announceNum }'">
+				<td align="center">기업명</td>
+				<td align="center">직종</td>
+				<td align="center">기업 이메일</td>
+				<td align="center">기업 번호</td>
+				<td align="center">주소</td>
+			</tr>
+		<c:forEach items="${likeCompanyList }" var="likeCompany">
+			<tr onclick="location.href='comList.do#${likeCompany.comName }'">
+				<td align="center">${likeCompany.comName }</td>
+				<td align="center">${likeCompany.comType }</td>
+				<td align="center">${likeCompany.comEmail }</td>
+				<td align="center">${likeCompany.comTel }</td>
+				<td align="center">${likeCompany.comLoc }</td>
+			</tr>
+		</c:forEach>
 	</table>
 </div>
 </body>

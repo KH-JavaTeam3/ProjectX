@@ -64,9 +64,9 @@ header > div ul.navi >li.logo > a{padding:20px 50px; font-size: 20px;font-weight
 .container .sidebar{position: fixed;top:-500px;left:11%; right: 11%;width: 80%;height: 500px;background: white;border: 1px solid #eee; z-index: 30; transition:.35s;} 
 
 input[id="menuicon"]:checked ~ div header .menubtn {z-index: 31;}
-input[id="menuicon"]:checked ~ div header .menubtn span:nth-child(1) {top:50%;left: 50%;transform:translate(-50%,-50%) rotate(135deg);}
+input[id="menuicon"]:checked ~ div header .menubtn span:nth-child(1) {top:0%;left: 4900%;transform:translate(-50%,-50%) rotate(135deg);} /* rotate(135deg 회전각)*/
 input[id="menuicon"]:checked ~ div header .menubtn span:nth-child(2) {left:50%,transform:translate(-50%,-50%) scale(2); opacity: 0;}
-input[id="menuicon"]:checked ~ div header .menubtn span:nth-child(3) {bottom: 50%;left:50%;transform:translate(-50%,50%) rotate(-135deg);}
+input[id="menuicon"]:checked ~ div header .menubtn span:nth-child(3) {bottom: 100%;left:4900%;transform:translate(-50%,50%) rotate(-135deg);}
 input[id="menuicon"]:checked ~ .container .sidebar {top: 0;}
 
 .navi li a {
@@ -81,7 +81,7 @@ input[id="menuicon"]:checked ~ .container .sidebar {top: 0;}
 	font-weight: 
 }
 tr td {
-	padding: 5px;
+	padding: 10px;
 }
 #loginMeue ul {
 	display: inline-block;
@@ -123,8 +123,16 @@ tr td {
 .top>li {float: left; width: 30%; line-height: 80px; }
 .top span {font-size: 20px; font-weight: bold; }
             
-.dept01 {z-index:31; position:fixed; display: none; padding: 20px 0; border-bottom: 1px solid lightgray;border-lift: 1px solid lightgray; border-right: 1px solid lightgray; background: white; width: 200px; top: 56px;}
-.dept02 {z-index:31; position:fixed; display: none; padding: 20px 0; border-bottom: 1px solid lightgray;border-lift: 1px solid lightgray; border-right: 1px solid lightgray; background: white; width: 200px; top: 56px;}
+.dept01 {
+			cursor:pointer;z-index:31; position:fixed; display: none; padding: 20px 0; 
+			border-bottom: 1px solid lightgray;border-lift: 1px solid lightgray; 
+			border-right: 1px solid lightgray; background: white; width: 250px;top: 64px;
+		}
+.dept02 {
+			cursor:pointer;z-index:31; position:fixed; display: none; padding: 20px 0; 
+			border-bottom: 1px solid lightgray;border-lift: 1px solid lightgray; border-right: 1px solid lightgray;
+			 background: white; width: 250px;top: 64px;
+		}
             
 .none:after {content: ""; display: block; clear: both; }
    
@@ -132,14 +140,14 @@ tr td {
 #button{
    width: 500px;
 }
-#seatchStyle{
+#searchStyle{
    position: absolute;
    top : 53%;
    left: 71%;
    transform : translate(-50%,-50%);
    z-index: 25;
 }
-#seatchStyleCircle{
+#searchStyleCircle{
    position: absolute;
    top : 53%;
    left: 71%;
@@ -155,6 +163,14 @@ tr td {
 .sc3:focus{
 	outline:none;
 }
+#logout:hover {
+	cursor: pointer;
+}
+.hamburgerLocationTr li{
+	cursor: pointer;
+	padding: 5px;
+}
+
 </style>
 </head>
 
@@ -167,22 +183,18 @@ tr td {
 <header style="width: 80%"> <!-- 상단 메뉴바 크기 -->
 	<div style="background-color: white;" align="left">
 		<ul class="navi" style="margin-bottom: 0px;">
-			<li><a href="comLogin.do"><img alt="..." src="resources/images/logo.jpg" style="width: 150px; left: 27px;top: 10px; position: fixed" ></a></li>
-			<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#">지역별</a></li>
-			<li><a href="#">직업별</a></li>
-			<li><a href="#">헤드헌팅</a></li>
-			<li><a href="#">HOT100</a></li>
-			<li><a href="#">공채</a></li>
+			<li><a href="main.do"><img alt="..." src="resources/images/logo.jpg" style="width: 150px; left: -180px;top: 10px; position: absolute;" ></a></li>
+			<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="boardList.bo">게시판</a></li>
 			<li>
 				<div id="body" style="display: inline-block;display: flex; height: 50px;">
    		<div class="logo" style="background-color: black;">
             <span class="logo"></span>
         </div>
-        <div class="1" style="margin-top: -17px; padding-left: 126px;">
+        <div class="1" style="margin-top: -17px; padding-left: 195px;;">
             <ul class="top">
-                <li class="li" style="margin-left: -7px;"><span><input class="sc1" type="text"  placeholder="검색어 입력" autocomplete="off" style="width: 230px;font-size: 12px; height: 30px; "  ></span>
+             <li class="li" style="margin-left: -7px;"><span><input class="sc1" type="text" id="keywordSearch" placeholder="검색어 입력" autocomplete="off" style="width: 300px;font-size: 12px; height: 45px; "  ></span>
                     <ul class="dept01">
-                        <li class="dept01nop">서울</li>
+                        <li class="dept01nop">전국</li>
                         <li class="dept01nop">경기</li>
                         <li class="dept01nop">인천</li>
                         <li class="dept01nop">울산</li>
@@ -197,9 +209,9 @@ tr td {
                         <li class="dept02nop">서비스</li>
                     </ul>
                 </li>
-                <li class="topMenu" style="margin-left: -7px;"><span><input class="sc2" type="text" id="a" placeholder="지역명 입력" autocomplete="off" style="width: 230px;font-size: 12px; height: 30px;  left:225px;" ></span>
+                 <li class="topMenu" style="margin-left: -7px;"><span><input class="sc2" type="text" id="areaSearch" placeholder="지역명 입력" autocomplete="off" style="width: 300px;font-size: 12px; height: 45px;  left:225px;" ></span>
                     <ul class="dept01" id="b">
-                        <li class="dept01nop">대전</li>
+                        <li class="dept01nop">서울</li>
                         <li class="dept01nop">광주</li>
                         <li class="dept01nop">경북</li>
                         <li class="dept01nop">세종</li>
@@ -214,12 +226,13 @@ tr td {
                         <li class="dept02nop">생산.제조</li>
                     </ul>
                 </li>
-                <li class="topMenu2" style="margin-left: -7px;"><span><input class="sc3" type="text" placeholder="직업(직종명) 입력" autocomplete="off" style="width: 200px; font-size: 12px; height: 30px;"></span>
+               <li class="topMenu2" style="margin-left: -7px;"><span><input class="sc3" type="text"  id="jobSearch" placeholder="직업(직종명) 입력" autocomplete="off" style="width: 250px; font-size: 12px; height: 45px;"></span>
+           
                     <ul class="dept01">
                         <li class="dept01nop">전남</li>
                         <li class="dept01nop">전북</li>
                         <li class="dept01nop">제주</li>
-                        <li class="dept01nop">해외</li>
+                        <li class="dept01nop">대전</li>
                         <li class="dept01nop">부산</li>
                         <li class="dept01nop">충북</li>
                     </ul>
@@ -279,167 +292,114 @@ tr td {
 			<span></span>
 			<span></span>
 		</label>
-		
-     <input id="seatchStyle" type="button" class="fas fa-search" style="width: 25px; height: 25px; color: white;">
-   <input class="fas fa-circle" type="button" id="seatchStyleCircle"style="width: 40px;height: 40px;color: black;">
+		         
+     <a><input id="searchStyle" type="button" class="fas fa-search search" style="width: 25px; height: 25px; color: white;">
+      <input class="fas fa-circle search" type="button" id="searchStyleCircle"style="width: 40px;height: 40px;color: black;"></a>
 </div>
 </header>
 </div>
 
 
 <div class="container">
-<div class="sidebar row" style="color: black; padding-left: 70px; padding-top: 0px; margin-top: -1px;">
-<div class="col-md-2" style="height: 50%; border: 2px solid lightgray; display: inline-block; margin-top: -1px; border-bottom: none; font-weight: bold; font-size: 20px;">
-전체 채용정보
-</div>
-<div class="col-md-5"style="display: inline-block;width: 25%; height: 50%; border: 2px solid lightgray; margin-right: -2px; margin-left: -2px">
-<table>
-	<tr>
-		<td colspan="4">
-			<span style="font-size: 20px; font-weight: bold;">지역별</span> <i class="fas fa-angle-right" style="color: lightgray;"></i>
-		</td>
-	</tr>
-	<tr>
-		<td>
-			<ul>
-				<li><a href="#">서울</a></li>
-				<li><a href="#">대구</a></li>
-				<li><a href="#">세종</a></li>
-				<li><a href="#">전남</a></li>
-				<li><a href="#">제주</a></li>
-			</ul>
-		</td>
-		<td>
-			<ul>
-				<li><a href="#">경기</a></li>
-				<li><a href="#">대전</a></li>
-				<li><a href="#">강원</a></li>
-				<li><a href="#">전북</a></li>
-				<li><a href="#">해외</a></li>
-			</ul>
-		</td>
-		<td>
-			<ul>
-				<li><a href="#">인천</a></li>
-				<li><a href="#">광주</a></li>
-				<li><a href="#">경남</a></li>
-				<li><a href="#">충남</a></li>
-				<li><a href="#">부산</a></li>
-			</ul>
-		</td>
-		<td>
-			<ul>
-				<li><a href="#">울산</a></li>
-				<li><a href="#">경북</a></li>
-				<li><a href="#">충북</a></li>
-			</ul>
-		</td>
-	</tr>
-</table>
-</div>
-<div class="col-md-5" style="display: inline-block;width: 25%; height: 50%; border: 2px solid lightgray;">
-<table>
-	<tr>
-		<td>
-			<span style="font-size: 20px; font-weight: bold;">직업별(직종)</span> <i class="fas fa-angle-right" style="color: lightgray;"></i>
-		</td>
-	</tr>
-	<tr>
-		<td colspan="2">
-			<ul>
-				<li><a href="#">경영.사무</a></li>
-				<li><a href="#">IT.인터넷</a></li>
-				<li><a href="#">서비스</a></li>
-				<li><a href="#">의료</a></li>
-				<li><a href="#">건설</a></li>
-				<li><a href="#">미디어</a></li>
-				<li><a href="#">특수계층.공공</a></li>
-			</ul>
-		</td>
-		<td>
-			<ul>
-				<li><a href="#">영업.고객상담</a></li>
-				<li><a href="#">디자인</a></li>
-				<li><a href="#">전문직</a></li>
-				<li><a href="#">생산.제조</a></li>
-				<li><a href="#">교육</a></li>
-			</ul>
-		</td>
-	</tr>
-</table>
-</div>
-<div class="col-md-2" style="height: 50%; border: 2px solid lightgray; display: inline-block; margin-top: -1px; border-top: none;">
-
-</div>
-<div class="col-md-3"style="display: inline-block;width: 25%; height: 50%; border: 2px solid lightgray; border-top: none; margin-left: -2px; margin-top: -1px;">
-<table>
-	<tr>
-		<td colspan="5">
-			<span style="font-size: 20px; font-weight: bold;">기업별</span> <i class="fas fa-angle-right" style="color: lightgray;"></i>
-		</td>
-	</tr>
-	<tr>
-		<td>
-			<ul>
-				<li><a href="#">대기업</a></li>
-				<li><a href="#">외국계 기업</a></li>
-				<li><a href="#">공사.공기업.공공기관</a></li>
-				<li><a href="#">상장기업</a></li>
-				<li><a href="#">강소.인증기업</a></li>
-			</ul>
-		</td>
-	</tr>
-</table>
-</div>
-<div class="col-md-3"style="display: inline-block;width: 25%; height: 50%; border: 2px solid lightgray;border-top: none; margin-left: -2px; margin-top: -1px;">
-<table>
-	<tr>
-		<td colspan="4">
-			<span style="font-size: 20px; font-weight: bold;">큐레이션</span> <i class="fas fa-angle-right" style="color: lightgray;"></i>
-		</td>
-	</tr>
-	<tr>
-		<td>
-			<ul>
-				<li><a href="#">연봉</a></li>
-				<li><a href="#">고용형태</a></li>
-				<li><a href="#">근무형태</a></li>
-				<li><a href="#">모집인원</a></li>
-			</ul>
-		</td>
-	</tr>
-</table>
-</div>
-<div class="col-md-4"style="display: inline-block;width: 25%; height: 50%; border: 2px solid lightgray; border-top: none; margin-top: -1px;border-left: none;">
-<table>
-	<tr>
-		<td colspan="5">
-			<span style="font-size: 20px; font-weight: bold;">게시판</span> <i class="fas fa-angle-right" style="color: lightgray;"></i>
-		</td>
-	</tr>
-	<tr>
-		<td>
-			<ul>
-				<li><a href="#">고객센터 문의</a></li>
-				<li><a href="#">추천 기업</a></li>
-				<li><a href="#">합격자 게시판</a></li>
-				<li><a href="#">TOP10 기업</a></li>
-				<li><a href="#">합격 이력서 조회</a></li>
-			</ul>
-		</td>
-	</tr>
-</table>
-</div>
-	<!-- <div class="area_desc" style="width: 100%; height: 100%">
-		<div class="left" style="display: inline-block; width: 50%; height: 50%; float: left;">
-			좌측상단
+	<div class="sidebar row" style="padding: 35px; margin-top: 0px; margin-left: auto; height: 300px;">
+		<div class="col-md-4" style="display: inline-block;margin-right: -2px; margin-left: -2px">
+			<table>
+				<tr>
+					<td colspan="3">
+						<span style="font-size: 20px; font-weight: bold;">지역별</span> <i class="fas fa-angle-right" style="color: lightgray;"></i>
+					</td>
+				</tr>
+				<tr class="hamburgerLocationTr">
+					<td>
+						<ul>
+							<li class="place">전국</li>
+							<li class="place">서울</li>
+							<li class="place">세종</li>
+							<li class="place">전남</li>
+							<li class="place">제주</li>
+						</ul>
+					</td>
+					<td>
+						<ul>
+							<li class="place">경기</li>
+							<li class="place">대전</li>
+							<li class="place">강원</li>
+							<li class="place">전북</li>
+							<li class="place">대구</li>
+						</ul>
+					</td>
+					<td>
+						<ul>
+							<li class="place">인천</li>
+							<li class="place">광주</li>
+							<li class="place">경남</li>
+							<li class="place">충남</li>
+							<li class="place">부산</li>
+						</ul>
+					</td>
+					<td>
+						<ul>
+							<li class="place">울산</li>
+							<li class="place">경북</li>
+							<li class="place">충북</li>
+						</ul>
+					</td>
+				</tr>
+			</table>
 		</div>
-		<div class="right" style="display: inline-block; width: 50%; height: 100%; float: left;" >
-			우측
-		</div>
-	</div> -->
+	<div class="col-md-4" style="display: inline-block;">
+		<table>
+			<tr>
+				<td>
+					<span style="font-size: 20px; font-weight: bold;">직업별(직종)</span> <i class="fas fa-angle-right" style="color: lightgray;"></i>
+				</td>
+			</tr>
+			<tr class="hamburgerLocationTr">
+				<td colspan="2">
+					<ul>
+						<li class="jobtype">경영.사무</li>
+						<li class="jobtype">IT.인터넷</li>
+						<li class="jobtype">서비스</li>
+						<li class="jobtype">의료</li>
+						<li class="jobtype">건설</li>
+						<li class="jobtype">미디어</li>
+					</ul>
+				</td>
+				<td>
+					<ul>
+						<li class="jobtype">영업.고객상담</li>
+						<li class="jobtype">디자인</li>
+						<li class="jobtype">전문직</li>
+						<li class="jobtype">생산.제조</li>
+						<li class="jobtype">교육</li>
+						<li class="jobtype">특수계층.공공</li>
+					</ul>
+				</td>
+			</tr>
+		</table>
+	</div>
+	<div class="col-md-4" style="display: inline-block;">
+		<table>
+			<tr class="hamburgerLocationTr">
+				<td colspan="5">
+					<span style="font-size: 20px; font-weight: bold;">게시판</span> <i class="fas fa-angle-right" style="color: lightgray;"></i>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<ul>
+						<li><a href="#">고객센터 문의</a></li>
+						<li><a href="#">추천 기업</a></li>
+						<li><a href="#">합격자 게시판</a></li>
+						<li><a href="#">TOP10 기업</a></li>
+						<li><a href="#">합격 이력서 조회</a></li>
+					</ul>
+				</td>
+			</tr>
+		</table>
+	</div>
 </div>
 </div>
 </body>
-<script src="resources/js/companymenu.js?ver=1"></script>
+<script src="resources/js/menu.js?ver=5"></script>
 </html>

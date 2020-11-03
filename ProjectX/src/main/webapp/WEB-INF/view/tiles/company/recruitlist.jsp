@@ -37,24 +37,6 @@ table.type09 td {
 </style>
 </head>
 <body>
-<div style="height: 60px;"></div>
-<div>
-	<ul class="nav nav-tabs" id="myTab" role="tablist">
-  <li class="nav-item" role="presentation">
-    <a class="nav-link" href="comMypage.co">홈</a>
-  </li>
-  <li class="nav-item" role="presentation">
-    <a class="nav-link" href="myComUpdateForm.co">사업자 정보 수정</a>
-  </li>
-  <li class="nav-item" role="presentation">
-    <a class="nav-link" href="recruitDeleteList.co">공고 삭제 및 수정</a>
-  </li>
-  <li class="nav-item" role="presentation">
-    <a class="nav-link" href="resumeInquiry.co">지원받은 이력서 조회</a>
-  </li>
-</ul>
-</div>
-	
 	<div class="col-md-12" style="border: 5px solid #ABC2E8; border-radius: 10px;" align="center">
 		<table class="type09">
 		    <thead>

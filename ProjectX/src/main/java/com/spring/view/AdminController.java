@@ -42,15 +42,15 @@ public class AdminController {
 	//기업상세 ajax
 	@ResponseBody
 	@RequestMapping(value = "/companyDetailAjax.ad")
-	public CompanyInfoVO companyListAjax(String comName) {
-		return adminService.selectCompanyAD(comName);
+	public CompanyInfoVO companyListAjax(String comNum) {
+		return adminService.selectCompanyAD(comNum);
 	}
 	//개인상세 ajax
 	@ResponseBody
 	@RequestMapping(value = "/memberDetailAjax.ad")
-	public MemInfoVO membeDetailAjax(String memName) {
+	public MemInfoVO membeDetailAjax(String memEmail) {
 		MemInfoVO vo = new MemInfoVO();
-		vo = adminService.selectMemberAD(memName);
+		vo = adminService.selectMemberAD(memEmail);
 		vo.setMemBirth(vo.getMemBirth().substring(0, 10));
 		return vo;
 	}

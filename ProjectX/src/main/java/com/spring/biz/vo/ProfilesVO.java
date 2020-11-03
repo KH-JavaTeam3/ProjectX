@@ -4,6 +4,8 @@ public class ProfilesVO {
 	private int proNum;
 	private String proTitle;
 	private String proContent;
+	private int resumeNum;
+	
 	public int getProNum() {
 		return proNum;
 	}
@@ -22,9 +24,16 @@ public class ProfilesVO {
 	public void setProContent(String proContent) {
 		this.proContent = proContent;
 	}
+	public int getResumeNum() {
+		return resumeNum;
+	}
+	public void setResumeNum(int resumeNum) {
+		this.resumeNum = resumeNum;
+	}
 	@Override
 	public String toString() {
-		return "ProfilesVO [proNum=" + proNum + ", proTitle=" + proTitle + ", proContent=" + proContent + "]";
+		return "ProfilesVO [proNum=" + proNum + ", proTitle=" + proTitle + ", proContent=" + proContent + ", resumeNum="
+				+ resumeNum + "]";
 	}
 	
 	

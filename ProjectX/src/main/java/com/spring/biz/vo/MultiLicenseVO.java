@@ -3,10 +3,20 @@ package com.spring.biz.vo;
 import java.util.Arrays;
 
 public class MultiLicenseVO {
+	private int[] licNum;
 	private String[] licName;
 	private String[] licLoc;
 	private String[] licGrade;
 	private String[] licDate;
+	
+	
+	
+	public int[] getLicNum() {
+		return licNum;
+	}
+	public void setLicNum(int[] licNum) {
+		this.licNum = licNum;
+	}
 	public String[] getLicName() {
 		return licName;
 	}
@@ -33,9 +43,12 @@ public class MultiLicenseVO {
 	}
 	@Override
 	public String toString() {
-		return "MultiLicenseVO [licName=" + Arrays.toString(licName) + ", licLoc=" + Arrays.toString(licLoc)
-				+ ", licGrade=" + Arrays.toString(licGrade) + ", licDate=" + Arrays.toString(licDate) + "]";
+		return "MultiLicenseVO [licNum=" + Arrays.toString(licNum) + ", licName=" + Arrays.toString(licName)
+				+ ", licLoc=" + Arrays.toString(licLoc) + ", licGrade=" + Arrays.toString(licGrade) + ", licDate="
+				+ Arrays.toString(licDate) + "]";
 	}
+
+	
 	
 	
 }

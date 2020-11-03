@@ -8,6 +8,7 @@
 		<mapper resource="/mappings/admin-mapper.xml"/>
 		<mapper resource="/mappings/member-mapper.xml"/>
 		<mapper resource="/mappings/company-mapper.xml"/>
+		<mapper resource="/mappings/board-mapper.xml"/>
 	</mappers>
 </configuration>
 

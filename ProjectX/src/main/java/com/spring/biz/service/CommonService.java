@@ -25,11 +25,17 @@ public interface CommonService {
 	// 자동로그인 갱신
 	void updateCookie(Map<String, String> map);
 	
+	//임시비밀번호로 업데이트
+	void updateFakePass(MemInfoVO memInfoVO);
+	
 	// 구직자 정보 수정
 	int memUpdate(MemInfoVO memInfoVO);
 
 	// 기업 회원가입
 	int insertCompanyInfo(CompanyInfoVO companyInfoVO);
+	
+	// 기업 회원가입 사업자번호 중복 체크
+	String selectComNumChk(String comNum);
 
 	// 기업 로그인
 	CompanyInfoVO companyLogin(CompanyInfoVO companyInfoVO);
@@ -63,6 +69,16 @@ public interface CommonService {
 	List<String> selectMemberGender(int announceNum);
 	//공고 마감 시간 가져오기
 	String selectTime(int announceNum);
+	//주소값 가져오기 api
+	String selectAddress(int announceNum);
+	//기업 이름 뽑기
+	List<RecruitListVO> selectComNameList();
+	
+	//이름뽑은 기업의 공고 찾기
+	List<RecruitListVO> selectComNameAsRecruitList();
+	
+	//메인페이지 조회수 높은것 뽑기
+	List<RecruitListVO> selectViewsList();
 		
 //	// 기업리스트 페이징처리
 //	public int countBoard();

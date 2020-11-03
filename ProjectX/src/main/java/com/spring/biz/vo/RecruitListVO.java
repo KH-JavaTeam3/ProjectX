@@ -23,7 +23,50 @@ public class RecruitListVO {
 	private String academicBackground;
 	private String area;
 	private int recruitViews;
+	private boolean isLike;
+	private String comCeo;
+	private String comLoc;
+	private String comTel;
+	private String comEmail;
+	private String comType;
+	private List<RecruitListVO> reList;
 	
+	public String getComCeo() {
+		return comCeo;
+	}
+	public void setComCeo(String comCeo) {
+		this.comCeo = comCeo;
+	}
+	public String getComLoc() {
+		return comLoc;
+	}
+	public void setComLoc(String comLoc) {
+		this.comLoc = comLoc;
+	}
+	public String getComTel() {
+		return comTel;
+	}
+	public void setComTel(String comTel) {
+		this.comTel = comTel;
+	}
+	public String getComEmail() {
+		return comEmail;
+	}
+	public void setComEmail(String comEmail) {
+		this.comEmail = comEmail;
+	}
+	public String getComType() {
+		return comType;
+	}
+	public void setComType(String comType) {
+		this.comType = comType;
+	}
+	public List<RecruitListVO> getReList() {
+		return reList;
+	}
+	public void setReList(List<RecruitListVO> reList) {
+		this.reList = reList;
+	}
 	public int getRecruitViews() {
 		return recruitViews;
 	}
@@ -144,7 +187,12 @@ public class RecruitListVO {
 	public void setRegistImage(String registImage) {
 		this.registImage = registImage;
 	}
-	
+	public boolean getIsLike() {
+		return isLike;
+	}
+	public void setIsLike(boolean isLike) {
+		this.isLike = isLike;
+	}
 	@Override
 	public String toString() {
 		return "RecruitListVO [announceNum=" + announceNum + ", announceTitle=" + announceTitle + ", announceContent="
@@ -153,8 +201,11 @@ public class RecruitListVO {
 				+ worktime + ", workType=" + workType + ", anniSal=" + anniSal + ", qualification=" + qualification
 				+ ", hireCondition=" + hireCondition + ", registImage=" + registImage + ", benefit=" + benefit
 				+ ", career=" + career + ", academicBackground=" + academicBackground + ", area=" + area
-				+ ", recruitViews=" + recruitViews + "]";
+				+ ", recruitViews=" + recruitViews + ", isLike=" + isLike + ", comCeo=" + comCeo + ", comLoc=" + comLoc
+				+ ", comTel=" + comTel + ", comEmail=" + comEmail + ", comType=" + comType + ", reList=" + reList + "]";
 	}
+	
+	
 	
 	
 	

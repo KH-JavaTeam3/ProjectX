@@ -1,41 +1,32 @@
 /* 페이지 로딩 후 실행 */
 $(document).ready(function(){
-	
 	//하트 클릭 시
-//	$(document).on('click', '.ani_heart_m', function() {
-//		var a = '1';
-//	    var comNum = $(this).attr('data-attr');
-//	    var memEmail = $('#companyListmemEmail').val();
-//	    var comName = $('#comName').text();
-//	    var announceNum = $(this).attr('data-name');
-//	    
 		$('.btn_like').click(function(){
-	    
-		  if($(this).hasClass('btn_unlike')){
-			  var a = '1';
-			  var comNum = $(this).attr('data-attr');
-			  var memEmail = $('#companyListmemEmail').val();
-			  var comName = $('#comName').text();
-			  var announceNum = $(this).attr('data-name');
-		    $(this).removeClass('btn_unlike');
-		    $('.ani_heart_m').removeClass('hi');
-			$('.ani_heart_m').addClass('bye');
-			location.href='likeCompany.me?comNum=' + comNum + '&memEmail=' + memEmail + '&a=' + a + '&announceNum=' + announceNum;
-		  }
-		  
-		  else{
-			  var a = '1';
-			  var comNum = $(this).attr('data-attr');
-			  var memEmail = $('#companyListmemEmail').val();
-			  var comName = $('#comName').text();
-			  var announceNum = $(this).attr('data-name');
-		    $(this).addClass('btn_unlike');
-		    $('.ani_heart_m').addClass('hi');
-		    $('.ani_heart_m').removeClass('bye');
-		    location.href='likeCompany.me?comNum=' + comNum + '&memEmail=' + memEmail + '&a=' + a + '&announceNum=' + announceNum;
-		  }
+			var memEmail = $('#companyListmemEmail').val();
+			
+			if(memEmail == null || memEmail == ''){
+				alert('로그인이 필요한 서비스 입니다.');
+			}else{
+				
+				var isChecked = false;
+				
+				if($(this).children().first().hasClass('img_emoti2')){
+					isChecked = true;
+					$(this).children().last().removeClass('ani_heart_m hi');
+					$(this).children().last().addClass('ani_heart_m bye');
+				}else{
+					$(this).children().last().removeClass('ani_heart_m bye');
+					$(this).children().last().addClass('ani_heart_m hi');
+				}
+				var announceNum = $(this).attr('data-name');
+				
+				setTimeout(fun, 1000);
+				
+				function fun(){
+					location.href=`heartedRecruitList.do?isChecked=${isChecked}&announceNum=${announceNum}`;
+				}
+			}
 		});
-//	});
 });
 
 /* 함수선언 영역*/
