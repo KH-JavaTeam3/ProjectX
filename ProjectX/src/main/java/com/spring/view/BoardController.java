@@ -21,8 +21,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.spring.biz.service.BoardService;
 import com.spring.biz.vo.BoardVO;
 import com.spring.biz.vo.BoardVO2;
-import com.spring.biz.vo.CompanyInfoVO;
-import com.spring.biz.vo.MemInfoVO;
 import com.spring.biz.vo.PageVO;
 
 @Controller

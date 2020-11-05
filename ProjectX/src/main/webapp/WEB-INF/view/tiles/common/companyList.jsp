@@ -160,7 +160,7 @@
 <div align="left">
 	<div class="row" style="border-bottom : 3px solid #4876ef; width: 1495px; margin-left: 8px; ">
 		<div class="col-md-12">
-				<div onclick="location.href='recruitmentInformation.do'" class="button col-md-2" style="display: inline-block; text-align: center; border: 3px solid #f1f3f9; border-bottom: none; height: 50px; line-height: 50px; margin-left: 9px; left: -27px;">
+				<div onclick="location.href='companyList.do'" class="button col-md-2" style="background: #4876ef; color: white; display: inline-block; text-align: center; border: 3px solid #f1f3f9; border-bottom: none; height: 50px; line-height: 50px; margin-left: 9px; left: -27px;">
 					채용 검색
 				</div>
 				<div onclick="location.href='comList.do'" class="button col-md-2" style="display: inline-block; text-align: center; border: 3px solid #f1f3f9; border-bottom: none; height: 50px; line-height: 50px; left: -27px;">

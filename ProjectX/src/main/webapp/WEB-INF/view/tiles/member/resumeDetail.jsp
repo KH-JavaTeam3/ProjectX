@@ -23,8 +23,10 @@ table {
 </style>
 </head>
 <body>
+<form action="pdfCreate.me" method="post">
+<input type="hidden" value="${memResume.resumeNum}" name="resumeNum">
+<input type="hidden" value="${sessionScope.memLogin.memEmail }" name="memEmail">
 <div style="height: 30px;"></div>
-
 <div align="center">
 	<!-- 이력서 제목 -->
 	<div class="row" style="border :3px solid #f1f3f9; width: 100%;" >
@@ -138,7 +140,7 @@ table {
 							</tr>
 							<tr>
 								<td style="color: gray;">졸업일</td>
-								<td style="color: #4c78ea; font-size: 14px;">${memResume.eduEndDate }</td>
+								<td style="color: #4c78ea; font-size: 14px;">${memResume.eduEndDate }&nbsp;&nbsp;(${memResume.eduIsOver })</td>
 							</tr>
 						</table>
 					</div>
@@ -314,7 +316,9 @@ table {
 </div>
 <!-- 이력서 끝 -->
 <div align="center">
+	<input type="submit" value="PDF" style="margin: 10px;">
 	<input type="button" value="이력서 수정하고 싶어요." onclick="location.href='updateResume.me?resumeNum=${memResume.resumeNum}'" style="margin: 10px;">
 </div>
+</form>
 </body>
 </html>

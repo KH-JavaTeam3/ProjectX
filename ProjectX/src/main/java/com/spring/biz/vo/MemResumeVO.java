@@ -27,22 +27,56 @@ public class MemResumeVO {
 	private List<LicenseVO> licenseList; // 자격증 목록
 	private List<ProfilesVO> profilesList; // 자소서 목록
 	private List<CareerVO> careerList; // 경력사항 목록
-	
-	
-	public List<CareerVO> getCareerList() {
-		return careerList;
-	}
-	public void setCareerList(List<CareerVO> careerList) {
-		this.careerList = careerList;
-	}
 	private int comMypageNum;
-	private int comNum;
+	private String comNum;
+	private String comName;
+	private String memName;
 	private int announceNum;
 	private String resumeResult;
 	private MemInfoVO memInfoVO;
 	private int ynN;
+	private int carCareer;
+	private String carType;
+	private String carCompany;
+	private String carPosition;
 	
 	
+	public String getMemName() {
+		return memName;
+	}
+	public void setMemName(String memName) {
+		this.memName = memName;
+	}
+	public String getComName() {
+		return comName;
+	}
+	public void setComName(String comName) {
+		this.comName = comName;
+	}
+	public String getCarCompany() {
+		return carCompany;
+	}
+	public void setCarCompany(String carCompany) {
+		this.carCompany = carCompany;
+	}
+	public String getCarPosition() {
+		return carPosition;
+	}
+	public void setCarPosition(String carPosition) {
+		this.carPosition = carPosition;
+	}
+	public String getCarType() {
+		return carType;
+	}
+	public void setCarType(String carType) {
+		this.carType = carType;
+	}
+	public int getCarCareer() {
+		return carCareer;
+	}
+	public void setCarCareer(int carCareer) {
+		this.carCareer = carCareer;
+	}
 	public int getResumeNum() {
 		return resumeNum;
 	}
@@ -55,7 +89,6 @@ public class MemResumeVO {
 	public void setResumeName(String resumeName) {
 		this.resumeName = resumeName;
 	}
-	
 	public String getResumeDate() {
 		return resumeDate;
 	}
@@ -104,6 +137,12 @@ public class MemResumeVO {
 	public void setEduEndDate(String eduEndDate) {
 		this.eduEndDate = eduEndDate;
 	}
+	public double getEduScore() {
+		return eduScore;
+	}
+	public void setEduScore(double eduScore) {
+		this.eduScore = eduScore;
+	}
 	public String getEduIsOver() {
 		return eduIsOver;
 	}
@@ -134,11 +173,11 @@ public class MemResumeVO {
 	public void setHopeTime(String hopeTime) {
 		this.hopeTime = hopeTime;
 	}
-	public double getEduScore() {
-		return eduScore;
+	public String getMemEmail() {
+		return memEmail;
 	}
-	public void setEduScore(double eduScore) {
-		this.eduScore = eduScore;
+	public void setMemEmail(String memEmail) {
+		this.memEmail = memEmail;
 	}
 	public List<LicenseVO> getLicenseList() {
 		return licenseList;
@@ -152,11 +191,11 @@ public class MemResumeVO {
 	public void setProfilesList(List<ProfilesVO> profilesList) {
 		this.profilesList = profilesList;
 	}
-	public String getMemEmail() {
-		return memEmail;
+	public List<CareerVO> getCareerList() {
+		return careerList;
 	}
-	public void setMemEmail(String memEmail) {
-		this.memEmail = memEmail;
+	public void setCareerList(List<CareerVO> careerList) {
+		this.careerList = careerList;
 	}
 	public int getComMypageNum() {
 		return comMypageNum;
@@ -164,10 +203,10 @@ public class MemResumeVO {
 	public void setComMypageNum(int comMypageNum) {
 		this.comMypageNum = comMypageNum;
 	}
-	public int getComNum() {
+	public String getComNum() {
 		return comNum;
 	}
-	public void setComNum(int comNum) {
+	public void setComNum(String comNum) {
 		this.comNum = comNum;
 	}
 	public int getAnnounceNum() {
@@ -182,17 +221,17 @@ public class MemResumeVO {
 	public void setResumeResult(String resumeResult) {
 		this.resumeResult = resumeResult;
 	}
-	public int getYnN() {
-		return ynN;
-	}
-	public void setYnN(int ynN) {
-		this.ynN = ynN;
-	}
 	public MemInfoVO getMemInfoVO() {
 		return memInfoVO;
 	}
 	public void setMemInfoVO(MemInfoVO memInfoVO) {
 		this.memInfoVO = memInfoVO;
+	}
+	public int getYnN() {
+		return ynN;
+	}
+	public void setYnN(int ynN) {
+		this.ynN = ynN;
 	}
 	@Override
 	public String toString() {
@@ -202,8 +241,12 @@ public class MemResumeVO {
 				+ ", eduScore=" + eduScore + ", eduIsOver=" + eduIsOver + ", hopeType=" + hopeType + ", hopeSal="
 				+ hopeSal + ", hopeLoc=" + hopeLoc + ", hopeTime=" + hopeTime + ", memEmail=" + memEmail
 				+ ", licenseList=" + licenseList + ", profilesList=" + profilesList + ", careerList=" + careerList
-				+ ", comMypageNum=" + comMypageNum + ", comNum=" + comNum + ", announceNum=" + announceNum
-				+ ", resumeResult=" + resumeResult + ", memInfoVO=" + memInfoVO + ", ynN=" + ynN + "]";
+				+ ", comMypageNum=" + comMypageNum + ", comNum=" + comNum + ", comName=" + comName + ", memName="
+				+ memName + ", announceNum=" + announceNum + ", resumeResult=" + resumeResult + ", memInfoVO="
+				+ memInfoVO + ", ynN=" + ynN + ", carCareer=" + carCareer + ", carType=" + carType + ", carCompany="
+				+ carCompany + ", carPosition=" + carPosition + "]";
 	}
+	
+	
 	
 }

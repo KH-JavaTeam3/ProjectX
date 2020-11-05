@@ -98,4 +98,7 @@ public interface MemberService {
 	
 	//이력서 삭제
 	int deleteResume(int resumeNum);
+	
+	//이력서 지원자에 대한 기업 이름 뽑기
+	String recruitComName(int announceNum);
 }

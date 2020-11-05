@@ -199,6 +199,12 @@ public class MemberServiceImpl implements MemberService{
 	public int deleteResume(int resumeNum) {
 		return sqlSession.delete("deleteResume", resumeNum);
 	}
+
+
+	@Override
+	public String recruitComName(int announceNum) {
+		return sqlSession.selectOne("recruitComName", announceNum);
+	}
 }
 
 

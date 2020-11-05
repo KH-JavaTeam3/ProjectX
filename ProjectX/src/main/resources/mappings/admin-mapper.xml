@@ -34,9 +34,7 @@
 		<result column="COM_TYPE"           	property="comType"/> 
 		<result column="COM_TEL"           		property="comTel"/> 
 		<result column="COM_JOIN_DATE"         property="comJoinDate"/> 
-		<result column="COM_AVG_SCORE"         property="comAvgScore"/> 
-		<result column="COM_GIVE_PERSON"       property="comGivePerson"/> 
-		<result column="COM_SCORE"           	property="comScore"/> 
+		<result column="COM_IMAGE"           	property="comImage"/> 
 	</resultMap>
 	
 

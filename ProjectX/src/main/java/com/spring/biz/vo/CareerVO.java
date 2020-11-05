@@ -3,7 +3,7 @@ package com.spring.biz.vo;
 public class CareerVO {
 	public int carNum;
 	public String carCompany;
-	public int carCareer;
+	public String carCareer;
 	public String carType;
 	public String carPosition;
 	public int resumeNum;
@@ -20,10 +20,10 @@ public class CareerVO {
 	public void setCarCompany(String carCompany) {
 		this.carCompany = carCompany;
 	}
-	public int getCarCareer() {
+	public String getCarCareer() {
 		return carCareer;
 	}
-	public void setCarCareer(int carCareer) {
+	public void setCarCareer(String carCareer) {
 		this.carCareer = carCareer;
 	}
 	public String getCarType() {

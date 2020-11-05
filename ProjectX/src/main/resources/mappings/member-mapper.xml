@@ -34,9 +34,7 @@
 		<result column="COM_TYPE"           	property="comType"/> 
 		<result column="COM_TEL"           		property="comTel"/> 
 		<result column="COM_JOIN_DATE"         property="comJoinDate"/> 
-		<result column="COM_AVG_SCORE"         property="comAvgScore"/> 
-		<result column="COM_GIVE_PERSON"       property="comGivePerson"/> 
-		<result column="COM_SCORE"           	property="comScore"/> 
+		<result column="COM_IMAGE"           	property="comImage"/> 
 	</resultMap>
 	
 	<!-- 이력서 정보 -->
@@ -358,6 +356,10 @@
 	<select id="selectResumeList" resultMap="memResume">
 		SELECT RESUME_NUM
 			, RESUME_NAME
+			, RESUME_DATE
+			, HOPE_LOC
+			, HOPE_TIME
+			, MEM_EMAIL
 		FROM MEM_RESUME
 		WHERE MEM_EMAIL = #{memEmail}
 	</select>
@@ -541,5 +543,12 @@
 	<select id="selectMaxCareerNum" resultType="int">
 		SELECT NVL(MAX(CAR_NUM), 1)
 		FROM CAREER
+	</select>
+	<!-- 이력서 지원자에 대한 기업 이름 뽑기 -->
+	<select id="recruitComName" resultType="String">
+	SELECT COM_NAME
+        FROM COMPANY_INFO
+        WHERE COM_NUM = (SELECT COM_NUM FROM RECRUIT_LIST
+                            WHERE ANNOUNCE_NUM = #{announceNum})
 	</select>
 </mapper>

@@ -37,10 +37,14 @@
 	if(result === 'logout'){
 		goMain('로그아웃되었습니다.');
 	}
+	if(result === 'pass'){
+		goMain('비밀번호가 변경되었습니다. 다시 로그인해주십시오.');
+	}
 	function goMain(notice){
 		alert(notice);
 		location.href='main.do';
 	}
+	
 	
 </script>
 </body>

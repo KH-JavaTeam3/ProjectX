@@ -37,6 +37,7 @@ table.type09 td {
 </style>
 </head>
 <body>
+<div style="height: 30px;"></div>
 	<div class="col-md-12" style="border: 5px solid #ABC2E8; border-radius: 10px;" align="center">
 		<table class="type09">
 		    <thead>

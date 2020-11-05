@@ -52,8 +52,8 @@ public class CompanyServiceImpl implements CompanyService{
 	}
 
 	@Override
-	public List<ForRecruitVO> resumeInquiryList(ForRecruitVO forRecruitVO) {
-		return sqlSession.selectList("resumeInquiryList", forRecruitVO);
+	public List<ForRecruitVO> resumeInquiryList(String comNum) {
+		return sqlSession.selectList("resumeInquiryList", comNum);
 	}
 
 	@Override

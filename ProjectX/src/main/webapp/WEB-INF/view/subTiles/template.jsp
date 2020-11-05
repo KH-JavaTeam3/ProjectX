@@ -56,7 +56,7 @@ label.error {
 </head>
 <body>
 	<div class="container-fluid" style="padding-left: 0px; padding-right: 0px;">
-		<div class="myContainer">
+		<div class="myContainer" style="margin-top: 10px;">
 			<tiles:insertAttribute name="menu" />
 		</div>
 		<div style="background: #4876ef;">

@@ -22,7 +22,6 @@ label{
 </style>
 </head>
 <body>
-<a href="adminPage.ad">관리자페이지</a>
 	<div class="row" style="margin-bottom: 10px;">
 		<div class="col-md-6">
 			<img alt="..." src="resources/images/logo2.jpg"
@@ -48,7 +47,7 @@ label{
 				<c:if test="${not empty sessionScope.comLogin }">
 					<li class="menuTap nav-item"><span>환영합니다.
 							${sessionScope.comLogin.comCeo }님</span></li>
-					<li class="menuTap nav-item"><a class="menuTap nav-link" id="logBTS">로그아웃</a>
+					<li class="menuTap nav-item"><a class="menuTap nav-link" id="logBTS" style="padding: 0px; padding-left: 20px;">로그아웃</a>
 					</li>
 				</c:if>
 			</ul>
@@ -254,7 +253,7 @@ label{
 						</div>
 				</div>
 				<div class="modal-footer">
-					<input type="submit" class="btn btn-outline-secondary" value="비밀번호 변경"> 
+					<input type="submit" class="btn btn-outline-primary" value="비밀번호 변경"> 
 				</div>
 				</form>
 			</div>
@@ -463,7 +462,7 @@ label{
 						</div>
 				</div>
 				<div class="modal-footer">
-					<input type="submit" class="btn btn-outline-secondary" value="비밀번호 변경"> 
+					<input type="submit" class="btn btn-outline-primary" value="비밀번호 변경"> 
 				</div>
 				</form>
 			</div>

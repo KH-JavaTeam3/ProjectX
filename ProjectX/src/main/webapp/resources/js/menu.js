@@ -352,6 +352,7 @@ $(document).ready(function(){
 		     }
 		});
 	}
+	
 	//기업 회원가입 정규식
 	cJoinVali = function(){
 		$("#cJoinForm").validate({

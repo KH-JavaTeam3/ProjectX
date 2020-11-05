@@ -97,6 +97,10 @@
 		<result column="ANNOUNCE_NUM"			property="announceNum"/>
 		<result column="RESUME_NUM"				property="resumeNum"/>
 		<result column="RESUME_RESULT"			property="resumeResult"/>
+		<result column="CAR_CAREER"			property="carCareer"/>
+		<result column="CAR_TYPE"			property="carType"/>
+		<result column="CAR_COMPANY"			property="carCompany"/>
+		<result column="CAR_POSITION"			property="carPosition"/>
 	</resultMap>
 	
 	<!-- 공고 등록 -->

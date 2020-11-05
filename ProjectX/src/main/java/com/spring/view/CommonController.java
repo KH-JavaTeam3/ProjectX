@@ -5,10 +5,8 @@ import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.UUID;
 
 import javax.annotation.Resource;
-import javax.mail.internet.MimeMessage;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -16,19 +14,15 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
-import org.springframework.mail.javamail.MimeMessageHelper;
-import org.springframework.mail.javamail.MimeMessagePreparator;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.spring.biz.service.CommonService;
 import com.spring.biz.service.MemberService;
-import com.spring.biz.util.TimeUtil;
+import com.spring.biz.util.Statics;
 import com.spring.biz.vo.CompanyInfoVO;
 import com.spring.biz.vo.ForRecruitVO;
 import com.spring.biz.vo.LikeCompanyVO;
@@ -63,8 +57,6 @@ public class CommonController {
 		
 		//해당날짜를 받아서 모집기간이 지난 공고를 자동으로 업데이트 하는 작업.
 				Calendar cal = Calendar.getInstance();
-				System.out.println(cal);
-				TimeUtil.getNowDateTime(); // 시간 가져오는 클래스
 				int year = cal.get(Calendar.YEAR);
 				int month = cal.get(Calendar.MONTH) + 1;
 				int day = cal.get(Calendar.DAY_OF_MONTH);
@@ -122,7 +114,6 @@ public class CommonController {
 	@RequestMapping(value = "/companyJoin.do")
 	public String initCompanyJoin(CompanyInfoVO companyInfoVO, Model model) {
 		commonService.insertCompanyInfo(companyInfoVO);
-		
 		model.addAttribute("result", "cJoin");
 		return "result/result";
 	}
@@ -137,13 +128,7 @@ public class CommonController {
 			
 			//자동 로그인
 			if(keepLogin != null) {
-				Cookie loginCookie = new Cookie("loginCookie", session.getId());//자동로그인 체크시 쿠키 생성
-				loginCookie.setMaxAge(60*60*24*3);//쿠키의 유지시간 설정(60초 * 60분 * 24시간) = 하루
-				response.addCookie(loginCookie); //쿠키 등록
-				Map<String, String> map = new HashMap<>(); //매퍼에 객체 한개던지려고 Map 만듬
-				map.put("setId", session.getId());
-				map.put("memEmail", vo.getMemEmail());
-				commonService.updateCookie(map);//DB에 자동로그인정보 저장
+				commonService.updateCookie(Statics.makeCookie(session.getId(), vo.getMemEmail(), response));//쿠쿠키쿠키
 			}
 			result = "mLoginSuccess";
 		}
@@ -165,18 +150,17 @@ public class CommonController {
 		if(vo != null) {
 			session.setAttribute("comLogin", vo);
 			if(keepLogin != null) {
-				Cookie loginCookie = new Cookie("loginCookie", session.getId());//자동로그인 체크시 쿠키 생성
-				loginCookie.setMaxAge(60*60*24);//쿠키의 유지시간 설정(60초 * 60분 * 24시간) = 하루
-				response.addCookie(loginCookie); //쿠키 등록
-				Map<String, String> map = new HashMap<>(); //매퍼에 객체 한개던지려고 Map 만듬
-				map.put("setId", session.getId());
-				map.put("comNum", vo.getComNum());
-				commonService.updateComCookie(map);//DB에 자동로그인정보 저장
+				commonService.updateComCookie(Statics.makeCookie(session.getId(), vo.getComNum(), response)); //쿠쿠키쿠키
 			}
 			result = "cLoginSuccess";
 		}
 		model.addAttribute("result", result);
 		return "result/result";
+	}
+	//기업 홈버튼 클릭
+	@RequestMapping(value = "/companyHome.do")
+	public String companyHome() {
+		return "tiles/company/main2";
 	}
 	//로그아웃
 	@RequestMapping(value = "/logout.do")
@@ -197,30 +181,16 @@ public class CommonController {
 	//기업리스트 이동
 	@RequestMapping(value = "/companyList.do")
 	public String companyList(Model model, SearchVO searchVO, HttpSession session) {
-		if(searchVO.getKeyword() == null) {
-			searchVO.setKeyword("");
-		}
-		if(searchVO.getPlace() == null) {
-			searchVO.setPlace("");
-		}
-		if(searchVO.getJobtype() == null) {
-			searchVO.setJobtype("");
-		}
+		SearchVO vo = Statics.searchNullChk(searchVO);
 		//2. 공고목록 list
-		List<RecruitListVO> list1 = commonService.selectRecruitList(searchVO);
+		List<RecruitListVO> list1 = commonService.selectRecruitList(vo);
 		if(session.getAttribute("memLogin") != null) {
 			String memEmail = ((MemInfoVO)session.getAttribute("memLogin")).getMemEmail();
 			
 			//1. like목록 list
 			List<LikeRecruitVO> list = memberService.selectLikeRecruitList(memEmail);
 			
-			for(int i =0; i < list1.size(); i++) {
-				for(int j = 0; j < list.size(); j++) {
-					if(list1.get(i).getAnnounceNum() == list.get(j).getAnnounceNum()) {
-						list1.get(i).setIsLike(true);
-					}
-				}
-			}
+			list1 =  Statics.makeLiLike(list1, list);
 		}
 		
 		model.addAttribute("companyList",list1);
@@ -272,40 +242,17 @@ public class CommonController {
 		model.addAttribute("recruitDeteil",commonService.selectDetailRecruit(recruitListVO));
 		
 		
-	//나이때 별 데이터 조회 및 넘기기(그래프)
+		//나이때 별 데이터 조회 및 넘기기(그래프)
 		List<Integer> list =  commonService.selectMemberAge(recruitListVO);
-//		list.forEach(t->System.out.println(t));
 		
-		int age20 = 0;
-		int age30 = 0;
-		int age40 = 0;
-		int age50 = 0;
-		int age60 = 0;
-				
-		for(int age : list) {
-			if(age / 10 == 2) {
-				age20 += 1;
-			}
-			else if(age / 10 == 3) {
-				age30 += 1;
-			}
-			else if(age / 10 == 4) {
-				age40 += 1;
-			}
-			else if(age / 10 == 5) {
-				age50 += 1;
-			}
-			else {
-				age60 += 1;
-			}
+		int[] arr = Statics.countAge(list);
+		int num = 2;
+		for(int e : arr) {
+			model.addAttribute("age" + num + "0", e);
+			num++;
 		}
 		
-		model.addAttribute("age20", age20);
-		model.addAttribute("age30", age30);
-		model.addAttribute("age40", age40);
-		model.addAttribute("age50", age50);
-		model.addAttribute("age60", age60);
-	//성별 데이터 조회 및 넘기기(그래프)
+		//성별 데이터 조회 및 넘기기(그래프)
 		List<String> list1 =  commonService.selectMemberGender(recruitListVO.getAnnounceNum());
 		
 		int genderM =0;
@@ -341,117 +288,51 @@ public class CommonController {
 		map.put("announceNum",forRecruitVO.getAnnounceNum());
 		map.put("resumeNum",forRecruitVO.getResumeNum());
 		commonService.insertComMypage(map);
-		return "tiles/common/main";
+		return "redirect:main.do";
 	}
 	
 	//기업 리스트 조회
-		@RequestMapping(value = "/comList.do")
-		public String comList(Model model, SearchVO searchVO, HttpSession session) {
-			
-			//조회
-			List<RecruitListVO> comNameList = commonService.selectComNameList();
-			
-			if(session.getAttribute("memLogin") != null) {
-				String memEmail = ((MemInfoVO)session.getAttribute("memLogin")).getMemEmail();
-				
-				//1. like목록 list
-				List<LikeCompanyVO> likeComList = memberService.selectLikeCompany(memEmail);
-					
-				for(int i =0; i < comNameList.size(); i++) {
-					for(int j = 0; j < likeComList.size(); j++) {
-						if(comNameList.get(i).getComNum().equals(likeComList.get(j).getComNum())) {
-							comNameList.get(i).setIsLike(true);
-						}
-					}
-				}
-			}
-			
-			model.addAttribute("comNameRList", commonService.selectComNameAsRecruitList());
-			model.addAttribute("comNameList", comNameList);
-			return "tiles/common/company";
-		}
+	@RequestMapping(value = "/comList.do")
+	public String comList(Model model, SearchVO searchVO, HttpSession session) {
 		
-		//기업 채용정보 클릭시 기업 리스트 조회
-		@RequestMapping(value = "/recruitmentInformation.do")
-		public String recruitmentInformation(Model model, SearchVO searchVO) {
-			if (searchVO.getKeyword() == null) {
-				searchVO.setKeyword("");
-			}
-			if (searchVO.getPlace() == null) {
-				searchVO.setPlace("");
-			}
-			if (searchVO.getJobtype() == null) {
-				searchVO.setJobtype("");
-			}
-			model.addAttribute("companyList", commonService.selectRecruitList(searchVO));
-			return "redirect:companyList.do";
+		List<RecruitListVO> comNameList = commonService.selectComNameList();
+		if(session.getAttribute("memLogin") != null) {
+			String memEmail = ((MemInfoVO)session.getAttribute("memLogin")).getMemEmail();
+			List<LikeCompanyVO> likeComList = memberService.selectLikeCompany(memEmail);
+			comNameList = Statics.makeLike(comNameList, likeComList);
 		}
+		model.addAttribute("comNameRList", commonService.selectComNameAsRecruitList());
+		model.addAttribute("comNameList", comNameList);
+		return "tiles/common/company";
+	}
 		
-		//통합 검색 클릭시 기업 리스트 조회
-		@RequestMapping(value = "/integrationSearch.do")
-		public String integrationSearch(Model model, SearchVO searchVO) {
-			if (searchVO.getKeyword() == null) {
-				searchVO.setKeyword("");
-			}
-			if (searchVO.getPlace() == null) {
-				searchVO.setPlace("");
-			}
-			if (searchVO.getJobtype() == null) {
-				searchVO.setJobtype("");
-			}
-			model.addAttribute("companyList", commonService.selectRecruitList(searchVO));
-			List<RecruitListVO> comNameList = commonService.selectComNameList();
-			
-			model.addAttribute("comNameRList", commonService.selectComNameAsRecruitList());
-			model.addAttribute("comNameList", comNameList);
-			return "tiles/common/integrationSearch";
-		}
-		
-		
-		//개인 비밀번호 찾기
-		@ResponseBody
-		@RequestMapping(value = "/findMemPass.do")
-		public String findMemPass(String memEmail) {
-			
-			// 난수발생 문자
-			String uuid = UUID.randomUUID().toString().replaceAll("-", "").substring(0, 6); 
-			
-			//여기만 바꾸면 가능
-			String setfrom = "FinDream"; // 보내는 이(한글 안먹던데)
-			String tomail = memEmail; // 받는 사람 이메일
-			String title = "구인구직 사이트 파인드림입니다."; // 제목(생략가능)
-			String content = "임시비밀번호를 보내드립니다. \n 임시비밀번호 : " + uuid; // 내용
-			
-			
-			final MimeMessagePreparator preparator = new MimeMessagePreparator() { 
-				@Override public void prepare(MimeMessage mimeMessage) throws Exception { 
-					final MimeMessageHelper helper = new MimeMessageHelper(mimeMessage, true, "UTF-8"); 
-					helper.setFrom(setfrom); 
-					helper.setTo(tomail); 
-					helper.setSubject(title); 
-					helper.setText(content); 
-				} 
-			}; 
-			mailSender.send(preparator);
-			
-			return uuid;
-		}
-		//개인 비밀번호 변경
-		@RequestMapping(value = "/updateMemPass.do")
-		public String updateMemPass(MemInfoVO memInfoVO, Model model) {
-			commonService.updateFakePass(memInfoVO);
-			model.addAttribute("result", "memPass");
-			return "result/result";
-		}
-		
-		
-		//기업 비밀번호 찾기
-		@ResponseBody
-		@RequestMapping(value = "/findComPass.do")
-		public String findComPass() {
-			
-			return "";
-		}
+	//개인 비밀번호 찾기
+	@ResponseBody
+	@RequestMapping(value = "/findMemPass.do")
+	public String findMemPass(String memEmail) {
+		return Statics.sendPassEmail(memEmail, mailSender);
+	}
+	//개인 비밀번호 변경
+	@RequestMapping(value = "/updateMemPass.do")
+	public String updateMemPass(MemInfoVO memInfoVO, Model model) {
+		commonService.updateMemCodePass(memInfoVO);
+		model.addAttribute("result", "pass");
+		return "result/result";
+	}
+	
+	//기업 비밀번호 찾기
+	@ResponseBody
+	@RequestMapping(value = "/findComPass.do")
+	public String findComPass(String comEmail) {
+		return Statics.sendPassEmail(comEmail, mailSender);
+	}
+	//기업 비밀번호 변경
+	@RequestMapping(value = "/updateComPass.do")
+	public String updateComPass(CompanyInfoVO companyInfoVO, Model model) {
+		commonService.updateComCodePass(companyInfoVO);
+		model.addAttribute("result", "pass");
+		return "result/result";
+	}
 		
 		
 		

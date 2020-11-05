@@ -30,9 +30,6 @@ $(document).ready(function(){
 		console.log(resumeNum);
 		var comNum = $('.resumeAppcomNum').val();
 		var announceNum = $('.resumeAppannounceNum').val();
-		alert(resumeNum);
-		alert(comNum);
-		alert(announceNum);
 		location.href ='resumeApp.do?resumeNum='+resumeNum+'&comNum='+comNum+'&announceNum='+announceNum;
 	});
 	//클릭 이벤트

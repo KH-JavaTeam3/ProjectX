@@ -37,7 +37,7 @@ $(document).ready(function(){
 						  </div>
 							<div class="form-group col-md-12">
 								<label >취득일</label>
-								<input type="text" class="form-control licDate" name="licDate">
+								<input type="text" class="form-control licDate" name="licDate" autocomplete="off">
 							</div>
 						  </div>
 						</div>
@@ -45,16 +45,7 @@ $(document).ready(function(){
 		$('#licenseDiv').append(str);
 		let findDate = $('#licenseDiv').children().last().find('.licDate');
 		
-			$(findDate).datepicker({
-				changeYear: true, 
-				changeMonth: true,
-				monthNames: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
-				monthNamesShort: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
-				dayNames: ['월요일', '화요일', '수요일', '목요일', '금요일', '토요일', '일요일'],
-				dayNamesMin: ['월', '화', '수', '목', '금', '토', '일'], 
-				showMonthAfterYear: true,
-				dateFormat: 'yy-mm-dd'
-			});
+		datepicFun(findDate);
 	});
 	
 	//추가 자격증 제거
@@ -123,53 +114,33 @@ $(document).ready(function(){
 		$(this).parent().parent().parent().remove();
 	});
 	
-	
-	
 	//주소 찾기 열기
 	$(document).on('click','#openAddr', function(){
 		new daum.Postcode({
 	         oncomplete : function(data) {
-	        	 jQuery("#address").val(data.address);
-					jQuery("#address").focus();
+	        	 jQuery("#eduLoc").val(data.address);
+	        	 jQuery("#eduLoc").focus();
 	         }
 	    }).open();
 	});
 	
 	//입학일
-     $( "#eduBeginDate" ).datepicker({
-       changeYear: true, 
-       changeMonth: true,
-       monthNames: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
-       monthNamesShort: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
-       dayNames: ['월요일', '화요일', '수요일', '목요일', '금요일', '토요일', '일요일'],
-       dayNamesMin: ['월', '화', '수', '목', '금', '토', '일'], 
-       showMonthAfterYear: true,
-       dateFormat: 'yy-mm-dd'
-     });
-     
-	//졸업일
-	$( "#eduEndDate" ).datepicker({
-		changeYear: true, 
-		changeMonth: true,
-		monthNames: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
-		monthNamesShort: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
-		dayNames: ['월요일', '화요일', '수요일', '목요일', '금요일', '토요일', '일요일'],
-		dayNamesMin: ['월', '화', '수', '목', '금', '토', '일'], 
-		showMonthAfterYear: true,
-		dateFormat: 'yy-mm-dd'
+	datepicFun('#eduBeginDate');
+	//입학일 - 자동 추가
+	$(document).on('keyup', '#eduBeginDate', function(){
+		highpun($(this));
+		
+		
+		
 	});
-	
+	//졸업일
+	datepicFun('#eduEndDate');
+	//졸업일 - 자동 추가
+	$(document).on('keyup', '#eduEndDate', function(){
+		highpun($(this));
+	});
 	//취득일
-	$('.licDate').datepicker({
-		changeYear: true, 
-		changeMonth: true,
-		monthNames: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
-		monthNamesShort: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
-		dayNames: ['월요일', '화요일', '수요일', '목요일', '금요일', '토요일', '일요일'],
-		dayNamesMin: ['월', '화', '수', '목', '금', '토', '일'], 
-		showMonthAfterYear: true,
-		dateFormat: 'yy-mm-dd'
-	});	
+	datepicFun('.licDate');
 	
 	
 	
@@ -189,12 +160,8 @@ $(document).ready(function(){
 });
 /* 함수선언 영역*/
 (function($){
-	//aaa라는 함수선언
-	//aaa = function(){
 	
-	//};
-	
-	  readURL = function(input) {
+	readURL = function(input) {
 	        if (input.files && input.files[0]) {
 	            var reader = new FileReader();
 	            reader.onload = function(e) {
@@ -205,5 +172,23 @@ $(document).ready(function(){
 	            }
 	            reader.readAsDataURL(input.files[0]);
 	        }
-	    }
+	}
+	  
+	datepicFun = function(selecting){
+		  $(selecting).datepicker({
+				changeYear: true, 
+				changeMonth: true,
+				monthNames: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
+		monthNamesShort: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
+		dayNames: ['월요일', '화요일', '수요일', '목요일', '금요일', '토요일', '일요일'],
+		dayNamesMin: ['월', '화', '수', '목', '금', '토', '일'], 
+		showMonthAfterYear: true,
+		dateFormat: 'yy-mm-dd'
+			});
+		  
+	}
+	  
+	highpun = function(date){
+		date.val(date.val().replace(/[^0-9]/g, "").replace(/([0-9]{4})([0-9]{2})([0-9]{2})/, "$1-$2-$3").replace(/^-/, ""));
+	}
 })(jQuery);

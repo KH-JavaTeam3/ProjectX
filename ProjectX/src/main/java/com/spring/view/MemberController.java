@@ -1,23 +1,52 @@
 package com.spring.view;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.net.URLEncoder;
+import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import com.itextpdf.text.Chunk;
+import com.itextpdf.text.Document;
+import com.itextpdf.text.Element;
+import com.itextpdf.text.Font;
+import com.itextpdf.text.PageSize;
+import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.Phrase;
+import com.itextpdf.text.pdf.PdfPCell;
+import com.itextpdf.text.pdf.PdfPTable;
+import com.itextpdf.text.pdf.PdfWriter;
+import com.itextpdf.tool.xml.XMLWorker;
+import com.itextpdf.tool.xml.XMLWorkerFontProvider;
+import com.itextpdf.tool.xml.XMLWorkerHelper;
+import com.itextpdf.tool.xml.css.CssFile;
+import com.itextpdf.tool.xml.css.StyleAttrCSSResolver;
+import com.itextpdf.tool.xml.html.CssAppliers;
+import com.itextpdf.tool.xml.html.CssAppliersImpl;
+import com.itextpdf.tool.xml.html.Tags;
+import com.itextpdf.tool.xml.parser.XMLParser;
+import com.itextpdf.tool.xml.pipeline.css.CSSResolver;
+import com.itextpdf.tool.xml.pipeline.css.CssResolverPipeline;
+import com.itextpdf.tool.xml.pipeline.end.PdfWriterPipeline;
+import com.itextpdf.tool.xml.pipeline.html.HtmlPipeline;
+import com.itextpdf.tool.xml.pipeline.html.HtmlPipelineContext;
 import com.spring.biz.service.CommonService;
 import com.spring.biz.service.MemberService;
 import com.spring.biz.util.TimeUtil;
@@ -42,8 +71,6 @@ public class MemberController {
 	
 	@Resource(name = "commonService")
 	CommonService commonService;
-	
-	
 	
 	// *.me쓰셈
 	//경로는 tiles/member/파일명
@@ -327,9 +354,6 @@ public class MemberController {
 		@ResponseBody
 		@RequestMapping(value = "/deleteResume.me")
 		public String deleteResume(int resumeNum) {
-			//memberService.deleteLic(licNum);
-			//memberService.deleteCareer(carNum);
-			//memberService.deleteProfiles(proNum);
 			String result = memberService.deleteResume(resumeNum)+"";
 			System.out.println(result);
 			return result;
@@ -383,7 +407,7 @@ public class MemberController {
 		
 		//기업에 넣은 이력서 상세 보기
 		@RequestMapping(value = "/comMoveToResumeDetail.me")
-		public String comMoveToResumeDetail(HttpSession session, Model model, int resumeNum, MemInfoVO memInfoVO,int comMypageNum) {
+		public String comMoveToResumeDetail(HttpSession session, Model model, int resumeNum, MemInfoVO memInfoVO,int comMypageNum, int announceNum) {
 			
 			MemResumeVO vo = memberService.selectResumeDetail(resumeNum);
 			List<LicenseVO> licenseList = memberService.selectLicenseList(resumeNum);
@@ -396,14 +420,115 @@ public class MemberController {
 			vo.setMemInfoVO(memberService.selectMemInfoME(memInfoVO));
 			vo.setLicenseList(licenseList);
 			vo.setProfilesList(memberService.selectProfilesList(resumeNum));
-			
+			vo.setComName(memberService.recruitComName(announceNum));
 			model.addAttribute("memResume", vo);
 			return "tiles/company/comResumeDetail";
 		}
 		
 		
-		
-		
+		//pdf파일 다운로드
+		@RequestMapping(value = "/pdfCreate.me")
+		  public String pdfCreate(HttpServletRequest req, ModelMap modelMap, int resumeNum,HttpServletResponse response, MemInfoVO memInfoVO) throws Exception {
+			
+			//pdf다운로드 경로 설정&파일 이름 인코딩
+			String fileName="";
+			String dir="D:/pdfTest";
+		    fileName = URLEncoder.encode(4 +".pdf", "UTF-8");
+		     
+		    //파일 저장 경로 설정
+		    File directory = new File(dir);
+		    if(!directory.exists()) directory.mkdirs(); //파일경로 없으면 생성
+		     
+		    //PDF 용지 설정-A4용지에 상하좌우 50씩 여백 
+		     Document document = new Document(PageSize.A4, 50, 50, 50, 50);	
+		     
+		     //PDF 출력을 위한 PdfWriter 객체 
+		     PdfWriter.getInstance(document, new FileOutputStream(dir+"/"+fileName));
+		     PdfWriter writer = PdfWriter.getInstance(document, response.getOutputStream());
+		     writer.setInitialLeading(12.5f);
+		        
+		     //document 오픈
+		     document.open();
+		     
+		     //xmlworkerHelper객체 생성
+		     XMLWorkerHelper helper = XMLWorkerHelper.getInstance();
+		     
+		     //css
+		     CSSResolver cssResolver = new StyleAttrCSSResolver();
+		     CssFile cssFile = XMLWorkerHelper.getCSS(new FileInputStream("D:/workspaceSpring/FinDream/src/main/webapp/resources/css/pdf.css"));
+		     cssResolver.addCss(cssFile);
+		     
+		     //HTML, 폰트 저장
+		     XMLWorkerFontProvider fontProvider = new XMLWorkerFontProvider(XMLWorkerFontProvider.DONTLOOKFORFONTS);
+		     fontProvider.register("D:/workspaceSpring/FinDream/src/main/webapp/resources/font/malgun.ttf", "malgun");
+		     CssAppliers cssAppliers = new CssAppliersImpl(fontProvider);
+		     
+		     //htmlPipelineContext 객체 생성
+		     HtmlPipelineContext htmlContext = new HtmlPipelineContext(cssAppliers);
+		     htmlContext.setTagFactory(Tags.getHtmlTagProcessorFactory());
+		     
+		     //Pipelines
+		     PdfWriterPipeline pdf = new PdfWriterPipeline(document, writer);
+		     HtmlPipeline html = new HtmlPipeline(htmlContext, pdf);
+		     CssResolverPipeline css = new CssResolverPipeline(cssResolver, html);
+		     
+		     //어..안전한 PDF로의 변환을 위한 장치...??
+		     XMLWorker worker = new XMLWorker(css, true);
+		     XMLParser xmlParser = new XMLParser(worker, Charset.forName("UTF-8"));
+		     
+		     //이력서 정보 조회
+           MemResumeVO vo = memberService.selectResumeDetail(resumeNum);
+           
+           //개인정보 조회 
+           MemInfoVO vo2 = memberService.selectMemInfoME(memInfoVO);
+           
+           //폰트설정
+           Font font = fontProvider.getFont("malgun", "UTF-8");	//맑은고딕 얇은체
+           
+//           //첫 번째 문단(이력서 제목)
+//		     Paragraph title = new Paragraph(vo.getResumeName(), font);
+//		     document.add(title);
+		     
+		     //한 칸 띄우기
+           document.add(Chunk.NEWLINE);
+           
+           //4열짜리 테이블 생성
+           PdfPTable table = new PdfPTable(3);
+           PdfPCell cell = new PdfPCell(new Phrase(vo.getResumeName(), font));
+           cell.setColspan(3);
+           cell.setHorizontalAlignment(Element.ALIGN_CENTER);
+           table.addCell(cell);
+           cell = new PdfPCell(new Phrase("Cell with rowspan 2"));
+           cell.setRowspan(2);
+           cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
+           table.addCell(cell);
+           table.addCell("Cell 1.1");
+           cell = new PdfPCell();
+           cell.addElement(new Phrase("Cell 1.2"));
+           table.addCell(cell);
+           cell = new PdfPCell(new Phrase("Cell 2.1"));
+           cell.setPadding(5);
+           cell.setUseAscender(true);
+           cell.setUseDescender(true);
+           cell.setHorizontalAlignment(Element.ALIGN_CENTER);
+           table.addCell(cell);
+           cell = new PdfPCell();
+           cell.setPadding(5);
+           cell.setUseAscender(true);
+           cell.setUseDescender(true);
+           Paragraph p = new Paragraph("Cell 2.2");
+           p.setAlignment(Element.ALIGN_CENTER);
+           cell.addElement(p);
+           table.addCell(cell);
+           document.add(table);
+           
+		     
+		     //document 클로즈 - PdfWriter 생성 시 설정한 PDF파일 생성
+		     document.close();
+		      return "";
+		  }
+
+
 		
 }
 

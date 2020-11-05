@@ -13,22 +13,31 @@
 svg{
 	cursor: pointer;
 }
+#eduLoc-error{
+	margin-top: 0.4rem;
+}
+#resumeName-error{
+	margin-top: 0.8rem;
+}
 </style>
 </head>
 <body>
-<form action="regResume.me" method="post" >
+<form action="regResume.me" method="post" id="writeResumeForm">
 	<div style="height: 50px;"></div>
 	<!-- 이력서 제목 -->
-	<input type="text" name="resumeName" style="font-size: 35px; font-weight: bold;" placeholder="제목을 입력해주세요.">
+	<div id="reNameDiv">
+		<input type="text" name="resumeName" style="font-size: 35px; font-weight: bold;" placeholder="제목을 입력해주세요." id="resumeName">
+	</div>
 	<div style="height: 20px;"></div>
 	<!-- 개인_기본정보 -->
-	<span style="font-weight: bold; font-size: 24px; color: #0F4C81;">개인 정보</span><input type="button" class="btn btn-primary" onClick="location.href='memUpdateForm.me';" value="개인정보수정" style="background: #ABC2E8; border-color: #ABC2E8; margin-bottom: 14px;"/>
+	<span style="font-weight: bold; font-size: 24px; color: #0F4C81;">개인 정보</span><input type="button" class="btn btn-primary" onClick="location.href='memUpdateForm.me';" value="개인정보수정" style="background: #658DC6; border-color: #658DC6; margin-bottom: 6px;
+    margin-left: 5px;"/>
 	<div class="row col-md-12" style="border: 5px solid #658DC6; border-radius: 10px;">
 		<div class="col-md-9">
 			<div class="form-row">
 				<div class="form-group col-md-6">
-					<label for="memName">이름</label>
-					<input type="text" class="form-control" id="memName" name="memName" value="${sessionScope.memLogin.memName }" disabled>
+					<label for="memReName">이름</label>
+					<input type="text" class="form-control" id="memReName" name="memName" value="${sessionScope.memLogin.memName }" disabled>
 				</div>
 				<div class="form-group col-md-6">
 					<label for="memEmail">이메일</label>
@@ -50,8 +59,8 @@ svg{
 					</div>
 				</div>
 				<div class="form-group col-md-6">
-					<label for="memTel1">연락처</label>
-					<input type="text" class="form-control" id="memTel1" name="memTel1" value="${sessionScope.memLogin.memTel1 }" disabled>
+					<label for="memReTel1">연락처</label>
+					<input type="text" class="form-control" id="memReTel1" name="memTel1" value="${sessionScope.memLogin.memTel1 }" disabled>
 				</div>
 				<div class="form-group col-md-6">
 					<div class="col-md-12" style="padding: 0px;">
@@ -80,7 +89,7 @@ svg{
 	<div style="height: 20px;"></div>
 	<span style="font-weight: bold; font-size: 24px;color: #0F4C81;">학력 사항</span><!-- 학교 정보에 대한 DB 필요 -->
 	<div class="row col-md-12" style="border: 5px solid #658DC6; border-radius: 10px;">
-		<div class="row col-md-12">
+		<div class="row col-md-12" style="margin-top:10px;">
 			<div class="form-row">
 				<div class="form-group col-md-6">
 					<label for="eduGrade">학력구분</label>
@@ -95,9 +104,9 @@ svg{
 					<label for="eduSchool">학교명</label>
 					<input type="text" class="form-control" id="eduSchool" name="eduSchool">
 				</div>
-				<div class="form-group col-md-6">
+				<div class="form-group col-md-6" id="locDiv">
 					<label for="eduLoc">지역</label>
-					<input type="button" class="btn btn-primary" onClick="openDaumZipAddress2();" value="주소찾기" style="background: #ABC2E8; border-color: #ABC2E8; margin: 5px;"/>
+					<input type="button" class="btn btn-primary" id="openAddr" value="주소찾기" style="background: #658DC6; border-color: #658DC6; margin: 5px;"/>
 					<input type="text" class="form-control" id="eduLoc" name="eduLoc">
 				</div>
 				<div class="form-group col-md-6">
@@ -137,7 +146,7 @@ svg{
 					<div class="row col-md-12">
 						<input type="text" class="form-control col-md-11" id="eduEndDate" name="eduEndDate" autocomplete="off">
 						<div class="col-md-1" style="padding:2px; top:-3px;">
-							<select style="height: 40px;" id="eduIsOver" name="eduIsOver">
+							<select  style="height: 40px;" id="eduIsOver" name="eduIsOver">
 					  			<option>선택하세요</option>
 					  			<option>졸업예정</option>
 					  			<option>졸업</option>
@@ -190,7 +199,7 @@ svg{
 	  <path fill-rule="evenodd" d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
 	</svg>
 	<div class="row col-md-12" style="border: 5px solid #658DC6; border-radius: 10px;">
-		<div class="col-md-12" id="profileDiv">
+		<div class="col-md-12" id="profileDiv" style="margin-top:10px;">
 		   <div class="form-group col-md-12">
 			  <label for="proTitle">자기소개서 이름</label>
 			  <input type="text" class="form-control" id="proTitle" name="proTitle">
@@ -209,7 +218,7 @@ svg{
 	  <path fill-rule="evenodd" d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
 	</svg>
 	<div class="row col-md-12" style="border: 5px solid #658DC6; border-radius: 10px;">
-		<div class="col-md-12" id="careerDiv">
+		<div class="col-md-12" id="careerDiv" style="margin-top:10px;">
 		 <div class="form-row" style="padding: 0px 15px;">
 		   <div class="form-group col-md-6">
 		     <label for="carCompany">회사명</label>
@@ -237,11 +246,25 @@ svg{
 	<div style="height: 20px;"></div>
 	<span style="font-weight: bold; font-size: 24px;color: #0F4C81;">희망 조건</span>
 	<div class="row col-md-12" style="border: 5px solid #658DC6; border-radius: 10px;">
-		<div class="col-md-12">
+		<div class="col-md-12" style="margin-top:10px;">
 			<div class="form-row">
 				<div class="form-group col-md-6">
 					<label for="hopeType">희망 직종</label>
-					<input type="text" class="form-control" id="hopeType" name="hopeType">
+					<select class="form-control" id="hopeType" name="hopeType">
+						<option>기타</option>
+						<option>경영.사무</option>
+						<option>영업.고객상담</option>
+						<option>IT.인터넷</option>
+						<option>디자인</option>
+						<option>서비스</option>
+						<option>전문직</option>
+						<option>의료</option>
+						<option>건설</option>
+						<option>교육</option>
+						<option>생산.제조</option>
+						<option>미디어</option>
+						<option>특수계층.공공</option>
+					</select>
 				</div>
 				<div class="form-group col-md-6">
 					<label for="hopeSal">희망 연봉</label>
@@ -252,13 +275,31 @@ svg{
 				</div>
 				<div class="form-group col-md-6">
 					<label for="hopeLoc">희망 지역</label>
-					<input type="text" class="form-control" id="hopeLoc" name="hopeLoc">
+					<select id="hopeLoc" name="hopeLoc" class="form-control">
+						<option>전국</option>
+						<option>경기</option>
+						<option>인천</option>
+						<option>울산</option>
+						<option>대구</option>
+						<option>경남</option>
+						<option>서울</option>
+						<option>광주</option>
+						<option>경북</option>
+						<option>세종</option>
+						<option>강원</option>
+						<option>충남</option>
+						<option>전남</option>
+						<option>전북</option>
+						<option>대전</option>
+						<option>부산</option>
+						<option>충북</option>
+						<option>제주</option>
+					</select>   
 				</div>
 				<div class="form-group col-md-6">
 					<label for="hopeTime">희망 근무시간</label>
 					<input type="text" class="form-control" id="hopeTime" name="hopeTime">
 				</div>
-				
 			</div>
 		</div>
 	</div>
@@ -266,13 +307,86 @@ svg{
 
 	<div style="height: 20px;"></div>	
 	<div align="center">	
-		<input type="submit" class="btn btn-primary" style="background: #ABC2E8; border-color: #ABC2E8; margin-bottom: 15px;" value="등록하기">&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;	
-		<button type="button" class="btn btn-primary" style="background: #ABC2E8; border-color: #ABC2E8; margin-bottom: 15px;" onclick="location.href='memberMypage.me'">뒤로 가기</button>	
+		<input type="submit" class="btn btn-primary" style="background:#0F4C81; border-color: #0F4C81; margin-bottom: 15px;" value="등록하기">&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;	
+		<button type="button" class="btn btn-primary" style="background: #658DC6; border-color: #658DC6; margin-bottom: 15px;" onclick="location.href='memberMypage.me'">뒤로 가기</button>	
 	</div>
 </form>	
 
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-<script src="resources/js/writeResume.js?ver=4"></script>
+<script src="resources/js/writeResume.js?ver=118"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+	
+	$("#writeResumeForm").validate({
+	     debug : false,
+	     onfocusin : false,
+	     onkeyup : false,
+	     onfocusout : function(element) { 
+	    	 $(element).valid(); 
+	     },
+	     rules : {
+			resumeName : {
+				required : true
+			},
+			eduSchool : {
+				required : true
+			},
+			eduLoc : {
+				required : true
+			},
+			eduMajor : {
+				required : true
+			},
+			eduScore : {
+				required : true
+			},
+			eduIsOver : {
+				required : true
+			},
+			hopeType : {
+				required : true
+			},
+			hopeSal : {
+				required : true
+			},
+			hopeLoc : {
+				required : true
+			},
+			hopeTime : {
+				required : true
+			}
+	     },
+	     //검사를 충족하지 못할 경우 표시될 메시지의 나열                                                         
+	     messages : {
+	     }, 
+	     //실패한 요소에 대해서
+	     highlight: function(element) {
+	     },
+	     //성공한 요소에 대해서
+	     unhighlight: function(element) {
+	     },
+	     //유효성 검사 실패 시 메세지의 출력 방식을 설정
+	     errorPlacement: function(error, element){
+	    	 
+    		 if($(element).is('#resumeName')){
+				error.insertAfter($(element));
+    		 }else if($(element).is('#eduEndDate') || $(element).is('#hopeSal')){
+	    		 error.insertAfter($(element).parent().prev());
+    		 }else if($(element).is('#eduMajor')){
+				error.insertAfter($(element).parent().parent().parent().children().eq(0));
+    		 }else{
+    		 	error.insertAfter($(element).prev());
+    		 }
+	     },
+       //유효성 검사 완료(성공) 후 실행할 코드 
+	     submitHandler: function(form) {
+	    	 form.submit();
+	     }
+	});
+	
+	
+});
+</script>
 </body>
 </html>

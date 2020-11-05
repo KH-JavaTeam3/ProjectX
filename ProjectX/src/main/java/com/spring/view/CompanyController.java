@@ -2,11 +2,17 @@ package com.spring.view;
 
 import java.io.File;
 import java.util.Iterator;
+import java.util.List;
 
 import javax.annotation.Resource;
+import javax.mail.internet.MimeMessage;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessageHelper;
+import org.springframework.mail.javamail.MimeMessagePreparator;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -27,6 +33,9 @@ import com.spring.biz.vo.RecruitListVO;
 public class CompanyController {
 	@Resource(name = "companyService")
 	CompanyService companyService;
+	
+	@Autowired
+	private JavaMailSender mailSender;
 	// *.co쓰셈
 	//경로는 tiles/company/파일명
 	//jsp는 tiles/company폴더안에 생성
@@ -195,17 +204,38 @@ public class CompanyController {
 		}
 		//기업에 넣은 이력서 확인
 		@RequestMapping(value = "/resumeInquiry.co")
-		public String resumeInquiry(ForRecruitVO forRecruitVO, Model model, HttpSession session, CompanyInfoVO companyInfoVO) {
-			
+		public String resumeInquiry(ForRecruitVO forRecruitVO, Model model, HttpSession session) {
 			CompanyInfoVO  vo = (CompanyInfoVO) session.getAttribute("comLogin");
-			forRecruitVO.setComNum(vo.getComNum());
-			model.addAttribute("resumeInquiryList", companyService.resumeInquiryList(forRecruitVO));
+			List<ForRecruitVO> list = companyService.resumeInquiryList(vo.getComNum());
+			model.addAttribute("resumeInquiryList", list);
 			return "tiles/company/resumeInquiryList";
 		}
 		//이력서 합격 불합격 에이작스
 		@ResponseBody
 		@RequestMapping(value = "/acceptanceAndrejectBtn.co")
 		public int acceptanceAndrejectBtn(MemResumeVO memResumeVO) {
+			//여기만 바꾸면 가능
+			String setfrom = "FinDream"; // 보내는 이(한글 안먹던데)
+			String tomail = memResumeVO.getMemEmail(); // 받는 사람 이메일
+			String title = "구인구직 사이트 파인드림입니다."; // 제목(생략가능)
+			String content = "귀하께서 신청 하신 "+ memResumeVO.getComName() +"기업의 공고에서 최종 합격 되셨습니다. \n 감사합니다.";
+			String content2 = "귀하께서 신청 하신 "+ memResumeVO.getComName() +"기업의 공고에서 최종 불합격 되셨습니다. \n 감사합니다.";
+			
+			final MimeMessagePreparator preparator = new MimeMessagePreparator() { 
+				@Override public void prepare(MimeMessage mimeMessage) throws Exception { 
+					final MimeMessageHelper helper = new MimeMessageHelper(mimeMessage, true, "UTF-8"); 
+					helper.setFrom(setfrom); 
+					helper.setTo(tomail); 
+					helper.setSubject(title); 
+					if(memResumeVO.getYnN() == 1) {
+					helper.setText(content); 
+					}else {
+						helper.setText(content2); 
+					}
+				} 
+			}; 
+			mailSender.send(preparator);
+			
 			int result = companyService.resumeResultUpdate(memResumeVO);
 			return result;
 		}

@@ -37,10 +37,6 @@ public class CommonServiceImpl implements CommonService{
 		sqlSession.update("updateCookie", map);
 	}
 	@Override
-	public void updateFakePass(MemInfoVO memInfoVO) {
-		sqlSession.update("updateFakePass", memInfoVO);
-	}
-	@Override
 	public int memUpdate(MemInfoVO memInfoVO) {
 		return sqlSession.update("memUpdate", memInfoVO);
 	}
@@ -120,6 +116,14 @@ public class CommonServiceImpl implements CommonService{
 	@Override
 	public List<RecruitListVO> selectViewsList() {
 		return sqlSession.selectList("selectViewsList");
+	}
+	@Override
+	public void updateMemCodePass(MemInfoVO memInfoVO) {
+		sqlSession.update("updateMemCodePass", memInfoVO);
+	}
+	@Override
+	public void updateComCodePass(CompanyInfoVO companyInfoVO) {
+		sqlSession.update("updateComCodePass", companyInfoVO);
 	}
 	
 	

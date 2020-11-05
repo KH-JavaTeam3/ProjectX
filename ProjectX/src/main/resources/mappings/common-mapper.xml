@@ -34,9 +34,6 @@
 		<result column="COM_TYPE"           	property="comType"/> 
 		<result column="COM_TEL"           		property="comTel"/> 
 		<result column="COM_JOIN_DATE"         property="comJoinDate"/> 
-		<result column="COM_AVG_SCORE"         property="comAvgScore"/> 
-		<result column="COM_GIVE_PERSON"       property="comGivePerson"/> 
-		<result column="COM_SCORE"           	property="comScore"/> 
 		<result column="COM_IMAGE"           	property="comImage"/> 
 	</resultMap>
 
@@ -175,8 +172,8 @@
 		WHERE MEM_EMAIL = #{memEmail}
 	</update>
 
-<!-- 	임시비밀번호로 업데이트 -->
-	<update id="updateFakePass">
+<!-- 	이메일 인증 후 비밀번호 입력 -->
+	<update id="updateMemCodePass">
 		UPDATE MEM_INFO
 		SET MEM_PASS = #{memPass}
 		WHERE MEM_EMAIL = #{memEmail}
@@ -211,9 +208,6 @@
 			, COM_TYPE
 			, COM_TEL
 			, COM_JOIN_DATE
-			, COM_AVG_SCORE
-			, COM_GIVE_PERSON
-			, COM_SCORE
 			, COM_IMAGE
 		FROM COMPANY_INFO
 		WHERE COM_NUM = #{comNum}
@@ -225,6 +219,13 @@
 		UPDATE COMPANY_INFO
 		SET COM_SESSION_ID = #{setId}
 		WHERE COM_NUM = #{comNum}
+	</update>
+
+<!-- 	이메일 인증 후 비밀번호 입력 -->
+	<update id="updateComCodePass">
+		UPDATE COMPANY_INFO
+		SET COM_PASS = #{comPass}
+		WHERE COM_EMAIL = #{comEmail}
 	</update>
 
 <!-- 자동로그인용 기업 조회 -->

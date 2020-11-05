@@ -48,7 +48,8 @@ table.type09 td {
 		</div>
    </c:if>
 		    <c:forEach items="${resumeInquiryList }" var="resumeInquiry" varStatus="num">
-	<div class="col-md-12" style="border: 5px solid #ABC2E8; border-radius: 10px;" align="center">
+	<div class="col-md-12" style="border: 5px solid #ABC2E8; border-radius: 10px; margin-bottom: 10px;" align="center">
+		<input type="hidden" name="announceNum" value="${resumeInquiry.announceNum }">
 		<table class="type09">
 		    <thead>
 		    <tr>
@@ -80,20 +81,18 @@ table.type09 td {
 	    		<td>지역</td>
 	    		<td>경력 기간</td>
 	    		<td>경력 직종</td>
-	    		<td>희망 직종</td>
-	    		<td>희망 급여</td>
-	    		<td>희망 근무지</td>
-	    		<td>희망 근무시간</td>
+	    		<td colspan="2">희망 급여</td>
+	    		<td></td>
+	    		<td></td>
 	    		<td></td>
 		    </tr>
 		    <tr>
 		    	<td>${resumeInquiry.eduLoc }</td>
-		        <td>${resumeInquiry.beCareer }</td>
-		        <td>${resumeInquiry.beType }</td>
-		        <td>${resumeInquiry.hopeType }</td>
-		        <td>${resumeInquiry.hopeSal }</td>
-		        <td>${resumeInquiry.hopeLoc }</td>
-		        <td>${resumeInquiry.hopeTime }</td>
+		        <td>${resumeInquiry.carCareer }</td>
+		        <td>${resumeInquiry.carType }</td>
+		        <td colspan="2">${resumeInquiry.hopeSal }</td>
+		        <td></td>
+		        <td></td>
 		        <td></td>
 		    </tr>
 	</tbody>
@@ -102,7 +101,7 @@ table.type09 td {
 		<c:if test="${resumeInquiry.resumeResult == 'N' }"><samp style="font-size: 14px; font-weight: bold; color: red;">불합격</samp></c:if>
 		<c:if test="${resumeInquiry.resumeResult == 'Y' }"><samp style="font-size: 14px; font-weight: bold; color: blue;">합격</samp></c:if>
 			<div class="action col-md-12" align="center" style="margin: 10px;">
-					<input type="button" style="background: #ABC2E8; border: 1px solid; color: white; width: 120px; height: 30px;"  value="상세보기" onclick=" location.href='comMoveToResumeDetail.me?resumeNum=${resumeInquiry.resumeNum}&memEmail=${resumeInquiry.memEmail }&comMypageNum=${resumeInquiry.comMypageNum }'">
+					<input type="button" style="background: #ABC2E8; border: 1px solid; color: white; width: 120px; height: 30px;"  value="상세보기" onclick=" location.href='comMoveToResumeDetail.me?resumeNum=${resumeInquiry.resumeNum}&memEmail=${resumeInquiry.memEmail }&comMypageNum=${resumeInquiry.comMypageNum }&announceNum=${resumeInquiry.announceNum }'">
 					<input type="button" style="background: #ABC2E8; border: 1px solid; color: white; width: 120px; height: 30px;"  value="취소" onclick=" location.href='comMypage.co'">
 			</div>
 		</div>

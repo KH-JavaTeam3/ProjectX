@@ -13,6 +13,8 @@
 	<div style="height: 50px;"></div>
 	<!-- 이력서 제목 -->
 	<input type="text" name="resumeName" style="font-size: 35px; font-weight: bold;" readonly value="${memResume.resumeName }">
+					<input type="hidden" class="form-control" id="memEmail" value="${memResume.memInfoVO.memEmail }">
+					<input type="hidden" class="form-control" id="comName" value="${memResume.comName }">
 	<div style="height: 20px;"></div>
 	<!-- 개인_기본정보 -->
 	<div class="row col-md-12" style="border: 5px solid #ABC2E8; border-radius: 10px;">
@@ -20,11 +22,11 @@
 			<div class="form-row">
 				<div class="form-group col-md-6">
 					<label for="memName">이름</label>
-					<input type="text" class="form-control" id="memName" name="memName" value="${memResume.memInfoVO.memName }" disabled>
+					<input type="text" class="form-control" name="memName" value="${memResume.memInfoVO.memName }" disabled>
 				</div>
 				<div class="form-group col-md-6">
 					<label for="memEmail">이메일</label>
-					<input type="email" class="form-control" id="memEmail" name="memEmail" value="${memResume.memInfoVO.memEmail }" readonly>
+					<input type="email" class="form-control" name="memEmail" value="${memResume.memInfoVO.memEmail }" readonly>
 				</div>
 				<div class="form-group col-md-6">
 					<label class="col-md-3 control-label" style="padding-left: 0px;">생년월일</label>
@@ -187,19 +189,19 @@
 		 <div class="form-row">
 		   <div class="form-group col-md-6">
 		     <label for="beCompany">회사명</label>
-		     <input type="text" class="form-control" id="beCompany" name="beCompany" value="${memResume.beCompany }" disabled="disabled" style="background: white;">
+		     <input type="text" class="form-control" id="carCompany" name="carCompany" value="${memResume.carCompany }" disabled="disabled" style="background: white;">
 		   </div>
 		   <div class="form-group col-md-6">
 		     <label for="beCareer">경력</label>
-		     <input type="text" class="form-control" id="beCareer" name="beCareer" value="${memResume.beCareer }년" disabled="disabled" style="background: white;">
+		     <input type="text" class="form-control" id="carCareer" name="carCareer" value="${memResume.carCareer }년" disabled="disabled" style="background: white;">
 		   </div>
 		   <div class="form-group col-md-6">
 		     <label for="beType">직종</label>
-		     <input type="text" class="form-control" id="beType" name="beType" value="${memResume.beType }" disabled="disabled" style="background: white;">
+		     <input type="text" class="form-control" id="carType" name="carType" value="${memResume.carType }" disabled="disabled" style="background: white;">
 		   </div>
 		   <div class="form-group col-md-6">
 		     <label for="bePosition">직책</label>
-		     <input type="text" class="form-control" id="bePosition" name="bePosition" value="${memResume.bePosition }" disabled="disabled" style="background: white;">
+		     <input type="text" class="form-control" id="carPosition" name="bePosition" value="${memResume.carPosition }" disabled="disabled" style="background: white;">
 		   </div>
 		 </div>
 		</div>
@@ -241,5 +243,5 @@
 	</div>
 	<div style="height: 40px;"></div>
 </body>
-<script src="resources/js/comResumeDetail.js?ver=7"></script>
+<script src="resources/js/comResumeDetail.js?ver=10"></script>
 </html>

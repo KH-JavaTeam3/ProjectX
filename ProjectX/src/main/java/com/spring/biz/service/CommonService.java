@@ -25,8 +25,11 @@ public interface CommonService {
 	// 자동로그인 갱신
 	void updateCookie(Map<String, String> map);
 	
-	//임시비밀번호로 업데이트
-	void updateFakePass(MemInfoVO memInfoVO);
+	//인증 후 비밀번호 업데이트
+	void updateMemCodePass(MemInfoVO memInfoVO);
+	
+	//인증 후 비밀번호 업데이트
+	void updateComCodePass(CompanyInfoVO companyInfoVO);
 	
 	// 구직자 정보 수정
 	int memUpdate(MemInfoVO memInfoVO);

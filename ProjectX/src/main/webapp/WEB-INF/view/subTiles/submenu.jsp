@@ -80,6 +80,11 @@
 			<div class="non col-md-1" style="display: inline-block;" onclick="location.href='freeBoardList.bo'">
 				<span style="font-size: 13px; color: white; font-weight: bold;">커뮤니티</span>
 			</div>
+			<c:if test="${sessionScope.memLogin.isAdmin == 'Y' }">
+				<div class="non col-md-1" style="display: inline-block;" onclick="location.href='adminPage.ad'">
+					<span style="font-size: 13px; color: white; font-weight: bold;">관리자 페이지</span>
+				</div>
+			</c:if>
 		</div>
 	</div>
 </c:if>
@@ -88,7 +93,7 @@
 <c:if test="${not empty sessionScope.comLogin}">
 <div style="height: 46px;">
 		<div class="pointer col-md-12" align="center" style="line-height: 45px; padding: 0px;">
-			<div class="submenuBtn col-md-1" style="display: inline-block;" onclick="location.href='companyLogin.do'">
+			<div class="submenuBtn col-md-1" style="display: inline-block;" onclick="location.href='companyHome.do'">
 				<span style="font-size: 15px; color: white; font-weight: bold;">HOME</span>
 			</div>
 			<div class="submenuBtn col-md-1" style="display: inline-block;">
