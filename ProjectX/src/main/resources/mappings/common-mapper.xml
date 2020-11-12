@@ -72,6 +72,14 @@
 		<result column="COM_MYPAGE_NUM"        	  property="comMypageNum"/> 
 		<result column="RESUME_NUM"         	  property="resumeNum"/> 
 		<result column="RESUME_RESULT"         	  property="resumeResult"/> 
+	</resultMap>		
+	
+	<resultMap type="com.spring.biz.vo.ApplyVO" id="apply">
+		<result column="APPLY_NUM"            	  property="applyNum"/> 
+		<result column="COM_NAME"      	      	  property="comName"/> 
+		<result column="APPLY_DATE"      	      property="applyDate"/> 
+		<result column="ANNOUNCE_TITLE"        	  property="announceTitle"/> 
+		<result column="RESUME_RESULT"         	  property="resumeResult"/> 
 	</resultMap>
 	
 	
@@ -389,7 +397,7 @@
 		WHERE ANNOUNCE_NUM = #{announceNum}
 	</update>
 
-	<!-- 이력서 지원 넣기 -->
+	<!-- 기업이 받은 이력서 목록에 삽입 -->
 	<insert id="insertComMypage">
 		INSERT INTO COM_MYPAGE(
 		    COM_MYPAGE_NUM
@@ -402,10 +410,45 @@
 		    ,#{comNum}
 		    ,#{announceNum}
 		    ,#{resumeNum}
-		    ,'N'
+		    ,'D'
 		)
 	</insert>
+	
+<!-- 개인이 넣은 이력서 목록에 삽입 -->
+	<insert id="insertApplyCom">
+		INSERT INTO APPLY_COM(
+		APPLY_NUM
+		, MEM_EMAIL
+		, ANNOUNCE_NUM
+		) VALUES(
+		(SELECT NVL(MAX(APPLY_NUM)+1,1) FROM APPLY_COM)
+		, #{memEmail}
+		, #{announceNum}
+		)
+		
+	</insert>
 
+<!-- 개인이 넣은 이력서 목록 -->
+	<select id="selectApplyComList" resultMap="apply">
+		SELECT APPLY_NUM
+		    , COM_NAME
+		    , APPLY_DATE
+		    , ANNOUNCE_TITLE
+		    , RESUME_RESULT
+		FROM APPLY_COM A, RECRUIT_LIST R, COMPANY_INFO C
+		WHERE A.ANNOUNCE_NUM = R.ANNOUNCE_NUM
+		AND R.COM_NUM = C.COM_NUM
+		AND MEM_EMAIL = #{memEmail}
+		AND IS_DELETE = 'N'
+		ORDER BY APPLY_DATE DESC
+	</select>
+<!-- 	이력서 중복 조회 -->
+	<select id="chkApply" resultMap="apply">
+		SELECT APPLY_NUM
+		FROM APPLY_COM
+		WHERE MEM_EMAIL = #{memEmail}
+		AND ANNOUNCE_NUM = #{announceNum} 
+	</select>
 	<select id="selectAddress" resultType="String">
 		SELECT COM_LOC
 		FROM COMPANY_INFO C,RECRUIT_LIST R

@@ -2,6 +2,7 @@ package com.spring.biz.service;
 
 
 import java.util.List;
+import java.util.Map;
 
 import com.spring.biz.vo.CareerVO;
 import com.spring.biz.vo.LicenseVO;
@@ -79,13 +80,13 @@ public interface MemberService {
 	int deleteHeartOfLikeRecruit(LikeRecruitVO likeRecruitVO);
 	
 	//자격증 식별번호 중 최고값 조회
-	int selectMaxLicNum();
+	int selectMaxLicNum(MemResumeVO memResumeVO);
 	
 	//자기소개서 식별번호 중 최고값 조회
-	int selectMaxProfilesNum();
+	int selectMaxProfilesNum(MemResumeVO memResumeVO);
 
 	//경력사항 식별번호 중 최고값 조회
-	int selectMaxCareerNum();
+	int selectMaxCareerNum(MemResumeVO memResumeVO);
 	
 	//자격증 삭제
 	int deleteLic(int licNum);
@@ -101,4 +102,7 @@ public interface MemberService {
 	
 	//이력서 지원자에 대한 기업 이름 뽑기
 	String recruitComName(int announceNum);
+	
+	//내가 지원한 이력서 삭제
+	void deleteApply(Map<String, Object> map);
 }

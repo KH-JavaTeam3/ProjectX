@@ -16,6 +16,15 @@ svg{
 table{
 	width: 100%;
 }
+
+input[type="submit"]{
+	background-color: #0F4C81;
+	border: 0px;
+	color: white;
+	margin-top: 6px;
+	border-radius: 5px;
+	height: 30px;
+}
 </style>
 </head>
 <body>
@@ -73,7 +82,8 @@ table{
 						<div class="form-group files uploader offset-md-5">
 							<label for="memImage">사진</label>
 							<input type="file" class="form-control"  id="memImage" name="memImage" disabled>
-							<img id="preview" src="resources/images/memberProfile/${sessionScope.memLogin.memImage }" onerror="this.src='resources/images/profile.png'">
+<%-- 							<img id="preview" src="resources/images/memberProfile/${sessionScope.memLogin.memImage }" onerror="this.src='resources/images/profile.png'"> --%>
+							<img id="preview" src="https://findream.s3.ap-northeast-2.amazonaws.com/images/${sessionScope.memLogin.memImage }" onerror="this.src='resources/images/profile.png'">
 						</div>
 					</div>
 				</div>
@@ -219,7 +229,7 @@ table{
 				</div>
 			   <div class="form-group col-md-12">
 				  <label for="proContent">자기소개서 내용</label>
-				  <textarea rows="10" cols="60" class="form-control proContent" name="proContent" wrap="hard">${pro.proContent }</textarea>
+				  <textarea rows="10" cols="40" class="form-control proContent" name="proContent" style="word-wrap: break-word;white-space: pre-wrap;white-space: -moz-pre-wrap;white-space: -pre-wrap;white-space: -o-pre-wrap;word-break:break-all;">${pro.proContent }</textarea>
 				</div>
 			</div>
 		</c:forEach>
@@ -303,6 +313,6 @@ table{
 </div>
 </form>	
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-<script src="resources/js/updateResume.js?ver=9"></script>
+<script src="resources/js/updateResume.js?ver=13"></script>
 </body>
 </html>

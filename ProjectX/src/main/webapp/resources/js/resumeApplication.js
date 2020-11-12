@@ -1,13 +1,14 @@
 /* 페이지 로딩 후 실행 */
 $(document).ready(function(){
 
-	//하위 체크박스 변경 시 제목줄의 체크박스 변경
-	   $(document).on('click', '.chk', function() {
-	      //.chk의 개수
-	      var chkCnt = $('.chk').length;
-	      //.chk 중에서 체크가 된 노드의 개수
-	      var checkedCnt = $('.chk:checked').length;
-	   });
+	$(document).on('click', '.listTr', function(){
+		var chkBox = $(this).children().children().first();
+		if(chkBox.is(':checked')){
+			chkBox.prop('checked',false);
+		}else{
+			chkBox.prop('checked',true);
+		}
+	});
 	//공고 지원 버튼
 	$(document).on('click', '#resumeAppBut', function() {
 		// .chk의 개수
@@ -18,7 +19,7 @@ $(document).ready(function(){
 			alert('이력서를 선택해주세요.');
 			return;
 		}
-		if(c > 2){
+		if(c > 1){
 			alert('이력서는 하나만 지원 됩니다.');
 			return;
 		}
@@ -32,10 +33,6 @@ $(document).ready(function(){
 		var announceNum = $('.resumeAppannounceNum').val();
 		location.href ='resumeApp.do?resumeNum='+resumeNum+'&comNum='+comNum+'&announceNum='+announceNum;
 	});
-	//클릭 이벤트
-	//$(document).on('click', '선택자', function() {
-
-	//});
 	
 });
 

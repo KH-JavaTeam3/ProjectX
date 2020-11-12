@@ -7,30 +7,31 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style type="text/css">
-	table.type09 {
+table.type09 {
 	width:90%;
-    border-collapse: collapse;
-    line-height: 1.5;
+	border-collapse: collapse;
+	line-height: 1.5;
 	text-align: center;
+	margin-top: 21px;
 }
 table.type09 thead th {
     padding: 10px;
     font-weight: bold;
     vertical-align: top;
     color: #369;
-    border-bottom: 3px solid #ABC2E8;
+    border: 1px solid #ccc;
+    background: #f3f6f7;
 }
 table.type09 tbody th {
     padding: 10px;
     font-weight: bold;
     vertical-align: top;
-    border-bottom: 1px solid #ccc;
+    border: 1px solid #ccc;
     background: #f3f6f7;
 }
 table.type09 td {
     padding: 10px;
     vertical-align: top;
-    border-bottom: 1px solid #ccc;
 }
 </style>
 </head>
@@ -40,32 +41,31 @@ table.type09 td {
    <div style="height: 20px;"></div>
 	<div class="col-md-12" style="border: 5px solid #ABC2E8; border-radius: 10px;" align="center">
 		<table class="type09">
-		    <thead>
-		    <tr>
-		        <th colspan="8">공고 리스트</th>
-		    </tr>
-		    </thead>
+			<thead>
 		    	<tr>
 		    		<th><input type="checkbox" id="checkAll" checked></th>
-		    		<td>No.</td>
-		    		<td>제목</td>
-		    		<td>근무시간</td>
-		    		<td>직종</td>
-		    		<td>분류</td>
-		    		<td>지역</td>
-		    		<td>모집종료</td>
+		    		<th>No.</th>
+		    		<th>제목</th>
+		    		<th>근무시간</th>
+		    		<th>직종</th>
+		    		<th>분류</th>
+		    		<th>지역</th>
+		    		<th>모집종료</th>
+		    		<th>수정</th>
 		    	</tr>
+		    </thead>
 		    <tbody>
 		    <c:forEach items="${recruitlist }" var="recruit" varStatus="num">
 		    <tr>
-		    	<th><input type="checkbox" class="chk" value="${recruit.announceNum }" checked></th>
-		        <td scope="row" onclick="location.href='recruitDeleteForm.co?announceNum=${recruit.announceNum }'">${num.count }</td>
-		        <td onclick="location.href='recruitDeleteForm.co?announceNum=${recruit.announceNum }'"> ${recruit.announceTitle }</td>
-		        <td onclick="location.href='recruitDeleteForm.co?announceNum=${recruit.announceNum }'"> ${recruit.worktime }</td>
-		        <td onclick="location.href='recruitDeleteForm.co?announceNum=${recruit.announceNum }'"> ${recruit.jobtype }</td>
-		        <td onclick="location.href='recruitDeleteForm.co?announceNum=${recruit.announceNum }'"> ${recruit.workType }</td>
-		        <td onclick="location.href='recruitDeleteForm.co?announceNum=${recruit.announceNum }'"> ${recruit.area }</td>
-		        <td onclick="location.href='recruitDeleteForm.co?announceNum=${recruit.announceNum }'"> ${recruit.uptoHiredate }</td>
+		    	<td><input type="checkbox" class="chk" value="${recruit.announceNum }" checked></td>
+		        <td scope="row">${num.count }</td>
+		        <td> ${recruit.announceTitle }</td>
+		        <td> ${recruit.worktime }</td>
+		        <td> ${recruit.jobtype }</td>
+		        <td> ${recruit.workType }</td>
+		        <td> ${recruit.area }</td>
+		        <td> ${recruit.uptoHiredate }</td>
+		        <td><input type="button" value="수정" class="btn btn-outline-primary" onclick="location.href='recruitDeleteForm.co?announceNum=${recruit.announceNum }'"></td>
 		    </tr>
 		    </c:forEach>
 		    </tbody>
@@ -84,5 +84,5 @@ $(document).on('click', '.delete', function(){
 });
 </script> -->
   <!-- smaple.js를 사용하기 위한 태그 -->
-<script src="resources/js/recruitDeleteList.js?ver=1"></script>
+<script src="resources/js/recruitDeleteList.js?ver=2"></script>
 </html>

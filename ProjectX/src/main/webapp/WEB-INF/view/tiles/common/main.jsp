@@ -7,7 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" type="text/css" href="resources/css/main.css?ver=3" />
+<link rel="stylesheet" type="text/css" href="resources/css/main.css?ver=4" />
 </head>
 <body>
 	<div class="row" style="margin-top: 30px;">
@@ -68,7 +68,7 @@
 						<th scope="col" style="border: none;">조회수</th>
 					</tr>
 					</thead>
-				<tbody>
+				<tbody  id="rankingBody">
 				<c:forEach items="${selectViewsList }" var="views" varStatus="count">
 					<c:if test="${count.index+1 < 6 }">
 						<tr onclick="location.href='companyDetail.do?comNum=${views.comNum}&announceNum=${views.announceNum}'">

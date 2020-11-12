@@ -12,8 +12,22 @@ public class BoardVO {
 	private String search;
 	private String boardCategory;
 	private int boardCount;
+	private String boardRealWriterName;
+	private String delYn;
 	
 	
+	public String getDelYn() {
+		return delYn;
+	}
+	public void setDelYn(String delYn) {
+		this.delYn = delYn;
+	}
+	public String getBoardRealWriterName() {
+		return boardRealWriterName;
+	}
+	public void setBoardRealWriterName(String boardRealWriterName) {
+		this.boardRealWriterName = boardRealWriterName;
+	}
 	public int getBoardCount() {
 		return boardCount;
 	}
@@ -86,7 +100,8 @@ public class BoardVO {
 		return "BoardVO [boardTitle=" + boardTitle + ", boardWriter=" + boardWriter + ", boardContent=" + boardContent
 				+ ", boardViews=" + boardViews + ", boardDate=" + boardDate + ", boardNum=" + boardNum
 				+ ", boardWriterName=" + boardWriterName + ", select=" + select + ", search=" + search
-				+ ", boardCategory=" + boardCategory + ", boardCount=" + boardCount + "]";
+				+ ", boardCategory=" + boardCategory + ", boardCount=" + boardCount + ", boardRealWriterName="
+				+ boardRealWriterName + ", delYn=" + delYn + "]";
 	}
 	
 	

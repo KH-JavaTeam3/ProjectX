@@ -2,6 +2,7 @@ package com.spring.biz.service;
 
 
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -119,18 +120,23 @@ public class MemberServiceImpl implements MemberService{
 	public void updateMemResume(MemResumeVO memResumeVO) {
 		sqlSession.update("updateMemResume", memResumeVO);
 		
-		for(int i = 0 ; i < memResumeVO.getLicenseList().size() ; i++) {
-			mergeLicense(memResumeVO.getLicenseList().get(i));
+		if(memResumeVO.getLicenseList() != null) {
+			for(int i = 0 ; i < memResumeVO.getLicenseList().size() ; i++) {
+				mergeLicense(memResumeVO.getLicenseList().get(i));
+			}
 		}
 		
-		for (int i = 0; i < memResumeVO.getProfilesList().size(); i++) {
-			mergeProfiles(memResumeVO.getProfilesList().get(i));
+		if(memResumeVO.getProfilesList() != null) {
+			for (int i = 0; i < memResumeVO.getProfilesList().size(); i++) {
+				mergeProfiles(memResumeVO.getProfilesList().get(i));
+			}
 		}
 		
-		for (int i = 0; i < memResumeVO.getCareerList().size(); i++) {
-			mergeCareer(memResumeVO.getCareerList().get(i));
+		if(memResumeVO.getCareerList() != null) {
+			for (int i = 0; i < memResumeVO.getCareerList().size(); i++) {
+				mergeCareer(memResumeVO.getCareerList().get(i));
+			}
 		}
-		
 	}
 
 	@Override
@@ -161,19 +167,19 @@ public class MemberServiceImpl implements MemberService{
 	}
 
 	@Override
-	public int selectMaxLicNum() {
-		return sqlSession.selectOne("selectMaxLicNum");
+	public int selectMaxLicNum(MemResumeVO memResumeVO) {
+		return sqlSession.selectOne("selectMaxLicNum", memResumeVO);
 	}
 
 	@Override
-	public int selectMaxCareerNum() {
-		return sqlSession.selectOne("selectMaxCareerNum");
+	public int selectMaxCareerNum(MemResumeVO memResumeVO) {
+		return sqlSession.selectOne("selectMaxCareerNum", memResumeVO);
 	}
 
 
 	@Override
-	public int selectMaxProfilesNum() {
-		return sqlSession.selectOne("selectMaxProfilesNum");
+	public int selectMaxProfilesNum(MemResumeVO memResumeVO) {
+		return sqlSession.selectOne("selectMaxProfilesNum", memResumeVO);
 	}
 
 
@@ -204,6 +210,12 @@ public class MemberServiceImpl implements MemberService{
 	@Override
 	public String recruitComName(int announceNum) {
 		return sqlSession.selectOne("recruitComName", announceNum);
+	}
+
+
+	@Override
+	public void deleteApply(Map<String, Object> map) {
+		sqlSession.update("deleteApply", map);
 	}
 }
 

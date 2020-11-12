@@ -12,6 +12,7 @@
 		<result column="BOARD_WRITER"		property="boardWriter"/>
 		<result column="BOARD_WRITER_NAME"	property="boardWriterName"/>
 		<result column="BOARD_COUNT"		property="boardCount"/>
+		<result column="DEL_YN"				property="delYn"/>
 	</resultMap>
 	<resultMap type="com.spring.biz.vo.BoardVO2" id="board2">
 		<result column="BOARD2_NUM" 			property="board2Num"/>
@@ -22,65 +23,192 @@
 		<result column="BOARD2_WRITER"			property="board2Writer"/>
 		<result column="BOARD2_WRITER_NAME"		property="board2WriterName"/>
 		<result column="BOARD2_COUNT"			property="board2Count"/>
+		<result column="DEL_YN2"				property="delYn2"/>
 	</resultMap>
+	<resultMap type="com.spring.biz.vo.BoardComentVO" id="boardComent">
+		<result column="BOARDCOMENT_NUM" 			property="boardComentNum"/>
+		<result column="BOARDCOMENT_WRITER" 		property="boardComentWriter"/>
+		<result column="BOARDCOMENT_EMAIL" 			property="boardComentEmail"/>
+		<result column="BOARDCOMENT_CONTENT" 		property="boardComentContent"/>
+		<result column="BOARDCOMENT_DATE" 			property="boardComentDate"/>
+		<result column="BOARD_NUM" 					property="boardNum"/>
 
-<!-- 	SELECT BOARD_NUM
-		,BOARD_TITLE
-		,BOARD_WRITER
-		,BOARD_VIEWS
-		,TO_CHAR(BOARD_DATE,'YYYY-MM-DD HH24:MI') AS BOARD_DATE
-		,BOARD_WRITER_NAME
-		,BOARD_CONTENT
-	FROM BOARD
-	WHERE BOARD_CARTEGORY ='자유게시판'
-	ORDER BY BOARD_DATE DESC
-	 -->
-	 
-<!-- 	 자게 전체 -->
+	</resultMap>
+	<resultMap type="com.spring.biz.vo.Board2ComentVO" id="board2Coment">
+		<result column="BOARD2COMENT_NUM" 			property="board2ComentNum"/>
+		<result column="BOARD2COMENT_WRITER" 		property="board2ComentWriter"/>
+		<result column="BOARD2COMENT_EMAIL" 		property="board2ComentEmail"/>
+		<result column="BOARD2COMENT_CONTENT" 		property="board2ComentContent"/>
+		<result column="BOARD2COMENT_DATE" 			property="board2ComentDate"/>
+		<result column="BOARD2_NUM" 				property="board2Num"/>
+
+	</resultMap>
+	
+
 <select id="selectFreeBoardList" resultMap="board">
-	 
-		SELECT BOARD_NUM
-			,BOARD_TITLE
-			,BOARD_WRITER
-			,BOARD_VIEWS
-			,TO_CHAR(BOARD_DATE,'YYYY-MM-DD HH24:MI:SS') AS BOARD_DATE
-			,BOARD_WRITER_NAME
-			,BOARD_CONTENT
-			,BOARD_COUNT
-				FROM (
-					SELECT ROWNUM BOARD_COUNT, A.* 
-					FROM (
-							SELECT * 
-							FROM BOARD 
-							 
-							) A
-					)
-	WHERE BOARD_COUNT BETWEEN #{start} AND #{end}
-	ORDER BY BOARD_DATE DESC
+SELECT ROW_NUM
+    ,BOARD_NUM
+    ,BOARD_TITLE
+    ,BOARD_WRITER
+    ,BOARD_VIEWS
+    ,BOARD_DATE
+    ,BOARD_WRITER_NAME
+    ,BOARD_CONTENT
+    ,DEL_YN
+FROM
+(
+    SELECT ROWNUM AS ROW_NUM
+        ,BOARD_NUM
+        ,BOARD_TITLE
+        ,BOARD_WRITER
+        ,BOARD_VIEWS
+        ,BOARD_DATE
+        ,BOARD_WRITER_NAME
+        ,BOARD_CONTENT
+        ,DEL_YN
+    FROM
+    (
+        SELECT BOARD_NUM
+                ,BOARD_TITLE
+                ,BOARD_WRITER
+                ,BOARD_VIEWS
+                ,TO_CHAR(BOARD_DATE,'YYYY-MM-DD HH24:MI:SS') AS BOARD_DATE
+                ,BOARD_WRITER_NAME
+                ,BOARD_CONTENT
+                ,DEL_YN
+        FROM BOARD 
+        WHERE DEL_YN='N'
+        ORDER BY BOARD_NUM DESC
+    )
+)
+WHERE ROW_NUM BETWEEN #{start} AND #{end}
+</select>
 
+<select id="selectMyFreeBoardList" resultMap="board">
+SELECT ROW_NUM
+    ,BOARD_NUM
+    ,BOARD_TITLE
+    ,BOARD_WRITER
+    ,BOARD_VIEWS
+    ,BOARD_DATE
+    ,BOARD_WRITER_NAME
+    ,BOARD_CONTENT
+FROM
+(
+    SELECT ROWNUM AS ROW_NUM
+        ,BOARD_NUM
+        ,BOARD_TITLE
+        ,BOARD_WRITER
+        ,BOARD_VIEWS
+        ,BOARD_DATE
+        ,BOARD_WRITER_NAME
+        ,BOARD_CONTENT
+    FROM
+    (
+        SELECT BOARD_NUM
+                ,BOARD_TITLE
+                ,BOARD_WRITER
+                ,BOARD_VIEWS
+                ,TO_CHAR(BOARD_DATE,'YYYY-MM-DD HH24:MI:SS') AS BOARD_DATE
+                ,BOARD_WRITER_NAME
+                ,BOARD_CONTENT
+        FROM BOARD
+        ORDER BY BOARD_NUM DESC
+    )
+)
+<choose>
+	<when test="memName!=''">
+	WHERE BOARD_WRITER_NAME = #{memName}
+	</when>
+	<otherwise>
+	WHERE BOARD_WRITER_NAME = #{comName}
+	</otherwise>
+</choose>
+
+</select>
+
+<select id="selectMyQaBoardList" resultMap="board2">
+SELECT ROW_NUM
+    ,BOARD2_NUM
+    ,BOARD2_TITLE
+    ,BOARD2_WRITER
+    ,BOARD2_VIEWS
+    ,BOARD2_DATE
+    ,BOARD2_WRITER_NAME
+    ,BOARD2_CONTENT
+FROM
+(
+    SELECT ROWNUM AS ROW_NUM
+        ,BOARD2_NUM
+        ,BOARD2_TITLE
+        ,BOARD2_WRITER
+        ,BOARD2_VIEWS
+        ,BOARD2_DATE
+        ,BOARD2_WRITER_NAME
+        ,BOARD2_CONTENT
+    FROM
+    (
+        SELECT BOARD2_NUM
+                ,BOARD2_TITLE
+                ,BOARD2_WRITER
+                ,BOARD2_VIEWS
+                ,TO_CHAR(BOARD2_DATE,'YYYY-MM-DD HH24:MI:SS') AS BOARD2_DATE
+                ,BOARD2_WRITER_NAME
+                ,BOARD2_CONTENT
+        FROM BOARD2 
+        ORDER BY BOARD2_NUM DESC
+    )
+)
+<choose>
+	<when test="memName!=''">
+	WHERE BOARD2_WRITER_NAME = #{memName}
+	</when>
+	<otherwise>
+	WHERE BOARD2_WRITER_NAME = #{comName}
+	</otherwise>
+</choose>
 
 </select>
 
 <!-- 큐게 전체 -->
 <select id="selectQaBoardList" resultMap="board2">
-		SELECT BOARD2_NUM
-			,BOARD2_TITLE
-			,BOARD2_WRITER
-			,BOARD2_VIEWS
-			,TO_CHAR(BOARD2_DATE,'YYYY-MM-DD HH24:MI:SS') AS BOARD2_DATE
-			,BOARD2_WRITER_NAME
-			,BOARD2_CONTENT
-			,BOARD2_COUNT
-				FROM (
-					SELECT ROWNUM BOARD2_COUNT, A.* 
-					FROM (
-							SELECT * 
-							FROM BOARD2 
-							 
-							) A
-					)
-	WHERE BOARD2_COUNT BETWEEN #{start} AND #{end}
-	ORDER BY BOARD2_DATE DESC
+SELECT ROW2_NUM
+    ,BOARD2_NUM
+    ,BOARD2_TITLE
+    ,BOARD2_WRITER
+    ,BOARD2_VIEWS
+    ,BOARD2_DATE
+    ,BOARD2_WRITER_NAME
+    ,BOARD2_CONTENT
+    ,DEL_YN2
+FROM
+(
+    SELECT ROWNUM AS ROW2_NUM
+        ,BOARD2_NUM
+        ,BOARD2_TITLE
+        ,BOARD2_WRITER
+        ,BOARD2_VIEWS
+        ,BOARD2_DATE
+        ,BOARD2_WRITER_NAME
+        ,BOARD2_CONTENT
+        ,DEL_YN2
+    FROM
+    (
+        SELECT BOARD2_NUM
+                ,BOARD2_TITLE
+                ,BOARD2_WRITER
+                ,BOARD2_VIEWS
+                ,TO_CHAR(BOARD2_DATE,'YYYY-MM-DD HH24:MI:SS') AS BOARD2_DATE
+                ,BOARD2_WRITER_NAME
+                ,BOARD2_CONTENT
+                ,DEL_YN2
+        FROM BOARD2
+        WHERE DEL_YN2 = 'N'
+        ORDER BY BOARD2_NUM DESC
+        
+    )
+)
+WHERE ROW2_NUM BETWEEN #{start} AND #{end}
 </select>
 
 <!-- 자게 검색 -->
@@ -93,9 +221,11 @@
 		,BOARD_WRITER_NAME
 		,BOARD_CONTENT
 	FROM BOARD	
+	
 	<if test="select != '전체' and search != ''">
 		WHERE ${select} LIKE UPPER('%'||#{search}||'%')
 	</if>
+
 	<if test="select != '전체' and search == ''">
 		WHERE ${select} LIKE UPPER('%'||#{search}||'%')
 	</if>
@@ -103,7 +233,7 @@
 		WHERE (
 			BOARD_TITLE LIKE UPPER('%'||#{search}||'%')
 			OR BOARD_CONTENT LIKE UPPER('%'||#{search}||'%')
-			OR BOARD_WRITER LIKE UPPER('%'||#{search}||'%')
+			OR BOARD_WRITER_NAME LIKE UPPER('%'||#{search}||'%')
 			)
 	</if>	
 	ORDER BY BOARD_DATE DESC
@@ -123,13 +253,13 @@
 		AND ${select2} LIKE UPPER('%'||#{search2}||'%')
 	</if>
 	<if test="select2 != '전체' and search2 == ''">
-		AND ${select} LIKE UPPER('%'||#{search}||'%')
+		AND ${select2} LIKE UPPER('%'||#{search2}||'%')
 	</if>
 	<if test="select2 == '전체' and search2 != ''">
 		AND (
 			BOARD2_TITLE LIKE UPPER('%'||#{search2}||'%')
 			OR BOARD2_CONTENT LIKE UPPER('%'||#{search2}||'%')
-			OR BOARD2_WRITER LIKE UPPER('%'||#{search2}||'%')
+			OR BOARD2_WRITER_NAME LIKE UPPER('%'||#{search2}||'%')
 			)
 	</if>	
 	ORDER BY BOARD2_DATE DESC
@@ -194,7 +324,7 @@
 	    ,BOARD2_CONTENT
 	    ,BOARD2_WRITER_NAME
 	FROM BOARD2
-	WHERE BOARD2_NUM=#{boardNum}
+	WHERE BOARD2_NUM=#{board2Num}
 </select>
 
 <!-- 자게 조회수 증가 -->
@@ -215,19 +345,22 @@
 <!-- 자게 게시글 개수 -->
 <select id="countFreeBoard" resultType="int">
 	SELECT COUNT(*) FROM BOARD
+	WHERE DEL_YN = 'N'
 </select>
 
 <!-- 큐게 게시글 개수 -->
 <select id="countQaBoard" resultType="int">
 	SELECT COUNT(*) FROM BOARD2
+	WHERE DEL_YN2 = 'N'
 </select>
 
 <!-- 자게 삭제 -->
-<delete id="deleteFBoard">
-	DELETE BOARD
-		WHERE BOARD_NUM = #{boardNum}
-    	AND BOARD_WRITER = #{boardWriter}
-</delete>
+<update id="deleteFBoard">
+	UPDATE BOARD SET
+		DEL_YN = 'Y'
+	WHERE BOARD_NUM = #{boardNum}
+   	AND BOARD_WRITER = #{boardWriter}
+</update>
 
 <!-- 큐게 삭제 -->
 <delete id="deleteQBoard">
@@ -249,11 +382,82 @@
 <!-- 	큐게 수정 -->
 <update id="updateQBoard">
 	UPDATE BOARD2 SET 
-		BOARD2_TITLE=#{boardTitle}
-		,BOARD2_CONTENT =#{boardContent}
+		BOARD2_TITLE=#{board2Title}
+		,BOARD2_CONTENT =#{board2Content}
 		,BOARD2_DATE = SYSDATE
-	WHERE BOARD2_NUM = #{boardNum}
-    AND BOARD2_WRITER = #{boardWriter}	
+	WHERE BOARD2_NUM = #{board2Num}
+    AND BOARD2_WRITER = #{board2Writer}	
 </update>
+
+
+
+<!-- 자유게시판 댓글 조회 -->
+ <select id="selectBoardComent" resultMap="boardComent">
+	SELECT BOARDCOMENT_NUM
+		,BOARDCOMENT_WRITER
+		,BOARDCOMENT_CONTENT
+		,TO_CHAR(BOARDCOMENT_DATE,'YYYY-MM-DD HH24:MI:SS') AS BOARDCOMENT_DATE
+		,BOARD_NUM
+	FROM BOARDCOMENT
+	WHERE BOARD_NUM=#{boardNum}
+	ORDER BY BOARDCOMENT_NUM ASC
+</select>
+<!-- qa게시판 댓글 조회 -->
+ <select id="selectBoard2Coment" resultMap="board2Coment">
+	SELECT BOARD2COMENT_NUM
+		,BOARD2COMENT_WRITER
+		,BOARD2COMENT_CONTENT
+		,TO_CHAR(BOARD2COMENT_DATE,'YYYY-MM-DD HH24:MI:SS') AS BOARD2COMENT_DATE
+		,BOARD2_NUM
+	FROM BOARD2COMENT
+	WHERE BOARD2_NUM=#{board2Num}
+	ORDER BY BOARD2COMENT_NUM ASC
+</select>
+
+<!-- 자유게시판 댓글 등록  -->
+<insert id="insertBoardComent">
+	INSERT INTO BOARDCOMENT (
+		BOARDCOMENT_NUM
+		,BOARDCOMENT_WRITER
+		,BOARDCOMENT_CONTENT
+		,BOARD_NUM
+		,BOARDCOMENT_EMAIL		
+	) VALUES (
+		(SELECT NVL(MAX(BOARDCOMENT_NUM) + 1 , 1) FROM BOARDCOMENT)
+		,#{boardComentWriter}
+		,#{boardComentContent}
+		,#{boardNum}
+		,#{boardComentEmail}		
+	)
+</insert>
+<!-- qa게시판 댓글 등록  -->
+<insert id="insertBoard2Coment">
+	INSERT INTO BOARD2COMENT (
+		BOARD2COMENT_NUM
+		,BOARD2COMENT_WRITER
+		,BOARD2COMENT_CONTENT
+		,BOARD2_NUM
+		,BOARD2COMENT_EMAIL		
+	) VALUES (
+		(SELECT NVL(MAX(BOARD2COMENT_NUM) + 1 , 1) FROM BOARD2COMENT)
+		,#{board2ComentWriter}
+		,#{board2ComentContent}
+		,#{board2Num}
+		,#{board2ComentEmail}		
+	)
+</insert>
+<!--자유게시판 댓글삭제  -->
+<delete id="deleteBoardComent">
+		DELETE BOARDCOMENT
+		WHERE BOARDCOMENT_NUM = #{boardComentNum}
+    	AND BOARDCOMENT_EMAIL = #{boardComentEmail}
+</delete>
+<!--qa게시판 댓글삭제  -->
+<delete id="deleteBoard2Coment">
+		DELETE BOARD2COMENT
+		WHERE BOARD2COMENT_NUM = #{board2ComentNum}
+    	AND BOARD2COMENT_EMAIL = #{board2ComentEmail}
+</delete>
+
 
 </mapper>

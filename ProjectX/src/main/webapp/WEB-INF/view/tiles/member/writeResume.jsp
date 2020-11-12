@@ -77,7 +77,8 @@ svg{
 						<div class="form-group files uploader offset-md-5">
 							<label for="memImage">사진</label>
 							<input type="file" class="form-control"  id="memImage" name="memImage" disabled>
-							<img id="preview" src="resources/images/memberProfile/${sessionScope.memLogin.memImage }" onerror="this.src='resources/images/profile.png'">
+<%-- 							<img id="preview" src="resources/images/memberProfile/${sessionScope.memLogin.memImage }" onerror="this.src='resources/images/profile.png'"> --%>
+							<img id="preview" src="https://findream.s3.ap-northeast-2.amazonaws.com/images/${sessionScope.memLogin.memImage }" onerror="this.src='resources/images/profile.png'">
 						</div>
 					</div>
 				</div>
@@ -127,7 +128,7 @@ svg{
 									</select>
 								</div>
 								<div class="col-md-6">
-									<input style="height: 40px; margin-left: 30px;" type="text" class="form-control" id="eduMajor" name="eduMajor" placeholder="전공학과">
+									<input style="height: 40px; margin-left: 30px;" type="text" class="form-control" id="eduMajor" name="eduMajor" placeholder="전공학과" autocomplete="off">
 								</div>
 							</div>
 						</div>
@@ -314,7 +315,7 @@ svg{
 
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-<script src="resources/js/writeResume.js?ver=118"></script>
+<script src="resources/js/writeResume.js?ver=119"></script>
 <script type="text/javascript">
 $(document).ready(function(){
 	

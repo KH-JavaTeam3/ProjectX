@@ -6,11 +6,6 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
-</head>
-<body>
-<html>
-<head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>게시판 목록</title>
 </head>
@@ -91,7 +86,5 @@
 		</c:if>
 	</div>
 </div>
-</body>
-</html>
 </body>
 </html>

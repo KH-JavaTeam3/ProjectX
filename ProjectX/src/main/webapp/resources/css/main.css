@@ -32,3 +32,6 @@ a.loginBtn:hover, a.loginBtn:focus {
 #loginSubdiv > ul > li{
 	display: inline-block;
 }
+#rankingBody > tr:hover{
+	cursor: pointer;
+}

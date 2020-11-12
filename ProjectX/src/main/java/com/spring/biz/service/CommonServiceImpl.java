@@ -6,6 +6,8 @@ import java.util.Map;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import com.spring.biz.vo.ApplyVO;
 import com.spring.biz.vo.CompanyInfoVO;
 import com.spring.biz.vo.MemInfoVO;
 import com.spring.biz.vo.RecruitListVO;
@@ -125,26 +127,18 @@ public class CommonServiceImpl implements CommonService{
 	public void updateComCodePass(CompanyInfoVO companyInfoVO) {
 		sqlSession.update("updateComCodePass", companyInfoVO);
 	}
-	
-	
-
-	
-
-	
-	
-	
-	
-//	@Override
-//	public int countBoard() {
-//		// TODO Auto-generated method stub
-//		return 0;
-//	}
-//
-//	@Override
-//	public List<BoardVO> selectBoard(PagingVO pagingVO) {
-//		// TODO Auto-generated method stub
-//		return null;
-//	}
+	@Override
+	public void insertApplyCom(Map<String, Object> map) {
+		sqlSession.insert("insertApplyCom", map);
+	}
+	@Override
+	public List<ApplyVO> selectApplyComList(String memEmail) {
+		return sqlSession.selectList("selectApplyComList", memEmail);
+	}
+	@Override
+	public ApplyVO chkApply(Map<String, Object> map) {
+		return sqlSession.selectOne("chkApply", map);
+	}
 	
 }
 

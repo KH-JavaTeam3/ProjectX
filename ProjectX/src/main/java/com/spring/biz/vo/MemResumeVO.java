@@ -2,10 +2,6 @@ package com.spring.biz.vo;
 
 import java.util.List;
 
-/**
- * @author user
- *
- */
 public class MemResumeVO {
 	private int resumeNum;
 	private String resumeName;
@@ -35,11 +31,6 @@ public class MemResumeVO {
 	private String resumeResult;
 	private MemInfoVO memInfoVO;
 	private int ynN;
-	private int carCareer;
-	private String carType;
-	private String carCompany;
-	private String carPosition;
-	
 	
 	public String getMemName() {
 		return memName;
@@ -52,30 +43,6 @@ public class MemResumeVO {
 	}
 	public void setComName(String comName) {
 		this.comName = comName;
-	}
-	public String getCarCompany() {
-		return carCompany;
-	}
-	public void setCarCompany(String carCompany) {
-		this.carCompany = carCompany;
-	}
-	public String getCarPosition() {
-		return carPosition;
-	}
-	public void setCarPosition(String carPosition) {
-		this.carPosition = carPosition;
-	}
-	public String getCarType() {
-		return carType;
-	}
-	public void setCarType(String carType) {
-		this.carType = carType;
-	}
-	public int getCarCareer() {
-		return carCareer;
-	}
-	public void setCarCareer(int carCareer) {
-		this.carCareer = carCareer;
 	}
 	public int getResumeNum() {
 		return resumeNum;
@@ -243,8 +210,7 @@ public class MemResumeVO {
 				+ ", licenseList=" + licenseList + ", profilesList=" + profilesList + ", careerList=" + careerList
 				+ ", comMypageNum=" + comMypageNum + ", comNum=" + comNum + ", comName=" + comName + ", memName="
 				+ memName + ", announceNum=" + announceNum + ", resumeResult=" + resumeResult + ", memInfoVO="
-				+ memInfoVO + ", ynN=" + ynN + ", carCareer=" + carCareer + ", carType=" + carType + ", carCompany="
-				+ carCompany + ", carPosition=" + carPosition + "]";
+				+ memInfoVO + ", ynN=" + ynN + "]";
 	}
 	
 	

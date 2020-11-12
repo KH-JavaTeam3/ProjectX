@@ -26,4 +26,6 @@ public interface CompanyService {
 	List<ForRecruitVO> resumeInquiryList(String comNum);
 	//기업이 받은 이력서 합격 여부 결정
 	int resumeResultUpdate(MemResumeVO memResumeVO);
+	// 개인의 지원 공고 결과 변경
+	void updateApply(MemResumeVO memResumeVO);
 }

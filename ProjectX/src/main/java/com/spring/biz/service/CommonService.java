@@ -3,7 +3,7 @@ package com.spring.biz.service;
 import java.util.List;
 import java.util.Map;
 
-
+import com.spring.biz.vo.ApplyVO;
 import com.spring.biz.vo.CompanyInfoVO;
 import com.spring.biz.vo.MemInfoVO;
 import com.spring.biz.vo.RecruitListVO;
@@ -63,8 +63,12 @@ public interface CommonService {
 	//날짜가 지난 공고 업데이트
 	int oldListUpdate(int i);
 		
-	//이력서 넣기
+	//기업이 받은 이력서 목록에 삽입
 	int insertComMypage(Map<String, Object> map);
+	
+	//개인이 넣은 이력서 목록에 삽입
+	void insertApplyCom(Map<String, Object> map);
+	
 		
 	//지원한 사람 나이 가져오기
 	List<Integer> selectMemberAge(RecruitListVO recruitListVO);
@@ -83,9 +87,9 @@ public interface CommonService {
 	//메인페이지 조회수 높은것 뽑기
 	List<RecruitListVO> selectViewsList();
 		
-//	// 기업리스트 페이징처리
-//	public int countBoard();
-//
-//	// 페이징 처리 게시글 조회
-//	public List<BoardVO> selectBoard(PagingVO pagingVO);
+	//내가 지원한 이력서 목록
+	List<ApplyVO> selectApplyComList(String memEmail);
+	
+	//이력서 지원 중복체크
+	ApplyVO chkApply(Map<String, Object> map);
 }

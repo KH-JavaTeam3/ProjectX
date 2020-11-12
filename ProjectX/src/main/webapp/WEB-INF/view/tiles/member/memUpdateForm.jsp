@@ -7,7 +7,12 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style type="text/css">
-@font-face { font-family: 'MyLotteBold'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.0/MyLotteBold.woff') format('woff'); font-weight: normal; font-style: normal; }
+@font-face { 
+	font-family: 'MyLotteBold'; 
+	src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.0/MyLotteBold.woff') format('woff'); 
+	font-weight: normal; font-style: normal; 
+}
+
 .memberInfo{
    padding: 100px; 
 /*    margin: 200px; */
@@ -143,8 +148,8 @@ button[type="button"]:hover {
                <input type="password" class="form-control" id="memPass" name="memPass" value="${sessionScope.memLogin.memPass }">
             </div>
             <div class="form-group col-md-6" style="padding: 30px 30px 0px 0px;">
-               <label for="memName">이름</label>
-               <input type="text" class="form-control" id="memName" name="memName" value="${sessionScope.memLogin.memName }">
+               <label for="upMemName">이름</label>
+               <input type="text" class="form-control" id="upMemName" name="memName" value="${sessionScope.memLogin.memName }">
             </div>
             <div class="form-group col-md-6" style="padding: 30px 30px 0px 0px;">
                <label class="col-md-3 control-label" style="padding-left: 0px;">생년월일</label>
@@ -162,8 +167,8 @@ button[type="button"]:hover {
                </div>
             </div>
             <div class="form-group col-md-6" style="padding: 30px 30px 0px 0px;">
-               <label for="memTel1">휴대전화</label>
-               <input type="text" class="form-control" id="memTel1" name="memTel1" value="${sessionScope.memLogin.memTel1 }">
+               <label for="upMemTel1">휴대전화</label>
+               <input type="text" class="form-control" id="upMemTel1" name="memTel1" value="${sessionScope.memLogin.memTel1 }">
             </div>
             <div class="form-group col-md-6" style="padding: 30px 30px 0px 0px;">
                <label for="memTel2">비상 연락처</label>
@@ -178,31 +183,13 @@ button[type="button"]:hover {
             </div>
          </div>
       </div>
-      <div class="col-md-3">
-         <div class="container">
-            <div class="row">
-            <div class="form-group col-md-3" style="padding: 30px 30px 0px 0px;">
-                  <div class="form-group files uploader offset-md-5">
-                     <label for="memImage">사진</label>
-                     <input type="file" class="form-control"  id="memImage" name="file1">
-                     <img id="preview" src="resources/images/memberProfile/${sessionScope.memLogin.memImage }">
-                  </div>
-               </div>
-            </div>
-         </div>
-      </div>
    </div>
    <div style="height: 30px;"></div>
    <div align="center">
         <input type="submit" class="btn btn-primary" value="수정">&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<button class="btn btn-primary" type="button" onClick="history.back()">취소</button>
      </div>
 <script type="text/JavaScript" src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
-<script src="resources/js/writeResume.js?ver=3"></script>
-<script type="text/javascript">
-   if($('#preview').attr("src").length < 35){
-      $('#preview').hide();
-   }
-</script>
+<script type="text/javascript" src="resources/js/memUpdateForm.js?ver=4"></script>
 </form>
 </body>
 </html>

@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.spring.biz.service.CommonService;
 import com.spring.biz.service.MemberService;
 import com.spring.biz.util.Statics;
+import com.spring.biz.vo.ApplyVO;
 import com.spring.biz.vo.CompanyInfoVO;
 import com.spring.biz.vo.ForRecruitVO;
 import com.spring.biz.vo.LikeCompanyVO;
@@ -122,13 +123,14 @@ public class CommonController {
 	public String memberLogin(MemInfoVO memInfoVO, String keepLogin, HttpSession session, HttpServletResponse response, Model model) {
 		MemInfoVO vo = commonService.memberLogin(memInfoVO);
 		String result = "mLoginFail";
+		boolean isMem = true;
 		if(vo != null) {
 			vo.setMemBirth(vo.getMemBirth().substring(0, 10));
 			session.setAttribute("memLogin", vo);
 			
 			//자동 로그인
 			if(keepLogin != null) {
-				commonService.updateCookie(Statics.makeCookie(session.getId(), vo.getMemEmail(), response));//쿠쿠키쿠키
+				commonService.updateCookie(Statics.makeCookie(session.getId(), vo.getMemEmail(), response, isMem));//쿠쿠키쿠키
 			}
 			result = "mLoginSuccess";
 		}
@@ -147,10 +149,11 @@ public class CommonController {
 	public String companyLogin(CompanyInfoVO companyInfoVO, String keepLogin, HttpSession session, HttpServletResponse response, Model model) {
 		CompanyInfoVO vo = commonService.companyLogin(companyInfoVO);
 		String result = "cLoginFail";
+		boolean isMem = false;
 		if(vo != null) {
 			session.setAttribute("comLogin", vo);
 			if(keepLogin != null) {
-				commonService.updateComCookie(Statics.makeCookie(session.getId(), vo.getComNum(), response)); //쿠쿠키쿠키
+				commonService.updateComCookie(Statics.makeCookie(session.getId(), vo.getComNum(), response, isMem)); //쿠쿠키쿠키
 			}
 			result = "cLoginSuccess";
 		}
@@ -255,8 +258,7 @@ public class CommonController {
 		//성별 데이터 조회 및 넘기기(그래프)
 		List<String> list1 =  commonService.selectMemberGender(recruitListVO.getAnnounceNum());
 		
-		int genderM =0;
-		int genderW =0;
+		int genderM = 0, genderW = 0, non = 0;
 		for(String gender : list1) {
 			if(gender.equals("M")) {
 				genderM +=1;
@@ -265,7 +267,6 @@ public class CommonController {
 				genderW +=1;
 			}
 		}
-		int non = 0;
 		if(genderM == 0 && genderW == 0) {
 			non = 1;
 		}
@@ -280,15 +281,37 @@ public class CommonController {
 		return "tiles/common/companyDetail";
 	}
 	
+	//기업에 이력서 두번 안넣게 조회해보기
+	@ResponseBody
+	@RequestMapping(value = "/chkApply.do")
+	public String chkApply(int announceNum, HttpSession session) {
+		Map<String, Object> map = new HashMap<>();
+		map.put("memEmail", ((MemInfoVO)session.getAttribute("memLogin")).getMemEmail());
+		map.put("announceNum", announceNum);
+		ApplyVO vo = commonService.chkApply(map);
+		String result = "";
+		if(vo != null) {
+			result = "1";
+		}else {
+			result = "0";
+		}
+		return result;
+	}
+	
 	//기업 이력서 넣기
 	@RequestMapping(value = "/resumeApp.do")
-	public String resumeApp(ForRecruitVO forRecruitVO) {
+	public String resumeApp(ForRecruitVO forRecruitVO, HttpSession session, Model model) {
 		Map<String, Object> map = new HashMap<>();
 		map.put("comNum", forRecruitVO.getComNum());
 		map.put("announceNum",forRecruitVO.getAnnounceNum());
 		map.put("resumeNum",forRecruitVO.getResumeNum());
-		commonService.insertComMypage(map);
-		return "redirect:main.do";
+		commonService.insertComMypage(map); // 기업이 받은 이력서
+		Map<String, Object> map2 = new HashMap<>();
+		map2.put("memEmail", ((MemInfoVO)session.getAttribute("memLogin")).getMemEmail());
+		map2.put("announceNum", forRecruitVO.getAnnounceNum());// 개인이 지원한 공고. 이메일, 공고번호
+		commonService.insertApplyCom(map2);
+		model.addAttribute("result", "resume");
+		return "result/result";
 	}
 	
 	//기업 리스트 조회
@@ -319,7 +342,6 @@ public class CommonController {
 		model.addAttribute("result", "pass");
 		return "result/result";
 	}
-	
 	//기업 비밀번호 찾기
 	@ResponseBody
 	@RequestMapping(value = "/findComPass.do")

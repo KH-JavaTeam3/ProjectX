@@ -25,17 +25,12 @@
 		<div class="row" style="margin-top: 30px;">
 			<div class="col-md-3">
 				<div class="list-group" id="adminSide">
-					<button class="list-group-item list-group-item-action" id="companyListBtn">
-						기업목록</button> 
-					<button class="list-group-item list-group-item-action" id="memberListBtn">
-						개인목록</button> 
-					
+					<button class="list-group-item list-group-item-action" id="companyListBtn">기업목록</button> 
+					<button class="list-group-item list-group-item-action" id="memberListBtn">개인목록</button> 
 				</div>
 			</div>
-			<div class="col-md-4 text-center" id="listDiv">
-			</div>
-			<div class="col-md-5 text-center" id="detailDiv">
-			</div>
+			<div class="col-md-4 text-center" id="listDiv"></div>
+			<div class="col-md-5 text-center" id="detailDiv"></div>
 		</div>
 	</div>
 

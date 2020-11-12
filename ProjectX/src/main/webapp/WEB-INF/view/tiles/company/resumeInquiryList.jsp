@@ -13,6 +13,10 @@
     line-height: 1.5;
 	text-align: center;
 }
+
+.title{
+	font-weight: bold;
+}
 table.type09 thead th {
     padding: 10px;
     font-weight: bold;
@@ -56,15 +60,14 @@ table.type09 td {
 		        <th colspan="9">${resumeInquiry.memEmail }의 이력서</th>
 		    </tr>
 		    </thead>
-		    	<tr>
+		    	<tr class="title">
 		    		<td>제목</td>
 		    		<td>학력</td>
 		    		<td colspan="2">학교</td>
 		    		<td>전공</td>
 		    		<td>학과</td>
 		    		<td>졸업여부</td>
-		    		<td></td>
-
+	    			<td colspan="2">희망 급여</td>
 		    	</tr>
 	<tbody>
 		    <tr>
@@ -74,30 +77,12 @@ table.type09 td {
 		        <td>${resumeInquiry.eduType }</td>
 		        <td>${resumeInquiry.eduMajor }</td>
 		        <td>${resumeInquiry.eduIsOver }</td>
-		        <td></td>
-		        
-		    </tr>
-		    <tr style="border-top: 3px solid #ABC2E8;">
-	    		<td>지역</td>
-	    		<td>경력 기간</td>
-	    		<td>경력 직종</td>
-	    		<td colspan="2">희망 급여</td>
-	    		<td></td>
-	    		<td></td>
-	    		<td></td>
-		    </tr>
-		    <tr>
-		    	<td>${resumeInquiry.eduLoc }</td>
-		        <td>${resumeInquiry.carCareer }</td>
-		        <td>${resumeInquiry.carType }</td>
-		        <td colspan="2">${resumeInquiry.hopeSal }</td>
-		        <td></td>
-		        <td></td>
-		        <td></td>
+		        <td colspan="2">${resumeInquiry.hopeSal } 만원</td>
 		    </tr>
 	</tbody>
 		    
 		</table>
+		<c:if test="${resumeInquiry.resumeResult == 'D' }"><samp style="font-size: 14px; font-weight: bold; color: green;">결과 대기</samp></c:if>
 		<c:if test="${resumeInquiry.resumeResult == 'N' }"><samp style="font-size: 14px; font-weight: bold; color: red;">불합격</samp></c:if>
 		<c:if test="${resumeInquiry.resumeResult == 'Y' }"><samp style="font-size: 14px; font-weight: bold; color: blue;">합격</samp></c:if>
 			<div class="action col-md-12" align="center" style="margin: 10px;">

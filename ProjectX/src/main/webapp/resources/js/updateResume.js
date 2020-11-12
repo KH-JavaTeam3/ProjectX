@@ -48,7 +48,7 @@ $(document).ready(function(){
 						  </div>
 						</div>
 					</div>`;
-		$('#licenseFather').children().last().append(str);
+		$('#licenseFather').append(str);
 		
 			$('.licDate').datepicker({
 				changeYear: true, 
@@ -86,10 +86,10 @@ $(document).ready(function(){
 						</div>
 					   <div class="form-group col-md-12">
 						  <label >자기소개서 내용</label>
-						  <textarea rows="10" cols="60" class="form-control"  name="proContent"></textarea>
+						  <textarea rows="10" cols="60" class="form-control"  name="proContent" style="word-wrap: break-word;white-space: pre-wrap;white-space: -moz-pre-wrap;white-space: -pre-wrap;white-space: -o-pre-wrap;word-break:break-all;"></textarea>
 						</div>
 				  </div>`;
-		$('#profilesFather').children().last().append(str);
+		$('#profilesFather').append(str);
 	});
 	
 	//추가 프로필 제거
@@ -132,7 +132,7 @@ $(document).ready(function(){
 					   </div>
 					 </div>
 					</div>`;
-		$('#careerTotal').children().last().append(str);
+		$('#careerTotal').append(str);
 	});
 	
 	//추가한 경력칸 삭제

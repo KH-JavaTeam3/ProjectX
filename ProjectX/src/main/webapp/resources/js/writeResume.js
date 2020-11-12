@@ -66,7 +66,7 @@ $(document).ready(function(){
 						</div>
 					   <div class="form-group col-md-12">
 						  <label >자기소개서 내용</label>
-						  <textarea rows="10" cols="60" class="form-control"  name="proContent"></textarea>
+						  <textarea rows="10" cols="60" class="form-control" name="proContent" wrap="hard"></textarea>
 						</div>
 				  </div>`;
 		$('#profileDiv').append(str);

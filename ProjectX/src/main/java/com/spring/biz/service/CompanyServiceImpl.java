@@ -61,6 +61,11 @@ public class CompanyServiceImpl implements CompanyService{
 		return sqlSession.update("resumeResultUpdate", memResumeVO);
 	}
 
+	@Override
+	public void updateApply(MemResumeVO memResumeVO) {
+		sqlSession.update("updateApply", memResumeVO);
+	}
+
 	
 }
 

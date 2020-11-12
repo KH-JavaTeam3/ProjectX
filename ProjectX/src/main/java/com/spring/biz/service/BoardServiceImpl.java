@@ -6,6 +6,8 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.spring.biz.vo.Board2ComentVO;
+import com.spring.biz.vo.BoardComentVO;
 import com.spring.biz.vo.BoardVO;
 import com.spring.biz.vo.BoardVO2;
 import com.spring.biz.vo.PageVO;
@@ -44,7 +46,7 @@ public class BoardServiceImpl implements BoardService{
 	//자게 삭제
 	@Override
 	public void deleteFBoard(BoardVO boardVO) {
-		sqlSession.delete("deleteFBoard",boardVO);
+		sqlSession.update("deleteFBoard",boardVO);
 	}
 	//큐게 삭제
 	@Override
@@ -115,8 +117,53 @@ public class BoardServiceImpl implements BoardService{
 	
 	//큐게 수정
 	@Override
-	public void updateQBoard(BoardVO boardVO) {
-		sqlSession.update("updateQBoard", boardVO);
+	public void updateQBoard(BoardVO2 boardVO2) {
+		sqlSession.update("updateQBoard", boardVO2);
+	}
+
+	@Override
+	public List<BoardVO> selectMyFreeBoardList(PageVO pageVO) {
+		return sqlSession.selectList("selectMyFreeBoardList",pageVO);
+	}
+	
+	
+	//게시판 댓글 등록
+	@Override
+	public int insertBoardComent(BoardComentVO boardComentVO) {	
+		return sqlSession.insert("insertBoardComent",boardComentVO);
+	}
+
+	@Override
+	public List<BoardComentVO> selectBoardComent(int boardNum) {
+		
+		return sqlSession.selectList("selectBoardComent",boardNum);
+	}
+
+	@Override
+	public int deleteBoardComent(BoardComentVO boardComentVO) {
+		
+		return sqlSession.delete("deleteBoardComent",boardComentVO);
+	}
+
+	@Override
+	public List<BoardVO2> selectMyQaBoardList(PageVO pageVO) {
+		
+		return sqlSession.selectList("selectMyQaBoardList",pageVO);
+	}
+// QA 3개
+	@Override
+	public int insertBoard2Coment(Board2ComentVO board2ComentVO) {
+		return sqlSession.insert("insertBoard2Coment",board2ComentVO);
+	}
+
+	@Override
+	public List<Board2ComentVO> selectBoard2Coment(int board2Num) {
+		return sqlSession.selectList("selectBoard2Coment",board2Num);
+	}
+
+	@Override
+	public int deleteBoard2Coment(Board2ComentVO board2ComentVO) {
+		return sqlSession.delete("deleteBoard2Coment",board2ComentVO);
 	}
 
 

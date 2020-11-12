@@ -28,12 +28,27 @@
 .moveToResumeTd:hover {
 	cursor: pointer;
 }
+
+body > a{
+	font-size: 17px;
+	
+}
+
+body > a:hover {
+	text-decoration: none;
+	cursor: pointer;
+}
 </style>
 </head>
 <body>
 	<div style="height: 30px;"></div>
 	<div align="center">
-		<span style="font-weight: bold; font-size: 30px; font-family: 'MyLotteBold'; color: #0F4C81; position: relative; right: 555px;">이력서 LIST</span>
+		<a href="writeResume.me" style="position: relative; left: 42.6%; top: 11px;">
+		<svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-pencil" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+ 		 <path fill-rule="evenodd" d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5L13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175l-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z"/>
+		</svg>
+		이력서 등록</a>
+		<span style="font-weight: bold; font-size: 30px; font-family: 'MyLotteBold'; color: #0F4C81; position: relative; right: 604px;">이력서 LIST</span>
 		<div style="height: 10px;"></div>
 		<div class="col-md-10" style="border: 5px solid #658DC6; border-radius: 10px;">
 			<div style="height: 10px;"></div>
@@ -56,7 +71,7 @@
 						<td style="cursor: default;"></td>
 					</tr>
 					<c:forEach items="${resumeList }" var="re" varStatus="status">
-						<tr data-attr="${re.resumeNum }">
+						<tr data-attr="${re.resumeNum }" class="table">
 							<td class="moveToResumeTd">
 								<div class="col-md-2">
 									<svg width="3em" height="3em" viewBox="0 0 16 16" class="bi bi-file-text" fill="currentColor" xmlns="http://www.w3.org/2000/svg">

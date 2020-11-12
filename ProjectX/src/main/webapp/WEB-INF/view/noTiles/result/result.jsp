@@ -40,6 +40,10 @@
 	if(result === 'pass'){
 		goMain('비밀번호가 변경되었습니다. 다시 로그인해주십시오.');
 	}
+	if(result === 'resume'){
+		alert('지원되었습니다.');
+		location.href='companyList.do';
+	}
 	function goMain(notice){
 		alert(notice);
 		location.href='main.do';

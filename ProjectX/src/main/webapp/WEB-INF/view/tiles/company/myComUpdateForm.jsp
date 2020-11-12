@@ -38,39 +38,38 @@ input[type="button"] {
          <div class="form-row">
             <div class="form-group col-md-6" style="padding: 30px 50px 0px 30px;">
                <label for="comEmail">이메일</label>
-               <input type="email" class="form-control" id="comEmail" name="comEmail" value="${sessionScope.comLogin.comEmail }">
+               <input type="email" class="form-control"  name="comEmail" value="${sessionScope.comLogin.comEmail }">
             </div>
             <div class="form-group col-md-6" style="padding: 30px 50px 0px 30px;">
                <label for="comName">법인명</label>
-               <input type="text" class="form-control" id="comName" name="comName" value="${sessionScope.comLogin.comName}">
+               <input type="text" class="form-control" name="comName" value="${sessionScope.comLogin.comName}">
             </div>
             <div class="form-group col-md-6" style="padding: 30px 50px 0px 30px;">
                <label for="comCeo">대표자명</label>
-               <input type="text" class="form-control" id="comCeo" name="comCeo" value="${sessionScope.comLogin.comCeo}">
+               <input type="text" class="form-control"  name="comCeo" value="${sessionScope.comLogin.comCeo}">
             </div>
             <div class="form-group col-md-6" style="padding: 30px 50px 0px 30px;">
                <label for="comType">산업군</label>
-               <input type="text" class="form-control" id="comType" name="comType" value="${sessionScope.comLogin.comType}">
+               <input type="text" class="form-control"  name="comType" value="${sessionScope.comLogin.comType}">
             </div>
             <div class="form-group col-md-6"  style="padding: 30px 50px 0px 30px;">
                <label for="comLoc">본사 주소</label>
                   <input type="button" class="btn btn-primary" onClick="openDaumZipAddress();" value="주소찾기" style="background: #ABC2E8; border-color: #ABC2E8;" /><br/>
-                  <input type="text" id="comLoc"  style="width: 99%;" value="${sessionScope.comLogin.comLoc }" name="comLoc"/>
+                  <input type="text" class="form-control"   style="width: 99%;" value="${sessionScope.comLogin.comLoc }" name="comLoc"/>
             </div>
-            <div class="form-group col-md-6"  style="padding: 30px 50px 0px 30px;">
+            <div class="form-group col-md-6"  style="padding: 38px 50px 0px 30px;">
                <label for="comLocDetail">상세 주소</label>
-                  <input type="text" id="comLocDetail"   name="comLocDetail" style="width: 99%;" value="${sessionScope.comLogin.comLoc }"/>
+                  <input type="text" class="form-control"    name="comLocDetail" style="width: 99%;" value="${sessionScope.comLogin.comLocDetail }"/>
             </div>
             <div class="form-group col-md-6" style="padding: 30px 50px 0px 30px;">
                <label for="comTel">연락처</label>
-               <input type="text" class="form-control" id="comTel" name=comTel value="${sessionScope.comLogin.comTel}">
+               <input type="text" class="form-control"  name=comTel value="${sessionScope.comLogin.comTel}">
             </div>
-            <div class="col-md-12">
-				<div class="custom-file mb-3" >
-				    <input type="file" class="custom-file-input" id="validatedCustomFile" name="file1" required>
-				    <label class="custom-file-label" for="validatedCustomFile" id="registImage">${sessionScope.comLogin.comImage }</label>
-		     	</div>
-			</div>
+            <div class="form-group col-md-6" style="padding: 34px 50px 0px 30px;">
+            	<label for="comTel">기업 로고</label>
+			    <input type="file" class="custom-file-input" id="validatedCustomFile" name="file1" >
+			    <label class="custom-file-label" for="validatedCustomFile" id="registImage" style="position: absolute;top: 60px;width: 670px;left: 28px;">${sessionScope.comLogin.comImage }</label>
+            </div>
          </div>
       </div>
    </div>
@@ -78,7 +77,7 @@ input[type="button"] {
    <div align="center">
   <button type="submit" class="btn btn-primary">수정</button>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<button class="btn btn-danger" type="button" onClick="location.href='comMypage.co'">취소</button>
   </div>
-<script type="text/JavaScript"    src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
+<script type="text/JavaScript" src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 <script type="text/javascript">
 
    function openDaumZipAddress() {

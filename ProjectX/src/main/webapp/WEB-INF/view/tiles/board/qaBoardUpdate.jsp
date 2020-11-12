@@ -53,51 +53,38 @@ select:invalid {
 	</div>
 	<div style="height: 50px;"></div>
 	<form action="updateBoard.bo" method="post" id="formAbc">
-		<input type="hidden" name="boardNum" value="${detail.board2Num }">
+		<input type="hidden" name="board2Num" value="${detail.board2Num }">
 		<input type="hidden" name="category" value="qa">
 		<c:if test="${not empty sessionScope.memLogin }">
-			<input type="hidden" name="boardWriter"
-				value="${sessionScope.memLogin.memEmail }">
-			<input type="hidden" name="boardWriterName"
-				value="${sessionScope.memLogin.memName }">
+			<input type="hidden" name="board2Writer"	value="${sessionScope.memLogin.memEmail }">
+			<input type="hidden" name="board2WriterName" value="${sessionScope.memLogin.memName }">
 		</c:if>
 		<c:if test="${not empty sessionScope.comLogin }">
-			<input type="hidden" name="boardWriter"
-				value="${sessionScope.comLogin.comNum }">
-			<input type="hidden" name="boardWriterName"
-				value="${sessionScope.comLogin.comName }">
+			<input type="hidden" name="board2Writer"	value="${sessionScope.comLogin.comNum }">
+			<input type="hidden" name="board2WriterName"	value="${sessionScope.comLogin.comName }">
 		</c:if>
 		<div style="width: 80%; height: 80%" class="mx-auto">
 			<div class="form-row mx-auto">
 				<div class="form-group">
-					<input type="text" class="form-control" placeholder="제목"
-						style="width: 1227px;" name="boardTitle" required
-						value="${detail.board2Title }">
+					<input type="text" class="form-control" placeholder="제목"style="width: 1227px;" name="board2Title" required value="${detail.board2Title }">
 				</div>
 			</div>
 
 			<div class="form-group">
-				<textarea class="form-control" rows="15" placeholder="내용"
-					name="boardContent" required>${detail.board2Content}</textarea>
+				<textarea class="form-control" rows="15" placeholder="내용"	name="board2Content" required>${detail.board2Content}</textarea>
 			</div>
 		</div>
 		<div style="height: 180px;" class="footer1 button">
-			<input type="button" value="뒤로가기" class="button col-md-1"
-				id="backBtn"
-				style="display: inline-block; background: #4876ef; color: white; text-align: center; border: 3px solid #f1f3f9; border-bottom: none; height: 50px; line-height: 50px; left: -27px;">
-
-			<input type="button" value="수정하기" class="button col-md-1"
-				id="updateBtn"
-				style="display: inline-block; background: #4876ef; color: white; text-align: center; border: 3px solid #f1f3f9; border-bottom: none; height: 50px; line-height: 50px; left: -27px;">
-
+			<input type="button" value="뒤로가기" class="button col-md-1"id="backBtn"style="display: inline-block; background: #4876ef; color: white; text-align: center; border: 3px solid #f1f3f9; border-bottom: none; height: 50px; line-height: 50px; left: -27px;">
+			<input type="button" value="수정하기" class="button col-md-1"id="updateBtn"	style="display: inline-block; background: #4876ef; color: white; text-align: center; border: 3px solid #f1f3f9; border-bottom: none; height: 50px; line-height: 50px; left: -27px;">
 		</div>
 	</form>
 	<script type="text/javascript">
 		$(document).on('click', '#backBtn', function() {
-			var boardNum = $('#boardNum').val();
+			var board2Num = $('#board2Num').val();
 			var result = confirm("입력한 글이 사라집니다. 그래도 이동하시겠습니까?");
 			if (result) {
-				location.href = "boardDetail.bo?boardNum=" + boardNum;
+				location.href = "board2Detail.bo?board2Num=" + board2Num;
 			}
 		});
 		$(document).on('click', '#updateBtn', function() {

@@ -156,7 +156,8 @@ svg{
 								<div class="form-group files uploader offset-md-5">
 								<div style="height: 15px;"></div>
 									<input type="file" class="form-control"  id="memImage" name="memImage" disabled>
-									<img id="preview" src="resources/images/memberProfile/${sessionScope.memLogin.memImage }" onerror="this.src='resources/images/profile.png'">
+<%-- 									<img id="preview" src="resources/images/memberProfile/${sessionScope.memLogin.memImage }" onerror="this.src='resources/images/profile.png'"> --%>
+									<img id="preview" src="https://findream.s3.ap-northeast-2.amazonaws.com/images/${sessionScope.memLogin.memImage }" onerror="this.src='resources/images/profile.png'">
 								</div>
 							</div>
 						</div>

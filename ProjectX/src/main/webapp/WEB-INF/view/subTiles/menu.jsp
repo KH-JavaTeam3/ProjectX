@@ -468,7 +468,6 @@ label{
 			</div>
 		</div>
 	</div>
-
-	<script src="resources/js/menu.js?ver=4"></script>
+	<script src="resources/js/menu.js?ver=11"></script>
 </body>
 </html>

@@ -97,10 +97,6 @@
 		<result column="ANNOUNCE_NUM"			property="announceNum"/>
 		<result column="RESUME_NUM"				property="resumeNum"/>
 		<result column="RESUME_RESULT"			property="resumeResult"/>
-		<result column="CAR_CAREER"			property="carCareer"/>
-		<result column="CAR_TYPE"			property="carType"/>
-		<result column="CAR_COMPANY"			property="carCompany"/>
-		<result column="CAR_POSITION"			property="carPosition"/>
 	</resultMap>
 	
 	<!-- 공고 등록 -->
@@ -226,6 +222,7 @@ WHERE ANNOUNCE_NUM IN
 	    ,COM_LOC_DETAIL
 	    ,COM_TYPE
 	    ,COM_TEL
+	    ,COM_IMAGE
 	FROM COMPANY_INFO
 	WHERE COM_NUM = #{comNum}
 </select>
@@ -276,14 +273,31 @@ WHERE ANNOUNCE_NUM IN
 	
 	<!-- 이력서 합격 불합격 -->
 	<update id="resumeResultUpdate">
-	UPDATE COM_MYPAGE SET
-	<if test="ynN == 1">
-	RESUME_RESULT = 'Y' 
-	</if> 
-	<if test="ynN == 0">
-	RESUME_RESULT = 'N' 
-	</if> 
-	WHERE COM_MYPAGE_NUM = #{comMypageNum}
+		UPDATE COM_MYPAGE SET
+		<if test="ynN == 1">
+			RESUME_RESULT = 'Y' 
+		</if> 
+		<if test="ynN == 0">
+			RESUME_RESULT = 'N' 
+		</if> 
+		WHERE COM_MYPAGE_NUM = #{comMypageNum}
+	</update>
+	
+<!-- 	기업이 받은 지원이력서 조회 -->
+	<update id="updateApply">
+		UPDATE APPLY_COM SET
+		<if test="ynN == 1">
+			RESUME_RESULT = '합격' 
+		</if> 
+		<if test="ynN == 0">
+			RESUME_RESULT = '불합격' 
+		</if>
+		WHERE MEM_EMAIL = #{memEmail}
+		AND ANNOUNCE_NUM = (SELECT A.ANNOUNCE_NUM 
+							FROM COM_MYPAGE C, APPLY_COM A
+							WHERE C.ANNOUNCE_NUM = A.ANNOUNCE_NUM
+							AND COM_MYPAGE_NUM = #{comMypageNum}
+							)
 	</update>
 	
 </mapper>

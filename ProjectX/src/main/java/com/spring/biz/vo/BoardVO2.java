@@ -11,7 +11,22 @@ public class BoardVO2 {
 	private String select2;
 	private String search2;
 	private int board2Count;
+	private String board2RealWriterName;
+	private String delYn2;
 	
+	
+	public String getDelYn2() {
+		return delYn2;
+	}
+	public void setDelYn2(String delYn2) {
+		this.delYn2 = delYn2;
+	}
+	public String getBoard2RealWriterName() {
+		return board2RealWriterName;
+	}
+	public void setBoard2RealWriterName(String board2RealWriterName) {
+		this.board2RealWriterName = board2RealWriterName;
+	}
 	public String getBoard2Title() {
 		return board2Title;
 	}
@@ -77,7 +92,8 @@ public class BoardVO2 {
 		return "BoardVO2 [board2Title=" + board2Title + ", board2Writer=" + board2Writer + ", board2Content="
 				+ board2Content + ", board2Views=" + board2Views + ", board2Date=" + board2Date + ", board2Num="
 				+ board2Num + ", board2WriterName=" + board2WriterName + ", select2=" + select2 + ", search2=" + search2
-				+ ", board2Count=" + board2Count + "]";
+				+ ", board2Count=" + board2Count + ", board2RealWriterName=" + board2RealWriterName + ", delYn2="
+				+ delYn2 + "]";
 	}
 	
 	

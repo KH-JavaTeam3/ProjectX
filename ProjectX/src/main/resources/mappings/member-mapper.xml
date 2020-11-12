@@ -272,7 +272,7 @@
 				, LIC_DATE
 				, RESUME_NUM
 			) VALUES (
-				#{licNum}
+				(SELECT NVL(MAX(LIC_NUM) + 1, 1) FROM LICENSE)
 			 	, #{licName}
 			 	, #{licLoc}
 			 	, #{licGrade}
@@ -298,7 +298,7 @@
 				, PRO_CONTENT
 				, RESUME_NUM
 			) VALUES (
-				#{proNum}
+				(SELECT NVL(MAX(PRO_NUM) + 1, 1) FROM PROFILES)
 			 	, #{proTitle}
 			 	, #{proContent}
 			 	, #{resumeNum}
@@ -326,7 +326,7 @@
 				, CAR_POSITION
 				, RESUME_NUM
 			) VALUES (
-				#{carNum}
+				(SELECT NVL(MAX(CAR_NUM) + 1, 1) FROM CAREER)
 			 	, #{carCompany}
 			 	, #{carCareer}
 			 	, #{carType}
@@ -498,7 +498,7 @@
 	
 	<!-- 관심기업에 추가 -->
 	<insert id="insertLikeCompany">
-		INSERT INTO LIKE_(
+		INSERT INTO LIKE_COMPANY(
 			LIKE_NUM
 			, COM_NUM
 			, MEM_EMAIL)VALUES(
@@ -531,19 +531,20 @@
 	</select>
 	
 	<select id="selectMaxLicNum" resultType="int">
-		SELECT NVL(MAX(LIC_NUM), 1)
+		SELECT NVL(MAX(LIC_NUM), 0)
 		FROM LICENSE
 	</select>
 	
 	<select id="selectMaxProfilesNum" resultType="int">
-		SELECT NVL(MAX(PRO_NUM), 1)
+		SELECT NVL(MAX(PRO_NUM), 0)
 		FROM PROFILES
 	</select>
 	
 	<select id="selectMaxCareerNum" resultType="int">
-		SELECT NVL(MAX(CAR_NUM), 1)
+		SELECT NVL(MAX(CAR_NUM), 0)
 		FROM CAREER
 	</select>
+	
 	<!-- 이력서 지원자에 대한 기업 이름 뽑기 -->
 	<select id="recruitComName" resultType="String">
 	SELECT COM_NAME
@@ -551,4 +552,13 @@
         WHERE COM_NUM = (SELECT COM_NUM FROM RECRUIT_LIST
                             WHERE ANNOUNCE_NUM = #{announceNum})
 	</select>
+	
+<!-- 	내가 지원한 이력서 삭제 -->
+	<update id="deleteApply">
+		UPDATE APPLY_COM
+		SET IS_DELETE = 'Y'
+		WHERE APPLY_NUM = #{applyNum}
+		AND MEM_EMAIL = #{memEmail}
+	</update>
+	
 </mapper>

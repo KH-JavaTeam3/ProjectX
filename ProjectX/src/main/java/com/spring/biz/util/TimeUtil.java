@@ -7,8 +7,8 @@ public class TimeUtil {
 	public static String getNowDateTime(){
 		Calendar cal = Calendar.getInstance();
 		String year = cal.get(Calendar.YEAR) + "";
-		String month = cal.get(Calendar.MONTH) + "";
-		String day = cal.get(Calendar.DAY_OF_MONTH + 1) + "";
+		String month = cal.get(Calendar.MONTH) + 1 + "";
+		String day = cal.get(Calendar.DAY_OF_MONTH) + "";
 		String hour = cal.get(Calendar.HOUR) + "";
 		String minute = cal.get(Calendar.MINUTE) + "";
 		String second = cal.get(Calendar.SECOND) + "";

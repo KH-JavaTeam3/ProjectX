@@ -30,9 +30,9 @@ font-family: 'NEXON Lv2 Gothic Bold';
 	<table class="table">
 	<colgroup>
 		<col width="30%">
-		<col width="10%">
 		<col width="15%">
-		<col width="10%">
+		<col width="25%">
+		<col width="15%">
 		<col width="20%">
 	</colgroup>
 		<tr onclick="location.href='companyDetail.do?comNum=${likeRecruit.comNum}&announceNum=${likeRecruit.announceNum }'">

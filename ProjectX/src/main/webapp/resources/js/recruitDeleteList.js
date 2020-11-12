@@ -41,7 +41,10 @@ $(document).ready(function(){
 		$('.chk:checked').each(function(index, element) {
 			announceNums[index] = $(element).val();
 		})
-		location.href = 'recruitDelete.co?announceNums='+announceNums;
+		var result = confirm("정말 삭제하시겠습니까?");
+		if(result){
+			location.href = 'recruitDelete.co?announceNums='+announceNums;
+		}
 		
 	});
 	//클릭 이벤트

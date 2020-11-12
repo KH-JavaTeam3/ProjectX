@@ -5,8 +5,12 @@ public class PageVO {
 		private int nowPage, startPage, endPage, total, cntPerPage, lastPage , start, end;
 		private int cntPage = 5;
 		private boolean isNext;
+		private String memName;
+		private String comName;
 		
 		public PageVO() {
+			memName = "";
+			comName = "";
 		}
 		public PageVO(int total, int nowPage, int cntPerPage) {
 			setNowPage(nowPage);
@@ -126,6 +130,19 @@ public class PageVO {
 					isNext = true;
 				}
 			}
+		}
+		
+		public String getMemName() {
+			return memName;
+		}
+		public void setMemName(String memName) {
+			this.memName = memName;
+		}
+		public String getComName() {
+			return comName;
+		}
+		public void setComName(String comName) {
+			this.comName = comName;
 		}
 		@Override
 		public String toString() {

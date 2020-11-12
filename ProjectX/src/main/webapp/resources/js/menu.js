@@ -19,9 +19,9 @@ $(document).ready(function(){
 	
 	//이메일 체크
 	$(document).on('click', '#emailChk', function(){
-		let memEmail = $(this).next().val();
+		let memEmail = $('#joinMemEmail').val();
 		if(memEmail != "" && memEmail != null){
-			emailChkAjax(memEmail);
+			emailChkAjax(memEmail, true);
 		}else{
 			alert('이메일을 입력해주세요');
 		}
@@ -57,11 +57,11 @@ $(document).ready(function(){
 	
 	//기업 이메일 체크
 	$(document).on('click', '#comNumChk', function(){
-		let comNum = $('#comNum').val();
+		let comNum = $('#joinComNum').val();
 		if(comNum != "" && comNum != null){
 			comNumChkAjax(comNum);
 		}else{
-			alert('아이디를 입력해주세요');
+			alert('사업자번호를 입력해주세요');
 		}
 	});
 	
@@ -288,14 +288,12 @@ $(document).ready(function(){
 		    	 },
 		    	 memPassChk : {
 		    		 required : true,
-		    		 minlength : 6,
-		    		 maxlength : 20,
 		    		 equalTo : joinMemPass
 		    	 },
 		    	 memName : {
 		    		 required : true,
 		    		 minlength : 2,
-		    		 maxlength : 10,
+		    		 maxlength : 5,
 		    		 regx : /[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/
 		    	 },
 		    	 memBirth : {
@@ -319,6 +317,7 @@ $(document).ready(function(){
 		    	 memPass : {
 		    	 },
 		    	 memPassChk : {
+		    		 required : "같은 값을 다시 입력하세요."
 		    	 },
 		    	 memName : {
 		    		 regx : '한글로 입력해주세요'

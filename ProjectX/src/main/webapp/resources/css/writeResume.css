@@ -19,12 +19,21 @@
     height: 250px;
     font-size: 0px;
 }
-.files input:focus{     outline: 2px dashed #7896CF;  outline-offset: -5px;
+
+.files input:focus{     
+	outline: 2px dashed #7896CF;  
+	outline-offset: -5px;
     -webkit-transition: outline-offset .15s ease-in-out, background-color .15s linear;
-    transition: outline-offset .15s ease-in-out, background-color .15s linear; border:1px solid #92b0b3;
- }
-.files{ position:relative}
-.files:after {  pointer-events: none;
+    transition: outline-offset .15s ease-in-out, background-color .15s linear; 
+    border:1px solid #92b0b3;
+}
+ 
+.files{ 
+	position:relative
+}
+
+.files:after {  
+	pointer-events: none;
     position: absolute;
     top: 50px;
     left: 50px;
@@ -38,11 +47,16 @@
     background-size: 100%;
     background-repeat: no-repeat;
 }
-.color input{ background-color:#f1f1f1;}
+
+.color input{ 
+	background-color:#f1f1f1;
+}
+
 .files:before {
     position: absolute;
     bottom: -3px;
-    left: -201px;  pointer-events: none;
+    left: -201px;  
+    pointer-events: none;
     width: 600px;
     right: 10;
     height: 60px;
@@ -71,8 +85,9 @@
     margin: 0 auto;
     background-size: 100%;
     background-repeat: no-repeat;
-	
-}
+	width: 162px;
+	height: 231px;
+}	
 
 .radio{
 	display: inline;
@@ -81,11 +96,8 @@
 #addBtn{
 	cursor: pointer;
 }
+
 select {
 	border-color: lightgray;
 	border-radius: 5px;
-}
-#preview{
-	width: 162px;
-	height: 231px;
 }

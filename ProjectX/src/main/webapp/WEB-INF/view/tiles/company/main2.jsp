@@ -25,7 +25,7 @@
 				<img class="main2Btn" alt="" src="resources/images/main2_A1.jpg" style="width: 100%; height: 100%;" onclick="location.href='registHumanSeekerForm.co'" >
 			</div>
 			<div class="col-md-3">
-				<img class="main2Btn" alt="" src="resources/images/main2_A2.jpg" style="width: 100%; height: 100%;" onclick="location.href='recruitlist.co'" >
+				<img class="main2Btn" alt="" src="resources/images/main2_A2.jpg" style="width: 100%; height: 100%;" onclick="location.href='recruitDeleteList.co'" >
 			</div>
 			<div class="col-md-3" >
 				<img class="main2Btn" alt="" src="resources/images/main2_A3.jpg" style="width: 100%; height: 100%;" onclick="location.href='comMypage.co'">
