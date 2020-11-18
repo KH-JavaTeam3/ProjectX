@@ -36,7 +36,7 @@ select:invalid {
 #submit{
 	position: absolute; 
 	right: 11.6%;
-	top: 601px;
+	top: 75.1%;
 }
 textarea {
   outline-color: #4876ef;
@@ -51,7 +51,7 @@ textarea {
 			style="border-bottom: 3px solid #4876ef; width: 1473px; margin-left: 33px;">
 			<div class="col-md-12">
 				<div onclick="location.href='freeBoardList.bo'" class="a button col-md-2"
-					style="background: #4876ef; color: white; display: inline-block;  text-align: center; border: 3px solid #f1f3f9; border-bottom: none; height: 50px; line-height: 50px; margin-left: 9px; left: -27px;">
+					style=" display: inline-block;background: #4876ef; color: white;  text-align: center; border: 3px solid #f1f3f9; border-bottom: none; height: 50px; line-height: 50px; margin-left: 9px; left: -27px;">
 					자유게시판</div>
 				<div onclick="location.href='qaBoardList.bo'" class="a button col-md-2"
 					style="display: inline-block; text-align: center; border: 3px solid #f1f3f9; border-bottom: none; height: 50px; line-height: 50px; left: -27px;">
@@ -60,27 +60,39 @@ textarea {
 		</div>
 	</div>
 	
-	<div style="height: 50px;"></div>
+	<div style="height: 20px;"></div>
 	
-	<table class="table table-bordered mx-auto" style="width: 96%">
+	<table class="table table-bordered mx-auto" style="width: 96% ">
   <thead>
-    <tr style="height:20px;font-size: 20px;font-weight: 400;">
-      <th colspan="4">${detail.boardTitle}</th>
+  	<tr>
+  		<th style="border-bottom: 1px solid white;"><small style="color:#4876ef; ">자유게시판</small></th>
+  	</tr>
+    <tr style="height:20px;font-weight: 400;">
+      <th colspan="4" style="border-bottom: 1px solid white;"><label style="font-size: 30px;">${detail.boardTitle}</label></th>
     </tr>
   </thead>
   <tbody>
-    <tr>
-      <th colspan="4">${detail.boardWriterName}*ㅣ${detail.boardDate} ㅣ<img id="preview" src="resources/images/eye.png" style=" width:17px; padding-bottom: 3px;"> ${detail.boardViews}</th>
-    </tr> 
-    <tr style="height:200px;">
-      <th colspan="4">${detail.boardContent}</th>
+    <tr style="height:300px;">
+      <th colspan="4" style="border-bottom: 1px solid white; font-size: 17px;"><p style="font-family: sans-serif;">${detail.boardContent}</p></th>
     </tr>
+    <tr>
+      <th colspan="4" style="color: gray;">${detail.boardWriterName}* ㅣ${detail.boardDate} ㅣ<img id="preview" src="resources/images/eye.png" style=" width:17px; padding-bottom: 3px;"> ${detail.boardViews}</th>
+    </tr> 
   </tbody>
 </table>
-<form action="insertBoardComent.bo" method="post">
+<form action="insertBoardComent.bo" method="post" style="margin-bottom: -66px;">
 <input type="hidden" value="${detail.boardNum }" name="boardNum"> 
-<input type="hidden" value="${detail.boardWriterName }" name="boardComentWriter"> 
-<input type="hidden" value="${detail.boardWriter }" name="boardComentEmail"> 
+<c:if test="${not empty sessionScope.memLogin }">
+<input type="hidden" value="${sessionScope.memLogin.memName }" name="boardComentWriter"> 
+<input type="hidden" value="${sessionScope.memLogin.memEmail }" name="boardComentEmail">
+</c:if> 
+<c:if test="${not empty sessionScope.comLogin }">
+<input type="hidden" value="${sessionScope.comLogin.comCeo }" name="boardComentWriter"> 
+<input type="hidden" value="${sessionScope.comLogin.comEmail }" name="boardComentEmail">
+</c:if> 
+<%-- <input type="hidden" value="${detail.boardWriterName }" name="boardComentWriter"> 
+<input type="hidden" value="${detail.boardWriter }" name="boardComentEmail"> --%> 
+
     <div align="center">
     	<textarea class="mx-auto" rows="3" style="width: 96%;" placeholder="COMMENT" name="boardComentContent"></textarea>
     </div>
@@ -88,21 +100,18 @@ textarea {
 </form>
 
 
-<div align="center">
+<div align="center" style="margin-top: 70px;">
 <table class="table mx-outo" style="width: 96%;">
   <tbody>
 	  <c:forEach items="${boardComent }" var="coment">
 	    <tr>
-	      <td style="width: 130px;">${coment.boardComentWriter }</td>
+	      <td style="width: 130px; color: gray;">${coment.boardComentWriter }*</td>
 	      <td style="word-break:break-all">${coment.boardComentContent }
-	  
-	      <a id="deleteComentBtn" data-attr="${coment.boardComentNum }" style="color: red;">x</a>
-	
-	      
+	   	   <a id="deleteComentBtn" data-attr="${coment.boardComentNum }" style="color: red;">x</a>
 	      </td>
-	      <td style="width: 130px;">${coment.boardComentDate }</td>
+	      <td style="width: 175px; color: gray;">${coment.boardComentDate }</td>
 	    </tr>
-		</c:forEach>
+	</c:forEach>
   </tbody>
 </table>
 </div>
@@ -163,14 +172,14 @@ $(document).ready(function(){
 		}else{
 			if(boardRealWriterName == memName){
 			
-				var result = confirm("게시글을 삭제하시겠습니까?");
+				var result = confirm("댓글을 삭제하시겠습니까?");
 				if(result){
 					location.href="deleteBoardComent.bo?boardComentNum=" + boardComentNum + "&boardComentEmail=" + boardWriter + "&category=" + category + "&boardNum=" + boardNum;
 				}		
 			}
 			else{
 				
-				alert('자신의 게시글만 삭제할수 있습니다.');
+				alert('자신의 댓글만 삭제할수 있습니다.');
 			}
 		} 
 	});

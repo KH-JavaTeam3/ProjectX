@@ -51,6 +51,7 @@ public class BoardController {
 			list = boardService.selectFreeBoardList(pageVO);
 		}else {
 			list = boardService.selectFBoardSearchList(boardVO);
+			pageVO.setNowPage(0);
 		}
 		
 		Calendar cal = Calendar.getInstance();
@@ -72,7 +73,7 @@ public class BoardController {
 			t.setBoardWriterName(str);
 						
 		});
-		System.out.println(pageVO);
+		
 		model.addAttribute("paging", pageVO);
 		model.addAttribute("boardList", list);
 	
@@ -102,6 +103,7 @@ public class BoardController {
 			list = boardService.selectQaBoardList(pageVO);
 		}else {
 			list = boardService.selectQBoardSearchList(boardVO2);
+			pageVO.setNowPage(0);
 		}
 		
 		Calendar cal = Calendar.getInstance();
@@ -209,7 +211,6 @@ public class BoardController {
 	//자게상세
 	@RequestMapping(value = "/boardDetail.bo")
 	public String boardDetail(Model model,String category,BoardVO boardVO) {
-		String root;
 			//자게 상세
 			boardService.updateFreeViews(boardVO.getBoardNum());
 			BoardVO vo = boardService.selectDFBoard(boardVO.getBoardNum());
@@ -217,15 +218,16 @@ public class BoardController {
 			vo.setBoardWriterName(vo.getBoardWriterName().substring(0,vo.getBoardWriterName().length()-1));		
 			model.addAttribute("detail",vo);		
 			List<BoardComentVO> list = boardService.selectBoardComent(boardVO.getBoardNum());
-				model.addAttribute("boardComent", list);
-			root = "tiles/board/freeBoardDetail";
+		
+			model.addAttribute("boardComent", list);
+			return "tiles/board/freeBoardDetail";
 	
-		return root;
+		
 	}
 	//qa상세
 	@RequestMapping(value = "/board2Detail.bo")
 	public String board2Detail(Model model,String category,BoardVO2 boardVO2) {
-		String root;
+
 		
 			//큐게 상세
 			boardService.updateQaViews(boardVO2.getBoard2Num());
@@ -233,14 +235,16 @@ public class BoardController {
 			vo2.setBoard2RealWriterName(vo2.getBoard2WriterName());
 			vo2.setBoard2WriterName(vo2.getBoard2WriterName().substring(0,vo2.getBoard2WriterName().length()-1));			
 			model.addAttribute("detail",vo2);
+			
+			
 			List<Board2ComentVO> list = boardService.selectBoard2Coment(boardVO2.getBoard2Num());
 			model.addAttribute("board2Coment", list);
 			
 			category = "qa";
-			root = "tiles/board/qaBoardDetail";
-		model.addAttribute("category", category);
+			model.addAttribute("category", category);
+			return "tiles/board/qaBoardDetail";
 		
-		return root;
+
 	}
 	
 	
@@ -281,27 +285,29 @@ public class BoardController {
 	}
 	//수정 POST
 	@PostMapping(value = "/updateBoard.bo")
-	public String updateBoardP(BoardVO boardVO, Model model, String category, BoardVO2 boardVO2) {
-		System.out.println(category);
-		System.out.println(boardVO2);
-		String root = "";
+	public String updateBoardP(BoardVO boardVO, Model model, String category,BoardVO2 boardVO2) {
+		String root;
+		
 		if(category.equals("free")) {
 			//자게 update
 			boardService.updateFBoard(boardVO);
 			model.addAttribute("boardNum",boardVO.getBoardNum());
 			model.addAttribute("boardWriter",boardVO.getBoardWriter());
 			model.addAttribute("category",category);
-			root = "redirect:boardDetail.bo";
+			
+			root= "redirect:boardDetail.bo";
+			
 		}else {
 			//큐게 update
 			boardService.updateQBoard(boardVO2);
 			model.addAttribute("board2Num",boardVO2.getBoard2Num());
 			model.addAttribute("board2Writer",boardVO2.getBoard2Writer());
 			model.addAttribute("category",category);
-			
+		
 			root = "redirect:board2Detail.bo";
 		}
 		
+
 		
 		
 		return root;
@@ -309,7 +315,7 @@ public class BoardController {
 //	댓글등록
 	@RequestMapping(value = "/insertBoardComent.bo")
 	public String insertBoardComent(BoardComentVO boardComentVO, Model model) {
-				
+		boardComentVO.setBoardComentWriter(boardComentVO.getBoardComentWriter().substring(0,boardComentVO.getBoardComentWriter().length()-1));	
 		boardService.insertBoardComent(boardComentVO);
 		
 		model.addAttribute("boardNum", boardComentVO.getBoardNum());
@@ -319,6 +325,7 @@ public class BoardController {
 //	qa댓글등록
 	@RequestMapping(value = "/insertBoard2Coment.bo")
 	public String insertBoard2Coment(Board2ComentVO board2ComentVO, Model model) {
+		board2ComentVO.setBoard2ComentWriter(board2ComentVO.getBoard2ComentWriter().substring(0,board2ComentVO.getBoard2ComentWriter().length()-1));	
 		boardService.insertBoard2Coment(board2ComentVO);
 		
 		model.addAttribute("board2Num", board2ComentVO.getBoard2Num());

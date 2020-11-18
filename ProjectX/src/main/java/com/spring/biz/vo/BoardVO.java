@@ -14,8 +14,16 @@ public class BoardVO {
 	private int boardCount;
 	private String boardRealWriterName;
 	private String delYn;
+	private String comentCnt;
 	
 	
+	
+	public String getComentCnt() {
+		return comentCnt;
+	}
+	public void setComentCnt(String comentCnt) {
+		this.comentCnt = comentCnt;
+	}
 	public String getDelYn() {
 		return delYn;
 	}
@@ -101,7 +109,7 @@ public class BoardVO {
 				+ ", boardViews=" + boardViews + ", boardDate=" + boardDate + ", boardNum=" + boardNum
 				+ ", boardWriterName=" + boardWriterName + ", select=" + select + ", search=" + search
 				+ ", boardCategory=" + boardCategory + ", boardCount=" + boardCount + ", boardRealWriterName="
-				+ boardRealWriterName + ", delYn=" + delYn + "]";
+				+ boardRealWriterName + ", delYn=" + delYn + ", comentCnt=" + comentCnt + "]";
 	}
 	
 	

@@ -9,10 +9,11 @@
 <title>Insert title here</title>
 <!-- 이력서 상세보기페이지 -->
 <link rel="stylesheet" href="resources/css/writeResume.css">
-<link rel="stylesheet" href="resources/css/resumeDetail.css?ver=14">
+<link rel="stylesheet" href="resources/css/resumeDetail.css?ver=16">
+<link rel="stylesheet" href="resources/css/font.css">
 </head>
 <body>
-<form action="pdfCreate.me" method="post" >
+<form action="pdfCreate.pdf" method="post" >
 <input type="hidden" value="${memResume.resumeNum}" name="resumeNum">
 <input type="hidden" value="${sessionScope.memLogin.memEmail }" name="memEmail">
 <div style="height: 30px;"></div>
@@ -30,7 +31,7 @@
 				<div class="row">
 				
 				<div class="col-md-8">
-						<span style="font-size: 23px; font-weight: bold; font-family: 'Recipekorea';">개인정보</span>&nbsp;&nbsp;<input type="button" class="btn btn-primary" onClick="location.href='memUpdateForm.me';" value="수정" style="background: #658DC6; border-color: #ABC2E8; margin-bottom: 5px;"/>
+						<span style="font-size: 23px; font-weight: bold; font-family: 'paybooc-Bold';">개인정보</span>&nbsp;&nbsp;<input type="button" class="btn btn-primary" onClick="location.href='memUpdateForm.me';" value="수정" style="background: #658DC6; border-color: #ABC2E8; margin-bottom: 5px;"/>
 					<div class="col-md-12" style="width: 100%; margin-top: 10px;margin-left:0px; margin-right:0px;" >
 					<div class="row">
 					
@@ -101,7 +102,7 @@
 	<div align="center">
 		<div class="row" style="border-bottom : 3px solid #f1f3f9;border-top : 3px solid #f1f3f9; width: 100%; " >
 			<div class="col-md-12" style="padding-top: 20px; padding-left: 0px; padding-right: 0px; background: #fcfcfc;" align="left">
-						<span style="font-size: 23px; font-weight: bold; font-family: 'Recipekorea';">학력사항</span>
+						<span style="font-size: 23px; font-weight: bold; font-family: 'paybooc-Bold';">학력사항</span>
 					<div class="row" style="width: 100%; margin-top: 10px;margin-left:0px; margin-right:0px; " >
 						<div class="col-md-6" style="padding-bottom: 5px; padding-top: 20px;"align="left">
 							<table>
@@ -161,7 +162,7 @@
 	<div align="center">
 		<div class="row" style="border-bottom : 3px solid #f1f3f9;border-top : 3px solid #f1f3f9; width: 100%; " >
 			<div class="col-md-12" style="padding-top: 20px; padding-left: 0px; padding-right: 0px; background: #fcfcfc;" align="left">
-			<span style="font-size: 23px; font-weight: bold; font-family: 'Recipekorea';">자격증</span>
+			<span style="font-size: 23px; font-weight: bold; font-family: 'paybooc-Bold';">자격증</span>
 				<c:forEach items="${memResume.licenseList }" var="lic" varStatus="status">
 					<div class="row" style="width: 100%; margin-top: 10px; margin-left:0px; margin-right:0px; " >
 						<div class="col-md-6" style="padding-bottom: 5px; padding-top: 20px;"align="left">
@@ -211,7 +212,7 @@
 	<div align="center">
 		<div class="row" style="border-bottom : 3px solid #f1f3f9;border-top : 3px solid #f1f3f9; width: 100%; " >
 			<div class="col-md-12" style="padding-top: 20px; padding-left: 0px; padding-right: 0px; background: #fcfcfc;" align="left">
-			<span style="font-size: 23px; font-weight: bold; font-family: 'Recipekorea';">자기소개</span>
+			<span style="font-size: 23px; font-weight: bold; font-family: 'paybooc-Bold';">자기소개</span>
 				<c:forEach items="${memResume.profilesList }" var="pro" varStatus="status">
 					<div class="row" style="width: 100%; margin-top: 10px; margin-left:0px; margin-right:0px; " >
 						<div class="col-md-12" style="padding-bottom: 5px; padding-top: 20px;"align="left">
@@ -225,7 +226,7 @@
 											<col width="80%">
 										</colgroup>
 											<tr>
-												<td style="color: #4c78ea; font-size: 16px;">${pro.proTitle }</td>
+												<td style="color: #4c78ea; font-size: 16px; font-family: 'S-CoreDream-5Medium';">${pro.proTitle }</td>
 											</tr>
 											<tr><td><br></td></tr>
 											<tr style="margin-top: 10px;">
@@ -244,7 +245,7 @@
 	<div align="center">
 		<div class="row" style="border-bottom : 3px solid #f1f3f9;border-top : 3px solid #f1f3f9; width: 100%; " >
 			<div class="col-md-12" style="padding-top: 20px; padding-left: 0px; padding-right: 0px; background: #fcfcfc;" align="left">
-			<span style="font-size: 23px; font-weight: bold; font-family: 'Recipekorea';">경력사항</span>
+			<span style="font-size: 23px; font-weight: bold; font-family: 'paybooc-Bold';">경력사항</span>
 				<c:forEach items="${memResume.careerList }" var="car" varStatus="status">
 					<div class="row" style="width: 100%; margin-top: 10px; margin-left:0px; margin-right:0px; " >
 						<div class="col-md-6" style="padding-bottom: 5px; padding-top: 20px;"align="left">
@@ -294,7 +295,7 @@
 	<div align="center">
 		<div class="row" style="border-bottom : 3px solid #f1f3f9;border-top : 3px solid #f1f3f9; width: 100%; " >
 			<div class="col-md-12" style="padding-top: 20px; padding-left: 0px; padding-right: 0px; background: #fcfcfc;" align="left">
-			<span style="font-size: 23px; font-weight: bold; font-family: 'Recipekorea';">희망조건</span>
+			<span style="font-size: 23px; font-weight: bold; font-family: 'paybooc-Bold';">희망조건</span>
 				<div class="row" style="width: 100%; margin-top: 10px; margin-left:0px; margin-right:0px; " >
 					<div class="col-md-6" style="padding-bottom: 5px; padding-top: 20px;"align="left">
 						<table>

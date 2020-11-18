@@ -17,6 +17,7 @@
 	<definition name="tiles/common/main" extends="baseLayout">
 		<put-attribute name="body" value="/WEB-INF/view/tiles/common/main.jsp" />
 		<put-attribute name="submenu2" value="/WEB-INF/view/subTiles/submenu2.jsp"/>
+		<put-attribute name="foot" value="/WEB-INF/view/subTiles/copyright.jsp"/>
 	</definition>
 	<definition name="tiles/common/companyList" extends="baseLayout">
 		<put-attribute name="submenu2" value="/WEB-INF/view/subTiles/submenu2.jsp"/>

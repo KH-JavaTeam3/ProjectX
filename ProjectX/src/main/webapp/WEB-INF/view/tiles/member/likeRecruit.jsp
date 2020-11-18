@@ -35,7 +35,7 @@ a:hover {
 <span style="font-family: MyLotteBold; font-size: 30px; color: #0F4C81; position: relative; left: 133px;">관심공고</span>
 <div style="height: 10px;"></div>
 <div align="center">
-<div class="row col-md-10" style="border: 5px solid #658DC6; border-radius: 10px;">
+<div class="row col-md-10" style="border: 5px solid #4876ef; border-radius: 10px;">
 	<table class="table">
 	<colgroup>
 		<col width="30%">

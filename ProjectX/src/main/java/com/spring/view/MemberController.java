@@ -1,9 +1,6 @@
 package com.spring.view;
 
-import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.net.URLEncoder;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -20,7 +17,6 @@ import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
@@ -66,8 +62,6 @@ import com.spring.biz.vo.MultiCareerVO;
 import com.spring.biz.vo.MultiLicenseVO;
 import com.spring.biz.vo.MultiProfilesVO;
 import com.spring.biz.vo.ProfilesVO;
-
-
 
 @Controller
 public class MemberController {
@@ -191,9 +185,7 @@ public class MemberController {
 		List<LicenseVO> licenseList = memberService.selectLicenseList(memResumeVO.getResumeNum());
 		
 		//날짜 포맷 변경
-		licenseList.forEach((t) -> {
-			t.setLicDate(t.getLicDate().substring(0, 10));
-		});
+		licenseList.forEach((t) -> t.setLicDate(t.getLicDate().substring(0, 10)));
 		
 		vo.setLicenseList(licenseList);
 		vo.setProfilesList(memberService.selectProfilesList(memResumeVO.getResumeNum()));
@@ -210,9 +202,7 @@ public class MemberController {
 		List<LicenseVO> licenseList = memberService.selectLicenseList(memResumeVO.getResumeNum());
 		
 		//날짜 포맷 변경
-		licenseList.forEach((t) -> {
-			t.setLicDate(t.getLicDate().substring(0, 10));
-		});
+		licenseList.forEach((t) -> t.setLicDate(t.getLicDate().substring(0, 10)));
 		
 		vo.setLicenseList(licenseList);
 		vo.setProfilesList(memberService.selectProfilesList(memResumeVO.getResumeNum()));
@@ -226,38 +216,27 @@ public class MemberController {
 	@ResponseBody
 	@RequestMapping(value = "/licRemove.me")
 	public String licRemove(int licNum) {
-	  String result = memberService.deleteLic(licNum)+"";
-	  return result;
+	  return memberService.deleteLic(licNum)+"";
 	} 
 	
 	//자기소개 삭제 ajax
 	@ResponseBody
 	@RequestMapping(value = "/profilesRemove.me")
 	public String profilesRemove(int proNum) {
-		String result = memberService.deleteProfiles(proNum)+"";
-		return result;
+		return memberService.deleteProfiles(proNum)+"";
 	}
 	
 	//경력사항 삭제 ajax
 	@ResponseBody
 	@RequestMapping(value = "/careerRemove.me")
 	public String careerRemove(int carNum) {
-		String result = memberService.deleteCareer(carNum)+"";
-		return result;
+		return memberService.deleteCareer(carNum)+"";
 	}
 
 	//이력서 수정하기
 	@RequestMapping(value = "/updateResume.me",  method = RequestMethod.POST)
 	//public String updateResume(MemResumeVO memResumeVO,@RequestParam(required = false) MultiCareerVO multiCareerVO, @RequestParam(required = false) MultiLicenseVO multiLicenseVO, @RequestParam(required = false) MultiProfilesVO multiProfilesVO,  Model model) {
 	public String updateResume(MemResumeVO memResumeVO,MultiCareerVO multiCareerVO, MultiLicenseVO multiLicenseVO,  MultiProfilesVO multiProfilesVO,  Model model) {
-		
-		System.out.println("바인딩 확인 시작");
-		System.out.println(multiLicenseVO);
-		System.out.println();
-		System.out.println(multiProfilesVO);
-		System.out.println();
-		System.out.println(multiCareerVO);
-		System.out.println("확인 끝");
 		
 		//자격증의 max값을 불러온다.
 //		int maxLicNum = memberService.selectMaxLicNum(memResumeVO);
@@ -275,12 +254,8 @@ public class MemberController {
 			int[] registedArr = new int[registedLicneseCnt];
 			
 			//null을 0으로
-			if(multiLicenseVO.getLicNum() == null) {
-				for(int e : registedArr) e = 0; //반복문을 한 줄로 만드는 기술
-			}else {
-				//기존의 자격증번호 + 추가된 자격증번호(0)
-				System.arraycopy(multiLicenseVO.getLicNum(), 0, registedArr, 0, multiLicenseVO.getLicNum().length);
-			}
+			if(multiLicenseVO.getLicNum() != null) System.arraycopy(multiLicenseVO.getLicNum(), 0, registedArr, 0, multiLicenseVO.getLicNum().length);
+			
 			//배열 형태의 자격증의 크기만큼 돌면서 list저장
 			for(int i = 0 ; i < registedLicneseCnt ; i++) {
 				LicenseVO vo = new LicenseVO();
@@ -305,12 +280,7 @@ public class MemberController {
 			int[] registedArr = new int[regProfilesCnt];
 			
 			//null을 0으로
-			if(multiProfilesVO.getProNum() == null) {
-				for(int e : registedArr) e = 0; //반복문을 한 줄로 만드는 기술
-			}else {
-				//기존의 자기소개서 + 추가된 자기소개서(0)
-				System.arraycopy(multiProfilesVO.getProNum(), 0, registedArr, 0, multiProfilesVO.getProNum().length);
-			}
+			if(multiProfilesVO.getProNum() != null) System.arraycopy(multiProfilesVO.getProNum(), 0, registedArr, 0, multiProfilesVO.getProNum().length);
 			
 			for(int i = 0; i < regProfilesCnt; i++) {
 				
@@ -333,12 +303,8 @@ public class MemberController {
 			int[] registedArr = new int[regCareerCnt];
 			
 			//null을 0으로
-			if(multiCareerVO.getCarNum() == null) {
-				for(int e : registedArr) e = 0; //반복문을 한 줄로 만드는 기술
-			}else {
-				//기존의 경력 + 추가된 경력(0)
-				System.arraycopy(multiCareerVO.getCarNum(), 0, registedArr, 0, multiCareerVO.getCarNum().length);
-			}
+			if(multiCareerVO.getCarNum() != null) System.arraycopy(multiCareerVO.getCarNum(), 0, registedArr, 0, multiCareerVO.getCarNum().length);
+			
 			for(int i = 0; i < regCareerCnt; i++) {
 				
 				CareerVO cvo = new CareerVO();
@@ -355,14 +321,6 @@ public class MemberController {
 		
 		//이력서 수정
 		memberService.updateMemResume(memResumeVO);
-		
-		System.out.println("FOR문 셋팅 확인 시작");
-		System.out.println(memResumeVO.getLicenseList());
-		System.out.println();
-		System.out.println(memResumeVO.getProfilesList());
-		System.out.println();
-		System.out.println(memResumeVO.getCareerList());
-		System.out.println("확인 끝");
 		
 		model.addAttribute("resumeNum", memResumeVO.getResumeNum());
 		return "redirect:moveToResumeDetail.me";
@@ -391,10 +349,7 @@ public class MemberController {
 	//선호 공고리스트로 이동
 	@RequestMapping(value = "/likeRecruit.me")
 	public String likeRecruit(Model model, LikeRecruitVO likeRecruitVO, HttpSession session) {
-		
-		MemInfoVO member = (MemInfoVO) session.getAttribute("memLogin");
-		model.addAttribute("likeRecruitList", memberService.selectLikeRecruitList(member.getMemEmail()));
-		
+		model.addAttribute("likeRecruitList", memberService.selectLikeRecruitList(((MemInfoVO)session.getAttribute("memLogin")).getMemEmail()));
 		return "tiles/member/likeRecruit";
 	}
 	
@@ -406,14 +361,11 @@ public class MemberController {
 		  if(a != null) { 
 			  LikeCompanyVO vo = memberService.chkHeart(likeCompanyVO);
 		  
-		  if(vo != null) { 
-			  memberService.deleteLikeCompany(likeCompanyVO); 
-		  }
-		  
-		  else { 
-			  memberService.insertLikeCompany(likeCompanyVO); 
-		  	} 
-		  
+			  if(vo != null) { 
+				  memberService.deleteLikeCompany(likeCompanyVO); 
+			  } else { 
+				  memberService.insertLikeCompany(likeCompanyVO); 
+			  } 
 		  }
 		  model.addAttribute("likeCompanyList", memberService.selectLikeCompany(member.getMemEmail()));
 		  
@@ -433,7 +385,8 @@ public class MemberController {
 		Map<String, Object> map = new HashMap<>();
 		map.put("applyNum", applyNum);
 		map.put("memEmail", ((MemInfoVO)session.getAttribute("memLogin")).getMemEmail());
-		return "tiles/member/applyList";
+		memberService.deleteApply(map);
+		return "redirect:applyList.me";
 	}
 	
 	
@@ -445,11 +398,11 @@ public class MemberController {
 		List<LicenseVO> licenseList = memberService.selectLicenseList(resumeNum);
 		
 		//날짜 포맷 변경
-		licenseList.forEach((t) -> {
-			t.setLicDate(t.getLicDate().substring(0, 10));
-		});
+		licenseList.forEach((t) -> t.setLicDate(t.getLicDate().substring(0, 10)));
+		
 		vo.setComMypageNum(comMypageNum);
 		vo.setMemInfoVO(memberService.selectMemInfoME(memInfoVO));
+		vo.getMemInfoVO().setMemBirth(vo.getMemInfoVO().getMemBirth().substring(0, 10));
 		vo.setLicenseList(licenseList);
 		vo.setProfilesList(memberService.selectProfilesList(resumeNum));
 		vo.setCareerList(memberService.selectCareerList(resumeNum));
@@ -460,27 +413,27 @@ public class MemberController {
 	
 	
 	//pdf파일 다운로드
-    @RequestMapping(value = "/pdfCreate.me")
+    @RequestMapping(value = "/pdfCreate.pdf")
       public void pdfCreate(HttpServletRequest req, ModelMap modelMap, int resumeNum,HttpServletResponse response, MemInfoVO memInfoVO, HttpServletRequest request) throws Exception {
        String realPath = request.getSession().getServletContext().getRealPath("resources/images/memberProfile");
        
        //pdf다운로드 경로 설정&파일 이름 인코딩
-       String fileName="";
-       String dir="D:/pdfTest";
-        fileName = URLEncoder.encode(4 +".pdf", "UTF-8");
+//       String fileName="";
+//       String dir="D:/pdfTest";
+//        fileName = URLEncoder.encode(4 +".pdf", "UTF-8");
          
         //파일 저장 경로 설정
-        File directory = new File(dir);
-        if(!directory.exists()) directory.mkdirs(); //파일경로 없으면 생성
+//        File directory = new File(dir);
+//        if(!directory.exists()) directory.mkdirs(); //파일경로 없으면 생성
          
         //PDF 용지 설정-A4용지에 상하좌우 50씩 여백 
-         Document document = new Document(PageSize.A4, 50, 50, 50, 50);   
+        Document document = new Document(PageSize.A4, 50, 50, 50, 50);   
          
          //PDF 출력을 위한 PdfWriter 객체 
-         PdfWriter.getInstance(document, new FileOutputStream(dir+"/"+fileName));
+//         PdfWriter.getInstance(document, new FileOutputStream(dir+"/"+fileName));
          PdfWriter writer = PdfWriter.getInstance(document, response.getOutputStream());
          writer.setInitialLeading(12.5f);
-            
+         
          //document 오픈
          document.open();
          
@@ -549,6 +502,7 @@ public class MemberController {
          table0.setTotalWidth(500f);
          table0.setLockedWidth(true);
          
+         
          //사진
          PdfPCell cell0 = new PdfPCell();
          if(vo2.getMemImage() != null) {
@@ -559,7 +513,7 @@ public class MemberController {
          else {
             cell0 = new PdfPCell(new Paragraph("사진을 등록해주세요.", font));
          }
-         cell0.setRowspan(3);
+         cell0.setRowspan(4);
          cell0.setHorizontalAlignment(Element.ALIGN_LEFT);
          cell0.setBorder(Rectangle.NO_BORDER);   //테이블 선 지우기
          cell0.setBorder(Rectangle.RIGHT);
@@ -567,81 +521,12 @@ public class MemberController {
          cell0.setPaddingRight(10f);
          table0.addCell(cell0);
          
-         
-         //개인정보_이름_title
-         PdfPCell cell = new PdfPCell(new Paragraph("이름", fontbd));
-         cell.setHorizontalAlignment(Element.ALIGN_LEFT);
-         cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
-         cell.setFixedHeight(40);
-         cell.setBorder(Rectangle.NO_BORDER);
-         cell.setPadding(10f);
-         table0.addCell(cell);
-         
-         //개인정보_이름_데이터
-         cell = new PdfPCell(new Paragraph(vo2.getMemName(), font));
-         cell.setHorizontalAlignment(Element.ALIGN_LEFT);
-         cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
-         cell.setBorder(Rectangle.NO_BORDER);
-         cell.setPaddingRight(20f);
-         table0.addCell(cell);
-         
-         //개인정보_이메일_title
-         cell = new PdfPCell(new Paragraph("이메일", fontbd));
-         cell.setHorizontalAlignment(Element.ALIGN_LEFT);
-         cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
+         //이름
+         PdfPCell cell = new PdfPCell(new Paragraph(vo2.getMemName(), fontbd));
          cell.setBorder(Rectangle.NO_BORDER);
          table0.addCell(cell);
-         
-         //개인정보_이메일_데이터
-         cell = new PdfPCell(new Phrase(vo2.getMemEmail(), font));
-         cell.setHorizontalAlignment(Element.ALIGN_LEFT);
-         cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
-         cell.setBorder(Rectangle.NO_BORDER);
-         table0.addCell(cell);
-         
-         //개인정보_생년월일_title
-         cell = new PdfPCell(new Paragraph("생년월일", fontbd));
-         cell.setHorizontalAlignment(Element.ALIGN_LEFT);
-         cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
-         cell.setBorder(Rectangle.NO_BORDER);
-         cell.setFixedHeight(50);
-         cell.setPadding(10f);
-         table0.addCell(cell);
-         
-         //개인정보_생년월일_data
-         //글자 수 자르기
-         if(vo2.getMemBirth().length() > 11 ) {
-            cell = new PdfPCell(new Paragraph(vo2.getMemBirth().substring(0, 10), font));
-         }
-         cell.setHorizontalAlignment(Element.ALIGN_LEFT);
-         cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
-         cell.setBorder(Rectangle.NO_BORDER);
-         cell.setPadding(10f);
-         table0.addCell(cell);
-         
-         //개인정보_연락처_title
-         cell = new PdfPCell(new Paragraph("연락처", fontbd));
-         cell.setHorizontalAlignment(Element.ALIGN_LEFT);
-         cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
-         cell.setBorder(Rectangle.NO_BORDER);
-         table0.addCell(cell);
-         
-         //개인정보_연락처_data
-         cell = new PdfPCell(new Paragraph(vo2.getMemTel1(), font));
-         cell.setHorizontalAlignment(Element.ALIGN_LEFT);
-         cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
-         cell.setBorder(Rectangle.NO_BORDER);
-         table0.addCell(cell);
-         
-         //개인정보_성별_title
-         cell = new PdfPCell(new Paragraph("성별", fontbd));
-         cell.setHorizontalAlignment(Element.ALIGN_LEFT);
-         cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
-         cell.setBorder(Rectangle.NO_BORDER);
-         cell.setPadding(10f);
-         table0.addCell(cell);
-         
-         //개인정보_성별_data
+        
+       //개인정보_성별_data
          //'남성/여성' 으로 표기
          if (vo2.getMemGender().equals("M")) {
            cell = new PdfPCell(new Paragraph("남성", font));
@@ -650,27 +535,52 @@ public class MemberController {
          else if(vo2.getMemGender().equals("W")) {
             cell = new PdfPCell(new Paragraph("여성", font));
          }
+         cell.setBorder(Rectangle.NO_BORDER);
+         table0.addCell(cell);
          
+       //개인정보_생년월일_data
+         //글자 수 자르기
+         if(vo2.getMemBirth().length() > 11 ) {
+            cell = new PdfPCell(new Paragraph(vo2.getMemBirth().substring(0, 10), font));
+         }
+         cell.setBorder(Rectangle.NO_BORDER);
+         cell.setColspan(2);
+         table0.addCell(cell);
+         
+         //개인정보_이메일_title
+         cell = new PdfPCell(new Paragraph("이메일", font));
          cell.setHorizontalAlignment(Element.ALIGN_LEFT);
          cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
          cell.setBorder(Rectangle.NO_BORDER);
+         table0.addCell(cell);
+         
+         //개인정보_이메일_데이터
+         cell = new PdfPCell(new Phrase(vo2.getMemEmail(), font));
+         cell.setBorder(Rectangle.NO_BORDER);
+         cell.setColspan(3);
+         table0.addCell(cell);
+         
+         //개인정보_연락처_title
+         cell = new PdfPCell(new Paragraph("연락처", font));
+         cell.setBorder(Rectangle.NO_BORDER);
+         table0.addCell(cell);
+         
+         //개인정보_연락처_data
+         cell = new PdfPCell(new Paragraph(vo2.getMemTel1(), font));
+         cell.setBorder(Rectangle.NO_BORDER);
+         cell.setColspan(3);
          table0.addCell(cell);
          
          //개인정보_주소_title
-         cell = new PdfPCell(new Paragraph("주소", fontbd));
-         cell.setHorizontalAlignment(Element.ALIGN_LEFT);
-         cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
+         cell = new PdfPCell(new Paragraph("주소", font));
          cell.setBorder(Rectangle.NO_BORDER);
          table0.addCell(cell);
          
-         //개인정보_성별_data
+         //개인정보_주소_data
          cell = new PdfPCell(new Paragraph(vo2.getMemAddr(), font));
-         cell.setHorizontalAlignment(Element.ALIGN_LEFT);
-         cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
          cell.setBorder(Rectangle.NO_BORDER);
+         cell.setColspan(3);
          table0.addCell(cell);
-         
-         table0.completeRow();
          
          //table.addCell(table0);
          document.add(table0);
@@ -1046,7 +956,7 @@ public class MemberController {
             
             //자기소개서 칸 시작
             //자기소개서_자기소개서 제목_데이터
-            PdfPCell cell3 = new PdfPCell(new Paragraph("["+vo4.get(i).getProTitle()+"]", font));
+            PdfPCell cell3 = new PdfPCell(new Paragraph(vo4.get(i).getProTitle(), fontbd));
             cell3.setHorizontalAlignment(Element.ALIGN_LEFT);
             cell3.setVerticalAlignment(Element.ALIGN_LEFT);
             cell3.setColspan(4);

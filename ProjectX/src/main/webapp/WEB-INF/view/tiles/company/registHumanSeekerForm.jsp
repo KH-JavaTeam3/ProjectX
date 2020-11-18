@@ -70,7 +70,7 @@ input[type="number"]::-webkit-inner-spin-button {
 			  <div class="input-group-prepend">
 			    <span class="input-group-text" id="addon-wrapping">제목</span>
 			  </div>
- 				<input type="text" name="announceTitle" class="form-control" aria-label="Username" aria-describedby="addon-wrapping">
+ 				<input type="text" name="announceTitle" class="form-control" aria-label="Username" aria-describedby="addon-wrapping" autocomplete="off">
 			</div>
 		</div>
 		<div class="col-md-3">
@@ -78,7 +78,7 @@ input[type="number"]::-webkit-inner-spin-button {
 			  <div class="input-group-prepend">
 			    <span class="input-group-text" id="addon-wrapping">고용형태</span>
 			  </div>
- 				<input type="text" name="workType" class="form-control" aria-label="Username" aria-describedby="addon-wrapping">
+ 				<input type="text" name="workType" class="form-control" aria-label="Username" aria-describedby="addon-wrapping" autocomplete="off">
 			</div>
 		</div>
 		<div class="col-md-3">
@@ -86,7 +86,7 @@ input[type="number"]::-webkit-inner-spin-button {
 			  <div class="input-group-prepend">
 			    <span class="input-group-text" id="addon-wrapping">모집기간</span>
 			  </div>
- 				<input type="date" name="uptoHiredate" style="border: 1px solid lightgray; width: 266px;">
+ 				<input type="date" name="uptoHiredate" style="border: 1px solid lightgray; width: 266px;" autocomplete="off">
 			</div>
 		</div>
 		<div class="col-md-3">
@@ -187,7 +187,7 @@ input[type="number"]::-webkit-inner-spin-button {
 			<div class="col-md-12">
 				<div class="custom-file mb-3">
 				    <input type="file" class="custom-file-input" id="validatedCustomFile" name="file1" required>
-				    <label class="custom-file-label" for="validatedCustomFile" id="registImage">대표 이미지...</label>
+				    <label class="custom-file-label" for="validatedCustomFile" id="registImage">공고 이미지...</label>
 		     	</div>
 			</div>
 			<div class="col-md-12">

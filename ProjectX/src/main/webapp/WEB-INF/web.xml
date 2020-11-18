@@ -27,6 +27,7 @@
  		<url-pattern>*.me</url-pattern>
  		<url-pattern>*.co</url-pattern>
  		<url-pattern>*.bo</url-pattern>
+ 		<url-pattern>*.pdf</url-pattern>
 	</filter-mapping>
 	
 	<context-param>
@@ -119,6 +120,21 @@
 	<servlet-mapping>
 		<servlet-name>action5</servlet-name>
 		<url-pattern>*.bo</url-pattern>
+	</servlet-mapping>
+	
+	<!-- DispatcherServlet-BoardController 생성 -->
+	<servlet>
+		<servlet-name>action6</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>	
+		<init-param>
+			<param-name>contextConfigLocation</param-name>
+			<param-value>/WEB-INF/config/presentation-layer.xml</param-value>
+		</init-param>
+	</servlet>
+<!-- 	DispatcherServlet-BoardController용 경로 -->
+	<servlet-mapping>
+		<servlet-name>action6</servlet-name>
+		<url-pattern>*.pdf</url-pattern>
 	</servlet-mapping>
 	
 	

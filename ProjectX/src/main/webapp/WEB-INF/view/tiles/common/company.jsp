@@ -145,6 +145,10 @@
   from { background-position: 0 }
   to { background-position: -8250px }
 }
+.hovering:hover{
+	cursor: pointer;
+	background-color: #f8f9fa;
+}
 </style>
 </head>
 <body>
@@ -227,14 +231,12 @@
 			    <div class="items" align="center" >
 				<c:forEach items="${comNameRList }" var="comNameR">
 					<c:if test="${comNameR.comNum eq comName.comNum}">
-				        <ul>
-				            <li style="width: 10%; text-align: center;" onclick="location.href='companyDetail.do?comNum=${comNameR.comNum }&announceNum=${comNameR.announceNum }'"><span style="color: #4876ef;font-size: 13px;">채용중</span></li>
-				            <li style="width: 30%; text-align: center;" onclick="location.href='companyDetail.do?comNum=${comNameR.comNum }&announceNum=${comNameR.announceNum }'">${comNameR.announceTitle }</li>
-				            <li style="width: 20%; text-align: center;" onclick="location.href='companyDetail.do?comNum=${comNameR.comNum }&announceNum=${comNameR.announceNum }'">${comNameR.area }.${comNameR.career }.${comNameR.jobtype }</li>
-				            <li style="width: 20%; text-align: center;" onclick="location.href='companyDetail.do?comNum=${comNameR.comNum }&announceNum=${comNameR.announceNum }'">${comNameR.uptoHiredate }</li>
-				            <li style="width: 15%; text-align: center;" onclick="location.href='companyDetail.do?comNum=${comNameR.comNum }&announceNum=${comNameR.announceNum }'">
-				            	<input type="button" style="background: #ff8d5a;border: 1px solid;color: white;width: 90px;height: 25px;font-size: 13px;" value="지원" <c:if test="${not empty sessionScope.memLogin }">onclick="location.href='resumeApplication.me?comNum=${recruitDeteil.comNum }&announceNum=${recruitDeteil.announceNum }'"</c:if>>
-				            </li>
+				        <ul onclick="location.href='companyDetail.do?comNum=${comNameR.comNum }&announceNum=${comNameR.announceNum }'" class="text-center hovering">
+				            <li style="width: 10%;"><span style="color: #4876ef;font-size: 13px;">채용중</span></li>
+				            <li style="width: 30%;">${comNameR.announceTitle }</li>
+				            <li style="width: 20%;">${comNameR.area }.${comNameR.career }.${comNameR.jobtype }</li>
+				            <li style="width: 20%;">${comNameR.uptoHiredate }</li>
+				            <li style="width: 15%;"></li>
 				        </ul>
 					</c:if>
 				</c:forEach>

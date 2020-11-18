@@ -83,9 +83,10 @@ select:invalid {
 <script type="text/javascript">
 $(document).on('click', '#backBtn', function() {
 	var boardNum = $('#boardNum').val();	
+	var category = 'free'
 	var result = confirm("입력한 글이 사라집니다. 그래도 이동하시겠습니까?");
 	if(result){
-		location.href="boardDetail.bo?boardNum="+boardNum;
+		location.href="boardDetail.bo?boardNum="+boardNum+"category="+category;
 	}
 });
 $(document).on('click', '#updateBtn', function() {

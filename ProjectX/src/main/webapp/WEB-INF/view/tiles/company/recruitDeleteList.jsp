@@ -71,8 +71,8 @@ table.type09 td {
 		    </tbody>
 		</table>
 			<div class="action col-md-12" align="center" style="margin: 10px;">
-					<input type="button" style="background: #ABC2E8; border: 1px solid; color: white; width: 120px; height: 30px;" id="deleteCartBtu" value="삭제">
-					<input type="button" style="background: #ABC2E8; border: 1px solid; color: white; width: 120px; height: 30px;" id="cartBuyPage" value="취소" onclick=" location.href='comMypage.co'">
+					<input type="button" class="btn btn-primary" style="background: #ABC2E8; border: 1px solid; color: white; width: 120px; height: 35px;" id="deleteCartBtu" value="삭제">
+					<input type="button"  class="btn btn-primary" style="background: #ABC2E8; border: 1px solid; color: white; width: 120px; height: 35px;" id="cartBuyPage" value="취소" onclick=" location.href='comMypage.co'">
 			</div>
 		</div>
 </body>

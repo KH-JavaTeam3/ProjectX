@@ -39,7 +39,7 @@ label{
 						data-target="#cLoginModal">기업 서비스</a></li>
 				</c:if>
 				<c:if test="${not empty sessionScope.memLogin }">
-					<li class="menuTap nav-item"><a class="menuTap nav-link">환영합니다.
+					<li class="menuTap nav-item"><a class="menuTap nav-link" href="memberMypage.me">환영합니다.
 							${sessionScope.memLogin.memName }님</a></li>
 					<li class="menuTap nav-item"><a class="menuTap nav-link" id="logBTS">로그아웃</a>
 					</li>
@@ -75,11 +75,11 @@ label{
 							<div align="center">
 								<div class="form-group">
 									<label for="loginMemEmail">이메일</label> 
-									<input type="email" class="form-control" id="loginMemEmail" name="memEmail" required>
+									<input type="email" class="form-control" id="loginMemEmail" name="memEmail" required autocomplete="off">
 								</div>
 								<div class="form-group">
 									<label for="loginMemPass">비밀번호</label> 
-									<input type="password" class="form-control" id="loginMemPass" name="memPass" required>
+									<input type="password" class="form-control" id="loginMemPass" name="memPass" required autocomplete="off">
 								</div>
 								<div class="form-group form-check">
 									<input type="checkbox" class="form-check-input" value="on" id="memKeepLogin" name="keepLogin"> 
@@ -114,7 +114,7 @@ label{
 							<div class="form-group">
 								<label for="joinMemEmail">이메일(아이디)</label> 
 								<input type="button" class="btn btn-outline-primary" id="emailChk" value="중복확인">
-								<input type="email" class="form-control" id="joinMemEmail" name="memEmail" >
+								<input type="email" class="form-control" id="joinMemEmail" name="memEmail" autocomplete="off">
 							</div>
 							<div class="form-group">
 								<label for="joinMemPass">비밀번호</label> 
@@ -126,7 +126,7 @@ label{
 							</div>
 							<div class="form-group">
 								<label for="memName">이름</label> 
-								<input type="text" class="form-control" id="memName" name="memName" >
+								<input type="text" class="form-control" id="memName" name="memName" autocomplete="off">
 							</div>
 							<div class="form-group">
 								<label for="memBirth">생년월일</label> 
@@ -147,12 +147,12 @@ label{
 							</div>
 							<div class="form-group">
 								<label for="memTel1">연락처</label> 
-								<input type="text" class="form-control" id="memTel1" name="memTel1" >
+								<input type="text" class="form-control" id="memTel1" name="memTel1" autocomplete="off">
 							</div>
 							<div class="form-group">
 								<label for="findAddr1">거주지</label> 
-								<input type="button" class="btn btn-outline-primary" id="findAddr1" value="주소찾기"> 
-								<input type="text" class="form-control" id="address" name="memAddr">
+								<input type="button" class="btn btn-outline-primary" id="findAddr1" value="주소찾기" autocomplete="off"> 
+								<input type="text" class="form-control" id="address" name="memAddr" autocomplete="off">
 							</div>
 					</div>
 					<div class="modal-footer">
@@ -181,12 +181,12 @@ label{
 						<div align="center">
 							<div class="form-group">
 								<label for="findMemEmail">이메일</label> 
-								<input type="email" class="form-control" id="findMemEmail" name="memEmail" required>
+								<input type="email" class="form-control" id="findMemEmail" name="memEmail" required autocomplete="off">
 							</div>
 						</div>
 				</div>
 				<div class="modal-footer">
-					<input type="button" class="btn btn-outline-primary" value="이메일 전송" id="findMemBtn"> 
+					<input type="button" class="btn btn-outline-primary" value="이메일 전송" id="findMemBtn" autocomplete="off"> 
 				</div>
 			</div>
 		</div>
@@ -242,13 +242,13 @@ label{
 						<div align="center">
 							<div class="form-group">
 								<label for="newMemPass">새 비밀번호</label> 
-								<input type="text" class="form-control" id="newMemPass" name="memPass" required>
+								<input type="password" class="form-control" id="newMemPass" name="memPass" required autocomplete="off">
 							</div>
 						</div>
 						<div align="center">
 							<div class="form-group">
 								<label for="newMemPassChk">새 비밀번호 확인</label> 
-								<input type="text" class="form-control" id="newMemPassChk"required>
+								<input type="password" class="form-control" id="newMemPassChk"required autocomplete="off">
 							</div>
 						</div>
 				</div>
@@ -468,6 +468,6 @@ label{
 			</div>
 		</div>
 	</div>
-	<script src="resources/js/menu.js?ver=11"></script>
+	<script src="resources/js/menu.js?ver=15"></script>
 </body>
 </html>

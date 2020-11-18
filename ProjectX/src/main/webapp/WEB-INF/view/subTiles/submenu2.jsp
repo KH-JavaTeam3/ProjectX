@@ -7,16 +7,16 @@
 <title>Insert title here</title>
 <style type="text/css">
 #searchStyle{
-   position: absolute;
-   left:1320px;
-   top:40px;
+   position: relative;
+   left: 409px;
+   top: -16.9px;
    transform : translate(-50%,-50%);
    z-index: 25;
 }
 #searchStyleCircle{
-   position: absolute;
-     left:1320px;
-   top:40px;
+   position: relative;
+   left: 380px;
+   top: -1px;
    transform : translate(-50%,-50%);
    z-index: 24;
 }   
@@ -95,7 +95,8 @@
 </head>
 <body>
 <div align="center" class="1 col">
-	<div style="border:3px solid #4876ef;font-size: 12px; height: 45px; border-radius : 15px; margin-top: 15px; width: 40%; padding: 0px;">
+	<div style="height: 30px;"></div>
+	<div style="border:3px solid #4876ef;font-size: 12px; height: 45px; border-radius : 15px;width: 40%; padding: 0px;">
 		<div style="display: inline-block;padding: 0px;" class="col-md-3">
 				<input class="sc" id="keywordSearch" type="text" style="margin-left: -122px;" placeholder="검색어 입력">
 		</div>

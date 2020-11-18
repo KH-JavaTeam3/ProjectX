@@ -19,6 +19,31 @@ svg{
 #resumeName-error{
 	margin-top: 0.8rem;
 }
+.wrap {
+    width: 100%;
+    position: relative;
+    display: inline-block;
+}
+.wrap textarea {
+    width: 100%;
+    resize: none;
+    min-height: 4.5em;
+    line-height:1.6em;
+    height: 200px;
+}
+.wrap span {
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+}
+.counter {
+  background: #658DC6;
+  border-radius: 0.5em;
+  padding: 0 .5em 0 .5em;
+  font-size: 0.75em;
+  color: white;
+}
+
 </style>
 </head>
 <body>
@@ -26,13 +51,13 @@ svg{
 	<div style="height: 50px;"></div>
 	<!-- 이력서 제목 -->
 	<div id="reNameDiv">
-		<input type="text" name="resumeName" style="font-size: 35px; font-weight: bold;" placeholder="제목을 입력해주세요." id="resumeName">
+		<input type="text" name="resumeName" style="font-size: 35px; font-weight: bold;" placeholder="제목을 입력해주세요." id="resumeName" autocomplete="off">
 	</div>
 	<div style="height: 20px;"></div>
 	<!-- 개인_기본정보 -->
 	<span style="font-weight: bold; font-size: 24px; color: #0F4C81;">개인 정보</span><input type="button" class="btn btn-primary" onClick="location.href='memUpdateForm.me';" value="개인정보수정" style="background: #658DC6; border-color: #658DC6; margin-bottom: 6px;
     margin-left: 5px;"/>
-	<div class="row col-md-12" style="border: 5px solid #658DC6; border-radius: 10px;">
+	<div class="row col-md-12" style="border: 5px solid #4876ef; border-radius: 10px;">
 		<div class="col-md-9">
 			<div class="form-row">
 				<div class="form-group col-md-6">
@@ -89,13 +114,13 @@ svg{
 <!-- 개인_학력사항 -->	
 	<div style="height: 20px;"></div>
 	<span style="font-weight: bold; font-size: 24px;color: #0F4C81;">학력 사항</span><!-- 학교 정보에 대한 DB 필요 -->
-	<div class="row col-md-12" style="border: 5px solid #658DC6; border-radius: 10px;">
+	<div class="row col-md-12" style="border: 5px solid #4876ef; border-radius: 10px;">
 		<div class="row col-md-12" style="margin-top:10px;">
 			<div class="form-row">
 				<div class="form-group col-md-6">
 					<label for="eduGrade">학력구분</label>
 					<select class="form-control" id="eduGrade" name="eduGrade" style="height: 35px;">
-						<option>선택하세요</option>
+						<option value="">선택하세요</option>
 						<option>고등학교</option>
 						<option>대학교(2,3년제)</option>
 						<option>대학교(4년제)</option>
@@ -103,12 +128,12 @@ svg{
 				</div>
 				<div class="form-group col-md-6">
 					<label for="eduSchool">학교명</label>
-					<input type="text" class="form-control" id="eduSchool" name="eduSchool">
+					<input type="text" class="form-control" id="eduSchool" name="eduSchool" autocomplete="off">
 				</div>
 				<div class="form-group col-md-6" id="locDiv">
 					<label for="eduLoc">지역</label>
-					<input type="button" class="btn btn-primary" id="openAddr" value="주소찾기" style="background: #658DC6; border-color: #658DC6; margin: 5px;"/>
-					<input type="text" class="form-control" id="eduLoc" name="eduLoc">
+					<input type="button" class="btn btn-primary" id="openAddr" value="주소찾기" style="background: #4876ef; margin: 5px;"/>
+					<input type="text" class="form-control" id="eduLoc" name="eduLoc" autocomplete="off">
 				</div>
 				<div class="form-group col-md-6">
 					<div class="row">
@@ -117,7 +142,7 @@ svg{
 							<div class="row">
 								<div class="col-md-4">
 									<select style="height: 40px;width: 200px; " id="eduType" name="eduType" >
-										<option>전공계열 선택</option>
+										<option value="">전공계열 선택</option>
 										<option>어문계열</option>
 										<option>인문과학계열</option>
 										<option>사회과학계열</option>
@@ -148,7 +173,7 @@ svg{
 						<input type="text" class="form-control col-md-11" id="eduEndDate" name="eduEndDate" autocomplete="off">
 						<div class="col-md-1" style="padding:2px; top:-3px;">
 							<select  style="height: 40px;" id="eduIsOver" name="eduIsOver">
-					  			<option>선택하세요</option>
+					  			<option value="">선택하세요</option>
 					  			<option>졸업예정</option>
 					  			<option>졸업</option>
 					  			<option>휴학</option>
@@ -167,21 +192,21 @@ svg{
 	<svg width="2em" height="2em" viewBox="0 0 16 16" class="offset-md-11 bi bi-plus" fill="currentColor" xmlns="http://www.w3.org/2000/svg" id="addCertifi">
 	  <path fill-rule="evenodd" d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
 	</svg>
-	<div class="row col-md-12" style="border: 5px solid #658DC6; border-radius: 10px;">
+	<div class="row col-md-12" style="border: 5px solid #4876ef; border-radius: 10px;">
 	
 		<div class="col-md-12" id="licenseDiv">
 			<div class="form-row">
 			   <div class="form-group col-md-12" style="padding-left: 20px;">
 				  <label for="licName">자격증 이름</label>
-				  <input type="text" class="form-control" id="licName" name="licName">
+				  <input type="text" class="form-control" id="licName" name="licName" autocomplete="off">
 				</div>
 			  <div class="form-group col-md-6" style="padding-left: 20px;">
 			    <label for="licLoc">발행처/기관</label>
-			    <input type="text" class="form-control" id="licLoc" name="licLoc">
+			    <input type="text" class="form-control" id="licLoc" name="licLoc" autocomplete="off">
 			  </div>
 			  <div class="form-group col-md-6">
 			    <label for="licGrade">점수</label>
-			    <input type="text" class="form-control" id="licGrade" name="licGrade">
+			    <input type="text" class="form-control" id="licGrade" name="licGrade" autocomplete="off">
 			    <small>※점수가 없는 경우, 합격/불합격으로 작성해주세요.</small>
 			  </div>
 			  <div class="form-group col-md-12" style="padding-left: 20px;">
@@ -193,24 +218,6 @@ svg{
 		
 	</div>
 
-<!-- 개인_자기소개 -->
-	<div style="height: 20px;"></div>
-	<span style="font-weight: bold; font-size: 24px;color: #0F4C81;">자기소개</span>
-	<svg style="margin-left: 89.8%;" width="2em" height="2em" viewBox="0 0 16 16" class="offset-md-10 bi bi-plus" fill="currentColor" xmlns="http://www.w3.org/2000/svg" id="addProfile">
-	  <path fill-rule="evenodd" d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
-	</svg>
-	<div class="row col-md-12" style="border: 5px solid #658DC6; border-radius: 10px;">
-		<div class="col-md-12" id="profileDiv" style="margin-top:10px;">
-		   <div class="form-group col-md-12">
-			  <label for="proTitle">자기소개서 이름</label>
-			  <input type="text" class="form-control" id="proTitle" name="proTitle">
-			</div>
-		   <div class="form-group col-md-12">
-			  <label for="proContent">자기소개서 내용</label>
-			  	<textarea rows="10" cols="60" class="form-control" id="proContent" name="proContent" wrap="hard"></textarea>
-			</div>
-		</div>
-	</div>
 
 <!-- 개인_경력사항 -->
 	<div style="height: 20px;"></div>
@@ -218,26 +225,27 @@ svg{
 	<svg style="margin-left: 89.8%;" width="2em" height="2em" viewBox="0 0 16 16" class="offset-md-10 bi bi-plus" fill="currentColor" xmlns="http://www.w3.org/2000/svg" id="addCareer">
 	  <path fill-rule="evenodd" d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
 	</svg>
-	<div class="row col-md-12" style="border: 5px solid #658DC6; border-radius: 10px;">
+	<div class="row col-md-12" style="border: 5px solid #4876ef; border-radius: 10px;">
 		<div class="col-md-12" id="careerDiv" style="margin-top:10px;">
 		 <div class="form-row" style="padding: 0px 15px;">
 		   <div class="form-group col-md-6">
 		     <label for="carCompany">회사명</label>
-		     <input type="text" class="form-control" id="carCompany" name="carCompany">
+		     <input type="text" class="form-control" id="carCompany" name="carCompany" autocomplete="off">
 		   </div>
 		   <div class="form-group col-md-6">
 		     <label for="carCareer">경력</label>
 		     <div class="row col-md-12">
-		     	<input type="number" class="form-control" id="carCareer" name="carCareer" placeholder="년차를 입력해주세요">
+		     	<input type="number" class="form-control col-md-11" id="carCareer" name="carCareer" placeholder="년차를 입력해주세요" autocomplete="off" max="99" min="0" >
+		     	<span class="col-md-1">년</span>
 		   	 </div>
 		   </div>
 		   <div class="form-group col-md-6">
 		     <label for="carType">직종</label>
-		     <input type="text" class="form-control" id="carType" name="carType">
+		     <input type="text" class="form-control" id="carType" name="carType" autocomplete="off">
 		   </div>
 		   <div class="form-group col-md-6">
 		     <label for="carPosition">직책</label>
-		     <input type="text" class="form-control" id="carPosition" name="carPosition">
+		     <input type="text" class="form-control" id="carPosition" name="carPosition" autocomplete="off">
 		   </div>
 		 </div>
 		</div>
@@ -246,7 +254,7 @@ svg{
 <!-- 희망 근무 조건 -->
 	<div style="height: 20px;"></div>
 	<span style="font-weight: bold; font-size: 24px;color: #0F4C81;">희망 조건</span>
-	<div class="row col-md-12" style="border: 5px solid #658DC6; border-radius: 10px;">
+	<div class="row col-md-12" style="border: 5px solid #4876ef; border-radius: 10px;">
 		<div class="col-md-12" style="margin-top:10px;">
 			<div class="form-row">
 				<div class="form-group col-md-6">
@@ -270,7 +278,7 @@ svg{
 				<div class="form-group col-md-6">
 					<label for="hopeSal">희망 연봉</label>
 					<div class="row col-md-12">
-						<input type="number" class="form-control col-md-10" id="hopeSal" name="hopeSal" min="0" value="2500">
+						<input type="number" class="form-control col-md-10" id="hopeSal" name="hopeSal" min="0" value="2500" autocomplete="off">
 						<span class="col-md-2" style="left: -13px; top: 7px; font-size: 17.5px;">만원</span>
 					</div>
 				</div>
@@ -299,23 +307,45 @@ svg{
 				</div>
 				<div class="form-group col-md-6">
 					<label for="hopeTime">희망 근무시간</label>
-					<input type="text" class="form-control" id="hopeTime" name="hopeTime">
+					<input type="text" class="form-control" id="hopeTime" name="hopeTime" autocomplete="off">
 				</div>
 			</div>
 		</div>
 	</div>
 <!-- 이력서 정보 끝 -->
 
+<!-- 개인_자기소개 -->
+	<div style="height: 20px;"></div>
+	<span style="font-weight: bold; font-size: 24px;color: #0F4C81;">자기소개</span>
+	<svg style="margin-left: 89.8%;" width="2em" height="2em" viewBox="0 0 16 16" class="offset-md-10 bi bi-plus" fill="currentColor" xmlns="http://www.w3.org/2000/svg" id="addProfile">
+	  <path fill-rule="evenodd" d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
+	</svg>
+	<div class="row col-md-12" style="border: 5px solid #4876ef; border-radius: 10px;">
+		<div class="col-md-12" id="profileDiv" style="margin-top:10px;">
+		   <div class="form-group col-md-12">
+			  <label for="proTitle">자기소개서 이름</label>
+			  <input type="text" class="form-control" id="proTitle" name="proTitle" autocomplete="off">
+			</div>
+		   <div class="form-group col-md-12 wrap">
+			  <label for="proContent">자기소개서 내용</label>
+			  	<textarea rows="10" cols="60" class="form-control wrap proContent" name="proContent" wrap="hard" maxlength="2000" style="height: 165px;"></textarea>
+			  	 <span class="counter"></span>
+			</div>
+		</div>
+	</div>
+	
+	<!-- 이력서 끝 -->
+	
 	<div style="height: 20px;"></div>	
 	<div align="center">	
-		<input type="submit" class="btn btn-primary" style="background:#0F4C81; border-color: #0F4C81; margin-bottom: 15px;" value="등록하기">&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;	
-		<button type="button" class="btn btn-primary" style="background: #658DC6; border-color: #658DC6; margin-bottom: 15px;" onclick="location.href='memberMypage.me'">뒤로 가기</button>	
+		<input type="submit" class="btn btn-primary" style="background: #4876ef; margin-bottom: 15px;" value="등록하기">&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;	
+		<button type="button" class="btn btn-primary" style="background: #658DC6; margin-bottom: 15px;" onclick="location.href='memberMypage.me'">뒤로 가기</button>	
 	</div>
 </form>	
 
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-<script src="resources/js/writeResume.js?ver=119"></script>
+<script src="resources/js/writeResume.js?ver=141"></script>
 <script type="text/javascript">
 $(document).ready(function(){
 	
@@ -330,6 +360,9 @@ $(document).ready(function(){
 			resumeName : {
 				required : true
 			},
+			eduGrade : {
+				required : true
+			},
 			eduSchool : {
 				required : true
 			},
@@ -340,6 +373,12 @@ $(document).ready(function(){
 				required : true
 			},
 			eduScore : {
+				required : true
+			},
+			eduBeginDate : {
+				required : true
+			},
+			eduEndDate : {
 				required : true
 			},
 			eduIsOver : {
@@ -386,7 +425,16 @@ $(document).ready(function(){
 	     }
 	});
 	
-	
+	//글자 수 체크
+// 	$(function() {
+// 	    $('.proContent').keyup(function (e){
+// 	        var content = $(this).val();
+// 	        console.log(content+"jsp에서");
+// 	        $(this).height(((content.split('\n').length + 1) * 1.5) + 'em');
+// 	        $('.counter').html(content.length + '/2000');
+// 	    });
+// 	    $('.proContent').keyup();
+// 	});
 });
 </script>
 </body>

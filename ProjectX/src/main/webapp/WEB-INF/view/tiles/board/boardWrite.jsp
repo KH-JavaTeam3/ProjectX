@@ -8,7 +8,7 @@
 <title>Insert title here</title>
 <style type="text/css">
 .footer1 {
-	position: absolute;
+	
 	left: 0;
 	bottom: 0;
 	width: 100%;
@@ -22,6 +22,12 @@
 	font-size: 18px;
 	font-weight: bold;
 	color: gray;
+}
+
+.button1:hover {
+	background: #4876ef;
+	cursor: pointer;
+	color: white;
 }
 
 .a:hover {
@@ -39,8 +45,20 @@ select:invalid {
 	<div align="left">
 		<div class="row"
 			style="border-bottom: 3px solid #4876ef; width: 1473px; margin-left: 33px;">
+			<div class="col-md-12">
+				<div onclick="location.href='freeBoardList.bo'" class="button button1 col-md-2"
+					style="<c:if test="${select eq 'free'}">background: #4876ef; color: white;</c:if>
+					display: inline-block;text-align: center; border: 3px solid #f1f3f9; border-bottom: none; height: 50px; line-height: 50px; margin-left: 9px; left: -27px;">
+					자유게시판</div>
+				<div onclick="location.href='qaBoardList.bo'" class="button button1 col-md-2"
+					style="<c:if test="${select eq 'qa'}">background: #4876ef; color: white;</c:if>
+					display: inline-block; text-align: center; border: 3px solid #f1f3f9; border-bottom: none; height: 50px; line-height: 50px; left: -27px;">
+					Q.A게시판</div>
+			</div>
 		</div>
 	</div>
+	
+
 	<div style="height: 50px;"></div>
 <form action="boardWrite.bo" method="post">
 <c:if test="${not empty sessionScope.memLogin }">
@@ -51,21 +69,21 @@ select:invalid {
 <input type="hidden" name="boardWriter"value="${sessionScope.comLogin.comNum }">
 <input type="hidden" name="boardWriterName"value="${sessionScope.comLogin.comName }">
 </c:if>
-		<div style="width: 80%; height: 80%" class="mx-auto">
+		<div style="width: 96%; height: 80%" class="mx-auto">
 			<div class="form-group">
-				<select class="form-control" style="width: 300px;"name="boardCategory" required>
-					<option <c:if test="${select eq 'A' }">selected</c:if>>자유게시판</option>
-					<option <c:if test="${select eq 'B' }">selected</c:if>>Q.A게시판</option>
+				<select class="form-control" style="width: 150px;"name="boardCategory" required>
+					<option <c:if test="${select eq 'free' }">selected</c:if>>자유게시판</option>
+					<option <c:if test="${select eq 'qa' }">selected</c:if>>Q.A게시판</option>
 				</select>
 			</div>
 			<div class="form-row mx-auto">
 				<div class="form-group">
-					<input type="text" class="form-control" placeholder="제목" style="width: 1227px;"name="boardTitle" required>
+					<input type="text" class="form-control" placeholder="제목" style="width: 1461px;"name="boardTitle" required autocomplete="off">
 				</div>
 			</div>
 			
 			<div class="form-group">
-				<textarea class="form-control" rows="15" placeholder="내용" name="boardContent" required></textarea>
+				<textarea class="form-control" maxlength="1980" placeholder="내용" name="boardContent" wrap="hard" required style="font-family: sans-serif; height:400px; font-size: 17px;"></textarea>
 			</div>
 		</div>
 	<div style="height: 180px;" class="footer1 button">		
@@ -85,7 +103,8 @@ $(document).on('click', '#backBtn', function() {
 	}else{
 	  
 	}
-});		
+});
+
 </script>
 </body>
 </html>

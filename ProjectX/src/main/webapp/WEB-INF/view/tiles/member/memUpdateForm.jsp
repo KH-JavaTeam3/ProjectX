@@ -101,13 +101,13 @@ select {
 }
 
 input[type="button"]{
-	background-color: #658DC6;
+	background-color: #4876ef;
 	border: 0px;
 	color: white;
 }
 
 input[type="submit"]{
-	background-color: #0F4C81;
+	background-color: #4876ef;
 	border: 0px;
 	color: white;
 }
@@ -136,12 +136,12 @@ button[type="button"]:hover {
 <form action="updateMemInfo.me" method="post" enctype="multipart/form-data">
 <div style="height: 100px;"></div>
 <span style="font-weight: bold; font-size: 30px; font-family:'MyLotteBold'; color: #0F4C81;">개인정보 수정</span>
-<div class="row col-md-12" style="border: 5px solid #658DC6; border-radius: 10px;">
+<div class="row col-md-12" style="border: 5px solid #4876ef; border-radius: 10px;">
       <div class="col-md-9">
          <div class="form-row">
             <div class="form-group col-md-6" style="padding: 30px 30px 0px 0px;">
                <label for="memEmail">이메일</label>
-               <input type="email" class="form-control" id="memEmail" name="memEmail" value="${sessionScope.memLogin.memEmail }" >
+               <input type="email" class="form-control" id="memEmail" name="memEmail" value="${sessionScope.memLogin.memEmail }" readonly>
             </div>
             <div class="form-group col-md-6" style="padding: 30px 30px 0px 0px;">
                <label for="memPass">비밀번호</label>
@@ -149,7 +149,7 @@ button[type="button"]:hover {
             </div>
             <div class="form-group col-md-6" style="padding: 30px 30px 0px 0px;">
                <label for="upMemName">이름</label>
-               <input type="text" class="form-control" id="upMemName" name="memName" value="${sessionScope.memLogin.memName }">
+               <input type="text" class="form-control" id="upMemName" name="memName" value="${sessionScope.memLogin.memName }" autocomplete="off">
             </div>
             <div class="form-group col-md-6" style="padding: 30px 30px 0px 0px;">
                <label class="col-md-3 control-label" style="padding-left: 0px;">생년월일</label>
@@ -168,17 +168,34 @@ button[type="button"]:hover {
             </div>
             <div class="form-group col-md-6" style="padding: 30px 30px 0px 0px;">
                <label for="upMemTel1">휴대전화</label>
-               <input type="text" class="form-control" id="upMemTel1" name="memTel1" value="${sessionScope.memLogin.memTel1 }">
+               <input type="text" class="form-control" id="upMemTel1" name="memTel1" value="${sessionScope.memLogin.memTel1 }" autocomplete="off">
             </div>
             <div class="form-group col-md-6" style="padding: 30px 30px 0px 0px;">
                <label for="memTel2">비상 연락처</label>
-               <input type="text" class="form-control" id="memTel2" name="memTel2" value="${sessionScope.memLogin.memTel2 }">
+               <input type="text" class="form-control" id="memTel2" name="memTel2" value="${sessionScope.memLogin.memTel2 }" autocomplete="off">
             </div>
             <div class="form-group col-md-6" style="padding: 30px 30px 0px 0px;">
                <div class="col-md-12" style="padding: 0px;">
                   <label for="memAddr">주소</label>
-                  <input type="button" class="btn btn-primary offset-md-9" id="findAddr" value="주소찾기" style="margin-bottom: 5px; background-color: #658DC6;">
-                  <input type="text" id="memAddr"  class="form-control" value="${sessionScope.memLogin.memAddr }" name="memAddr"/>
+                  <input type="button" class="btn btn-primary offset-md-9" id="findAddr" value="주소찾기" style="margin-bottom: 5px; background-color: #4876ef;">
+                  <input type="text" id="memAddr"  class="form-control" value="${sessionScope.memLogin.memAddr }" name="memAddr" autocomplete="off"/>
+               </div>
+            </div>
+         </div>
+      </div>
+      <div class="col-md-3">
+         <div class="container">
+            <div class="row">
+            <div class="form-group col-md-3" style="padding: 30px 30px 0px 0px;">
+                  <div class="form-group files uploader offset-md-5">
+                     <label for="memImage">사진</label>
+                     <input type="file" class="form-control"  id="memImage" name="file1">
+                     <img id="preview" src="resources/images/memberProfile/${sessionScope.memLogin.memImage }">
+					<c:if test="${not empty sessionScope.memLogin.memImage }">
+                     <img id="preview" src="https://findream.s3.ap-northeast-2.amazonaws.com/images/${sessionScope.memLogin.memImage }">
+					</c:if>
+                     <img id="preview">
+                  </div>
                </div>
             </div>
          </div>
@@ -186,7 +203,8 @@ button[type="button"]:hover {
    </div>
    <div style="height: 30px;"></div>
    <div align="center">
-        <input type="submit" class="btn btn-primary" value="수정">&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<button class="btn btn-primary" type="button" onClick="history.back()">취소</button>
+        <input type="submit" class="btn btn-primary" value="수정">&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+        <button class="btn btn-primary" type="button" onClick="history.back()">취소</button>
      </div>
 <script type="text/JavaScript" src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 <script type="text/javascript" src="resources/js/memUpdateForm.js?ver=4"></script>

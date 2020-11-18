@@ -18,12 +18,17 @@ table{
 }
 
 input[type="submit"]{
-	background-color: #0F4C81;
+	background-color: #4876ef;
 	border: 0px;
 	color: white;
 	margin-top: 6px;
+	padding-top: 3px;
 	border-radius: 5px;
 	height: 30px;
+}
+.blueBorder{
+	border: 5px solid #4876ef; 
+	border-radius: 10px;
 }
 </style>
 </head>
@@ -31,18 +36,18 @@ input[type="submit"]{
 <!-- 이력서 수정 페이지 -->
 <form action="updateResume.me" method="post">
 <input type="hidden" value="${memResume.resumeNum }" name="resumeNum">
-<div style="height: 30px;"></div>
+<div style="height: 30px; "></div>
 	<!-- 이력서 제목 -->
 	<input type="text" name="resumeName" style="font-size: 35px; font-weight: bold;" value="${memResume.resumeName }">
 	<div style="height: 20px;"></div>
 	<!-- 개인_기본정보 -->
-	<span style="font-weight: bold; font-size: 24px;">개인 정보</span><input type="button" class="btn btn-primary" onClick="location.href='memUpdateForm.me';" value="개인정보수정" style="background: #ABC2E8; border-color: #ABC2E8; margin-bottom: 5px;"/>
-	<div class="row col-md-12" style="border: 5px solid #ABC2E8; border-radius: 10px;">
+	<span style="font-weight: bold; font-size: 24px;">개인 정보</span><input type="button" class="btn btn-primary" onClick="location.href='memUpdateForm.me';" value="개인정보수정" style="background: #4876ef; margin-bottom: 10px;"/>
+	<div class="row col-md-12 blueBorder">
 		<div class="col-md-9">
 			<div class="form-row">
 				<div class="form-group col-md-6">
-					<label for="memName">이름</label>
-					<input type="text" class="form-control" id="memName" name="memName" value="${sessionScope.memLogin.memName }" disabled>
+					<label for="memName1">이름</label>
+					<input type="text" class="form-control" id="memName1" name="memName" value="${sessionScope.memLogin.memName }" disabled>
 				</div>
 				<div class="form-group col-md-6">
 					<label for="memEmail">이메일</label>
@@ -64,8 +69,8 @@ input[type="submit"]{
 					</div>
 				</div>
 				<div class="form-group col-md-6">
-					<label for="memTel1">연락처</label>
-					<input type="text" class="form-control" id="memTel1" name="memTel1" value="${sessionScope.memLogin.memTel1 }" disabled>
+					<label for="1memTel1">연락처</label>
+					<input type="text" class="form-control" id="1memTel1" name="memTel1" value="${sessionScope.memLogin.memTel1 }" disabled>
 				</div>
 				<div class="form-group col-md-6">
 					<div class="col-md-12" style="padding: 0px;">
@@ -94,7 +99,7 @@ input[type="submit"]{
 <!-- 개인_학력사항 -->	
 	<div style="height: 20px;"></div>
 	<span style="font-weight: bold; font-size: 24px;">학력 사항</span><!-- 학교 정보에 대한 DB 필요 -->
-	<div class="row col-md-12" style="border: 5px solid #ABC2E8; border-radius: 10px;">
+	<div class="row col-md-12 blueBorder">
 		<div class="row col-md-12">
 			<div class="form-row">
 				<div class="form-group col-md-6">
@@ -108,12 +113,12 @@ input[type="submit"]{
 				</div>
 				<div class="form-group col-md-6">
 					<label for="eduSchool">학교명</label>
-					<input type="text" class="form-control" id="eduSchool" name="eduSchool" value="${memResume.eduSchool }">
+					<input type="text" class="form-control" id="eduSchool" name="eduSchool" value="${memResume.eduSchool }" autocomplete="off">
 				</div>
 				<div class="form-group col-md-6">
 					<label for="eduLoc">지역</label>
-					<input type="button" class="btn btn-primary" onClick="openDaumZipAddress2();" value="주소찾기" style="background: #ABC2E8; border-color: #ABC2E8; margin: 5px;"/>
-					<input type="text" class="form-control" id="eduLoc" name="eduLoc" value="${memResume.eduLoc }">
+					<input type="button" class="btn btn-primary" id="openAddr" value="주소찾기" style="background: #4876ef; margin: 5px;"/>
+					<input type="text" class="form-control" id="eduLoc" name="eduLoc" value="${memResume.eduLoc }" autocomplete="off">
 				</div>
 				<div class="form-group col-md-6">
 					<div class="row">
@@ -138,7 +143,7 @@ input[type="submit"]{
 						</div>
 						<div class="col-md-3" style="top: 14px; left: -80px;">
 							<label for="eduScore">학점</label>
-					  		<input type="number" class="form-control" id="eduScore" name="eduScore" max="4.5" min="0" step="0.01" value="0.00" style="height: 40px;" value="${memResume.eduScore }">
+					  		<input type="number" class="form-control" id="eduScore" name="eduScore" max="4.5" min="0" step="0.01"  style="height: 40px;" value="${memResume.eduScore }">
 						</div>
 					</div>
 				</div>
@@ -171,7 +176,7 @@ input[type="submit"]{
 	<svg width="2em" height="2em" viewBox="0 0 16 16" class="offset-md-11 bi bi-plus" id="addCertifi" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
 	  <path fill-rule="evenodd" d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
 	</svg>
-	<div class="row col-md-12" style="border: 5px solid #ABC2E8; border-radius: 10px; padding-left: 15px;" id="licenseFather">
+	<div class="row col-md-12 blueBorder" style="padding-left: 15px;" id="licenseFather">
 		<c:forEach items="${memResume.licenseList }" var="lic" varStatus="status">
 			<c:if test="${status.index ge 1 }">
 				<div style="border-top: 2px solid lightgray;"></div>
@@ -186,15 +191,15 @@ input[type="submit"]{
 						<path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
 						<path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4L4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
 					   </svg>
-					  <input type="text" class="form-control licName" name="licName" value="${lic.licName }">
+					  <input type="text" class="form-control licName" name="licName" value="${lic.licName }" autocomplete="off">
 					</div>
 				  <div class="form-group col-md-6">
 				    <label for="licLoc">발행처/기관</label>
-				    <input type="text" class="form-control licLoc" name="licLoc" value="${lic.licLoc }">
+				    <input type="text" class="form-control licLoc" name="licLoc" value="${lic.licLoc }" autocomplete="off">
 				  </div>
 				  <div class="form-group col-md-6">
 				    <label for="licGrade">점수</label>
-				    <input type="text" class="form-control licGrade" name="licGrade" value="${lic.licGrade }">
+				    <input type="text" class="form-control licGrade" name="licGrade" value="${lic.licGrade }" autocomplete="off">
 				  </div>
 				  <div class="form-group col-md-12">
 					  <label for="licDate">취득일</label>
@@ -211,21 +216,21 @@ input[type="submit"]{
 	<svg style="margin-left: 89.8%;" id="addProfile" width="2em" height="2em" viewBox="0 0 16 16" class="offset-md-10 bi bi-plus" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
 	  <path fill-rule="evenodd" d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
 	</svg>
-	<div class="row col-md-12" style="border: 5px solid #ABC2E8; border-radius: 10px;" id="profilesFather">
+	<div class="row col-md-12 blueBorder" id="profilesFather">
 		<c:forEach items="${memResume.profilesList }" var="pro" varStatus="status">
 		<c:if test="${status.index ge 1 }">
 			<div class="col" style="border-top: 2px solid lightgray;"></div>
 		</c:if>
 			<div class="col-md-12" id="profileDiv">
 			  <div class="form-group col-md-12">
-			   <input type="hidden" value="${pro.proNum }" name="proNum">
+			   <input type="hidden" value="${pro.proNum }" name="proNum" >
 				  <label for="proTitle">자기소개서 이름</label>
 				  <!-- 삭제버튼 -->
 				  <svg width="1.5em" height="1.5em" viewBox="0 0 16 16" class="bi bi-trash proDeleteBtn" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
 					<path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
 					<path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4L4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
 				   </svg>
-				  <input type="text" class="form-control proTitle" name="proTitle" value="${pro.proTitle }">
+				  <input type="text" class="form-control proTitle" name="proTitle" value="${pro.proTitle }" autocomplete="off">
 				</div>
 			   <div class="form-group col-md-12">
 				  <label for="proContent">자기소개서 내용</label>
@@ -241,7 +246,7 @@ input[type="submit"]{
 	<svg style="margin-left: 89.8%;" id="addCareer" width="2em" height="2em" viewBox="0 0 16 16" class="offset-md-10 bi bi-plus" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
 	  <path fill-rule="evenodd" d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
 	</svg>
-	<div class="row col-md-12" style="border: 5px solid #ABC2E8; border-radius: 10px;" id="careerTotal">
+	<div class="row col-md-12 blueBorder" id="careerTotal">
 	<c:forEach items="${memResume.careerList }" var="career" varStatus="status">
 	<c:if test="${status.index ge 1 }">
 		<div class="col" style="border-top: 2px solid lightgray;"></div>
@@ -256,22 +261,22 @@ input[type="submit"]{
 				<path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
 				<path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4L4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
 			   </svg>
-		     <input type="text" class="form-control carCompany" name="carCompany" value="${career.carCompany }">
+		     <input type="text" class="form-control carCompany" name="carCompany" value="${career.carCompany }" autocomplete="off">
 		   </div>
 		   <div class="form-group col-md-6">
 		     <label for="carCareer">경력</label>
 		     <div class="row col-md-12">
-			     <input type="number" class="form-control col-md-11 carCareer" name="carCareer" value="${career.carCareer }" placeholder="년차를 입력해주세요" min="0" max="100">
+			     <input type="number" class="form-control col-md-11 carCareer" name="carCareer" value="${career.carCareer }" placeholder="년차를 입력해주세요" min="0" max="100" autocomplete="off">
 				 <span class="col-md-1" style="left: -15px; bottom: -7px;">년</span>
 			 </div>
 		   </div>
 		   <div class="form-group col-md-6">
 		     <label for="carType">직종</label>
-		     <input type="text" class="form-control carType" name="carType" value="${career.carType }">
+		     <input type="text" class="form-control carType" name="carType" value="${career.carType }" autocomplete="off">
 		   </div>
 		   <div class="form-group col-md-6">
 		     <label for="carPosition">직책</label>
-		     <input type="text" class="form-control carPosition" name="carPosition" value="${career.carPosition }">
+		     <input type="text" class="form-control carPosition" name="carPosition" value="${career.carPosition }" autocomplete="off">
 		   </div>
 		 </div>
 		</div>
@@ -281,27 +286,27 @@ input[type="submit"]{
 <!-- 희망 근무 조건 -->
 	<div style="height: 20px;"></div>
 	<span style="font-weight: bold; font-size: 24px;">희망 조건</span>
-	<div class="row col-md-12" style="border: 5px solid #ABC2E8; border-radius: 10px;">
+	<div class="row col-md-12 blueBorder">
 		<div class="col-md-12">
 			<div class="form-row">
 				<div class="form-group col-md-6">
 					<label for="hopeType">희망 직종</label>
-					<input type="text" class="form-control" id="hopeType" name="hopeType" value="${memResume.hopeType }">
+					<input type="text" class="form-control" id="hopeType" name="hopeType" value="${memResume.hopeType }" autocomplete="off">
 				</div>
 				<div class="form-group col-md-6">
 					<label for="hopeSal">희망 연봉</label>
 					<div class="row col-md-12">
-						<input type="number" class="form-control col-md-10" id="hopeSal" name="hopeSal" min="0" value="${memResume.hopeSal }">
+						<input type="number" class="form-control col-md-10" id="hopeSal" name="hopeSal" min="0" value="${memResume.hopeSal }" autocomplete="off">
 						<span class="col-md-2" style="left: -13px; top: 7px;">만원</span>
 					</div>
 				</div>
 				<div class="form-group col-md-6">
 					<label for="hopeLoc">희망 지역</label>
-					<input type="text" class="form-control" id="hopeLoc" name="hopeLoc" value="${memResume.hopeLoc }">
+					<input type="text" class="form-control" id="hopeLoc" name="hopeLoc" value="${memResume.hopeLoc }" autocomplete="off">
 				</div>
 				<div class="form-group col-md-6">
 					<label for="hopeTime">희망 근무시간</label>
-					<input type="text" class="form-control" id="hopeTime" name="hopeTime" value="${memResume.hopeTime }">
+					<input type="text" class="form-control" id="hopeTime" name="hopeTime" value="${memResume.hopeTime }" autocomplete="off">
 				</div>
 				
 			</div>
@@ -309,7 +314,7 @@ input[type="submit"]{
 	</div>
 <div style="height: 10px;"></div>
 <div align="center">
-	<input type="submit" value="수정 완료하기" style="margin: 10px;">
+	<input type="submit" value="수정 완료하기" class="btn btn-primary" style="margin: 10px;">
 </div>
 </form>	
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>

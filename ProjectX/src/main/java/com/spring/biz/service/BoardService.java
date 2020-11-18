@@ -88,5 +88,6 @@ public interface BoardService {
 	//qa게시판 댓글삭제
 	int deleteBoard2Coment(Board2ComentVO board2ComentVO);
 	
+
 	
 }

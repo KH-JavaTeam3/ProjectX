@@ -74,8 +74,7 @@ body {
 
 <div style="height: 50px;"></div>
 	<div align="left">
-		<div class="row"
-			style="border-bottom: 3px solid #4876ef; width: 1473px; margin-left: 33px;">
+		<div class="row" style="border-bottom: 3px solid #4876ef; width: 1473px; margin-left: 33px;">
 			<div class="col-md-12">
 				<div onclick="location.href='freeBoardList.bo'" class="button col-md-2"
 					style="display: inline-block; background: #4876ef; color: white; text-align: center; border: 3px solid #f1f3f9; border-bottom: none; height: 50px; line-height: 50px; margin-left: 9px; left: -27px;">
@@ -132,11 +131,10 @@ body {
 			</thead>
 			<tbody class="table">
 
-
 				<c:forEach items="${boardList }" var="board" >
 					<tr class="detailBtn" data-attr="${board.boardNum }">
-						<td>${board.boardNum}</td>
-						<td>${board.boardTitle }</td>
+						<td style="color: gray;">${board.boardNum}</td>
+						<td><label style="font-weight: normal; font-size: 20px;">${board.boardTitle }</label><a style="color: gray;">(${board.comentCnt})</a></td>
 						<td>${board.boardWriterName}*</td>
 						<td>${board.boardDate }</td>
 						<td>${board.boardViews }</td>
@@ -200,9 +198,9 @@ body {
 						<div class="col-md-3">
 							<select class="form-control" name="select">
 								<option>전체</option>
-								<option value="boARD_CONTENT">내용</option>
-								<option value="boARD_TITLE">제목</option>
-								<option value="boARD_WRITER_NAME">작성자</option>							
+								<option value="bOARD_CONTENT">내용</option>
+								<option value="bOARD_TITLE">제목</option>
+								<option value="bOARD_WRITER_NAME">작성자</option>							
 							</select>
 						</div>
 						<div class="col-md-4">

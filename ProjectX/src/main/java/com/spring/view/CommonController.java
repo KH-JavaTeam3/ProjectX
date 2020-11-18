@@ -356,8 +356,7 @@ public class CommonController {
 		return "result/result";
 	}
 		
-		
-		
+	
 }
 
 

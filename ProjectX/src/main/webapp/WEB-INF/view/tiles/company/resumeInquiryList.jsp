@@ -43,7 +43,7 @@ table.type09 td {
 <span style="font-weight: bold; font-size: 24px;">이력서 조회</span>
    <div style="height: 20px;"></div>
    <c:if test="${empty resumeInquiryList }">
-   <div class="col-md-12" style="border: 5px solid #ABC2E8; border-radius: 10px;" align="center">
+   <div class="col-md-12" style="border: 5px solid #4876ef; border-radius: 10px;" align="center">
 		<table class="type09">
 			<tr>
 				<td><span>받은 이력서가 없습니다..</span> </td>
@@ -63,7 +63,7 @@ table.type09 td {
 		    	<tr class="title">
 		    		<td>제목</td>
 		    		<td>학력</td>
-		    		<td colspan="2">학교</td>
+		    		<td colspan="2" >학교</td>
 		    		<td>전공</td>
 		    		<td>학과</td>
 		    		<td>졸업여부</td>
@@ -86,8 +86,9 @@ table.type09 td {
 		<c:if test="${resumeInquiry.resumeResult == 'N' }"><samp style="font-size: 14px; font-weight: bold; color: red;">불합격</samp></c:if>
 		<c:if test="${resumeInquiry.resumeResult == 'Y' }"><samp style="font-size: 14px; font-weight: bold; color: blue;">합격</samp></c:if>
 			<div class="action col-md-12" align="center" style="margin: 10px;">
-					<input type="button" style="background: #ABC2E8; border: 1px solid; color: white; width: 120px; height: 30px;"  value="상세보기" onclick=" location.href='comMoveToResumeDetail.me?resumeNum=${resumeInquiry.resumeNum}&memEmail=${resumeInquiry.memEmail }&comMypageNum=${resumeInquiry.comMypageNum }&announceNum=${resumeInquiry.announceNum }'">
-					<input type="button" style="background: #ABC2E8; border: 1px solid; color: white; width: 120px; height: 30px;"  value="취소" onclick=" location.href='comMypage.co'">
+					<input type="button" class="btn btn-primary" style="background: #ABC2E8; border: 1px solid; color: white; width: 120px; height: 30px;"  value="상세보기" onclick=" location.href='comMoveToResumeDetail.me?resumeNum=${resumeInquiry.resumeNum}&memEmail=${resumeInquiry.memEmail }&comMypageNum=${resumeInquiry.comMypageNum }&announceNum=${resumeInquiry.announceNum }'">
+					&emsp;&emsp;&emsp;
+					<input type="button" class="btn btn-primary" style="background: #ABC2E8; border: 1px solid; color: white; width: 120px; height: 30px;"  value="취소" onclick=" location.href='comMypage.co'">
 			</div>
 		</div>
 		    </c:forEach>

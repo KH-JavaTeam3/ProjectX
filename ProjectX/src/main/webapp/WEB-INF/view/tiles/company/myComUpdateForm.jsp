@@ -38,32 +38,32 @@ input[type="button"] {
          <div class="form-row">
             <div class="form-group col-md-6" style="padding: 30px 50px 0px 30px;">
                <label for="comEmail">이메일</label>
-               <input type="email" class="form-control"  name="comEmail" value="${sessionScope.comLogin.comEmail }">
+               <input type="email" class="form-control"  name="comEmail" value="${sessionScope.comLogin.comEmail }" readonly>
             </div>
             <div class="form-group col-md-6" style="padding: 30px 50px 0px 30px;">
                <label for="comName">법인명</label>
-               <input type="text" class="form-control" name="comName" value="${sessionScope.comLogin.comName}">
+               <input type="text" class="form-control" name="comName" value="${sessionScope.comLogin.comName}" autocomplete="off">
             </div>
             <div class="form-group col-md-6" style="padding: 30px 50px 0px 30px;">
                <label for="comCeo">대표자명</label>
-               <input type="text" class="form-control"  name="comCeo" value="${sessionScope.comLogin.comCeo}">
+               <input type="text" class="form-control"  name="comCeo" value="${sessionScope.comLogin.comCeo}" autocomplete="off">
             </div>
             <div class="form-group col-md-6" style="padding: 30px 50px 0px 30px;">
                <label for="comType">산업군</label>
-               <input type="text" class="form-control"  name="comType" value="${sessionScope.comLogin.comType}">
+               <input type="text" class="form-control"  name="comType" value="${sessionScope.comLogin.comType}" autocomplete="off">
             </div>
             <div class="form-group col-md-6"  style="padding: 30px 50px 0px 30px;">
                <label for="comLoc">본사 주소</label>
                   <input type="button" class="btn btn-primary" onClick="openDaumZipAddress();" value="주소찾기" style="background: #ABC2E8; border-color: #ABC2E8;" /><br/>
-                  <input type="text" class="form-control"   style="width: 99%;" value="${sessionScope.comLogin.comLoc }" name="comLoc"/>
+                  <input type="text" class="form-control"   style="width: 99%;" value="${sessionScope.comLogin.comLoc }" name="comLoc" autocomplete="off"/>
             </div>
             <div class="form-group col-md-6"  style="padding: 38px 50px 0px 30px;">
                <label for="comLocDetail">상세 주소</label>
-                  <input type="text" class="form-control"    name="comLocDetail" style="width: 99%;" value="${sessionScope.comLogin.comLocDetail }"/>
+                  <input type="text" class="form-control"    name="comLocDetail" style="width: 99%;" value="${sessionScope.comLogin.comLocDetail }" autocomplete="off"/>
             </div>
             <div class="form-group col-md-6" style="padding: 30px 50px 0px 30px;">
                <label for="comTel">연락처</label>
-               <input type="text" class="form-control"  name=comTel value="${sessionScope.comLogin.comTel}">
+               <input type="text" class="form-control"  name=comTel value="${sessionScope.comLogin.comTel}" autocomplete="off">
             </div>
             <div class="form-group col-md-6" style="padding: 34px 50px 0px 30px;">
             	<label for="comTel">기업 로고</label>

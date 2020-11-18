@@ -13,8 +13,16 @@ public class BoardVO2 {
 	private int board2Count;
 	private String board2RealWriterName;
 	private String delYn2;
+	private String comentCnt2;
 	
 	
+	
+	public String getComentCnt2() {
+		return comentCnt2;
+	}
+	public void setComentCnt2(String comentCnt2) {
+		this.comentCnt2 = comentCnt2;
+	}
 	public String getDelYn2() {
 		return delYn2;
 	}
@@ -93,7 +101,7 @@ public class BoardVO2 {
 				+ board2Content + ", board2Views=" + board2Views + ", board2Date=" + board2Date + ", board2Num="
 				+ board2Num + ", board2WriterName=" + board2WriterName + ", select2=" + select2 + ", search2=" + search2
 				+ ", board2Count=" + board2Count + ", board2RealWriterName=" + board2RealWriterName + ", delYn2="
-				+ delYn2 + "]";
+				+ delYn2 + ", comentCnt2=" + comentCnt2 + "]";
 	}
 	
 	

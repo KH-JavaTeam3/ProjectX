@@ -59,11 +59,11 @@ input[type="number"]::-webkit-inner-spin-button {
 				<table>
 					<tr>
 						<td style="width: 100px; color: gray;">경력</td>
-						<td style="color: #4c78ea; font-size: 14px;">${recruitDeteil.career }</td>
+						<td style="color: #4c78ea; font-size: 14px;">${recruitDeteil.academicBackground }</td>
 					</tr>
 					<tr>
 						<td style="color: gray;">학력</td>
-						<td style="color: #4c78ea; font-size: 14px;">${recruitDeteil.academicBackground }</td>
+						<td style="color: #4c78ea; font-size: 14px;">${recruitDeteil.career }</td>
 					</tr>
 					<tr>
 						<td style="color: gray;">고용형태</td>
@@ -98,7 +98,7 @@ input[type="number"]::-webkit-inner-spin-button {
 		<div class="col-md-12" align="center" style="width: 80%;padding-bottom: 20px;">
 <%--  			<img id="preview" src="resources/images/comProfile/${recruitDeteil.registImage}" style=" width:100%;">  --%>
 			<c:if test="${not empty recruitDeteil.registImage}">
-	 			<img id="preview" src="https://findream.s3.ap-northeast-2.amazonaws.com/images/${recruitDeteil.registImage}" style=" width:100%;"> 
+	 			<img id="preview" src="https://findream.s3.ap-northeast-2.amazonaws.com/images/${recruitDeteil.registImage}"> 
 			</c:if>
 		</div>
 		<div align="left" style="width: 80%;">

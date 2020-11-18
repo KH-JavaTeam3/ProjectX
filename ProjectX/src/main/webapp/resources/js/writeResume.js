@@ -24,15 +24,15 @@ $(document).ready(function(){
 								<path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
 								<path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4L4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
 								</svg>
-							  <input type="text" class="form-control" name="licName">
+							  <input type="text" class="form-control" name="licName" autocomplete="off">
 							</div>
 						  <div class="form-group col-md-6">
 						    <label >발행처/기관</label>
-						    <input type="text" class="form-control"  name="licLoc">
+						    <input type="text" class="form-control"  name="licLoc" autocomplete="off">
 						  </div>
 						  <div class="form-group col-md-6">
 						    <label >점수</label>
-						    <input type="text" class="form-control"  name="licGrade">
+						    <input type="text" class="form-control"  name="licGrade" autocomplete="off">
 						    <small>※점수가 없는 시험의 경우, 합격/불합격으로 적어주세요.</small>
 						  </div>
 							<div class="form-group col-md-12">
@@ -53,26 +53,43 @@ $(document).ready(function(){
 		$(this).parent().parent().parent().remove();
 	});
 
-	//프로필 칸 증가
+	//자소서 칸 증가
 	$(document).on('click', '#addProfile', function() {
-		var str =`<div class="row col-md-12" style="border-top: 1px solid gray; border-bottom: 1px solid gray; width="100%;"">
+		var str =`<div class="col-md-12" style="border-top: 1px solid gray; border-bottom: 1px solid gray;">
 					   <div class="form-group col-md-12">
 						  <label >자기소개서 이름</label>
 						  <svg width="1.5em" height="1.5em" viewBox="0 0 16 16" class="bi bi-trash" fill="currentColor" xmlns="http://www.w3.org/2000/svg" id="deleteBtn1">
 							<path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
 							<path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4L4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
 						  </svg>
-						  <input type="text" class="form-control"  name="proTitle">
+						  <input type="text" class="form-control"  name="proTitle" autocomplete="off">
 						</div>
-					   <div class="form-group col-md-12">
-						  <label >자기소개서 내용</label>
-						  <textarea rows="10" cols="60" class="form-control" name="proContent" wrap="hard"></textarea>
-						</div>
+					   <div class="form-group col-md-12 wrap">
+					  <label for="proContent">자기소개서 내용</label>
+					  	<textarea rows="10" cols="60" class="form-control wrap proContent" name="proContent" wrap="hard" maxlength="2000" style="height: 165px;"></textarea>
+					  	 <span class="counter"></span>
+					</div>
 				  </div>`;
-		$('#profileDiv').append(str);
+		$('#profileDiv').parent().append(str);
+		
+		var newDiv = $(this).next().children().last();
+		var proContent = newDiv.children().next().children().eq(1);
+		var content = proContent.val();
+		proContent.height(((content.split('\n').length + 1) * 1.5) + 'em');
+		proContent.next().html(content.length + '/2000');
 	});
 	
-	//추가 프로필 제거
+	//자소서 글자 세기
+	$(document).on('keyup', '.proContent', function(){
+		var content = $(this).val();
+        $(this).height(((content.split('\n').length + 1) * 1.5) + 'em');
+        $(this).next().html(content.length + '/2000');
+	});
+	$('.proContent').keyup();
+	
+
+	
+	//추가 자소서 제거
 	$(document).on('click','#deleteBtn1', function(){
 		$(this).parent().parent().remove();
 	});
@@ -87,22 +104,22 @@ $(document).ready(function(){
 							<path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
 							<path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4L4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
 						  </svg>
-					     <input type="text" class="form-control" id="beCompany" name="beCompany">
+					     <input type="text" class="form-control" id="beCompany" name="beCompany" autocomplete="off">
 					   </div>
 					   <div class="form-group col-md-6">
 					     <label for="beCareer">경력</label>
 					     <div class="row col-md-12">
-					     	<input type="number" class="form-control col-md-11" id="beCareer" name="beCareer">
+					     	<input type="number" class="form-control col-md-11" id="beCareer" name="beCareer" max="99">
 							<span class="col-md-1">년</span>
 					   	 </div>
 					   </div>
 					   <div class="form-group col-md-6">
 					     <label for="beType">직종</label>
-					     <input type="text" class="form-control" id="beType" name="beType">
+					     <input type="text" class="form-control" id="beType" name="beType" autocomplete="off">
 					   </div>
 					   <div class="form-group col-md-6">
 					     <label for="bePosition">직책</label>
-					     <input type="text" class="form-control" id="bePosition" name="bePosition">
+					     <input type="text" class="form-control" id="bePosition" name="bePosition" autocomplete="off">
 					   </div>
 					 </div>
 					</div>`;
@@ -141,21 +158,6 @@ $(document).ready(function(){
 	});
 	//취득일
 	datepicFun('.licDate');
-	
-	
-	
-	   
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	
 });
 /* 함수선언 영역*/

@@ -10,6 +10,16 @@ $(document).ready(function(){
 	$(document).on('change', '#memImage', function(f) {
 		readURL(this);
 	});
+	
+	//개인 회원가입시 주소
+	$(document).on('click', '#findAddr', function(){
+		new daum.Postcode({
+			oncomplete : function(data) {
+				jQuery("#memAddr").val(data.address);
+				jQuery("#memAddr").focus();
+			}
+		}).open();
+	});
 });
 
 

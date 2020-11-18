@@ -70,7 +70,6 @@ svg{
     right: 0;
     height: 231px;
     content: "";
-  /*    background-image: url(https://image.flaticon.com/icons/png/128/109/109612.png); */
     display: block;
     margin: 0 auto;
     background-size: 100%;
@@ -105,7 +104,7 @@ svg{
 </svg><a href="memUpdateForm.me" class="editMyInfo" style="font-size: 17px;">개인정보 수정</a>
       <div class="panel-body">
       	<div align="center">
-			<div class="row col-md-10" style="border: 5px solid #658DC6; border-radius: 10px;">
+			<div class="row col-md-10" style="border: 5px solid #4876ef; border-radius: 10px;">
 				<div class="col-md-7">
 					<div class="form-row">
 						<table class="infoTable">

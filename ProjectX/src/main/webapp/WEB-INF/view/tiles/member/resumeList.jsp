@@ -7,24 +7,6 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style type="text/css">
-@font-face {
-	font-family: 'MyLotteBold';
-	src:
-		url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.0/MyLotteBold.woff')
-		format('woff');
-	font-weight: normal;
-	font-style: normal;
-}
-
-@font-face {
-	font-family: 'NEXON Lv2 Gothic Bold';
-	src:
-		url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@2.1/NEXON Lv2 Gothic Bold.woff')
-		format('woff');
-	font-weight: normal;
-	font-style: normal;
-}
-
 .moveToResumeTd:hover {
 	cursor: pointer;
 }
@@ -50,7 +32,7 @@ body > a:hover {
 		이력서 등록</a>
 		<span style="font-weight: bold; font-size: 30px; font-family: 'MyLotteBold'; color: #0F4C81; position: relative; right: 604px;">이력서 LIST</span>
 		<div style="height: 10px;"></div>
-		<div class="col-md-10" style="border: 5px solid #658DC6; border-radius: 10px;">
+		<div class="col-md-10" style="border: 5px solid #4876ef; border-radius: 10px;">
 			<div style="height: 10px;"></div>
 			<div class="col-md-12">
 				<table style="width: 100%; height: 300px;">

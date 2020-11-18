@@ -32,6 +32,16 @@ a.loginBtn:hover, a.loginBtn:focus {
 #loginSubdiv > ul > li{
 	display: inline-block;
 }
+#rankingBody > tr{
+	height: 66px;
+}
 #rankingBody > tr:hover{
 	cursor: pointer;
+}
+
+#rankingTable > thead > tr,
+#rankingTable > thead > tr > th,
+#rankingTable > tbody > tr > th,
+#rankingTable > tbody > tr > td{
+	border: none;
 }

@@ -17,7 +17,7 @@ import com.amazonaws.services.s3.model.PutObjectRequest;
 @Component
 public class AWSs3 {
 
-    private String accessKey ="";
+    private String accessKey =""; //aws 계정을 파셔서 사용해주세요
     private String secretKey ="";
 
     private AmazonS3 conn;

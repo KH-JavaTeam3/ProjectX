@@ -53,7 +53,7 @@ input[type="button"]:hover {
 	<div align="center">
 		<span style="font-weight: bold; font-size: 30px; font-family: 'MyLotteBold'; color: #0F4C81; position: relative; right: 546px;">지원 공고 목록</span>
 		<div style="height: 10px;"></div>
-		<div class="col-md-10" style="border: 5px solid #658DC6; border-radius: 10px;">
+		<div class="col-md-10" style="border: 5px solid #4876ef; border-radius: 10px;">
 			<div style="height: 10px;"></div>
 			<div class="col-md-12">
 				<table style="width: 100%; height: 300px;">
@@ -76,7 +76,15 @@ input[type="button"]:hover {
 							<td>${ap.comName }</td>
 							<td>${ap.announceTitle }</td>
 							<td>${ap.applyDate }</td>
-							<td>${ap.resumeResult }</td>
+								<c:if test="${ap.resumeResult == '결과 대기' }">
+									<td><samp style="color: green; font-weight: bold;">${ap.resumeResult }</samp></td>
+								</c:if>
+								<c:if test="${ap.resumeResult == '불합격' }">
+									<td><samp style="color: red; font-weight: bold;">${ap.resumeResult }</samp></td>
+								</c:if>
+								<c:if test="${ap.resumeResult == '합격' }">
+									<td><samp style="color: blue; font-weight: bold;">${ap.resumeResult }</samp></td>
+								</c:if>
 							<td class="deleteTd"><input type="button" class="btn btn-primary" value="삭제" onclick="location.href='deleteApply.me?applyNum=${ap.applyNum }'"></td>
 						</tr>
 					</c:forEach>

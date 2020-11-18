@@ -14,7 +14,8 @@
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <!-- Jquey -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-
+<!-- 폰트모음 -->
+<link rel="stylesheet" type="text/css" href="resources/css/font.css?ver=1" />
 <!-- 최신 부트스트랩JS -->
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
@@ -45,6 +46,9 @@ label.error {
 	margin-right : auto;
 	width: 80%;
 }
+.backColor{
+	
+}
 
 </style>
 <script type="text/javascript">
@@ -62,11 +66,13 @@ label.error {
 		<div style="background: #4876ef;">
 			<tiles:insertAttribute name="submenu"/>
 		</div>
-		<div>
-			<tiles:insertAttribute name="submenu2"/>
-		</div>
-		<div class="myContainer">
-			<tiles:insertAttribute name="body" />
+		<div class="backColor">
+			<div>
+				<tiles:insertAttribute name="submenu2"/>
+			</div>
+			<div class="myContainer">
+				<tiles:insertAttribute name="body" />
+			</div>
 		</div>
 		<div>
 		<footer>

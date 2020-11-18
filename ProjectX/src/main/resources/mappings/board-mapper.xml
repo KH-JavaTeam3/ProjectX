@@ -13,6 +13,7 @@
 		<result column="BOARD_WRITER_NAME"	property="boardWriterName"/>
 		<result column="BOARD_COUNT"		property="boardCount"/>
 		<result column="DEL_YN"				property="delYn"/>
+		<result column="COMENT_CNT"			property="comentCnt"/>
 	</resultMap>
 	<resultMap type="com.spring.biz.vo.BoardVO2" id="board2">
 		<result column="BOARD2_NUM" 			property="board2Num"/>
@@ -24,6 +25,7 @@
 		<result column="BOARD2_WRITER_NAME"		property="board2WriterName"/>
 		<result column="BOARD2_COUNT"			property="board2Count"/>
 		<result column="DEL_YN2"				property="delYn2"/>
+		<result column="COMENT_CNT2"			property="comentCnt2"/>
 	</resultMap>
 	<resultMap type="com.spring.biz.vo.BoardComentVO" id="boardComent">
 		<result column="BOARDCOMENT_NUM" 			property="boardComentNum"/>
@@ -55,6 +57,7 @@ SELECT ROW_NUM
     ,BOARD_WRITER_NAME
     ,BOARD_CONTENT
     ,DEL_YN
+    ,COMENT_CNT
 FROM
 (
     SELECT ROWNUM AS ROW_NUM
@@ -66,6 +69,7 @@ FROM
         ,BOARD_WRITER_NAME
         ,BOARD_CONTENT
         ,DEL_YN
+        ,COMENT_CNT
     FROM
     (
         SELECT BOARD_NUM
@@ -76,9 +80,11 @@ FROM
                 ,BOARD_WRITER_NAME
                 ,BOARD_CONTENT
                 ,DEL_YN
-        FROM BOARD 
+                ,(SELECT COUNT(BOARDCOMENT_NUM) FROM BOARDCOMENT WHERE BOARD_NUM = B.BOARD_NUM) AS COMENT_CNT
+        FROM BOARD B 
         WHERE DEL_YN='N'
-        ORDER BY BOARD_NUM DESC
+       
+        ORDER BY B.BOARD_NUM DESC
     )
 )
 WHERE ROW_NUM BETWEEN #{start} AND #{end}
@@ -93,6 +99,7 @@ SELECT ROW_NUM
     ,BOARD_DATE
     ,BOARD_WRITER_NAME
     ,BOARD_CONTENT
+    ,COMENT_CNT
 FROM
 (
     SELECT ROWNUM AS ROW_NUM
@@ -103,6 +110,7 @@ FROM
         ,BOARD_DATE
         ,BOARD_WRITER_NAME
         ,BOARD_CONTENT
+        ,COMENT_CNT
     FROM
     (
         SELECT BOARD_NUM
@@ -112,7 +120,8 @@ FROM
                 ,TO_CHAR(BOARD_DATE,'YYYY-MM-DD HH24:MI:SS') AS BOARD_DATE
                 ,BOARD_WRITER_NAME
                 ,BOARD_CONTENT
-        FROM BOARD
+                ,(SELECT COUNT(BOARDCOMENT_NUM) FROM BOARDCOMENT WHERE BOARD_NUM = B.BOARD_NUM) AS COMENT_CNT
+        FROM BOARD B
         ORDER BY BOARD_NUM DESC
     )
 )
@@ -136,6 +145,7 @@ SELECT ROW_NUM
     ,BOARD2_DATE
     ,BOARD2_WRITER_NAME
     ,BOARD2_CONTENT
+    ,COMENT_CNT2
 FROM
 (
     SELECT ROWNUM AS ROW_NUM
@@ -146,6 +156,7 @@ FROM
         ,BOARD2_DATE
         ,BOARD2_WRITER_NAME
         ,BOARD2_CONTENT
+        ,COMENT_CNT2
     FROM
     (
         SELECT BOARD2_NUM
@@ -155,7 +166,8 @@ FROM
                 ,TO_CHAR(BOARD2_DATE,'YYYY-MM-DD HH24:MI:SS') AS BOARD2_DATE
                 ,BOARD2_WRITER_NAME
                 ,BOARD2_CONTENT
-        FROM BOARD2 
+                ,(SELECT COUNT(BOARD2COMENT_NUM) FROM BOARD2COMENT WHERE BOARD2_NUM = B.BOARD2_NUM) AS COMENT_CNT2
+        FROM BOARD2 B
         ORDER BY BOARD2_NUM DESC
     )
 )
@@ -181,6 +193,7 @@ SELECT ROW2_NUM
     ,BOARD2_WRITER_NAME
     ,BOARD2_CONTENT
     ,DEL_YN2
+    ,COMENT_CNT2
 FROM
 (
     SELECT ROWNUM AS ROW2_NUM
@@ -192,6 +205,7 @@ FROM
         ,BOARD2_WRITER_NAME
         ,BOARD2_CONTENT
         ,DEL_YN2
+        ,COMENT_CNT2
     FROM
     (
         SELECT BOARD2_NUM
@@ -202,9 +216,10 @@ FROM
                 ,BOARD2_WRITER_NAME
                 ,BOARD2_CONTENT
                 ,DEL_YN2
-        FROM BOARD2
+                ,(SELECT COUNT(BOARD2COMENT_NUM) FROM BOARD2COMENT WHERE BOARD2_NUM = B.BOARD2_NUM) AS COMENT_CNT2
+        FROM BOARD2 B
         WHERE DEL_YN2 = 'N'
-        ORDER BY BOARD2_NUM DESC
+        ORDER BY B.BOARD2_NUM DESC
         
     )
 )
@@ -220,17 +235,19 @@ WHERE ROW2_NUM BETWEEN #{start} AND #{end}
 		,BOARD_DATE 
 		,BOARD_WRITER_NAME
 		,BOARD_CONTENT
-	FROM BOARD	
+		,(SELECT COUNT(BOARDCOMENT_NUM) FROM BOARDCOMENT WHERE BOARD_NUM = B.BOARD_NUM) AS COMENT_CNT
+	FROM BOARD B
+	WHERE DEL_YN ='N'	
 	
 	<if test="select != '전체' and search != ''">
-		WHERE ${select} LIKE UPPER('%'||#{search}||'%')
+		AND ${select} LIKE UPPER('%'||#{search}||'%')
 	</if>
 
 	<if test="select != '전체' and search == ''">
-		WHERE ${select} LIKE UPPER('%'||#{search}||'%')
+		AND ${select} LIKE UPPER('%'||#{search}||'%')
 	</if>
 	<if test="select == '전체' and search != ''">
-		WHERE (
+		AND (
 			BOARD_TITLE LIKE UPPER('%'||#{search}||'%')
 			OR BOARD_CONTENT LIKE UPPER('%'||#{search}||'%')
 			OR BOARD_WRITER_NAME LIKE UPPER('%'||#{search}||'%')
@@ -248,7 +265,9 @@ WHERE ROW2_NUM BETWEEN #{start} AND #{end}
 		,BOARD2_DATE
 		,BOARD2_WRITER_NAME
 		,BOARD2_CONTENT
-	FROM BOARD2	
+		,(SELECT COUNT(BOARD2COMENT_NUM) FROM BOARD2COMENT WHERE BOARD2_NUM = B.BOARD2_NUM) AS COMENT_CNT2
+	FROM BOARD2	B
+	WHERE DEL_YN2 ='N'
 	<if test="select2 != '전체' and search2 != ''">
 		AND ${select2} LIKE UPPER('%'||#{search2}||'%')
 	</if>
@@ -445,6 +464,7 @@ WHERE ROW2_NUM BETWEEN #{start} AND #{end}
 		,#{board2Num}
 		,#{board2ComentEmail}		
 	)
+	
 </insert>
 <!--자유게시판 댓글삭제  -->
 <delete id="deleteBoardComent">
@@ -458,6 +478,21 @@ WHERE ROW2_NUM BETWEEN #{start} AND #{end}
 		WHERE BOARD2COMENT_NUM = #{board2ComentNum}
     	AND BOARD2COMENT_EMAIL = #{board2ComentEmail}
 </delete>
+
+<!-- 자유게시판 댓글수 -->
+<select id="freeBoardComentCount" resultType="int">
+	SELECT     
+    MAX(BOARDCOMENT_NUM)
+    FROM BOARDCOMENT
+    WHERE BOARD_NUM = #{boardNum}
+</select>
+<!-- QA게시판 댓글수 -->
+<select id="qaBoardComentCount" resultType="int">
+	SELECT     
+    MAX(BOARDCOMENT_NUM)
+    FROM BOARD2COMENT
+    WHERE BOARD2_NUM = #{board2Num}
+</select>
 
 
 </mapper>

@@ -131,9 +131,9 @@ body {
 
 
 				<c:forEach items="${boardList }" var="board2" >
-					<tr class="detail2Btn">
-						<td><span class="board2Num">${board2.board2Num}</span></td>
-						<td>${board2.board2Title }</td>
+					<tr class="detail2Btn" data-attr="${board2.board2Num }">
+						<td>${board2.board2Num}</td>
+						<td><label style="font-weight: normal; font-size: 20px;">${board2.board2Title }</label>(${board2.comentCnt2})</td>
 						<td>${board2.board2WriterName}*</td>
 						<td>${board2.board2Date }</td>
 						<td>${board2.board2Views }</td>
@@ -195,7 +195,7 @@ body {
 					<div class="form-row">
 						<div class="col-md-3"></div>
 						<div class="col-md-3">
-							<select class="form-control" name="select">
+							<select class="form-control" name="select2">
 								<option>전체</option>
 								<option value="BOARD2_CONTENT">내용</option>
 								<option value="BOARD2_TITLE">제목</option>
@@ -203,7 +203,7 @@ body {
 							</select>
 						</div>
 						<div class="col-md-4">
-							<input type="text" class="form-control" name="search">
+							<input type="text" class="form-control" name="search2">
 						</div>
 						<div class="col-md-2" align="left">
 							<input type="submit" class="btn btn-outline-primary" value="검색" style="width: 130px;">
@@ -233,7 +233,7 @@ body {
 		
 		
 		$(document).on('click','.detail2Btn',function() {
-			var board2Num = $('.board2Num').text();
+			var board2Num = $(this).attr('data-attr');
 			if (comName == '' && memName == '') {
 				alert('로그인이 필요한 서비스 입니다.');
 			} else {

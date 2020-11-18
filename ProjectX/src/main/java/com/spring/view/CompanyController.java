@@ -66,7 +66,7 @@ public class CompanyController {
 	@RequestMapping(value = "/registHumanSeekerUpdate.co")
 	public String registHumanSeekerUpdate(RecruitListVO recruitListVO, Model model, MultipartHttpServletRequest multi, HttpServletRequest request)throws Exception{
 		companyService.registHumanSeekerUpdate(Statics.uploadImage(multi, request, recruitListVO));
-		return "redirect:recruitlist.co";
+		return "redirect:recruitDeleteList.co";
 	}
 	
 	//기업 공고 삭제로 가는 리스트
@@ -130,13 +130,15 @@ public class CompanyController {
 	//이력서 합격 불합격 에이작스
 	@ResponseBody
 	@RequestMapping(value = "/acceptanceAndrejectBtn.co")
-	public int acceptanceAndrejectBtn(MemResumeVO memResumeVO) {
+	public int acceptanceAndrejectBtn(MemResumeVO memResumeVO,HttpSession session, CompanyInfoVO companyInfoVO) {
 		//여기만 바꾸면 가능
 		String setfrom = "FinDream"; // 보내는 이(한글 안먹던데)
 		String tomail = memResumeVO.getMemEmail(); // 받는 사람 이메일
+		companyInfoVO = (CompanyInfoVO) session.getAttribute("comLogin");
+		String comName = companyInfoVO.getComName();
 		String title = "구인구직 사이트 파인드림입니다."; // 제목(생략가능)
-		String content = "귀하께서 신청 하신 "+ memResumeVO.getComName() +"기업의 공고에서 최종 합격 되셨습니다. \n 감사합니다.";
-		String content2 = "귀하께서 신청 하신 "+ memResumeVO.getComName() +"기업의 공고에서 최종 불합격 되셨습니다. \n 감사합니다.";
+		String content = "귀하께서 신청 하신 "+ comName +"기업의 공고에서 최종 합격 되셨습니다. \n 감사합니다.";
+		String content2 = "귀하께서 신청 하신 "+ comName +"기업의 공고에서 최종 불합격 되셨습니다. \n 감사합니다.";
 		
 		final MimeMessagePreparator preparator = new MimeMessagePreparator() { 
 			@Override public void prepare(MimeMessage mimeMessage) throws Exception { 
